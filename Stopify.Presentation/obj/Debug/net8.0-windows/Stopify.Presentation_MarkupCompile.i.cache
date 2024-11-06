@@ -1,0 +1,20 @@
+﻿Stopify.Presentation
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\IT Step\C#\Stopify\Stopify.Presentation\obj\Debug\net8.0-windows\
+Stopify.Presentation
+none
+false
+TRACE;DEBUG;NET;NET8_0;NETCOREAPP
+D:\IT Step\C#\Stopify\Stopify.Presentation\App.xaml
+20-427102737
+
+52-225121198
+252-584336491
+MainWindow.xaml;Views\ArtistView\ArtistViewMain.xaml;Views\CommonViews\CommonlItemView.xaml;Views\CommonViews\CommonRowView.xaml;Views\CommonViews\FilterRowView.xaml;Views\CommonViews\PopupOnHoverView.xaml;Views\HomeView\HomeViewMain.xaml;Views\HomeView\HomeViewRecents.xaml;Views\NowPlayingView\NowPlayingViewItem.xaml;Views\NowPlayingView\NowPlayingViewMain.xaml;Views\PlayerView\PlayerViewMain.xaml;Views\PlaylistView\PlaylistViewHeader.xaml;Views\PlaylistView\PlaylistViewItem.xaml;Views\PlaylistView\PlaylistViewMain.xaml;Views\QueueView\QueueViewMain.xaml;Views\SearchView\SearchViewItem.xaml;Views\SearchView\SearchViewMain.xaml;Views\SidebarView\SidebarViewItem.xaml;Views\SidebarView\SidebarViewMain.xaml;Views\TitlebarView\TitlebarViewMain.xaml;
+
+True
+

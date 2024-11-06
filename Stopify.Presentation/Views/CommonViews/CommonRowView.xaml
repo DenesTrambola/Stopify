@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="Stopify.Presentation.Views.CommonViews.CommonRowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Stopify.Presentation.Views.CommonViews"
+             xmlns:controls="clr-namespace:Stopify.Presentation.Helpers.Controls"
+             mc:Ignorable="d">
+    <StackPanel Orientation="Vertical" Margin="4.5 20">
+        <!-- Header -->
+        <DockPanel Margin="11 0 19 5">
+            <!-- Category -->
+            <Button
+                DockPanel.Dock="Left"
+                Name="CategoryBtn"
+                Content="{Binding Category, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                BorderThickness="0"
+                Background="Transparent"
+                Foreground="White"
+                FontWeight="Bold"
+                FontSize="24"
+                MouseEnter="CategoryBtn_MouseEnter"
+                MouseLeave="CategoryBtn_MouseLeave"
+                Click="CategoryBtn_Click"
+            />
+
+            <!-- Show all -->
+            <Button
+                DockPanel.Dock="Right"
+                Name="ShowAllBtn"
+                Content="Show all"
+                BorderThickness="0"
+                Background="Transparent"
+                Foreground="DarkGray"
+                FontWeight="Bold"
+                FontSize="13.5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0 0 0 1"
+                MouseEnter="ShowAllBtn_MouseEnter"
+                MouseLeave="ShowAllBtn_MouseLeave"
+                Click="ShowAllBtn_Click"
+            />
+        </DockPanel>
+
+        <!-- Items -->
+        <ItemsControl>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <controls:StretchyWrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <local:CommonItemView/>
+            <local:CommonItemView/>
+            <local:CommonItemView/>
+            <local:CommonItemView/>
+            <local:CommonItemView/>
+            <local:CommonItemView/>
+            <local:CommonItemView/>
+            <local:CommonItemView/>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

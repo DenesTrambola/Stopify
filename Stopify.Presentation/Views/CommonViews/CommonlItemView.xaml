@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="Stopify.Presentation.Views.CommonViews.CommonItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Stopify.Presentation.Views.CommonViews"
+             mc:Ignorable="d">
+    <Button
+        Name="GeneralItemBtn"
+        BorderThickness="0"
+        Background="Transparent"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        HorizontalContentAlignment="Stretch"
+        VerticalContentAlignment="Stretch"
+        MinWidth="162"
+        MouseEnter="GeneralItemBtn_MouseEnter"
+        MouseLeave="GeneralItemBtn_MouseLeave"
+        Click="GeneralItemBtn_Click" >
+        <Border
+            Name="GeneralItemBorder"
+            CornerRadius="7"
+            Padding="10"
+            BorderThickness="0"
+            Background="#121212" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Image -->
+                <Border
+                    Grid.Row="0"
+                    CornerRadius="6"
+                    MinWidth="140.33"
+                    MinHeight="140.33"
+                    MaxWidth="210"
+                    MaxHeight="210"
+                    Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" >
+                    <Border.Background>
+                        <ImageBrush ImageSource="../../Resources/song.jpg"/>
+                    </Border.Background>
+                </Border>
+
+                <!-- Play/Pause Button -->
+                <Button
+                    Name="PlayBtn"
+                    Grid.Row="0"
+                    Opacity="0"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    Margin="0 0 5 5"
+                    Height="52"
+                    Width="52"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    MouseEnter="PlayBtn_MouseEnter"
+                    MouseLeave="PlayBtn_MouseLeave"
+                    Click="PlayBtn_Click" >
+                    <Border Name="PlayBorder" Background="#3adf74" CornerRadius="30" >
+                        <TextBlock
+                            Name="PlayIcon"
+                            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                            Text="&#xf04b;"
+                            Foreground="Black"
+                            FontSize="23"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                        />
+                    </Border>
+
+                    <Button.RenderTransform>
+                        <TranslateTransform x:Name="PlayBtnTransform" />
+                    </Button.RenderTransform>
+                </Button>
+                
+                <!-- Title -->
+                <Button
+                    Grid.Row="1"
+                    Name="TitleBtn"
+                    MaxHeight="50"
+                    Foreground="White"
+                    FontWeight="SemiBold"
+                    Margin="0 7 0 5"
+                    FontSize="16"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    VerticalContentAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    Padding="0" >
+                    <TextBlock
+                        Text="Azahriah"
+                        TextWrapping="Wrap"
+                        LineHeight="20"
+                        TextTrimming="CharacterEllipsis"
+                    />
+                </Button>
+
+                <!-- Description -->
+                <Button
+                    Grid.Row="2"
+                    Name="DescBtn"
+                    MaxHeight="40"
+                    Foreground="DarkGray"
+                    FontWeight="SemiBold"
+                    FontSize="14"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    VerticalContentAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    Padding="0" >
+                    <TextBlock
+                        Name="DescText"
+                        Text="Artist"
+                        TextWrapping="Wrap"
+                        LineHeight="18"
+                        TextTrimming="CharacterEllipsis"
+                    />
+                </Button>
+            </Grid>
+        </Border>
+    </Button>
+</UserControl>

@@ -1,0 +1,610 @@
+﻿<Page x:Class="Stopify.Presentation.Views.ArtistView.ArtistViewMain"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Stopify.Presentation.Views.ArtistView"
+      xmlns:common="clr-namespace:Stopify.Presentation.Views.CommonViews"
+      xmlns:playlist="clr-namespace:Stopify.Presentation.Views.PlaylistView"
+      xmlns:controls="clr-namespace:Stopify.Presentation.Helpers.Controls"
+      mc:Ignorable="d"
+      Title="ArtistView"
+      
+      Loaded="ArtistView_Loaded"
+      SizeChanged="ArtistView_SizeChanged" >
+
+    <Border CornerRadius="8">
+        <Grid>
+            <!-- Sticky Header -->
+            <Grid
+                Name="StickyHeader"
+                Panel.ZIndex="1"
+                Height="0"
+                VerticalAlignment="Top">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Artist Info -->
+                <Border
+                    Name="StickyHeaderBg"
+                    Grid.Row="0"
+                    Background="Transparent"
+                    CornerRadius="8 8 0 0" >
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Play/Pause -->
+                        <Button
+                            Grid.Column="0"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="50"
+                            Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Margin="15 7 7 7" >
+
+                            <Border CornerRadius="30" Background="#1ed760">
+                                <TextBlock
+                                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                    Text="&#xf04b;"
+                                    Margin="2 15 0 15"
+                                    FontSize="19"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                            />
+                            </Border>
+                        </Button>
+
+                        <!-- Title -->
+                        <TextBlock
+                            Grid.Column="1"
+                            Foreground="White"
+                            TextWrapping="Wrap"
+                            Text="Azahriah"
+                            FontWeight="Bold"
+                            FontSize="24"
+                            MaxHeight="35"
+                            TextTrimming="CharacterEllipsis"
+                            VerticalAlignment="Center"
+                            Margin="0 0 20 0"
+                        />
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!-- Main Panel -->
+            <ScrollViewer
+                Name="Scroller"
+                Panel.ZIndex="0"
+                VerticalScrollBarVisibility="Auto"
+                ScrollChanged="Scroller_ScrollChanged" >
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop x:Name="ScrollerBg" Color="Transparent" Offset=".1"/>
+                            <GradientStop Color="#121212" Offset=".25"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Main Header -->
+                    <Border Grid.Row="0" Name="MainHeader" CornerRadius="8 8 0 0">
+                        <Grid VerticalAlignment="Top" Height="187">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".32*" MinWidth="160"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Artist Profile -->
+                            <Border
+                                Grid.Column="0"
+                                CornerRadius="100"
+                                MinWidth="126"
+                                MaxWidth="170"
+                                Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                                Margin="17 0 17 18"
+                                VerticalAlignment="Bottom" >
+
+                                <Border.Background>
+                                    <ImageBrush ImageSource="../../Resources/song.jpg"/>
+                                </Border.Background>
+                            </Border>
+
+                            <!-- Artist Info -->
+                            <Grid
+                                Grid.Column="1"
+                                Margin="0 0 17 17"
+                                VerticalAlignment="Bottom" >
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Type -->
+                                    <Grid Grid.Row="0" Margin="2 0 0 -5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="0" Margin="0 1 9 0">
+                                            <TextBlock
+                                                Foreground="#4cb3ff"
+                                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                                Text="&#xf0a3;"
+                                                FontSize="17"
+                                            />
+
+                                            <TextBlock
+                                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                                Text="&#xf00c;"
+                                                Foreground="White"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                FontSize="10"
+                                            />
+                                        </Grid>
+
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Foreground="LightGray"
+                                            Text="Verified Artist"
+                                            FontWeight="SemiBold"
+                                            FontSize="14"
+                                        />
+                                    </Grid>
+
+                                    <!-- Title -->
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        Name="ArtistName"
+                                        Foreground="White"
+                                        Text="Azahriah"
+                                        FontSize="70"
+                                        FontWeight="UltraBold"
+                                        TextWrapping="Wrap"
+                                        TextTrimming="WordEllipsis"
+                                    />
+
+                                    <!-- Monthly Listeners -->
+                                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 8 0 5">
+                                        <TextBlock
+                                            Foreground="LightGray"
+                                            FontWeight="SemiBold"
+                                            FontSize="17"
+                                            TextWrapping="Wrap"
+                                            TextTrimming="CharacterEllipsis"
+                                            Text="700,000"
+                                        />
+                                        
+                                        <TextBlock
+                                            Foreground="LightGray"
+                                            FontWeight="SemiBold"
+                                            FontSize="16"
+                                            TextWrapping="Wrap"
+                                            TextTrimming="CharacterEllipsis"
+                                            Text=" monthly listeners"
+                                            VerticalAlignment="Bottom"
+                                        />
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <!-- Control Buttons -->
+                    <Grid
+                        Grid.Row="1"
+                        Margin="15 14 0 0"
+                        HorizontalAlignment="Left" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Play/Pause -->
+                        <Button
+                            Grid.Column="0"
+                            Name="PlayBtn"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Width="50"
+                            Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            MouseEnter="PlayBtn_MouseEnter"
+                            MouseLeave="PlayBtn_MouseLeave"
+                            Click="PlayBtn_Click" >
+
+                            <Border Name="PlayBorder" Background="#1ed760" CornerRadius="30">
+                                <TextBlock
+                                    Name="PlayIcon"
+                                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                    Text="&#xf04b;"
+                                    Margin="2 15 0 15"
+                                    FontSize="20"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    IsHitTestVisible="False"
+                                />
+                            </Border>
+                        </Button>
+
+                        <!-- Shuffle -->
+                        <Button
+                            Grid.Column="1"
+                            Name="ShuffleBtn"
+                            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                            Content="&#xf074;"
+                            FontSize="23"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Foreground="DarkGray"
+                            Width="32"
+                            Height="32"
+                            Margin="19 0 0 0"
+                            MouseEnter="ShuffleBtn_MouseEnter"
+                            MouseLeave="ShuffleBtn_MouseLeave"
+                            Click="ShuffleBtn_Click"
+                        />
+                        
+                        <!-- Follow -->
+                        <Button
+                            Grid.Column="2"
+                            Name="FollowBtn"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            Margin="11 0"
+                            MouseEnter="FollowBtn_MouseEnter"
+                            MouseLeave="FollowBtn_MouseLeave"
+                            Click="FollowBtn_Click" >
+
+                            <Border
+                                Name="FollowBorder"
+                                CornerRadius="15"
+                                BorderThickness="1.5"
+                                Padding="14 6"
+                                BorderBrush="DarkGray" >
+                                
+                                <TextBlock
+                                    Name="FollowText"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    FontSize="14"
+                                    Text="Follow"
+                                    Margin="0 0 0 1"
+                                />
+                            </Border>
+                        </Button>
+
+                        <!-- More Options -->
+                        <Button
+                            Grid.Column="4"
+                            Name="OptionsBtn"
+                            Content="• • •"
+                            FontSize="12"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Foreground="DarkGray"
+                            Width="25"
+                            Height="45"
+                            Margin="4 0 0 1"
+                            MouseEnter="OptionsBtn_MouseEnter"
+                            MouseLeave="OptionsBtn_MouseLeave"
+                            Click="OptionsBtn_Click"
+                        />
+                    </Grid>
+
+                    <!-- Popular -->
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock
+                            Grid.Row="0"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            Text="Popular"
+                            FontSize="24"
+                            Margin="15 20 0 0"
+                        />
+
+                        <ItemsControl Grid.Row="1" Margin="16 15 0 0">
+                            <playlist:PlaylistViewItem/>
+                        </ItemsControl>
+                        
+                        <!-- See more -->
+                        <Button
+                            Grid.Row="2"
+                            Name="SeeMoreBtn"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Content="See more"
+                            HorizontalAlignment="Left"
+                            Foreground="DarkGray"
+                            FontWeight="Bold"
+                            FontSize="14.4"
+                            Margin="20 1"
+                            Padding="12 13"
+                            MouseEnter="SeeMoreBtn_MouseEnter"
+                            MouseLeave="SeeMoreBtn_MouseLeave"
+                            Click="SeeMoreBtn_Click"
+                        />
+                    </Grid>
+                    
+                    <!-- Discography -->
+                    <Grid Grid.Row="3" Margin="15 50 0 30">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Header -->
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Title -->
+                            <Button
+                                Grid.Column="0"
+                                Name="DiscographyBtn"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                Content="Discography"
+                                FontSize="24"
+                                MouseEnter="CategoryTitle_MouseEnter"
+                                MouseLeave="CategoryTitle_MouseLeave"
+                                Click="DiscographyBtn_Click"
+                            />
+
+                            <!-- Show all -->
+                            <Button
+                                Grid.Column="2"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="DarkGray"
+                                FontWeight="Bold"
+                                Content="Show all"
+                                VerticalAlignment="Bottom"
+                                FontSize="13.5"
+                                Margin="0 0 10 0"
+                                MouseEnter="SeeMoreBtn_MouseEnter"
+                                MouseLeave="SeeMoreBtn_MouseLeave"
+                                Click="DiscographyBtn_Click"
+                            />
+                        </Grid>
+                        
+                        <!-- Filters -->
+                        <StackPanel
+                            Grid.Row="1"
+                            Orientation="Horizontal"
+                            Margin="0 15">
+                            
+                            <!-- Popular releases -->
+                            <Button
+                                Name="PopularBtn"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                MouseEnter="PopularBtn_MouseEnter"
+                                MouseLeave="PopularBtn_MouseLeave"
+                                Click="PopularBtn_Click" >
+                                <Border
+                                    Name="PopularBorder"
+                                    CornerRadius="15"
+                                    Background="White"
+                                    Padding="13 6" >
+                                    <TextBlock
+                                        Name="PopularText"
+                                        Text="Popular releases"
+                                        FontWeight="SemiBold"
+                                        Foreground="Black"
+                                        FontSize="14"
+                                    />
+                                </Border>
+                            </Button>
+
+                            <!-- Albums -->
+                            <Button
+                                Name="AlbumsBtn"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Margin="7 0"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                MouseEnter="AlbumsBtn_MouseEnter"
+                                MouseLeave="AlbumsBtn_MouseLeave"
+                                Click="AlbumsBtn_Click" >
+                                <Border
+                                    Name="AlbumsBorder"
+                                    CornerRadius="15"
+                                    Background="#2a2a2a"
+                                    Padding="13 6" >
+                                    <TextBlock
+                                        Name="AlbumsText"
+                                        Text="Albums"
+                                        FontWeight="SemiBold"
+                                        Foreground="White"
+                                        FontSize="14"
+                                    />
+                                </Border>
+                            </Button>
+
+                            <!-- Singles and Eps -->
+                            <Button
+                                Name="SinglesBtn"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                MouseEnter="SinglesBtn_MouseEnter"
+                                MouseLeave="SinglesBtn_MouseLeave"
+                                Click="SinglesBtn_Click" >
+                                <Border
+                                    Name="SinglesBorder"
+                                    CornerRadius="15"
+                                    Background="#2a2a2a"
+                                    Padding="13 6" >
+                                    <TextBlock
+                                        Name="SinglesText"
+                                        Text="Singles and EPs"
+                                        FontWeight="SemiBold"
+                                        Foreground="White"
+                                        FontSize="14"
+                                    />
+                                </Border>
+                            </Button>
+                        </StackPanel>
+                        
+                        <!-- Items -->
+                        <controls:StretchyWrapPanel Grid.Row="2">
+                            <common:CommonItemView/>
+                            <common:CommonItemView/>
+                            <common:CommonItemView/>
+                            <common:CommonItemView/>
+                            <common:CommonItemView/>
+                            <common:CommonItemView/>
+                            <common:CommonItemView/>
+                            <common:CommonItemView/>
+                        </controls:StretchyWrapPanel>
+                    </Grid>
+
+                    <!-- Fans also like -->
+                    <common:CommonRowView Grid.Row="4" Category="Fans also like"/>
+                    
+                    <!-- About -->
+                    <Grid Grid.Row="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" Margin="15 30 0 30">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Title -->
+                            <Button
+                                Grid.Row="0"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="White"
+                                HorizontalAlignment="Left"
+                                FontWeight="Bold"
+                                Content="About"
+                                FontSize="24"
+                            />
+
+                            <!-- Image -->
+                            <Button
+                                Grid.Row="1"
+                                Name="AboutBtn"
+                                Margin="0 12"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                MaxWidth="600"
+                                Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                MouseEnter="AboutBtn_MouseEnter"
+                                MouseLeave="AboutBtn_MouseLeave"
+                                Click="AboutBtn_Click" >
+                                
+                                <Border CornerRadius="8">
+                                    <Border.Background>
+                                        <ImageBrush
+                                            ImageSource="../../Resources/stopify-icon.ico"
+                                            Stretch="Uniform"
+                                            AlignmentY="Top"/>
+                                    </Border.Background>
+                                </Border>
+                            </Button>
+                            
+                            <!-- Info -->
+                            <Grid
+                                Grid.Row="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Margin="40"
+                                IsHitTestVisible="False" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Monthly listeners -->
+                                <StackPanel
+                                    Grid.Row="0"
+                                    Orientation="Horizontal"
+                                    Margin="0 10">
+                                    
+                                    <TextBlock
+                                        Foreground="White"
+                                        FontWeight="Bold"
+                                        Text="700,000"
+                                        FontSize="16"
+                                    />
+                                    <TextBlock
+                                        Foreground="White"
+                                        FontWeight="SemiBold"
+                                        Text="monthly listeners"
+                                        Margin="5 0"
+                                        FontSize="16"
+                                        VerticalAlignment="Bottom"
+                                    />
+                                </StackPanel>
+                                
+                                <!-- Description -->
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Foreground="White"
+                                    FontWeight="SemiBold"
+                                    Text="creator from hungary"
+                                    FontSize="16"
+                                    TextWrapping="Wrap"
+                                    TextTrimming="WordEllipsis"
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Page>

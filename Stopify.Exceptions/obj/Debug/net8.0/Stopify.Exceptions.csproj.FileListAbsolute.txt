@@ -1,0 +1,11 @@
+D:\IT Step\C#\Stopify\Stopify.Exceptions\bin\Debug\net8.0\Stopify.Exceptions.deps.json
+D:\IT Step\C#\Stopify\Stopify.Exceptions\bin\Debug\net8.0\Stopify.Exceptions.dll
+D:\IT Step\C#\Stopify\Stopify.Exceptions\bin\Debug\net8.0\Stopify.Exceptions.pdb
+D:\IT Step\C#\Stopify\Stopify.Exceptions\obj\Debug\net8.0\Stopify.Exceptions.GeneratedMSBuildEditorConfig.editorconfig
+D:\IT Step\C#\Stopify\Stopify.Exceptions\obj\Debug\net8.0\Stopify.Exceptions.AssemblyInfoInputs.cache
+D:\IT Step\C#\Stopify\Stopify.Exceptions\obj\Debug\net8.0\Stopify.Exceptions.AssemblyInfo.cs
+D:\IT Step\C#\Stopify\Stopify.Exceptions\obj\Debug\net8.0\Stopify.Exceptions.csproj.CoreCompileInputs.cache
+D:\IT Step\C#\Stopify\Stopify.Exceptions\obj\Debug\net8.0\Stopify.Exceptions.dll
+D:\IT Step\C#\Stopify\Stopify.Exceptions\obj\Debug\net8.0\refint\Stopify.Exceptions.dll
+D:\IT Step\C#\Stopify\Stopify.Exceptions\obj\Debug\net8.0\Stopify.Exceptions.pdb
+D:\IT Step\C#\Stopify\Stopify.Exceptions\obj\Debug\net8.0\ref\Stopify.Exceptions.dll

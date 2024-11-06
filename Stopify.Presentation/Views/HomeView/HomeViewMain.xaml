@@ -1,0 +1,288 @@
+﻿<Page x:Class="Stopify.Presentation.Views.HomeView.HomeViewMain"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Stopify.Presentation.Views.HomeView"
+      xmlns:common="clr-namespace:Stopify.Presentation.Views.CommonViews"
+      mc:Ignorable="d" 
+      d:DesignWidth="500"
+      Background="Transparent"
+      Title="HomePage"
+      
+      Loaded="HomePage_Loaded"
+      SizeChanged="HomePage_SizeChanged" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Sticky Header -->
+        <Border
+            Grid.Row="0"
+            Name="StickyHeader"
+            Height="0"
+            Padding="0 16 0 0"
+            CornerRadius="8 8 0 0" >
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,4">
+                    <GradientStop x:Name="StickyHeaderBg" Color="Transparent" Offset="0"/>
+                    <GradientStop Color="#121212" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <StackPanel
+                x:Name="HeaderFilterBtns"
+                Orientation="Horizontal" >
+
+                <!-- All Filter Button -->
+                <Border
+                    Name="HeaderAllBorder"
+                    CornerRadius="17"
+                    VerticalAlignment="Top"
+                    Margin="15.5 15.5 0 15.5"
+                    Background="White" >
+                    <Button
+                        Name="HeaderAllBtn"
+                        Content="All"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontSize="14"
+                        Padding="13 6 13 8"
+                        Foreground="Black"
+                        FontWeight="SemiBold"
+                        MouseEnter="AllBtn_MouseEnter"
+                        MouseLeave="AllBtn_MouseLeave"
+                        Click="AllBtn_Click"
+                    />
+                </Border>
+
+                <!-- Music Filter Button -->
+                <Border
+                    Name="HeaderMusicBorder"
+                    CornerRadius="17"
+                    VerticalAlignment="Top"
+                    Margin="7 15.5 0 0"
+                    Background="#585f5f" >
+                    <Button
+                        Name="HeaderMusicBtn"
+                        Content="Music"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontSize="14"
+                        Padding="13 6 13 8"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        MouseEnter="MusicBtn_MouseEnter"
+                        MouseLeave="MusicBtn_MouseLeave"
+                        Click="MusicBtn_Click"
+                    />
+                </Border>
+
+                <!-- Podcasts Filter Button -->
+                <Border
+                    Name="HeaderPodcastsBorder"
+                    CornerRadius="17"
+                    VerticalAlignment="Top"
+                    Margin="7 15.5 0 0"
+                    Background="#585f5f" >
+                    <Button
+                        Name="HeaderPodcastsBtn"
+                        Content="Podcasts"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        FontSize="14"
+                        Padding="13 6 13 8"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        MouseEnter="PodcastsBtn_MouseEnter"
+                        MouseLeave="PodcastsBtn_MouseLeave"
+                        Click="PodcastsBtn_Click"
+                    />
+                </Border>
+            </StackPanel>
+        </Border>
+        
+        <!-- Main Content -->
+        <ScrollViewer
+            Grid.Row="1"
+            Name="Scroller"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Disabled"
+            ScrollChanged="Scroller_ScrollChanged">
+            <StackPanel Name="HomePagePanel" >
+                <StackPanel>
+                    <StackPanel.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop x:Name="ScrollerBg" Color="Transparent" Offset="0"/>
+                            <GradientStop Color="#121212" Offset="1"/>
+                        </LinearGradientBrush>
+                    </StackPanel.Background>
+
+                    <!-- Filter Buttons -->
+                    <Border Name="MainHeader" Padding="0 16 0 0" CornerRadius="8 8 0 0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,4">
+                                <GradientStop x:Name="MainHeaderBg" Color="Transparent" Offset="0"/>
+                                <GradientStop Color="#121212" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+
+                        <StackPanel
+                            x:Name="FilterBtns"
+                            Orientation="Horizontal" >
+
+                            <!-- All Filter Button -->
+                            <Border
+                                Name="AllBorder"
+                                CornerRadius="17"
+                                VerticalAlignment="Top"
+                                Margin="15.5 15.5 0 15.5"
+                                Background="White" >
+                                <Button
+                                    Name="AllBtn"
+                                    Content="All"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    Padding="13 6 13 8"
+                                    Foreground="Black"
+                                    FontWeight="SemiBold"
+                                    MouseEnter="AllBtn_MouseEnter"
+                                    MouseLeave="AllBtn_MouseLeave"
+                                    Click="AllBtn_Click"
+                                />
+                            </Border>
+
+                            <!-- Music Filter Button -->
+                            <Border
+                                Name="MusicBorder"
+                                CornerRadius="17"
+                                VerticalAlignment="Top"
+                                Margin="7 15.5 0 0"
+                                Background="#585f5f" >
+                                <Button
+                                    Name="MusicBtn"
+                                    Content="Music"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    Padding="13 6 13 8"
+                                    Foreground="White"
+                                    FontWeight="SemiBold"
+                                    MouseEnter="MusicBtn_MouseEnter"
+                                    MouseLeave="MusicBtn_MouseLeave"
+                                    Click="MusicBtn_Click"
+                                />
+                            </Border>
+
+                            <!-- Podcasts Filter Button -->
+                            <Border
+                                Name="PodcastsBorder"
+                                CornerRadius="17"
+                                VerticalAlignment="Top"
+                                Margin="7 15.5 0 0"
+                                Background="#585f5f" >
+                                <Button
+                                    Name="PodcastsBtn"
+                                    Content="Podcasts"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    FontSize="14"
+                                    Padding="13 6 13 8"
+                                    Foreground="White"
+                                    FontWeight="SemiBold"
+                                    MouseEnter="PodcastsBtn_MouseEnter"
+                                    MouseLeave="PodcastsBtn_MouseLeave"
+                                    Click="PodcastsBtn_Click"
+                                />
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Recent Playlists/Artists -->
+                    <Grid Margin="12 23 12 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Name="RecentCol1" Width="*"/>
+                            <ColumnDefinition Name="RecentCol2" Width="*"/>
+                            <ColumnDefinition Name="RecentCol3" Width="Auto"/>
+                            <ColumnDefinition Name="RecentCol4" Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <local:HomeViewRecents
+                            x:Name="Recent1"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                        />
+                        <local:HomeViewRecents
+                            x:Name="Recent2"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                        />
+                        <local:HomeViewRecents
+                            x:Name="Recent3"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                        />
+                        <local:HomeViewRecents
+                            x:Name="Recent4"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                        />
+                        <local:HomeViewRecents
+                            x:Name="Recent5"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                        />
+                        <local:HomeViewRecents
+                            x:Name="Recent6"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                        />
+                        <local:HomeViewRecents
+                            x:Name="Recent7"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                        />
+                        <local:HomeViewRecents
+                            x:Name="Recent8"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                        />
+                    </Grid>
+                </StackPanel>
+
+                <!-- Recently played -->
+                <common:CommonRowView Category="Recently played" Margin="0 31 0 0"/>
+                <!-- Your favorite artists -->
+                <common:CommonRowView Category="Your favorite artists"/>
+                <!-- Jump back in -->
+                <common:CommonRowView Category="Jump back in"/>
+                <!-- Best of artists -->
+                <common:CommonRowView Category="Best of artists"/>
+                <!-- Recommended for today -->
+                <common:CommonRowView Category="Recommended for today"/>
+                <!-- New releases for you -->
+                <common:CommonRowView Category="New releases for you"/>
+                <!-- More like {Artist} -->
+                <common:CommonRowView Category="More like {Artist}"/>
+                <!-- Fresh new music -->
+                <common:CommonRowView Category="Fresh new music"/>
+                <!-- More like {Artist} -->
+                <common:CommonRowView Category="More like {Artist}"/>
+                <!-- Popular artists -->
+                <common:CommonRowView Category="Popular artists"/>
+                <!-- For fans of {Artist} -->
+                <common:CommonRowView Category="For fans of {Artist}"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

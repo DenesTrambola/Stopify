@@ -1,0 +1,464 @@
+﻿<UserControl x:Class="Stopify.Presentation.Views.NowPlayingView.NowPlayingViewMain"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Stopify.Presentation.Views.NowPlayingView"
+             mc:Ignorable="d"
+             
+             SizeChanged="NowPlaying_SizeChanged">
+    <Grid Name="NowPlayingPanel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="16 16 17 17" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Playlist/Artist -->
+            <Button
+                Grid.Column="0"
+                Name="HeaderTitleBtn"
+                Background="Transparent"
+                BorderThickness="0"
+                Foreground="White"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="16"
+                MouseEnter="Underline_MouseEnter"
+                MouseLeave="Underline_MouseLeave"
+                Click="HeaderTitleBtn_Click" >
+                <TextBlock Name="HeaderTitleText" Text="Azahriah"/>
+            </Button>
+
+            <!-- More Options -->
+            <Button
+                Grid.Column="2"
+                Name="OptionsBtn"
+                Content="• • •"
+                FontSize="11"
+                BorderThickness="0"
+                Background="Transparent"
+                Foreground="DarkGray"
+                Width="25"
+                Margin="0 -2 0 0"
+                MouseEnter="OptionsBtn_MouseEnter"
+                MouseLeave="OptionsBtn_MouseLeave"
+                Click="OptionsBtn_Click"
+            />
+
+            <!-- Close -->
+            <Button
+                Grid.Column="3"
+                Name="CloseBtn"
+                Background="Transparent"
+                BorderThickness="0"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Margin="4 0 -1 0"
+                HorizontalAlignment="Right"
+                MouseEnter="CloseBtn_MouseEnter"
+                MouseLeave="CloseBtn_MouseLeave"
+                Click="CloseBtn_Click" >
+                <Border
+                    Name="CloseBorder"
+                    CornerRadius="30"
+                    Background="#121212"
+                    Width="29"
+                    Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" >
+                    <TextBlock
+                        Name="CloseText"
+                        Text="✕"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="DarkGray"
+                        FontWeight="SemiBold"
+                        FontSize="15"
+                        Margin="0 0 1 1"
+                    />
+                </Border>
+            </Button>
+        </Grid>
+        
+        <!-- Main -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
+            <StackPanel Margin="16 -1 0 16">
+                <!-- Song Image -->
+                <Button
+                    Name="SongImgBtn"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    MouseEnter="SongImgBtn_MouseEnter"
+                    MouseLeave="SongImgBtn_MouseLeave"
+                    Click="SongImgBtn_Click" >
+                    <Border CornerRadius="8" >
+                        <Border.Background>
+                            <ImageBrush ImageSource="../../Resources/song.jpg"/>
+                        </Border.Background>
+                    </Border>
+                </Button>
+
+                <!-- Info -->
+                <Grid Margin="1 12 1 25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!-- Title & Artist -->
+                    <StackPanel>
+                        <Button
+                            Name="SongTitleBtn"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Left"
+                            Padding="0"
+                            MouseEnter="Underline_MouseEnter"
+                            MouseLeave="Underline_MouseLeave"
+                            Click="SongTitleBtn_Click" >
+                            <TextBlock
+                                Name="SongTitleText"
+                                Text="Okari"
+                                TextWrapping="Wrap"
+                                TextTrimming="CharacterEllipsis"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                FontSize="24"
+                            />
+                        </Button>
+
+                        <Button
+                            Name="SongArtistBtn"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            HorizontalAlignment="Left"
+                            Padding="0"
+                            MouseEnter="Underline_MouseEnter"
+                            MouseLeave="Underline_MouseLeave"
+                            Click="SongArtistBtn_Click" >
+                            <TextBlock
+                                Name="SongArtistText"
+                                Text="Azahriah"
+                                TextWrapping="Wrap"
+                                TextTrimming="CharacterEllipsis"
+                                FontWeight="SemiBold"
+                                Foreground="DarkGray"
+                                FontSize="16"
+                            />
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Add to Liked Songs -->
+                    <Button
+                        Grid.Column="1"
+                        Name="SaveBtn"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        Height="30"
+                        Margin="0 4 -1 0"
+                        MouseEnter="SaveBtn_MouseEnter"
+                        MouseLeave="SaveBtn_MouseLeave"
+                        Click="SaveBtn_Click" >
+                        <Border
+                            Name="SaveBorder"
+                            BorderBrush="LightGray"
+                            BorderThickness="1.8"
+                            CornerRadius="30"
+                            Width="16.5"
+                            Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" >
+                            <TextBlock
+                                Name="SaveText"
+                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                Foreground="LightGray"
+                                Text="+"
+                                FontWeight="ExtraBold"
+                                FontSize="11"
+                                Margin="1.5 .7 0 0"
+                            />
+                        </Border>
+                    </Button>
+                </Grid>
+                
+                <!-- About the artist -->
+                <Button
+                    Name="AboutBtn"
+                    Height="Auto"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    MouseEnter="AboutBtn_MouseEnter"
+                    MouseLeave="AboutBtn_MouseLeave"
+                    Click="AboutBtn_Click" >
+                    <Border Background="#1f1f1f" CornerRadius="8" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Image -->
+                            <Image Grid.Row="0" Source="../../Resources/stopify-icon.ico" />
+                            <TextBlock
+                                Grid.Row="0"
+                                Text="About the artist"
+                                FontWeight="Bold"
+                                Foreground="White"
+                                Margin="16"
+                                FontSize="16"
+                                IsHitTestVisible="False"
+                            />
+                            
+                            <!-- Info -->
+                            <StackPanel Grid.Row="1" Margin="15 0 10 0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Artist -->
+                                    <Button
+                                        Grid.Row="0"
+                                        Name="AboutArtist"
+                                        Grid.Column="0"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Content="Azahriah"
+                                        Foreground="White"
+                                        FontWeight="Bold"
+                                        FontSize="16"
+                                        HorizontalAlignment="Left"
+                                    />
+
+                                    <!-- Monthly listeners -->
+                                    <WrapPanel
+                                        Grid.Row="1"
+                                        Orientation="Horizontal"
+                                        Margin="0 5" >
+
+                                        <TextBlock
+                                            Foreground="DarkGray"
+                                            FontWeight="SemiBold"
+                                            Text="700,000"
+                                            FontSize="16"
+                                            Margin="0 0 5 0"
+                                        />
+                                        <TextBlock
+                                            Foreground="DarkGray"
+                                            Text="monthly listeners"
+                                            FontWeight="SemiBold"
+                                            FontSize="16"
+                                            VerticalAlignment="Bottom"
+                                        />
+                                    </WrapPanel>
+
+                                    <!-- Follow -->
+                                    <Button
+                                        Grid.Row="1"
+                                        Name="FollowBtn"
+                                        Grid.Column="1"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalAlignment="Center"
+                                        MouseEnter="FollowBtn_MouseEnter"
+                                        MouseLeave="FollowBtn_MouseLeave"
+                                        Click="FollowBtn_Click" >
+                                        <Border
+                                            Name="FollowBorder"
+                                            CornerRadius="15"
+                                            BorderThickness="1"
+                                            Padding="14 6"
+                                            BorderBrush="DarkGray" >
+                                            <TextBlock
+                                                Name="FollowText"
+                                                Foreground="White"
+                                                FontWeight="Bold"
+                                                FontSize="14"
+                                                Text="Unfollow"
+                                                Margin="0 0 0 1"
+                                            />
+                                        </Border>
+                                    </Button>
+                                </Grid>
+
+                                <!-- Description -->
+                                <WrapPanel
+                                    Grid.Row="2"
+                                    Orientation="Horizontal"
+                                    Margin="0 5 0 25">
+                                    <TextBlock
+                                        Foreground="DarkGray"
+                                        FontWeight="SemiBold"
+                                        Text="creator from hungary"
+                                        FontSize="14"
+                                        TextWrapping="Wrap"
+                                        TextTrimming="WordEllipsis"
+                                        Margin="0 0 5 0"
+                                    />
+                                </WrapPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Button>
+
+                <!-- Credits -->
+                <Border
+                    Margin="0 15"
+                    CornerRadius="8"
+                    Background="#1f1f1f" >
+                    <Grid>
+                        <!-- Info -->
+                        <StackPanel Margin="15">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Title -->
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="Credits"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    FontSize="16"
+                                    HorizontalAlignment="Left"
+                                />
+
+                                <!-- Show all -->
+                                <Button
+                                    Name="ShowAll"
+                                    Grid.Row="0" Grid.Column="1"
+                                    Content="Show all"
+                                    BorderThickness="0"
+                                    Background="Transparent"
+                                    Foreground="White"
+                                    FontWeight="Bold"
+                                    FontSize="14"
+                                    HorizontalAlignment="Right"
+                                    MouseEnter="ShowAll_MouseEnter"
+                                    MouseLeave="ShowAll_MouseLeave"
+                                    Click="ShowAll_Click"
+                                />
+
+                                <!-- Artist -->
+                                <StackPanel Grid.Row="1" Margin="0 15 0 15" >
+                                    <Button
+                                        Name="CreditsArtistBtn"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        HorizontalAlignment="Left"
+                                        Foreground="White"
+                                        FontWeight="SemiBold"
+                                        Content="Azahriah"
+                                        FontSize="16"
+                                        MouseEnter="ShowAll_MouseEnter"
+                                        MouseLeave="ShowAll_MouseLeave"
+                                        Click="ArtistBtn_Click"
+                                    />
+                                    <TextBlock
+                                        Foreground="White"
+                                        FontWeight="SemiBold"
+                                        Text="Main Artist"
+                                        FontSize="14"
+                                        VerticalAlignment="Bottom"
+                                    />
+                                </StackPanel>
+
+                                <!-- Follow -->
+                                <Button
+                                    Grid.Row="1"
+                                    Name="FollowBtn2"
+                                    Grid.Column="1"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalAlignment="Center"
+                                    MouseEnter="FollowBtn2_MouseEnter"
+                                    MouseLeave="FollowBtn2_MouseLeave"
+                                    Click="FollowBtn_Click" >
+                                    <Border
+                                        Name="FollowBorder2"
+                                        CornerRadius="15"
+                                        BorderThickness="1"
+                                        Padding="14 6"
+                                        BorderBrush="DarkGray" >
+                                        <TextBlock
+                                            Name="FollowText2"
+                                            Foreground="White"
+                                            FontWeight="Bold"
+                                            FontSize="14"
+                                            Text="Unfollow"
+                                            Margin="0 0 0 1"
+                                        />
+                                    </Border>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Next in Queue -->
+                <Border CornerRadius="8" Background="#1f1f1f">
+                    <StackPanel Margin="0 0 0 14">
+                        <!-- Header -->
+                        <DockPanel Margin="15 17 15 7">
+                            <!-- Next in queue Text -->
+                            <TextBlock
+                                DockPanel.Dock="Left"
+                                Text="Next in queue"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                FontSize="16"
+                                HorizontalAlignment="Left"
+                            />
+
+                            <!-- Open queue -->
+                            <Button
+                                DockPanel.Dock="Right"
+                                Name="OpenQueue"
+                                Content="Open queue"
+                                BorderThickness="0"
+                                Background="Transparent"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                FontSize="14"
+                                HorizontalAlignment="Right"
+                                MouseEnter="ShowAll_MouseEnter"
+                                MouseLeave="ShowAll_MouseLeave"
+                                Click="OpenQueue_Click"
+                            />
+                        </DockPanel>
+                        
+                        <!-- Song -->
+                        <local:NowPlayingViewItem/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

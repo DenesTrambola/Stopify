@@ -1,0 +1,15 @@
+D:\IT Step\C#\Stopify\Stopify.Domain\bin\Debug\net8.0\Stopify.Domain.deps.json
+D:\IT Step\C#\Stopify\Stopify.Domain\bin\Debug\net8.0\Stopify.Domain.dll
+D:\IT Step\C#\Stopify\Stopify.Domain\bin\Debug\net8.0\Stopify.Domain.pdb
+D:\IT Step\C#\Stopify\Stopify.Domain\bin\Debug\net8.0\Stopify.Exceptions.dll
+D:\IT Step\C#\Stopify\Stopify.Domain\bin\Debug\net8.0\Stopify.Exceptions.pdb
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\Stopify.Domain.csproj.AssemblyReference.cache
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\Stopify.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\Stopify.Domain.AssemblyInfoInputs.cache
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\Stopify.Domain.AssemblyInfo.cs
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\Stopify.Domain.csproj.CoreCompileInputs.cache
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\Stopify..B3C72BFF.Up2Date
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\Stopify.Domain.dll
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\refint\Stopify.Domain.dll
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\Stopify.Domain.pdb
+D:\IT Step\C#\Stopify\Stopify.Domain\obj\Debug\net8.0\ref\Stopify.Domain.dll

@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="Stopify.Presentation.Views.HomeView.HomeViewRecents"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Stopify.Presentation.Views.HomeView"
+             mc:Ignorable="d" >
+    <Button
+        Name="RecentBtn"
+        BorderThickness="0"
+        Background="Transparent"
+        Margin="3 0 3 6"
+        HorizontalContentAlignment="Stretch"
+        Loaded="RecentBtn_Loaded"
+        MouseEnter="RecentBtn_MouseEnter"
+        MouseLeave="RecentBtn_MouseLeave"
+        Click="RecentBtn_Click" >
+        <Border
+            Name="RecentBorder"
+            Background="#494e4e"
+            CornerRadius="4"
+            Height="48.1" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Image -->
+                <Border CornerRadius="4 0 0 4" Height="46" Width="46">
+                    <Border.Background>
+                        <ImageBrush ImageSource="../../Resources/song.jpg"/>
+                    </Border.Background>
+                </Border>
+                
+                <!-- Title -->
+                <TextBlock
+                    Grid.Column="1"
+                    Text="Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    Margin="9 7 9 9"
+                    FontSize="14"
+                    TextWrapping="Wrap"
+                    TextTrimming="WordEllipsis"
+                    Height="38"
+                />
+
+                <!-- Playing -->
+                <TextBlock
+                    Name="PlayingIcon"
+                    Grid.Column="3"
+                    Visibility="Hidden"
+                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                    Text="&#xe473;"
+                    Foreground="#24a853"
+                    FontSize="16"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 13 0"
+                />
+
+                <!-- Play/Pause -->
+                <Button
+                    Grid.Column="2"
+                    Name="PlayBtn"
+                    Visibility="Hidden"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    Margin="0 0 8 1"
+                    Height="35"
+                    MouseEnter="PlayBtn_MouseEnter"
+                    MouseLeave="PlayBtn_MouseLeave"
+                    Click="PlayBtn_Click" >
+                    <Button.Effect>
+                        <DropShadowEffect
+                            Color="Black"
+                            ShadowDepth="3"
+                            BlurRadius="8"
+                            Opacity="0.5" />
+                    </Button.Effect>
+
+                    <Border
+                        Name="PlayBorder"
+                        CornerRadius="30"
+                        Background="#3adf74"
+                        Width="33"
+                        Height="33" >
+                        <TextBlock
+                            Name="PlayIcon"
+                            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                            Text="&#xf04b;"
+                            Foreground="Black"
+                            FontSize="16"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                        />
+                    </Border>
+                </Button>
+            </Grid>
+        </Border>
+    </Button>
+</UserControl>

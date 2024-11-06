@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ArtistView\ArtistViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CommonViews\FilterRowView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CommonViews\PopupOnHoverView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HomeView\HomeViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CommonViews\CommonlItemView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HomeView\HomeViewRecents.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CommonViews\CommonRowView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\NowPlayingView\NowPlayingViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\NowPlayingView\NowPlayingViewItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PlayerView\PlayerViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PlaylistView\PlaylistViewHeader.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PlaylistView\PlaylistViewItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\PlaylistView\PlaylistViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\QueueView\QueueViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SearchView\SearchViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SearchView\SearchViewItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SidebarView\SidebarViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SidebarView\SidebarViewItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\TitlebarView\TitlebarViewMain.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
