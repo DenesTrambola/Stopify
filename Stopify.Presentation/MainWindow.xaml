@@ -44,7 +44,7 @@
             x:Name="BtnPopup"
             AllowsTransparency="True"
             VerticalOffset="5">
-            <common:PopupOnHoverView x:Name="PopupItem" />
+            <common:HoverPopupComponent x:Name="PopupItem" />
         </Popup>
 
         <!--  Title Bar  -->

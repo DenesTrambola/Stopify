@@ -9,7 +9,7 @@ namespace Stopify.Presentation;
 
 public partial class MainWindow : Window
 {
-    private PlayerViewMain _player = new();
+    private PlayerControl _player = new();
     public bool? SidebarCollapsed { get; set; } = null;
     public bool? NowPlayingCollapsed { get; set; } = null;
     public bool QueueCollapsed { get; set; } = true;
@@ -21,7 +21,7 @@ public partial class MainWindow : Window
     }
 
     public void Window_Loaded(object sender, RoutedEventArgs e) =>
-        MainFrame.Navigate(new HomeViewMain());
+        MainFrame.Navigate(new HomeView());
 
     public void UpdateSidebar()
     {
@@ -96,7 +96,7 @@ public partial class MainWindow : Window
             else
                 NowPlayingQueue.Width = 281;
 
-            PlayerViewMain player = new();
+            PlayerControl player = new();
             player.NowPlayingBtn.Content = "\uf106";
         }
     }

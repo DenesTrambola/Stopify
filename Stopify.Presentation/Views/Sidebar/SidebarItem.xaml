@@ -1,0 +1,125 @@
+﻿<UserControl
+    x:Class="Stopify.Presentation.Views.Sidebar.SidebarItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Stopify.Presentation.Views.Sidebar"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Button
+        Name="ItemBtn"
+        Height="64"
+        HorizontalAlignment="Stretch"
+        HorizontalContentAlignment="Stretch"
+        VerticalContentAlignment="Stretch"
+        Background="Transparent"
+        BorderThickness="0"
+        Click="ItemBtn_Click"
+        MouseDoubleClick="PlayPauseEvent"
+        MouseEnter="ItemBtn_MouseEnter"
+        MouseLeave="ItemBtn_MouseLeave">
+        <Border
+            Name="ItemBorder"
+            Padding="7"
+            Background="#121212"
+            CornerRadius="7">
+
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Image  -->
+                <Button
+                    Name="ItemImgBtn"
+                    Grid.Column="0"
+                    Width="48"
+                    Height="48"
+                    Margin="0,0,12,0"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Background="#121212"
+                    BorderThickness="0"
+                    Click="PlayPauseEvent"
+                    MouseEnter="ItemImgBtn_MouseEnter"
+                    MouseLeave="ItemImgBtn_MouseLeave">
+                    <Border CornerRadius="5">
+                        <Border.Background>
+                            <ImageBrush ImageSource="../../Resources/song.jpg" />
+                        </Border.Background>
+                    </Border>
+                </Button>
+
+                <!--  Play/Pause  -->
+                <Button
+                    Name="PlayBtn"
+                    Grid.Column="0"
+                    Width="0"
+                    Margin="0,0,12,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                    Foreground="White"
+                    IsHitTestVisible="False" />
+
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="0,0,0,2"
+                    VerticalAlignment="Center">
+                    <!--  Title  -->
+                    <TextBlock
+                        FontSize="16.3"
+                        FontWeight="SemiBold"
+                        Foreground="WhiteSmoke"
+                        Text="Liked Songs" />
+                    <!--  Description  -->
+                    <StackPanel Orientation="Horizontal">
+                        <!--  To hide pin: remove margin and set width to 0  -->
+                        <TextBlock
+                            Width="0"
+                            Margin="6,5,3,0"
+                            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                            FontSize="14"
+                            Foreground="#1cc658"
+                            Text="&#xf08d;">
+                            <TextBlock.RenderTransform>
+                                <RotateTransform Angle="45" />
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+
+                        <TextBlock
+                            Margin="0,3,0,0"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            Foreground="DarkGray"
+                            Text="Playlist" />
+
+                        <TextBlock
+                            Margin="5,3,0,0"
+                            FontSize="14"
+                            FontWeight="SemiBold"
+                            Foreground="DarkGray"
+                            Text="· 66 songs" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!--  Now Playing Icon  -->
+                <TextBlock
+                    x:Name="SidebarPlayingIcon"
+                    Grid.Column="2"
+                    Width="0"
+                    Margin="7,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                    FontSize="14"
+                    Foreground="#1ed760"
+                    Text="&#xf028;" />
+            </Grid>
+        </Border>
+    </Button>
+</UserControl>
