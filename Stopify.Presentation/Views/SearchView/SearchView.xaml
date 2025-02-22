@@ -67,297 +67,297 @@
                     <ColumnDefinition Name="BrowseCol4" Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseMusic"
                     Grid.Row="0"
                     Grid.Column="0"
                     Image="music" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowsePodcasts"
                     Grid.Row="0"
                     Grid.Column="1"
                     Image="podcasts" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseLiveEvents"
                     Grid.Row="1"
                     Grid.Column="0"
                     Image="liveEvents" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseMadeForYou"
                     Grid.Row="1"
                     Grid.Column="1"
                     Image="madeForYou" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseNewReleases"
                     Grid.Row="2"
                     Grid.Column="0"
                     Image="newReleases" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowsePop"
                     Grid.Row="2"
                     Grid.Column="1"
                     Image="pop" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseHipHop"
                     Grid.Row="3"
                     Grid.Column="0"
                     Image="hip-hop" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseRock"
                     Grid.Row="3"
                     Grid.Column="1"
                     Image="rock" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseMood"
                     Grid.Row="4"
                     Grid.Column="0"
                     Image="mood" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseComedy"
                     Grid.Row="4"
                     Grid.Column="1"
                     Image="comedy" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseEducational"
                     Grid.Row="5"
                     Grid.Column="0"
                     Image="educational" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseTrueCrime"
                     Grid.Row="5"
                     Grid.Column="1"
                     Image="trueCrime" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseSports"
                     Grid.Row="6"
                     Grid.Column="0"
                     Image="sports" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseCharts"
                     Grid.Row="6"
                     Grid.Column="1"
                     Image="charts" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseDanceElectronic"
                     Grid.Row="7"
                     Grid.Column="0"
                     Image="dance_electronic" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseChill"
                     Grid.Row="7"
                     Grid.Column="1"
                     Image="chill" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseIndie"
                     Grid.Row="8"
                     Grid.Column="0"
                     Image="indie" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseWorkout"
                     Grid.Row="8"
                     Grid.Column="1"
                     Image="workout" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseDiscover"
                     Grid.Row="9"
                     Grid.Column="0"
                     Image="discover" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseFolkAndAcoustic"
                     Grid.Row="9"
                     Grid.Column="1"
                     Image="folkAndAcoustic" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseRAndB"
                     Grid.Row="10"
                     Grid.Column="0"
                     Image="rAndB" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseKPop"
                     Grid.Row="10"
                     Grid.Column="1"
                     Image="k-Pop" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseLatin"
                     Grid.Row="11"
                     Grid.Column="0"
                     Image="latin" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseSleep"
                     Grid.Row="11"
                     Grid.Column="1"
                     Image="sleep" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseParty"
                     Grid.Row="12"
                     Grid.Column="0"
                     Image="party" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseAtHome"
                     Grid.Row="12"
                     Grid.Column="1"
                     Image="atHome" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseDecades"
                     Grid.Row="13"
                     Grid.Column="0"
                     Image="decades" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseLove"
                     Grid.Row="13"
                     Grid.Column="1"
                     Image="love" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseMetal"
                     Grid.Row="14"
                     Grid.Column="0"
                     Image="metal" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseJazz"
                     Grid.Row="14"
                     Grid.Column="1"
                     Image="jazz" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseTrending"
                     Grid.Row="15"
                     Grid.Column="0"
                     Image="trending" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseClassical"
                     Grid.Row="15"
                     Grid.Column="1"
                     Image="classical" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseCountry"
                     Grid.Row="16"
                     Grid.Column="0"
                     Image="country" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseFocus"
                     Grid.Row="16"
                     Grid.Column="1"
                     Image="focus" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseSoul"
                     Grid.Row="17"
                     Grid.Column="0"
                     Image="soul" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseKidsAndFamily"
                     Grid.Row="17"
                     Grid.Column="1"
                     Image="kidsAndFamily" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseGaming"
                     Grid.Row="18"
                     Grid.Column="0"
                     Image="gaming" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseAnime"
                     Grid.Row="18"
                     Grid.Column="1"
                     Image="anime" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseTvAndMovies"
                     Grid.Row="19"
                     Grid.Column="0"
                     Image="tvAndMovies" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseInstrumental"
                     Grid.Row="19"
                     Grid.Column="1"
                     Image="instrumental" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseWellness"
                     Grid.Row="20"
                     Grid.Column="0"
                     Image="wellness" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowsePunk"
                     Grid.Row="20"
                     Grid.Column="1"
                     Image="punk" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseAmbient"
                     Grid.Row="21"
                     Grid.Column="0"
                     Image="ambient" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseBlues"
                     Grid.Row="21"
                     Grid.Column="1"
                     Image="blues" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseCookingAndDining"
                     Grid.Row="22"
                     Grid.Column="0"
                     Image="cookingAndDining" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseAlternative"
                     Grid.Row="22"
                     Grid.Column="1"
                     Image="alternative" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseTravel"
                     Grid.Row="23"
                     Grid.Column="0"
                     Image="travel" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseCaribbean"
                     Grid.Row="23"
                     Grid.Column="1"
                     Image="caribbean" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseAfro"
                     Grid.Row="24"
                     Grid.Column="0"
                     Image="afro" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseSongwriters"
                     Grid.Row="24"
                     Grid.Column="1"
                     Image="songwriters" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseNatureAndNoise"
                     Grid.Row="25"
                     Grid.Column="0"
                     Image="natureAndNoise" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseFunkAndDisco"
                     Grid.Row="25"
                     Grid.Column="1"
                     Image="FunkAndDisco" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseGlow"
                     Grid.Row="26"
                     Grid.Column="0"
                     Image="glow" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseSpotifySingles"
                     Grid.Row="26"
                     Grid.Column="1"
                     Image="spotifySingles" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseNetflix"
                     Grid.Row="27"
                     Grid.Column="0"
                     Image="netflix" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseSummer"
                     Grid.Row="27"
                     Grid.Column="1"
                     Image="summer" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseRadar"
                     Grid.Row="28"
                     Grid.Column="0"
                     Image="radar" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseEqual"
                     Grid.Row="28"
                     Grid.Column="1"
                     Image="equal" />
-                <local:SearchViewItem
+                <local:SearchCategoryItem
                     x:Name="BrowseFreshFinds"
                     Grid.Row="29"
                     Grid.Column="0"

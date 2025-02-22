@@ -1,6 +1,6 @@
 ﻿using Stopify.Presentation.Helpers.Animations;
+using Stopify.Presentation.Views;
 using Stopify.Presentation.Views.HomeView;
-using Stopify.Presentation.Views.PlayerView;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;

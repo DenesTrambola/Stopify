@@ -1,10 +1,10 @@
 ﻿<UserControl
-    x:Class="Stopify.Presentation.Views.QueueView.QueueView"
+    x:Class="Stopify.Presentation.Views.QueueView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:NowPlaying="clr-namespace:Stopify.Presentation.Views.NowPlayingView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Stopify.Presentation.Views.QueueView"
+    xmlns:local="clr-namespace:Stopify.Presentation.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid VerticalAlignment="Top">

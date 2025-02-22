@@ -1,5 +1,4 @@
 ﻿using Stopify.Presentation.Helpers.Animations;
-using Stopify.Presentation.Views.PlaylistView;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

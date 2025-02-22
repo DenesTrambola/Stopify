@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Stopify.Presentation.Views.QueueView;
+namespace Stopify.Presentation.Views;
 
 public partial class QueueView : UserControl
 {
