@@ -16,7 +16,7 @@
     MinWidth="800"
     MinHeight="600"
     Background="Black"
-    Icon="./Resources/stopify-icon.ico"
+    Icon="./Assets/Images/stopify-icon.ico"
     Loaded="Window_Loaded"
     SizeChanged="Window_SizeChanged"
     WindowStartupLocation="CenterScreen"

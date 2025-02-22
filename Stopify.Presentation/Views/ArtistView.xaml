@@ -56,7 +56,7 @@
                                     Margin="2,15,0,15"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                    FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                     FontSize="19"
                                     Text="&#xf04b;" />
                             </Border>
@@ -123,7 +123,7 @@
                                 CornerRadius="100">
 
                                 <Border.Background>
-                                    <ImageBrush ImageSource="../../Resources/song.jpg" />
+                                    <ImageBrush ImageSource="../../Assets/Images/song.jpg" />
                                 </Border.Background>
                             </Border>
 
@@ -149,7 +149,7 @@
 
                                         <Grid Grid.Column="0" Margin="0,1,9,0">
                                             <TextBlock
-                                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                                FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                                 FontSize="17"
                                                 Foreground="#4cb3ff"
                                                 Text="&#xf0a3;" />
@@ -157,7 +157,7 @@
                                             <TextBlock
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
-                                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                                FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                                 FontSize="10"
                                                 Foreground="White"
                                                 Text="&#xf00c;" />
@@ -245,7 +245,7 @@
                                     Margin="2,15,0,15"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                    FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                     FontSize="20"
                                     IsHitTestVisible="False"
                                     Text="&#xf04b;" />
@@ -263,7 +263,7 @@
                             BorderThickness="0"
                             Click="ShuffleBtn_Click"
                             Content="&#xf074;"
-                            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                            FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                             FontSize="23"
                             Foreground="DarkGray"
                             MouseEnter="ShuffleBtn_MouseEnter"
@@ -539,7 +539,7 @@
                                     <Border.Background>
                                         <ImageBrush
                                             AlignmentY="Top"
-                                            ImageSource="../../Resources/stopify-icon.ico"
+                                            ImageSource="../../Assets/Images/stopify-icon.ico"
                                             Stretch="Uniform" />
                                     </Border.Background>
                                 </Border>

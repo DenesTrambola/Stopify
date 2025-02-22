@@ -65,7 +65,7 @@
                     BorderThickness="0"
                     Click="PlayBtn_Click"
                     Content="&#xf04b;"
-                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                     FontSize="13"
                     Foreground="White"
                     MouseEnter="PlayBtn_MouseEnter"
@@ -81,7 +81,7 @@
                     CornerRadius="4">
 
                     <Border.Background>
-                        <ImageBrush ImageSource="../../Resources/song.jpg" />
+                        <ImageBrush ImageSource="../../Assets/Images/song.jpg" />
                     </Border.Background>
                 </Border>
 
@@ -192,7 +192,7 @@
                         <TextBlock
                             Name="SaveText"
                             Margin="2,1,0,0"
-                            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                            FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                             FontSize="10"
                             FontWeight="Bold"
                             Foreground="DarkGray"

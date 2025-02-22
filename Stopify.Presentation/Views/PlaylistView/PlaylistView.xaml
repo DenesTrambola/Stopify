@@ -51,7 +51,7 @@
                                     Margin="2,15,0,15"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                    FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                     FontSize="19"
                                     Text="&#xf04b;" />
                             </Border>
@@ -121,7 +121,7 @@
                             CornerRadius="4">
 
                             <Border.Background>
-                                <ImageBrush ImageSource="../../Resources/song.jpg" />
+                                <ImageBrush ImageSource="../../Assets/Images/song.jpg" />
                             </Border.Background>
                         </Border>
 
@@ -182,7 +182,7 @@
                                             CornerRadius="30">
 
                                             <Border.Background>
-                                                <ImageBrush ImageSource="../../Resources/stopify-icon.ico" />
+                                                <ImageBrush ImageSource="../../Assets/Images/stopify-icon.ico" />
                                             </Border.Background>
                                         </Border>
 
@@ -300,7 +300,7 @@
                                         Margin="2,15,0,15"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                        FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                         FontSize="20"
                                         IsHitTestVisible="False"
                                         Text="&#xf04b;" />
@@ -318,7 +318,7 @@
                                 BorderThickness="0"
                                 Click="ShuffleBtn_Click"
                                 Content="&#xf074;"
-                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                 FontSize="23"
                                 Foreground="DarkGray"
                                 MouseEnter="ShuffleBtn_MouseEnter"
@@ -349,7 +349,7 @@
                                         Margin="5"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                        FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                         FontSize="15"
                                         Foreground="DarkGray"
                                         Text="+" />
@@ -379,7 +379,7 @@
                                         Name="DownloadText"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                        FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                         FontSize="13"
                                         Foreground="DarkGray"
                                         Text="&#xf063;" />
@@ -433,7 +433,7 @@
                                         Name="SearchText"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
-                                        FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                        FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                         FontSize="15"
                                         Foreground="DarkGray"
                                         Text="&#xf002;" />
@@ -533,7 +533,7 @@
                                         Name="CustomOrderFilterIcon"
                                         Padding="8,0"
                                         VerticalAlignment="Center"
-                                        FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                        FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                         FontSize="16"
                                         Foreground="DarkGray"
                                         Text="&#xf03a;" />

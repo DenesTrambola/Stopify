@@ -92,7 +92,7 @@ public partial class HomeView : Page
         ColorAnimations.AnimateBackgroundColor(PodcastsBorder, AllBorder.Background, System.Windows.Media.Color.FromArgb(80, 42, 42, 42), .1);
 
         string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-        string imagePath = Path.Combine(projectDirectory, "Resources", "song.jpg");
+        string imagePath = Path.Combine(projectDirectory, "Assets", "Images", "song.jpg");
         using Bitmap bitmap = new Bitmap(imagePath);
 
         // Variables to store sum of RGB components

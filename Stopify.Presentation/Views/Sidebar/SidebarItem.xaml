@@ -47,7 +47,7 @@
                     MouseLeave="ItemImgBtn_MouseLeave">
                     <Border CornerRadius="5">
                         <Border.Background>
-                            <ImageBrush ImageSource="../../Resources/song.jpg" />
+                            <ImageBrush ImageSource="../../Assets/Images/song.jpg" />
                         </Border.Background>
                     </Border>
                 </Button>
@@ -62,7 +62,7 @@
                     VerticalAlignment="Center"
                     Background="Transparent"
                     BorderThickness="0"
-                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                     Foreground="White"
                     IsHitTestVisible="False" />
 
@@ -82,7 +82,7 @@
                         <TextBlock
                             Width="0"
                             Margin="6,5,3,0"
-                            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                            FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                             FontSize="14"
                             Foreground="#1cc658"
                             Text="&#xf08d;">
@@ -115,7 +115,7 @@
                     Margin="7,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                     FontSize="14"
                     Foreground="#1ed760"
                     Text="&#xf028;" />

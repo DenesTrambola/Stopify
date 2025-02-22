@@ -42,7 +42,7 @@
                     Height="56"
                     CornerRadius="4">
                     <Border.Background>
-                        <ImageBrush ImageSource="../Resources/song.jpg" />
+                        <ImageBrush ImageSource="../Assets/Images/song.jpg" />
                     </Border.Background>
                 </Border>
             </Button>
@@ -66,7 +66,7 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Content="&#xf107;"
-                    FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                     FontSize="16"
                     Foreground="DarkGray" />
             </Border>
@@ -146,7 +146,7 @@
                     <TextBlock
                         Name="SaveText"
                         Margin="1.5,.7,0,0"
-                        FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                        FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                         FontSize="11"
                         FontWeight="ExtraBold"
                         Foreground="#969696"
@@ -192,7 +192,7 @@
                     BorderThickness="0"
                     Click="ShuffleBtn_Click"
                     Content="&#xf074;"
-                    FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                     FontSize="17"
                     Foreground="DarkGray"
                     MouseEnter="ShuffleBtn_MouseEnter"
@@ -208,7 +208,7 @@
                     BorderThickness="0"
                     Click="PreviousBtn_Click"
                     Content="&#xf048;"
-                    FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                     FontSize="19"
                     Foreground="DarkGray"
                     MouseEnter="PreviousBtn_MouseEnter"
@@ -228,7 +228,7 @@
                         BorderThickness="0"
                         Click="PlayBtn_Click"
                         Content="&#xf04b;"
-                        FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                        FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                         FontSize="17"
                         MouseEnter="PlayBtn_MouseEnter"
                         MouseLeave="PlayBtn_MouseLeave" />
@@ -244,7 +244,7 @@
                     BorderThickness="0"
                     Click="NextBtn_Click"
                     Content="&#xf051;"
-                    FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                     FontSize="19"
                     Foreground="DarkGray"
                     MouseEnter="NextBtn_MouseEnter"
@@ -261,7 +261,7 @@
                     BorderThickness="0"
                     Click="RepeatBtn_Click"
                     Content="&#xf363;"
-                    FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                     FontSize="17"
                     Foreground="DarkGray"
                     MouseEnter="RepeatBtn_MouseEnter"
@@ -357,7 +357,7 @@
                 BorderThickness="0"
                 Click="NowPlayingOption_Click"
                 Content="&#xf144;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="17"
                 Foreground="#1ed760"
                 MouseEnter="NowPlayingOption_MouseEnter"
@@ -374,7 +374,7 @@
                 BorderThickness="0"
                 Click="LyricsBtn_Click"
                 Content="&#xf130;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="17"
                 Foreground="#363636"
                 MouseEnter="LyricsBtn_MouseEnter"
@@ -391,7 +391,7 @@
                 BorderThickness="0"
                 Click="QueueBtn_Click"
                 Content="&#xf039;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="15"
                 Foreground="DarkGray"
                 MouseEnter="QueueBtn_MouseEnter"
@@ -408,7 +408,7 @@
                 BorderThickness="0"
                 Click="ConnectBtn_Click"
                 Content="&#xe4e5;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="15"
                 Foreground="#363636"
                 MouseEnter="ConnectBtn_MouseEnter"
@@ -426,7 +426,7 @@
                 BorderThickness="0"
                 Click="VolumeBtn_Click"
                 Content="&#xf028;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="14"
                 Foreground="DarkGray"
                 MouseEnter="VolumeBtn_MouseEnter"
@@ -476,7 +476,7 @@
                 BorderThickness="0"
                 Click="FullScreenBtn_Click"
                 Content="&#xf424;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="13.5"
                 Foreground="DarkGray"
                 MouseEnter="FullScreenBtn_MouseEnter"

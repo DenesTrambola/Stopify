@@ -68,7 +68,7 @@
                 Margin="0,13,0,0"
                 HorizontalAlignment="Center"
                 Content="&#xf053;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="23"
                 Foreground="#323232" />
         </Button>
@@ -91,7 +91,7 @@
                 Margin="0,13,0,0"
                 HorizontalAlignment="Center"
                 Content="&#xf054;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="23"
                 Foreground="#323232" />
         </Button>
@@ -111,7 +111,7 @@
                 BorderThickness="0"
                 Click="HomeBtn_Click"
                 Content="&#xf015;"
-                FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                 FontSize="20"
                 Foreground="DarkGray"
                 MouseEnter="HomeBtn_MouseEnter"
@@ -143,7 +143,7 @@
                     Name="SearchBtnText"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    FontFamily="../Resources/#Font Awesome 6 Free Solid"
+                    FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                     FontSize="20"
                     Foreground="DarkGray"
                     Text="&#xf002;" />
@@ -223,7 +223,7 @@
             BorderThickness="0"
             Click="SearchbarBrowse_Click"
             Content="&#xe4cf;"
-            FontFamily="../Resources/#Font Awesome 6 Free Solid"
+            FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
             FontSize="24"
             Foreground="White"
             MouseEnter="SearchbarBrowse_MouseEnter"
@@ -240,7 +240,7 @@
             BorderThickness="0"
             Click="WhatsNewBtn_Click"
             Content="&#xf0f3;"
-            FontFamily="../Resources/#Font Awesome 6 Free Solid"
+            FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
             FontSize="16"
             Foreground="LightGray"
             MouseEnter="WhatsNewBtn_MouseEnter"
@@ -257,7 +257,7 @@
             BorderThickness="0"
             Click="FriendActivityBtn_Click"
             Content="&#xf500;"
-            FontFamily="../Resources/#Font Awesome 6 Free Solid"
+            FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
             FontSize="13"
             Foreground="LightGray"
             MouseEnter="FriendActivityBtn_MouseEnter"

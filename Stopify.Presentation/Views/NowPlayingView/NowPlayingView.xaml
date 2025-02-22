@@ -102,7 +102,7 @@
                     MouseLeave="SongImgBtn_MouseLeave">
                     <Border CornerRadius="8">
                         <Border.Background>
-                            <ImageBrush ImageSource="../../Resources/song.jpg" />
+                            <ImageBrush ImageSource="../../Assets/Images/song.jpg" />
                         </Border.Background>
                     </Border>
                 </Button>
@@ -176,7 +176,7 @@
                             <TextBlock
                                 Name="SaveText"
                                 Margin="1.5,.7,0,0"
-                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
                                 FontSize="11"
                                 FontWeight="ExtraBold"
                                 Foreground="LightGray"
@@ -204,7 +204,7 @@
                             </Grid.RowDefinitions>
 
                             <!--  Image  -->
-                            <Image Grid.Row="0" Source="../../Resources/stopify-icon.ico" />
+                            <Image Grid.Row="0" Source="../../Assets/Images/stopify-icon.ico" />
                             <TextBlock
                                 Grid.Row="0"
                                 Margin="16"
