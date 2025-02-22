@@ -1,5 +1,5 @@
-﻿using Stopify.Presentation.Helpers.Animations;
-using Stopify.Presentation.Helpers.Utilities;
+﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Helpers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -179,7 +179,7 @@ public partial class TitlebarControl : UserControl
         textBlock.Foreground = Brushes.White;
         textBlock.FontWeight = FontWeights.SemiBold;
         textBlock.FontSize = 14;
-        PopupHelper.PopupAppear(_mainWindow, BackBtn, PlacementMode.Bottom, textBlock);
+        HoverPopupHelper.PopupAppear(_mainWindow, BackBtn, PlacementMode.Bottom, textBlock);
     }
 
     private void ForwardBtn_MouseEnter(object sender, MouseEventArgs e)
@@ -192,21 +192,21 @@ public partial class TitlebarControl : UserControl
         textBlock.Foreground = Brushes.White;
         textBlock.FontWeight = FontWeights.SemiBold;
         textBlock.FontSize = 14;
-        PopupHelper.PopupAppear(_mainWindow, ForwardBtn, PlacementMode.Bottom, textBlock);
+        HoverPopupHelper.PopupAppear(_mainWindow, ForwardBtn, PlacementMode.Bottom, textBlock);
     }
 
     private void BackBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         CursorReset();
         UpdatePageBtns();
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void ForwardBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         CursorReset();
         UpdatePageBtns();
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void CursorReset() =>
@@ -225,14 +225,14 @@ public partial class TitlebarControl : UserControl
     private void HomeBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "Home";
-        PopupHelper.PopupAppear(_mainWindow, HomeBtn, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, HomeBtn, PlacementMode.Bottom, _popupText);
         ScaleAnimations.BeginScaleAnimation(HomeBtn, 1.05, .2);
         Mouse.OverrideCursor = Cursors.Hand;
     }
 
     private void HomeBtn_MouseLeave(object sender, MouseEventArgs e)
     {
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
         ScaleAnimations.ResetScaleAnimation(HomeBtn, .2);
         Mouse.OverrideCursor = Cursors.Arrow;
     }
@@ -243,7 +243,7 @@ public partial class TitlebarControl : UserControl
     private void SearchBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "Search";
-        PopupHelper.PopupAppear(_mainWindow, SearchBtn, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, SearchBtn, PlacementMode.Bottom, _popupText);
         Mouse.OverrideCursor = Cursors.Hand;
         ColorAnimations.AnimateBackgroundColor(SearchBtnBorder, SearchBtnBorder.Background, Color.FromRgb(54, 54, 53), .1);
         ColorAnimations.AnimateBackgroundColor(SearchBar, SearchBar.Background, Color.FromRgb(54, 54, 53), .1);
@@ -255,7 +255,7 @@ public partial class TitlebarControl : UserControl
 
     private void SearchBtn_MouseLeave(object sender, MouseEventArgs e)
     {
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(SearchBtn, .2);
         ColorAnimations.AnimateBackgroundColor(SearchBtnBorder, SearchBar.Background, Color.FromRgb(31, 31, 31), .1);
@@ -359,13 +359,13 @@ public partial class TitlebarControl : UserControl
     private void SearchbarBrowse_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "Browse";
-        PopupHelper.PopupAppear(_mainWindow, SearchbarBrowse, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, SearchbarBrowse, PlacementMode.Bottom, _popupText);
         Mouse.OverrideCursor = Cursors.Hand;
     }
 
     private void SearchbarBrowse_MouseLeave(object sender, MouseEventArgs e)
     {
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
         Mouse.OverrideCursor = Cursors.Arrow;
     }
 
@@ -380,14 +380,14 @@ public partial class TitlebarControl : UserControl
     private void WhatsNewBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "What's New";
-        PopupHelper.PopupAppear(_mainWindow, WhatsNewBtn, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, WhatsNewBtn, PlacementMode.Bottom, _popupText);
         Mouse.OverrideCursor = Cursors.Hand;
         ColorAnimations.AnimateForegroundColor(WhatsNewBtn, WhatsNewBtn.Foreground, Colors.White, .1);
     }
 
     private void WhatsNewBtn_MouseLeave(object sender, MouseEventArgs e)
     {
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
         Mouse.OverrideCursor = Cursors.Arrow;
         ColorAnimations.AnimateForegroundColor(WhatsNewBtn, WhatsNewBtn.Foreground, Colors.LightGray, .1);
     }
@@ -400,14 +400,14 @@ public partial class TitlebarControl : UserControl
     private void FriendActivityBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "Friend Activity";
-        PopupHelper.PopupAppear(_mainWindow, FriendActivityBtn, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, FriendActivityBtn, PlacementMode.Bottom, _popupText);
         Mouse.OverrideCursor = Cursors.Hand;
         ColorAnimations.AnimateForegroundColor(FriendActivityBtn, FriendActivityBtn.Foreground, Colors.White, .1);
     }
 
     private void FriendActivityBtn_MouseLeave(object sender, MouseEventArgs e)
     {
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
         Mouse.OverrideCursor = Cursors.Arrow;
         ColorAnimations.AnimateForegroundColor(FriendActivityBtn, FriendActivityBtn.Foreground, Colors.LightGray, .1);
     }
@@ -420,14 +420,14 @@ public partial class TitlebarControl : UserControl
     private void AvatarBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "Aqua Studios";
-        PopupHelper.PopupAppear(_mainWindow, AvatarBorder, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, AvatarBorder, PlacementMode.Bottom, _popupText);
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(AvatarBorder, 1.03, .1);
     }
 
     private void AvatarBtn_MouseLeave(object sender, MouseEventArgs e)
     {
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(AvatarBorder, .1);
     }
@@ -440,11 +440,11 @@ public partial class TitlebarControl : UserControl
     private void MinimizeBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "Minimize";
-        PopupHelper.PopupAppear(_mainWindow, MinimizeBtn, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, MinimizeBtn, PlacementMode.Bottom, _popupText);
     }
 
     private void MinimizeBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
 
     private void MinimizeBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -459,11 +459,11 @@ public partial class TitlebarControl : UserControl
     private void MaximizeBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "Maximize";
-        PopupHelper.PopupAppear(_mainWindow, MinimizeBtn, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, MinimizeBtn, PlacementMode.Bottom, _popupText);
     }
 
     private void MaximizeBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
 
     private void MaximizeBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -506,11 +506,11 @@ public partial class TitlebarControl : UserControl
     private void CloseBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = "Close";
-        PopupHelper.PopupAppear(_mainWindow, CloseBtn, PlacementMode.Bottom, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, CloseBtn, PlacementMode.Bottom, _popupText);
     }
 
     private void CloseBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
 
     private void CloseBtn_Click(object sender, RoutedEventArgs e)
     {

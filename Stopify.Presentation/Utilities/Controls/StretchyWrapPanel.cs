@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Stopify.Presentation.Helpers.Controls;
+namespace Stopify.Presentation.Utilities.Controls;
 
 public class StretchyWrapPanel : Panel
 {

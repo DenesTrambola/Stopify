@@ -1,5 +1,5 @@
-﻿using Stopify.Presentation.Helpers.Animations;
-using Stopify.Presentation.Helpers.Utilities;
+﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Helpers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -42,7 +42,7 @@ public partial class SidebarItem : UserControl
         {
             _popupText1.Text = "Azahriah";
             _popupText2.Text = "Artist";
-            PopupHelper.PopupAppear(_mainWindow, ItemBtn, PlacementMode.Right, _popupText1, _popupText2);
+            HoverPopupHelper.PopupAppear(_mainWindow, ItemBtn, PlacementMode.Right, _popupText1, _popupText2);
         }
         else
         {
@@ -68,7 +68,7 @@ public partial class SidebarItem : UserControl
         ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(18, 18, 18), .1);
 
         if (_mainWindow.SidebarCollapsed == true)
-            PopupHelper.PopupDisappear(_mainWindow);
+            HoverPopupHelper.PopupDisappear(_mainWindow);
         else
         {
             PlayBtn.Width = 0;
@@ -88,7 +88,7 @@ public partial class SidebarItem : UserControl
                 _basicPopupText.Text = "Play Azahriah";
             else
                 _basicPopupText.Text = "Pause Azahriah";
-            PopupHelper.PopupAppear(_mainWindow, ItemImgBtn, PlacementMode.Top, _basicPopupText);
+            HoverPopupHelper.PopupAppear(_mainWindow, ItemImgBtn, PlacementMode.Top, _basicPopupText);
         }
     }
 
@@ -97,7 +97,7 @@ public partial class SidebarItem : UserControl
         if (_mainWindow.SidebarCollapsed == false)
         {
             ScaleAnimations.ResetScaleAnimation(PlayBtn, .1);
-            PopupHelper.PopupDisappear(_mainWindow);
+            HoverPopupHelper.PopupDisappear(_mainWindow);
         }
     }
 

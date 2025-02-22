@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace Stopify.Presentation.Helpers.Animations;
+namespace Stopify.Presentation.Utilities.Animations;
 
 public static class ScaleAnimations
 {

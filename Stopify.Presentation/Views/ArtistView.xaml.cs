@@ -1,5 +1,5 @@
-﻿using Stopify.Presentation.Helpers.Animations;
-using Stopify.Presentation.Helpers.Utilities;
+﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Helpers;
 using System.Drawing;
 using System.IO;
 using System.Windows;
@@ -99,7 +99,7 @@ public partial class ArtistView : Page
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play";
-        PopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -107,7 +107,7 @@ public partial class ArtistView : Page
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(PlayBtn, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
@@ -138,14 +138,14 @@ public partial class ArtistView : Page
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(ShuffleBtn, 1.03, .1);
         _popupText.Text = _isShuffling ? "Disable Shuffle for Azahriah" : "Enable Shuffle for Azahriah";
-        PopupHelper.PopupAppear(_mainWindow, ShuffleBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, ShuffleBtn, PlacementMode.Top, _popupText);
     }
 
     private void ShuffleBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(ShuffleBtn, .1);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void ShuffleBtn_Click(object sender, RoutedEventArgs e)
@@ -204,7 +204,7 @@ public partial class ArtistView : Page
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        PopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -212,7 +212,7 @@ public partial class ArtistView : Page
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }

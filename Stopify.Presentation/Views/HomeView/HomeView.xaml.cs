@@ -1,4 +1,4 @@
-﻿using Stopify.Presentation.Helpers.Animations;
+﻿using Stopify.Presentation.Utilities.Animations;
 using System.Drawing;
 using System.IO;
 using System.Windows;

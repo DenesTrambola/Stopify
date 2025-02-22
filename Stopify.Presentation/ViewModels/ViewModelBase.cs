@@ -1,4 +1,4 @@
-﻿using Stopify.Presentation.Helpers.Commands;
+﻿using Stopify.Presentation.Utilities.Commands;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;

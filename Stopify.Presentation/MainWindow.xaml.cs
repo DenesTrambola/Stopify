@@ -1,4 +1,4 @@
-﻿using Stopify.Presentation.Helpers.Animations;
+﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Views;
 using Stopify.Presentation.Views.HomeView;
 using System.Windows;

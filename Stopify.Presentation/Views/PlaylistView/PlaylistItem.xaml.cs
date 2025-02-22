@@ -1,5 +1,5 @@
-﻿using Stopify.Presentation.Helpers.Animations;
-using Stopify.Presentation.Helpers.Utilities;
+﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Helpers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -100,11 +100,11 @@ public partial class PlaylistItem : UserControl
     private void PlayBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = _isPlaying ? "Pause" : "Play Cry Me A River by Azahriah";
-        PopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -149,7 +149,7 @@ public partial class PlaylistItem : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         _popupText.Text = _isSaved ? "Remove from Liked Songs" : "Save to Liked Songs";
-        PopupHelper.PopupAppear(_mainWindow, SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {
@@ -161,7 +161,7 @@ public partial class PlaylistItem : UserControl
     private void SaveBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
 
         if (!_isSaved)
         {
@@ -205,7 +205,7 @@ public partial class PlaylistItem : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Cry Me A River";
-        PopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -213,7 +213,7 @@ public partial class PlaylistItem : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }

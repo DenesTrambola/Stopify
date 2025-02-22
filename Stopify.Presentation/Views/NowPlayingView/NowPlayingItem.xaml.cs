@@ -1,5 +1,5 @@
-﻿using Stopify.Presentation.Helpers.Animations;
-using Stopify.Presentation.Helpers.Utilities;
+﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Helpers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -59,13 +59,13 @@ public partial class NowPlayingItem : UserControl
     {
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .05);
         _popupText.Text = "Play Hope from Lucid Keys";
-        PopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         ScaleAnimations.ResetScaleAnimation(PlayBtn, .05);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
@@ -117,14 +117,14 @@ public partial class NowPlayingItem : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        PopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }

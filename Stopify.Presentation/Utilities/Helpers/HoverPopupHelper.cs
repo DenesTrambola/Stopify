@@ -2,9 +2,9 @@
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace Stopify.Presentation.Helpers.Utilities;
+namespace Stopify.Presentation.Utilities.Helpers;
 
-public static class PopupHelper
+public static class HoverPopupHelper
 {
     public static void PopupAppear(MainWindow mainWindow, UIElement element, PlacementMode placement, params TextBlock[] texts)
     {

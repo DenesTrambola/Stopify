@@ -1,5 +1,5 @@
-﻿using Stopify.Presentation.Helpers.Animations;
-using Stopify.Presentation.Helpers.Utilities;
+﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Helpers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -54,7 +54,7 @@ public partial class SidebarControl : UserControl
         ColorAnimations.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Colors.White, .1);
         ColorAnimations.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Colors.White, .1);
         _basicPopupText.Text = _mainWindow.SidebarCollapsed == false ? "Collapse Your Library" : "Expand Your Library";
-        PopupHelper.PopupAppear(_mainWindow, YourLibraryBtn, PlacementMode.MousePoint, _basicPopupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, YourLibraryBtn, PlacementMode.MousePoint, _basicPopupText);
     }
 
     private void YourLibraryBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -62,7 +62,7 @@ public partial class SidebarControl : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ColorAnimations.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Color.FromRgb(179, 179, 179), .1);
         ColorAnimations.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Color.FromRgb(179, 179, 179), .1);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void YourLibraryBtn_Click(object sender, RoutedEventArgs e)
@@ -89,7 +89,7 @@ public partial class SidebarControl : UserControl
         ColorAnimations.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(31, 31, 31), .1);
         ColorAnimations.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.LightGray, .2);
         _basicPopupText.Text = "Create playlist or folder";
-        PopupHelper.PopupAppear(_mainWindow, CreateBorder, PlacementMode.Mouse, _basicPopupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, CreateBorder, PlacementMode.Mouse, _basicPopupText);
     }
 
     private void CreateBorder_MouseLeave(object sender, MouseEventArgs e)
@@ -97,7 +97,7 @@ public partial class SidebarControl : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ColorAnimations.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(18, 18, 18), .1);
         ColorAnimations.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.DarkGray, .2);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void CreateBtn_Click(object sender, RoutedEventArgs e) { }

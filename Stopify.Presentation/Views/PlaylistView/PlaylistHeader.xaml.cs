@@ -1,5 +1,5 @@
-﻿using Stopify.Presentation.Helpers.Animations;
-using Stopify.Presentation.Helpers.Utilities;
+﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Helpers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -197,13 +197,13 @@ public partial class PlaylistHeader : UserControl
     private void DurationBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.White, .05);
-        PopupHelper.PopupAppear(_mainWindow, DurationBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(_mainWindow, DurationBtn, PlacementMode.Top, _popupText);
     }
 
     private void DurationBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.DarkGray, .05);
-        PopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(_mainWindow);
     }
 
     private void DurationBtn_Click(object sender, RoutedEventArgs e)

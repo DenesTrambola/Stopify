@@ -25,8 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helpers\Converters\" />
-    <Folder Include="Helpers\Extensions\" />
+    <Folder Include="Utilities\Converters\" />
   </ItemGroup>
 
   <ItemGroup>

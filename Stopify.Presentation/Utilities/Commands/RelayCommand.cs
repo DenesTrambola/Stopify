@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace Stopify.Presentation.Helpers.Commands;
+namespace Stopify.Presentation.Utilities.Commands;
 
 public class RelayCommand : ICommand
 {

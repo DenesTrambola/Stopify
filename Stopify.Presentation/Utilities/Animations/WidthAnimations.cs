@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media.Animation;
 
-namespace Stopify.Presentation.Helpers.Animations;
+namespace Stopify.Presentation.Utilities.Animations;
 
 public static class WidthAnimations
 {
