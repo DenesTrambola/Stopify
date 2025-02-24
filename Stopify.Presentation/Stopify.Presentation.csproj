@@ -9,9 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Font Awesome 6 Free-Solid-900.otf" />
-    <None Remove="Assets\song.jpg" />
-    <None Remove="Assets\stopify-icon.ico" />
+    <None Remove="Resources\Font Awesome 6 Free-Solid-900.otf" />
+    <None Remove="Resources\song.jpg" />
+    <None Remove="Resources\stopify-icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,70 +25,71 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utilities\Converters\" />
+    <Folder Include="Helpers\Converters\" />
+    <Folder Include="Helpers\Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\Fonts\Font Awesome 6 Free-Solid-900.otf">
+    <Resource Include="Resources\Font Awesome 6 Free-Solid-900.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Assets\Images\song.jpg" />
-    <Resource Include="Assets\Images\stopify-icon.ico" />
+    <Resource Include="Resources\song.jpg" />
+    <Resource Include="Resources\stopify-icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\ArtistView.xaml.cs">
+    <Compile Update="Views\ArtistView\ArtistViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Components\HoverPopupComponent.xaml.cs">
+    <Compile Update="Views\CommonViews\PopupOnHoverView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\HomeView\HomeView.xaml.cs">
+    <Compile Update="Views\HomeView\HomeViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Components\CommonItem.xaml.cs">
+    <Compile Update="Views\CommonViews\CommonlItemView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\HomeView\HomeRecentPlaysItem.xaml.cs">
+    <Compile Update="Views\HomeView\HomeViewRecents.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Components\CommonRow.xaml.cs">
+    <Compile Update="Views\CommonViews\CommonRowView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\NowPlayingView\NowPlayingView.xaml.cs">
+    <Compile Update="Views\NowPlayingView\NowPlayingViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\NowPlayingView\NowPlayingItem.xaml.cs">
+    <Compile Update="Views\NowPlayingView\NowPlayingViewItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PlayerControl.xaml.cs">
+    <Compile Update="Views\PlayerView\PlayerViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PlaylistView\PlaylistHeader.xaml.cs">
+    <Compile Update="Views\PlaylistView\PlaylistViewHeader.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PlaylistView\PlaylistItem.xaml.cs">
+    <Compile Update="Views\PlaylistView\PlaylistViewItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PlaylistView\PlaylistView.xaml.cs">
+    <Compile Update="Views\PlaylistView\PlaylistViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\QueueView.xaml.cs">
+    <Compile Update="Views\QueueView\QueueViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\SearchView\SearchView.xaml.cs">
+    <Compile Update="Views\SearchView\SearchViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\SearchView\SearchCategoryItem.xaml.cs">
+    <Compile Update="Views\SearchView\SearchViewItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Sidebar\SidebarControl.xaml.cs">
+    <Compile Update="Views\SidebarView\SidebarViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Sidebar\SidebarItem.xaml.cs">
+    <Compile Update="Views\SidebarView\SidebarViewItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\TitlebarControl.xaml.cs">
+    <Compile Update="Views\TitlebarView\TitlebarViewMain.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -1,0 +1,338 @@
+﻿<UserControl
+    x:Class="Stopify.Presentation.Views.TitlebarView.TitlebarViewMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa1="http://schemas.fontawesome.io/icons/"
+    xmlns:local="clr-namespace:Stopify.Presentation.Views.TitlebarView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignWidth="800"
+    SizeChanged="TitleBar_SizeChanged"
+    mc:Ignorable="d">
+
+    <Grid
+        Height="64"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Top"
+        Background="Transparent"
+        MouseDown="TitleBar_MouseDown">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Options  -->
+        <Button
+            Name="OptionsBtn"
+            Grid.Column="0"
+            Margin="14,-3,0,0"
+            Padding="10"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="OptionsBtn_Click"
+            Content="• • •"
+            FontSize="14"
+            FontWeight="Bold"
+            Foreground="White"
+            GotFocus="OptionsBtn_GotFocus"
+            LostFocus="OptionsBtn_LostFocus" />
+
+        <!--  Go back  -->
+        <Button
+            Name="BackBtn"
+            Grid.Column="1"
+            Margin="3,8,5,8"
+            Padding="0,-15,0,0"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="BackBtn_Click"
+            FontSize="25"
+            MouseEnter="BackBtn_MouseEnter"
+            MouseLeave="BackBtn_MouseLeave"
+            MouseMove="BackBtn_MouseMove">
+            <Label
+                Name="BackBtnLabel"
+                Margin="0,13,0,0"
+                HorizontalAlignment="Center"
+                Content="&#xf053;"
+                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                FontSize="23"
+                Foreground="#323232" />
+        </Button>
+
+        <!--  Go forward  -->
+        <Button
+            Name="ForwardBtn"
+            Grid.Column="2"
+            Margin="3,8,0,8"
+            Padding="0,-15,0,0"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="ForwardBtn_Click"
+            FontSize="25"
+            MouseEnter="ForwardBtn_MouseEnter"
+            MouseLeave="ForwardBtn_MouseLeave"
+            MouseMove="ForwardBtn_MouseMove">
+            <Label
+                Name="ForwardBtnLabel"
+                Margin="0,13,0,0"
+                HorizontalAlignment="Center"
+                Content="&#xf054;"
+                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                FontSize="23"
+                Foreground="#323232" />
+        </Button>
+
+        <!--  Home Button  -->
+        <Border
+            Name="HomeBtnBorder"
+            Grid.Column="3"
+            Margin="12,8,8,8"
+            Background="#1f1f1f"
+            CornerRadius="30">
+            <Button
+                Name="HomeBtn"
+                Padding="13"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="HomeBtn_Click"
+                Content="&#xf015;"
+                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                FontSize="20"
+                Foreground="DarkGray"
+                MouseEnter="HomeBtn_MouseEnter"
+                MouseLeave="HomeBtn_MouseLeave" />
+        </Border>
+
+        <!--  Search Button  -->
+        <Button
+            Name="SearchBtn"
+            Grid.Column="4"
+            Width="50"
+            Height="50"
+            Margin="-2,7,0,7"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="SearchBtn_Click"
+            MouseEnter="SearchBtn_MouseEnter"
+            MouseLeave="SearchBtn_MouseLeave">
+            <Border
+                Name="SearchBtnBorder"
+                Padding="0"
+                Background="#1f1f1f"
+                BorderBrush="White"
+                CornerRadius="30">
+
+                <TextBlock
+                    Name="SearchBtnText"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                    FontSize="20"
+                    Foreground="DarkGray"
+                    Text="&#xf002;" />
+            </Border>
+        </Button>
+
+        <!--  Search Bar (Border)  -->
+        <Border
+            Name="SearchBar"
+            Grid.Column="5"
+            Width="0"
+            Margin="-3,8,-13,8"
+            HorizontalAlignment="Stretch"
+            Panel.ZIndex="0"
+            Background="#1f1f1f"
+            BorderBrush="White"
+            BorderThickness="0"
+            CornerRadius="0 23 23 0" />
+
+        <!--  Search Bar (Placeholder)  -->
+        <TextBlock
+            Name="SearchbarTxt"
+            Grid.Column="5"
+            Width="0"
+            Margin="-2,0,0,2"
+            VerticalAlignment="Center"
+            Panel.ZIndex="1"
+            Background="Transparent"
+            FontSize="16.3"
+            FontWeight="SemiBold"
+            Foreground="DarkGray"
+            Text="What do you want to play?" />
+
+        <!--  Search Bar (Text)  -->
+        <TextBox
+            Name="SearchbarBox"
+            Grid.Column="5"
+            Width="0"
+            Margin="-4,0,40,2"
+            VerticalAlignment="Stretch"
+            VerticalContentAlignment="Center"
+            Panel.ZIndex="2"
+            Background="Transparent"
+            BorderThickness="0"
+            FontSize="16.3"
+            FontWeight="SemiBold"
+            Foreground="White"
+            GotFocus="SearchbarBox_GotFocus"
+            LostFocus="SearchbarBox_LostFocus"
+            MouseEnter="SearchbarBox_MouseEnter"
+            MouseLeave="SearchbarBox_MouseLeave"
+            TextChanged="SearchbarBox_TextChanged" />
+
+        <!--  Search Bar (Line)  -->
+        <TextBlock
+            Name="SearchbarLine"
+            Grid.Column="5"
+            Width="0"
+            Margin="0,0,36,7"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            FontSize="25"
+            FontWeight="UltraLight"
+            Foreground="DarkGray"
+            Text="|" />
+
+        <!--  Search Bar (Browse Button)  -->
+        <Button
+            Name="SearchbarBrowse"
+            Grid.Column="5"
+            Width="0"
+            Margin="9,8,0,9"
+            Padding="7,0"
+            HorizontalAlignment="Right"
+            Panel.ZIndex="3"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="SearchbarBrowse_Click"
+            Content="&#xe4cf;"
+            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+            FontSize="24"
+            Foreground="White"
+            MouseEnter="SearchbarBrowse_MouseEnter"
+            MouseLeave="SearchbarBrowse_MouseLeave" />
+
+        <!--  What's New  -->
+        <Button
+            x:Name="WhatsNewBtn"
+            Grid.Column="6"
+            Width="Auto"
+            Margin="15,16,4,16"
+            Padding="8"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="WhatsNewBtn_Click"
+            Content="&#xf0f3;"
+            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+            FontSize="16"
+            Foreground="LightGray"
+            MouseEnter="WhatsNewBtn_MouseEnter"
+            MouseLeave="WhatsNewBtn_MouseLeave" />
+
+        <!--  Friend Activity  -->
+        <Button
+            x:Name="FriendActivityBtn"
+            Grid.Column="7"
+            Width="Auto"
+            Margin="0,16,9,16"
+            Padding="10"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="FriendActivityBtn_Click"
+            Content="&#xf500;"
+            FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+            FontSize="13"
+            Foreground="LightGray"
+            MouseEnter="FriendActivityBtn_MouseEnter"
+            MouseLeave="FriendActivityBtn_MouseLeave" />
+
+        <!--  Avatar  -->
+        <Border
+            Name="AvatarBorder"
+            Grid.Column="8"
+            Width="48"
+            Margin="8,8,20,8"
+            Background="#19e68c"
+            BorderBrush="#1f1f1f"
+            BorderThickness="8"
+            CornerRadius="30">
+            <Button
+                Name="AvatarBtn"
+                Padding="0,0,0,1"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="AvatarBtn_Click"
+                Content="A"
+                FontSize="14"
+                FontWeight="Bold"
+                Foreground="Black"
+                MouseEnter="AvatarBtn_MouseEnter"
+                MouseLeave="AvatarBtn_MouseLeave" />
+        </Border>
+
+        <!--  Minimize Button  -->
+        <Button
+            Name="MinimizeBtn"
+            Grid.Column="9"
+            Width="45"
+            Padding="-3,-3,0,0"
+            Background="#3f3f3f"
+            BorderBrush="Transparent"
+            BorderThickness="1"
+            Click="MinimizeBtn_Click"
+            Content="⎯"
+            FontSize="15"
+            Foreground="White"
+            MouseEnter="MinimizeBtn_MouseEnter"
+            MouseLeave="MinimizeBtn_MouseLeave" />
+
+        <!--  Maximize Button  -->
+        <Button
+            Name="MaximizeBtn"
+            Grid.Column="10"
+            Width="45"
+            Padding="-1,-7,0,0"
+            Background="#3f3f3f"
+            BorderBrush="Transparent"
+            BorderThickness="1"
+            Click="MaximizeBtn_Click"
+            Content="□"
+            FontSize="21"
+            Foreground="White"
+            MouseEnter="MaximizeBtn_MouseEnter"
+            MouseLeave="MaximizeBtn_MouseLeave" />
+
+        <!--  Close Button  -->
+        <Button
+            Name="CloseBtn"
+            Grid.Column="11"
+            Width="45"
+            Padding="-1,-2,0,0"
+            Background="#c42b1c"
+            BorderBrush="Transparent"
+            BorderThickness="1"
+            Click="CloseBtn_Click"
+            Content="✕"
+            FontSize="14"
+            Foreground="LightGray"
+            MouseEnter="CloseBtn_MouseEnter"
+            MouseLeave="CloseBtn_MouseLeave" />
+    </Grid>
+</UserControl>
