@@ -1,6 +1,6 @@
-﻿using Stopify.Presentation.Utilities.Animations;
-using Stopify.Presentation.Views;
+﻿using Stopify.Presentation.Helpers.Animations;
 using Stopify.Presentation.Views.HomeView;
+using Stopify.Presentation.Views.PlayerView;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -9,7 +9,7 @@ namespace Stopify.Presentation;
 
 public partial class MainWindow : Window
 {
-    private PlayerControl _player = new();
+    private PlayerViewMain _player = new();
     public bool? SidebarCollapsed { get; set; } = null;
     public bool? NowPlayingCollapsed { get; set; } = null;
     public bool QueueCollapsed { get; set; } = true;
@@ -21,7 +21,7 @@ public partial class MainWindow : Window
     }
 
     public void Window_Loaded(object sender, RoutedEventArgs e) =>
-        MainFrame.Navigate(new HomeView());
+        MainFrame.Navigate(new HomeViewMain());
 
     public void UpdateSidebar()
     {
@@ -96,7 +96,7 @@ public partial class MainWindow : Window
             else
                 NowPlayingQueue.Width = 281;
 
-            PlayerControl player = new();
+            PlayerViewMain player = new();
             player.NowPlayingBtn.Content = "\uf106";
         }
     }

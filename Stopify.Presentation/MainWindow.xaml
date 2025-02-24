@@ -2,21 +2,23 @@
     x:Class="Stopify.Presentation.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Components="clr-namespace:Stopify.Presentation.Views.Components"
-    xmlns:NowPlaying="clr-namespace:Stopify.Presentation.Views.NowPlayingView"
-    xmlns:Sidebar="clr-namespace:Stopify.Presentation.Views.Sidebar"
-    xmlns:Views="clr-namespace:Stopify.Presentation.Views"
+    xmlns:common="clr-namespace:Stopify.Presentation.Views.CommonViews"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Stopify.Presentation"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:nowPlaying="clr-namespace:Stopify.Presentation.Views.NowPlayingView"
+    xmlns:player="clr-namespace:Stopify.Presentation.Views.PlayerView"
+    xmlns:queue="clr-namespace:Stopify.Presentation.Views.QueueView"
     xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+    xmlns:sidebar="clr-namespace:Stopify.Presentation.Views.SidebarView"
+    xmlns:titlebar="clr-namespace:Stopify.Presentation.Views.TitlebarView"
     Title="Stopify"
     Width="800"
     Height="600"
     MinWidth="800"
     MinHeight="600"
     Background="Black"
-    Icon="./Assets/Images/stopify-icon.ico"
+    Icon="./Resources/stopify-icon.ico"
     Loaded="Window_Loaded"
     SizeChanged="Window_SizeChanged"
     WindowStartupLocation="CenterScreen"
@@ -42,11 +44,11 @@
             x:Name="BtnPopup"
             AllowsTransparency="True"
             VerticalOffset="5">
-            <Components:HoverPopupComponent x:Name="PopupItem" />
+            <common:PopupOnHoverView x:Name="PopupItem" />
         </Popup>
 
         <!--  Title Bar  -->
-        <Views:TitlebarControl Grid.Row="0" />
+        <titlebar:TitlebarViewMain Grid.Row="0" />
 
         <Grid Grid.Row="1" Margin="8,0,8,0">
             <Grid.ColumnDefinitions>
@@ -64,7 +66,7 @@
                 HorizontalAlignment="Left"
                 Background="#121212"
                 CornerRadius="8">
-                <Sidebar:SidebarControl />
+                <sidebar:SidebarViewMain />
             </Border>
 
             <!--  Main Layout  -->
@@ -84,7 +86,7 @@
                 HorizontalAlignment="Right"
                 Background="#121212"
                 CornerRadius="8">
-                <NowPlaying:NowPlayingView />
+                <nowPlaying:NowPlayingViewMain />
             </Border>
 
             <!--  Now Playing Queue  -->
@@ -97,13 +99,13 @@
                 HorizontalAlignment="Right"
                 Background="#121212"
                 CornerRadius="8">
-                <Views:QueueView />
+                <queue:QueueViewMain />
             </Border>
         </Grid>
 
         <!--  Music Player  -->
         <Grid Grid.Row="2" Background="Black">
-            <Views:PlayerControl Margin="0,-5,0,0" />
+            <player:PlayerViewMain Margin="0,-5,0,0" />
         </Grid>
     </Grid>
 </Window>

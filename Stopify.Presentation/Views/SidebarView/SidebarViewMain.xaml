@@ -1,0 +1,283 @@
+﻿<UserControl
+    x:Class="Stopify.Presentation.Views.SidebarView.SidebarViewMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Stopify.Presentation.Views.SidebarView"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    SizeChanged="Sidebar_SizeChanged"
+    mc:Ignorable="d">
+
+    <Grid Margin="8,8,0,8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!--  Header  -->
+        <Grid
+            Grid.Row="0"
+            Margin="9,4,8,4"
+            VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Your Library  -->
+            <Button
+                Name="YourLibraryBtn"
+                Grid.Column="0"
+                Padding="9,9,6,9"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="YourLibraryBtn_Click"
+                Foreground="#b3b3b3"
+                MouseEnter="YourLibraryBtn_MouseEnter"
+                MouseLeave="YourLibraryBtn_MouseLeave">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                        FontSize="22"
+                        Text="&#xf02d;" />
+                    <TextBlock
+                        Name="YourLibraryText"
+                        Margin="15,-1,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Text="Your Library"
+                        Visibility="Hidden" />
+                </StackPanel>
+            </Button>
+
+            <!--  Create Playlist or Folder  -->
+            <Border
+                Name="CreateBorder"
+                Grid.Column="2"
+                Width="30"
+                Height="30"
+                Margin="0,0,1,0"
+                Background="#121212"
+                CornerRadius="30"
+                MouseEnter="CreateBorder_MouseEnter"
+                MouseLeave="CreateBorder_MouseLeave">
+                <Button
+                    Name="CreateBtn"
+                    Padding="0,-8,0,0"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="CreateBtn_Click"
+                    Content="+"
+                    FontSize="30"
+                    FontWeight="SemiBold"
+                    Foreground="DarkGray" />
+            </Border>
+        </Grid>
+
+        <!--  Playlists & Artists Filter Buttons  -->
+        <Grid
+            Name="FilterBtns"
+            Grid.Row="1"
+            Height="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Playlists  -->
+            <Border
+                Name="PlaylistFilterBorder"
+                Grid.Column="0"
+                Margin="8,12,4,8"
+                Background="#2a2a2a"
+                CornerRadius="15"
+                MouseEnter="PlaylistFilterBorder_MouseEnter"
+                MouseLeave="PlaylistFilterBorder_MouseLeave">
+                <Button
+                    Name="PlaylistFilterBtn"
+                    Padding="12.5,5.5,12.5,7.5"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="PlaylistFilterBtn_Click"
+                    Content="Playlists"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Foreground="White" />
+            </Border>
+
+            <!--  Artists  -->
+            <Border
+                Name="ArtistFilterBorder"
+                Grid.Column="1"
+                Margin="4,12,8,8"
+                Background="#2a2a2a"
+                CornerRadius="15"
+                MouseEnter="ArtistFilterBorder_MouseEnter"
+                MouseLeave="ArtistFilterBorder_MouseLeave">
+                <Button
+                    Name="ArtistFilterBtn"
+                    Padding="12.5,5.5,12.5,7.5"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="ArtistFilterBtn_Click"
+                    Content="Artists"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Foreground="White" />
+            </Border>
+        </Grid>
+
+        <!--  Item List  -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Visible">
+            <StackPanel>
+                <Grid Name="SearchGrid" Height="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Search Button  -->
+                    <Button
+                        Name="SearchBtn"
+                        Grid.Column="0"
+                        Width="32"
+                        Height="32"
+                        Margin="8,2,0,2"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="SearchBtn_Click"
+                        MouseEnter="SearchBtn_MouseEnter"
+                        MouseLeave="SearchBtn_MouseLeave">
+
+                        <Border
+                            Name="SearchBorder"
+                            Background="#121212"
+                            CornerRadius="30">
+                            <TextBlock
+                                Name="SearchText"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                FontSize="15"
+                                Foreground="DarkGray"
+                                Text="&#xf002;" />
+                        </Border>
+                    </Button>
+
+                    <!--  Search Bar  -->
+                    <Border
+                        Name="SearchBar"
+                        Grid.Column="1"
+                        Width="0"
+                        Margin="-1,3,0,3"
+                        Background="#272727"
+                        CornerRadius="0 5 5 0">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  TextBox  -->
+                            <TextBox
+                                Name="SearchBox"
+                                Grid.Column="0"
+                                VerticalAlignment="Center"
+                                Panel.ZIndex="1"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="DarkGray"
+                                MouseEnter="SearchBox_MouseEnter"
+                                MouseLeave="SearchBox_MouseLeave"
+                                TextChanged="SearchBox_TextChanged" />
+
+                            <!--  Placeholder  -->
+                            <TextBlock
+                                Name="SearchbarText"
+                                Grid.Column="0"
+                                Margin="2,0,0,0"
+                                VerticalAlignment="Center"
+                                Panel.ZIndex="0"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="DarkGray"
+                                Text="Search in Your Library" />
+
+                            <!--  Close  -->
+                            <Button
+                                Name="SearchCloseBtn"
+                                Grid.Column="1"
+                                Width="0"
+                                Padding="7,0"
+                                Panel.ZIndex="2"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Click="SearchCloseBtn_Click"
+                                Content="✕"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="DarkGray" />
+                        </Grid>
+                    </Border>
+
+                    <!--  Recents Menu Filter  -->
+                    <Button
+                        Name="RecentsBtn"
+                        Grid.Column="2"
+                        Padding="0,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="RecentsBtn_Click"
+                        MouseEnter="RecentsBtn_MouseEnter"
+                        MouseLeave="RecentsBtn_MouseLeave">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Name="RecentsFilterText"
+                                Width="Auto"
+                                Padding="16,0,0,2"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="DarkGray"
+                                Text="Recents" />
+                            <TextBlock
+                                Name="RecentsFilterIcon"
+                                Padding="8,0"
+                                VerticalAlignment="Center"
+                                FontFamily="../../Resources/#Font Awesome 6 Free Solid"
+                                FontSize="16"
+                                Foreground="DarkGray"
+                                Text="&#xf03a;" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <!--  Normal Margin="0 6 0 0"  -->
+                <ItemsControl Margin="-5,2,0,0">
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                    <local:SidebarViewItem />
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
