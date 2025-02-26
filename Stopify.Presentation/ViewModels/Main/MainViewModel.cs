@@ -1,4 +1,5 @@
 ﻿using Stopify.Presentation.ViewModels.Base;
+using Stopify.Presentation.ViewModels.Home;
 
 namespace Stopify.Presentation.ViewModels.Main;
 
@@ -11,8 +12,12 @@ public class MainViewModel : ViewModelBase
         set => SetProperty(ref _currentViewModel, value);
     }
 
-    public MainViewModel()
-    {
+    private readonly HomeViewModel _homeViewModel;
 
+    public MainViewModel(HomeViewModel homeViewModel)
+    {
+        _homeViewModel = homeViewModel;
+
+        CurrentViewModel = _homeViewModel;
     }
 }
