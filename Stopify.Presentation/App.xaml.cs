@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Stopify.Domain;
 using Stopify.Infrastructure;
+using Stopify.Presentation.ViewModels.Main;
 using System.IO;
 using System.Windows;
 
@@ -34,10 +35,13 @@ public partial class App : Application
         services.AddPresentationDependencies();
     }
 
-    private void Application_Startup(object sender, StartupEventArgs e)
+    protected override void OnStartup(StartupEventArgs e)
     {
         var mainWindow = _services.GetService<MainWindow>()!;
+        mainWindow.DataContext = _services.GetService<MainViewModel>()!;
         mainWindow.Show();
+
+        base.OnStartup(e);
     }
 
     protected override void OnExit(ExitEventArgs e)
