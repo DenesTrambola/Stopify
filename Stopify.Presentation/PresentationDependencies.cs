@@ -1,15 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Stopify.Presentation.ViewModels.Home;
 using Stopify.Presentation.ViewModels.Main;
+using Stopify.Presentation.Views.HomeView;
 
 namespace Stopify.Presentation;
 
 public static class PresentationDependencies
 {
-    public static void AddPresentationDependencies(this IServiceCollection services)
+    public static void AddViewModelDependencies(this IServiceCollection services)
     {
-        services.AddSingleton<MainWindow>()
-        .AddSingleton<MainViewModel>().
-        AddTransient<HomeViewModel>();
+        services.AddSingleton<MainViewModel>()
+            .AddTransient<HomeViewModel>();
+    }
+
+    public static void AddViewDependencies(this IServiceCollection services)
+    {
+        services.AddTransient<MainWindow>()
+            .AddTransient<HomeView>();
     }
 }
