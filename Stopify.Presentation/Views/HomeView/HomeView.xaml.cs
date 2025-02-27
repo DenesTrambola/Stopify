@@ -13,81 +13,21 @@ public partial class HomeView : UserControl
 {
     private byte _recentsFilterValue = 0; // 0 - All, 1 - Music, 2 - Podcasts.
 
-    public HomeView(HomeViewModel homeVM)
+    private readonly HomeViewModel _viewModel;
+
+    public HomeView(HomeViewModel viewModel)
     {
         InitializeComponent();
 
-        DataContext = homeVM;
+        DataContext = viewModel;
+        _viewModel = viewModel;
     }
 
 
     // Home Page
 
-    private void HomePage_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        if (HomePagePanel.ActualWidth >= 1000)
-        {
-            RecentCol1.Width = new GridLength(1, GridUnitType.Star);
-            RecentCol2.Width = new GridLength(1, GridUnitType.Star);
-            RecentCol3.Width = new GridLength(1, GridUnitType.Star);
-            RecentCol4.Width = new GridLength(1, GridUnitType.Star);
-
-            Grid.SetRow(RecentItem1, 0);
-            Grid.SetColumn(RecentItem1, 0);
-
-            Grid.SetRow(RecentItem2, 0);
-            Grid.SetColumn(RecentItem2, 1);
-
-            Grid.SetRow(RecentItem3, 0);
-            Grid.SetColumn(RecentItem3, 2);
-
-            Grid.SetRow(RecentItem4, 0);
-            Grid.SetColumn(RecentItem4, 3);
-
-            Grid.SetRow(RecentItem5, 1);
-            Grid.SetColumn(RecentItem5, 0);
-
-            Grid.SetRow(RecentItem6, 1);
-            Grid.SetColumn(RecentItem6, 1);
-
-            Grid.SetRow(RecentItem7, 1);
-            Grid.SetColumn(RecentItem7, 2);
-
-            Grid.SetRow(RecentItem8, 1);
-            Grid.SetColumn(RecentItem8, 3);
-        }
-        else
-        {
-            RecentCol1.Width = new GridLength(1, GridUnitType.Star);
-            RecentCol2.Width = new GridLength(1, GridUnitType.Star);
-            RecentCol3.Width = new GridLength(1, GridUnitType.Auto);
-            RecentCol4.Width = new GridLength(1, GridUnitType.Auto);
-
-            Grid.SetRow(RecentItem1, 0);
-            Grid.SetColumn(RecentItem1, 0);
-
-            Grid.SetRow(RecentItem2, 0);
-            Grid.SetColumn(RecentItem2, 1);
-
-            Grid.SetRow(RecentItem3, 1);
-            Grid.SetColumn(RecentItem3, 0);
-
-            Grid.SetRow(RecentItem4, 1);
-            Grid.SetColumn(RecentItem4, 1);
-
-            Grid.SetRow(RecentItem5, 2);
-            Grid.SetColumn(RecentItem5, 0);
-
-            Grid.SetRow(RecentItem6, 2);
-            Grid.SetColumn(RecentItem6, 1);
-
-            Grid.SetRow(RecentItem7, 3);
-            Grid.SetColumn(RecentItem7, 0);
-
-            Grid.SetRow(RecentItem8, 3);
-            Grid.SetColumn(RecentItem8, 1);
-        }
-    }
+    private void HomePage_SizeChanged(object sender, SizeChangedEventArgs e) =>
+        _viewModel.UpdateColumnCount(e.NewSize.Width);
 
     private void HomePage_Loaded(object sender, RoutedEventArgs e)
     {

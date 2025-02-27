@@ -48,7 +48,7 @@
                     FontSize="14"
                     FontWeight="Bold"
                     Foreground="White"
-                    Text="Binding Text, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                    Text="{Binding Title}"
                     TextTrimming="WordEllipsis"
                     TextWrapping="Wrap" />
 

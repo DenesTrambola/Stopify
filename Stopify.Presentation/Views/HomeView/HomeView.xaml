@@ -195,53 +195,20 @@
                     </Border>
 
                     <!--  Recent Playlists/Artists  -->
-                    <Grid Margin="12,23,12,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Name="RecentCol1" Width="*" />
-                            <ColumnDefinition Name="RecentCol2" Width="*" />
-                            <ColumnDefinition Name="RecentCol3" Width="Auto" />
-                            <ColumnDefinition Name="RecentCol4" Width="Auto" />
-                        </Grid.ColumnDefinitions>
 
-                        <local:HomeRecentPlaysItem
-                            x:Name="RecentItem1"
-                            Grid.Row="0"
-                            Grid.Column="0" />
-                        <local:HomeRecentPlaysItem
-                            x:Name="RecentItem2"
-                            Grid.Row="0"
-                            Grid.Column="1" />
-                        <local:HomeRecentPlaysItem
-                            x:Name="RecentItem3"
-                            Grid.Row="1"
-                            Grid.Column="0" />
-                        <local:HomeRecentPlaysItem
-                            x:Name="RecentItem4"
-                            Grid.Row="1"
-                            Grid.Column="1" />
-                        <local:HomeRecentPlaysItem
-                            x:Name="RecentItem5"
-                            Grid.Row="2"
-                            Grid.Column="0" />
-                        <local:HomeRecentPlaysItem
-                            x:Name="RecentItem6"
-                            Grid.Row="2"
-                            Grid.Column="1" />
-                        <local:HomeRecentPlaysItem
-                            x:Name="RecentItem7"
-                            Grid.Row="3"
-                            Grid.Column="0" />
-                        <local:HomeRecentPlaysItem
-                            x:Name="RecentItem8"
-                            Grid.Row="3"
-                            Grid.Column="1" />
-                    </Grid>
+                    <ItemsControl ItemsSource="{Binding RecentPlays}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding ColumnCount}" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:HomeRecentPlaysItem />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
 
                 <!--  Category Rows  -->
