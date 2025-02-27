@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace Stopify.Presentation.Views.PlaylistView;
 
-public partial class PlaylistView : Page
+public partial class PlaylistView : UserControl
 {
     private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
     private double _playlistTitleMaxFontSize = 38;
@@ -115,8 +115,10 @@ public partial class PlaylistView : Page
         ScaleAnimations.ResetScaleAnimation(HeaderAuthor, .05);
     }
 
-    private void HeaderAuthor_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new ArtistView());
+    private void HeaderAuthor_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new ArtistView());
+    }
 
 
     // Play/Pause

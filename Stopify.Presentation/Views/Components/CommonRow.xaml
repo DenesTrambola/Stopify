@@ -16,7 +16,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                 Click="CategoryBtn_Click"
-                Content="{Binding Category, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Content="{Binding Category}"
                 DockPanel.Dock="Left"
                 FontSize="24"
                 FontWeight="Bold"
@@ -43,21 +43,18 @@
         </DockPanel>
 
         <!--  Items  -->
-        <ItemsControl>
+        <ItemsControl ItemsSource="{Binding Items}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Controls:StretchyWrapPanel />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
 
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:CommonItem />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
         </ItemsControl>
     </StackPanel>
 </UserControl>

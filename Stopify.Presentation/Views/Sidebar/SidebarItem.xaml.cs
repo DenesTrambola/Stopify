@@ -76,8 +76,10 @@ public partial class SidebarItem : UserControl
         }
     }
 
-    private void ItemBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    private void ItemBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    }
 
     private void ItemImgBtn_MouseEnter(object sender, MouseEventArgs e)
     {

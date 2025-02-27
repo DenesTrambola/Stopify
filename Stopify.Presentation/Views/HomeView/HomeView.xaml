@@ -1,4 +1,4 @@
-﻿<Page
+﻿<UserControl
     x:Class="Stopify.Presentation.Views.HomeView.HomeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Stopify.Presentation.Views.HomeView"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="HomePage"
     d:DesignWidth="500"
     Background="Transparent"
     Loaded="HomePage_Loaded"
@@ -107,8 +106,8 @@
             HorizontalScrollBarVisibility="Disabled"
             ScrollChanged="Scroller_ScrollChanged"
             VerticalScrollBarVisibility="Auto">
-            <StackPanel Name="HomePagePanel">
-                <StackPanel>
+            <StackPanel Name="HomePagePanel" Background="#121212">
+                <StackPanel Margin="0,0,0,31">
                     <StackPanel.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
                             <GradientStop x:Name="ScrollerBg" Offset="0" Color="Transparent" />
@@ -245,29 +244,21 @@
                     </Grid>
                 </StackPanel>
 
-                <!--  Recently played  -->
-                <Components:CommonRow Margin="0,31,0,0" Category="Recently played" />
-                <!--  Your favorite artists  -->
-                <Components:CommonRow Category="Your favorite artists" />
-                <!--  Jump back in  -->
-                <Components:CommonRow Category="Jump back in" />
-                <!--  Best of artists  -->
-                <Components:CommonRow Category="Best of artists" />
-                <!--  Recommended for today  -->
-                <Components:CommonRow Category="Recommended for today" />
-                <!--  New releases for you  -->
-                <Components:CommonRow Category="New releases for you" />
-                <!--  More like {Artist}  -->
-                <Components:CommonRow Category="More like {Artist}" />
-                <!--  Fresh new music  -->
-                <Components:CommonRow Category="Fresh new music" />
-                <!--  More like {Artist}  -->
-                <Components:CommonRow Category="More like {Artist}" />
-                <!--  Popular artists  -->
-                <Components:CommonRow Category="Popular artists" />
-                <!--  For fans of {Artist}  -->
-                <Components:CommonRow Category="For fans of {Artist}" />
+                <!--  Category Rows  -->
+                <ItemsControl ItemsSource="{Binding Rows}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Components:CommonRow />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</Page>
+</UserControl>

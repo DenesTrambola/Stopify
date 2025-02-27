@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace Stopify.Presentation.Views.HomeView;
 
-public partial class HomeView : Page
+public partial class HomeView : UserControl
 {
     private byte _recentsFilterValue = 0; // 0 - All, 1 - Music, 2 - Podcasts.
 

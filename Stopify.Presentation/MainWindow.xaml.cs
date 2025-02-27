@@ -15,13 +15,17 @@ public partial class MainWindow : Window
     public bool QueueCollapsed { get; set; } = true;
     public bool FullScreen { get; set; } = false;
 
-    public MainWindow()
+    public MainWindow(HomeView homeView)
     {
         InitializeComponent();
+
+        MainLayout.Content = homeView;
     }
 
-    public void Window_Loaded(object sender, RoutedEventArgs e) =>
-        MainFrame.Navigate(new HomeView());
+    public void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        //MainFrame.Navigate(new HomeView());
+    }
 
     public void UpdateSidebar()
     {

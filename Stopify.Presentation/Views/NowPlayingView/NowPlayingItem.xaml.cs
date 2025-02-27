@@ -106,8 +106,10 @@ public partial class NowPlayingItem : UserControl
             textBlock.TextDecorations = null;
     }
 
-    private void ArtistBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new ArtistView());
+    private void ArtistBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new ArtistView());
+    }
 
 
     // More Options

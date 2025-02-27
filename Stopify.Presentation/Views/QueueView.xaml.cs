@@ -117,6 +117,8 @@ public partial class QueueView : UserControl
             textBlock.TextDecorations = null;
     }
 
-    private void NextFromArtistBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new ArtistView());
+    private void NextFromArtistBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new ArtistView());
+    }
 }

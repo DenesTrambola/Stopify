@@ -80,8 +80,10 @@ public partial class CommonItem : UserControl
         PlayBtnTransform.BeginAnimation(TranslateTransform.YProperty, moveDownAnimation);
     }
 
-    private void GeneralItemBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    private void GeneralItemBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    }
 
 
     // Play/Pause

@@ -84,8 +84,10 @@ public partial class NowPlayingView : UserControl
             textBlock.TextDecorations = null;
     }
 
-    private void HeaderTitleBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new ArtistView());
+    private void HeaderTitleBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new ArtistView());
+    }
 
 
     // More Options
@@ -144,17 +146,23 @@ public partial class NowPlayingView : UserControl
     private void SongImgBtn_MouseLeave(object sender, MouseEventArgs e) =>
         Mouse.OverrideCursor = Cursors.Arrow;
 
-    private void SongImgBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    private void SongImgBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    }
 
 
     // Song Info
 
-    private void SongTitleBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    private void SongTitleBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    }
 
-    private void SongArtistBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new ArtistView());
+    private void SongArtistBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new ArtistView());
+    }
 
 
     // Add to Liked Songs
@@ -229,8 +237,10 @@ public partial class NowPlayingView : UserControl
 
     private void AboutBtn_Click(object sender, RoutedEventArgs e) { }
 
-    private void ArtistBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new ArtistView());
+    private void ArtistBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new ArtistView());
+    }
 
 
     // Follow

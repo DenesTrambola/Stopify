@@ -139,8 +139,10 @@ public partial class PlaylistItem : UserControl
         ScaleAnimations.ResetScaleAnimation(AlbumBtn, .05);
     }
 
-    private void AlbumBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView());
+    private void AlbumBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView());
+    }
 
 
     // Save

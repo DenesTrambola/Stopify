@@ -329,11 +329,15 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
             textBlock.TextDecorations = null;
     }
 
-    private void Title_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    private void Title_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    }
 
-    private void Artist_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new ArtistView());
+    private void Artist_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new ArtistView());
+    }
 
 
     // Add to Liked Songs

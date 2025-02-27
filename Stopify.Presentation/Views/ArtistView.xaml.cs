@@ -10,7 +10,7 @@ using System.Windows.Media;
 
 namespace Stopify.Presentation.Views;
 
-public partial class ArtistView : Page
+public partial class ArtistView : UserControl
 {
     private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
     private double _artistNameMaxFontSize = 95;

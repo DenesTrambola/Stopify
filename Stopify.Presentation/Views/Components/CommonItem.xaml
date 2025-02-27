@@ -97,7 +97,7 @@
                     Foreground="White">
                     <TextBlock
                         LineHeight="20"
-                        Text="Azahriah"
+                        Text="{Binding Title}"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
                 </Button>
@@ -118,7 +118,7 @@
                     <TextBlock
                         Name="DescText"
                         LineHeight="18"
-                        Text="Artist"
+                        Text="{Binding Description}"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
                 </Button>

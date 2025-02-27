@@ -126,53 +126,53 @@ public partial class TitlebarControl : UserControl
 
     private void BackBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (_mainWindow.MainFrame.CanGoBack)
-            _mainWindow.MainFrame.GoBack();
+        //if (_mainWindow.MainFrame.CanGoBack)
+        //    _mainWindow.MainFrame.GoBack();
         UpdatePageBtns();
     }
 
     private void ForwardBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (_mainWindow.MainFrame.CanGoForward)
-            _mainWindow.MainFrame.GoForward();
+        //if (_mainWindow.MainFrame.CanGoForward)
+        //    _mainWindow.MainFrame.GoForward();
         UpdatePageBtns();
     }
 
     private void UpdatePageBtns()
     {
-        if (_mainWindow.MainFrame.CanGoBack)
-            ColorAnimations.AnimateForegroundColor(BackBtnLabel, BackBtnLabel.Foreground, Colors.DarkGray, .02);
-        else
-            ColorAnimations.AnimateForegroundColor(BackBtnLabel, BackBtnLabel.Foreground, Color.FromRgb(50, 50, 50), .02);
+        //if (_mainWindow.MainFrame.CanGoBack)
+        //    ColorAnimations.AnimateForegroundColor(BackBtnLabel, BackBtnLabel.Foreground, Colors.DarkGray, .02);
+        //else
+        //    ColorAnimations.AnimateForegroundColor(BackBtnLabel, BackBtnLabel.Foreground, Color.FromRgb(50, 50, 50), .02);
 
-        if (_mainWindow.MainFrame.CanGoForward)
-            ColorAnimations.AnimateForegroundColor(ForwardBtnLabel, ForwardBtnLabel.Foreground, Colors.DarkGray, .02);
-        else
-            ColorAnimations.AnimateForegroundColor(ForwardBtnLabel, ForwardBtnLabel.Foreground, Color.FromRgb(50, 50, 50), .02);
+        //if (_mainWindow.MainFrame.CanGoForward)
+        //    ColorAnimations.AnimateForegroundColor(ForwardBtnLabel, ForwardBtnLabel.Foreground, Colors.DarkGray, .02);
+        //else
+        //    ColorAnimations.AnimateForegroundColor(ForwardBtnLabel, ForwardBtnLabel.Foreground, Color.FromRgb(50, 50, 50), .02);
     }
 
     private void BackBtn_MouseMove(object sender, MouseEventArgs e)
     {
         BackBtn_MouseEnter(sender, e);
-        if (!_mainWindow.MainFrame.CanGoBack)
-            Mouse.OverrideCursor = Cursors.No;
-        else
-            Mouse.OverrideCursor = Cursors.Arrow;
+        //if (!_mainWindow.MainFrame.CanGoBack)
+        //    Mouse.OverrideCursor = Cursors.No;
+        //else
+        //    Mouse.OverrideCursor = Cursors.Arrow;
     }
 
     private void ForwardBtn_MouseMove(object sender, MouseEventArgs e)
     {
         ForwardBtn_MouseEnter(sender, e);
-        if (!_mainWindow.MainFrame.CanGoForward)
-            Mouse.OverrideCursor = Cursors.No;
-        else
-            Mouse.OverrideCursor = Cursors.Arrow;
+        //if (!_mainWindow.MainFrame.CanGoForward)
+        //    Mouse.OverrideCursor = Cursors.No;
+        //else
+        //    Mouse.OverrideCursor = Cursors.Arrow;
     }
 
     private void BackBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        if (_mainWindow.MainFrame.CanGoBack)
-            ColorAnimations.AnimateForegroundColor(BackBtnLabel, BackBtnLabel.Foreground, Colors.White, .02);
+        //if (_mainWindow.MainFrame.CanGoBack)
+        //    ColorAnimations.AnimateForegroundColor(BackBtnLabel, BackBtnLabel.Foreground, Colors.White, .02);
 
         TextBlock textBlock = new();
         textBlock.Text = "Go back";
@@ -184,8 +184,8 @@ public partial class TitlebarControl : UserControl
 
     private void ForwardBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        if (_mainWindow.MainFrame.CanGoForward)
-            ColorAnimations.AnimateForegroundColor(ForwardBtnLabel, ForwardBtnLabel.Foreground, Colors.White, .02);
+        //if (_mainWindow.MainFrame.CanGoForward)
+        //    ColorAnimations.AnimateForegroundColor(ForwardBtnLabel, ForwardBtnLabel.Foreground, Colors.White, .02);
 
         TextBlock textBlock = new();
         textBlock.Text = "Go forward";
@@ -217,7 +217,7 @@ public partial class TitlebarControl : UserControl
 
     private void HomeBtn_Click(object sender, RoutedEventArgs e)
     {
-        _mainWindow.MainFrame.Navigate(new HomeView.HomeView());
+        //_mainWindow.MainFrame.Navigate(new HomeView.HomeView());
         ColorAnimations.AnimateForegroundColor(HomeBtn, HomeBtn.Foreground, Colors.White, .2);
         UpdatePageBtns();
     }
@@ -269,7 +269,7 @@ public partial class TitlebarControl : UserControl
 
         if (SearchBar.Width == 0)
         {
-            _mainWindow.MainFrame.Navigate(new SearchView.SearchView());
+            //_mainWindow.MainFrame.Navigate(new SearchView.SearchView());
 
             SearchbarTxt.Width = double.NaN;
             SearchbarBox.Width = double.NaN;

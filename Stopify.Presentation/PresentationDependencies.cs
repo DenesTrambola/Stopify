@@ -15,7 +15,7 @@ public static class PresentationDependencies
 
     public static void AddViewDependencies(this IServiceCollection services)
     {
-        services.AddTransient<MainWindow>()
+        services.AddSingleton<MainWindow>()
             .AddTransient<HomeView>();
     }
 }

@@ -3,7 +3,7 @@ using System.Windows.Controls;
 
 namespace Stopify.Presentation.Views.SearchView;
 
-public partial class SearchView : Page
+public partial class SearchView : UserControl
 {
     public SearchView()
     {

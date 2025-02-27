@@ -45,8 +45,10 @@ public partial class HomeRecentPlaysItem : UserControl
         PlayBtn.Visibility = Visibility.Hidden;
     }
 
-    private void RecentBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    private void RecentBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    }
 
 
     // Play/Pause
