@@ -13,8 +13,13 @@
 
     <ScrollViewer Name="MainPanel">
         <StackPanel>
-            <Components:FilterRow Title="Search results" />
-            <Components:FilterRow Title="Recent searches" />
+            <ItemsControl ItemsSource="{Binding FilterRows}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Components:FilterRow />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
             <Button
                 Margin="15,0"

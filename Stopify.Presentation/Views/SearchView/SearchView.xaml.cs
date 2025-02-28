@@ -1,13 +1,16 @@
-﻿using System.Windows;
+﻿using Stopify.Presentation.ViewModels.Search;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Stopify.Presentation.Views.SearchView;
 
 public partial class SearchView : UserControl
 {
-    public SearchView()
+    public SearchView(SearchViewModel viewModel)
     {
         InitializeComponent();
+
+        DataContext = viewModel;
     }
 
     private void SearchPage_SizeChanged(object sender, SizeChangedEventArgs e)
