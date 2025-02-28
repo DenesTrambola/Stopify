@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utilities\Converters\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Assets\Fonts\Font Awesome 6 Free-Solid-900.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
