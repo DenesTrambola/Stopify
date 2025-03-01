@@ -2,6 +2,7 @@
     x:Class="Stopify.Presentation.Views.Sidebar.SidebarControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:SidebarVM="clr-namespace:Stopify.Presentation.ViewModels.Sidebar"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Stopify.Presentation.Views.Sidebar"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -9,6 +10,10 @@
     mc:Ignorable="d">
 
     <Grid Margin="8,8,0,8">
+        <Grid.DataContext>
+            <SidebarVM:SidebarControlViewModel />
+        </Grid.DataContext>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -265,17 +270,18 @@
                 </Grid>
 
                 <!--  Normal Margin="0 6 0 0"  -->
-                <ItemsControl Margin="-5,2,0,0">
-                    <local:SidebarItem />
-                    <local:SidebarItem />
-                    <local:SidebarItem />
-                    <local:SidebarItem />
-                    <local:SidebarItem />
-                    <local:SidebarItem />
-                    <local:SidebarItem />
-                    <local:SidebarItem />
-                    <local:SidebarItem />
-                    <local:SidebarItem />
+                <ItemsControl Margin="-5,2,0,0" ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:SidebarItem />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
