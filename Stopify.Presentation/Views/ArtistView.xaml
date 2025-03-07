@@ -41,6 +41,7 @@
 
                         <!--  Play/Pause  -->
                         <Button
+                            Name="PlayBtnHeader"
                             Grid.Column="0"
                             Width="50"
                             Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
@@ -48,14 +49,21 @@
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch"
                             Background="Transparent"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            Click="PlayBtn_Click"
+                            MouseEnter="PlayBtn_MouseEnter"
+                            MouseLeave="PlayBtn_MouseLeave">
 
-                            <Border Background="#1ed760" CornerRadius="30">
+                            <Border
+                                Name="PlayBorderHeader"
+                                Background="#1ed760"
+                                CornerRadius="30">
                                 <TextBlock
+                                    Name="PlayIconHeader"
                                     Margin="2,15,0,15"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
+                                    FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                                     FontSize="19"
                                     Text="&#xf04b;" />
                             </Border>
@@ -70,7 +78,7 @@
                             FontSize="24"
                             FontWeight="Bold"
                             Foreground="White"
-                            Text="Azahriah"
+                            Text="{Binding Title}"
                             TextTrimming="CharacterEllipsis"
                             TextWrapping="Wrap" />
                     </Grid>
@@ -122,7 +130,7 @@
                                 CornerRadius="100">
 
                                 <Border.Background>
-                                    <ImageBrush ImageSource="../../Assets/Images/song.jpg" />
+                                    <ImageBrush ImageSource="../Assets/Images/song.jpg" />
                                 </Border.Background>
                             </Border>
 
@@ -148,7 +156,7 @@
 
                                         <Grid Grid.Column="0" Margin="0,1,9,0">
                                             <TextBlock
-                                                FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
+                                                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                                                 FontSize="17"
                                                 Foreground="#4cb3ff"
                                                 Text="&#xf0a3;" />
@@ -156,7 +164,7 @@
                                             <TextBlock
                                                 HorizontalAlignment="Center"
                                                 VerticalAlignment="Center"
-                                                FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
+                                                FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                                                 FontSize="10"
                                                 Foreground="White"
                                                 Text="&#xf00c;" />
@@ -177,7 +185,7 @@
                                         FontSize="70"
                                         FontWeight="UltraBold"
                                         Foreground="White"
-                                        Text="Azahriah"
+                                        Text="{Binding Title}"
                                         TextTrimming="WordEllipsis"
                                         TextWrapping="Wrap" />
 
@@ -190,7 +198,7 @@
                                             FontSize="17"
                                             FontWeight="SemiBold"
                                             Foreground="LightGray"
-                                            Text="700,000"
+                                            Text="{Binding MonthlyListeners}"
                                             TextTrimming="CharacterEllipsis"
                                             TextWrapping="Wrap" />
 
@@ -244,7 +252,7 @@
                                     Margin="2,15,0,15"
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center"
-                                    FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
+                                    FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                                     FontSize="20"
                                     IsHitTestVisible="False"
                                     Text="&#xf04b;" />
@@ -262,7 +270,7 @@
                             BorderThickness="0"
                             Click="ShuffleBtn_Click"
                             Content="&#xf074;"
-                            FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
+                            FontFamily="../Assets/Fonts/#Font Awesome 6 Free Solid"
                             FontSize="23"
                             Foreground="DarkGray"
                             MouseEnter="ShuffleBtn_MouseEnter"
@@ -480,20 +488,20 @@
                         </StackPanel>
 
                         <!--  Items  -->
-                        <Controls:StretchyWrapPanel Grid.Row="2">
-                            <Components:CommonItem />
-                            <Components:CommonItem />
-                            <Components:CommonItem />
-                            <Components:CommonItem />
-                            <Components:CommonItem />
-                            <Components:CommonItem />
-                            <Components:CommonItem />
-                            <Components:CommonItem />
-                        </Controls:StretchyWrapPanel>
-                    </Grid>
+                        <ItemsControl Grid.Row="2" ItemsSource="{Binding DiscographyItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Controls:StretchyWrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                    <!--  Fans also like  -->
-                    <Components:CommonRow Grid.Row="4" Category="Fans also like" />
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Components:CommonItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
 
                     <!--  About  -->
                     <Grid Grid.Row="5">
@@ -509,15 +517,14 @@
                             </Grid.RowDefinitions>
 
                             <!--  Title  -->
-                            <Button
+                            <TextBlock
                                 Grid.Row="0"
                                 HorizontalAlignment="Left"
                                 Background="Transparent"
-                                BorderThickness="0"
-                                Content="About"
                                 FontSize="24"
                                 FontWeight="Bold"
-                                Foreground="White" />
+                                Foreground="White"
+                                Text="About" />
 
                             <!--  Image  -->
                             <Button
@@ -538,7 +545,7 @@
                                     <Border.Background>
                                         <ImageBrush
                                             AlignmentY="Top"
-                                            ImageSource="../../Assets/Images/stopify-icon.ico"
+                                            ImageSource="../Assets/Images/stopify-icon.ico"
                                             Stretch="Uniform" />
                                     </Border.Background>
                                 </Border>
@@ -566,7 +573,7 @@
                                         FontSize="16"
                                         FontWeight="Bold"
                                         Foreground="White"
-                                        Text="700,000" />
+                                        Text="{Binding MonthlyListeners}" />
                                     <TextBlock
                                         Margin="5,0"
                                         VerticalAlignment="Bottom"

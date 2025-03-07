@@ -16,11 +16,11 @@ public partial class MainWindow : Window
     public bool QueueCollapsed { get; set; } = true;
     public bool FullScreen { get; set; } = false;
 
-    public MainWindow(HomeView homeView, SearchView searchView)
+    public MainWindow(HomeView homeView, SearchView searchView, ArtistView artistView)
     {
         InitializeComponent();
 
-        MainLayout.Content = searchView;
+        MainLayout.Content = artistView;
     }
 
     public void Window_Loaded(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.ViewModels.Artist;
 using System.Drawing;
 using System.IO;
 using System.Windows;
@@ -12,7 +13,6 @@ namespace Stopify.Presentation.Views;
 
 public partial class ArtistView : UserControl
 {
-    private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
     private double _artistNameMaxFontSize = 95;
     private TextBlock _popupText = new();
     private bool _isPlaying = false;
@@ -20,9 +20,11 @@ public partial class ArtistView : UserControl
     private bool _isFollowing = false;
     private byte _discographyFilterValue = 0; // 0 - Popular, 1 - Albums, 2 - Singles.
 
-    public ArtistView()
+    public ArtistView(ArtistViewModel viewModel)
     {
         InitializeComponent();
+
+        DataContext = viewModel;
 
         _popupText.Foreground = System.Windows.Media.Brushes.White;
         _popupText.FontWeight = FontWeights.SemiBold;
@@ -42,8 +44,8 @@ public partial class ArtistView : UserControl
 
     private void ArtistView_Loaded(object sender, RoutedEventArgs e)
     {
-        string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-        string imagePath = Path.Combine(projectDirectory, "Resources", "song.jpg");
+        string projectDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
+        string imagePath = Path.Combine(projectDirectory, "Assets", "Images", "song.jpg");
 
         using Bitmap bitmap = new Bitmap(imagePath);
 
@@ -95,38 +97,64 @@ public partial class ArtistView : UserControl
 
     private void PlayBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
+
+        if (sender is FrameworkElement element)
+            HoverPopupHelper.PopupAppear(mainWindow, element, PlacementMode.Top, _popupText);
+
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play";
-        HoverPopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
+
+        ScaleAnimations.BeginScaleAnimation(PlayBtnHeader, 1.03, .1);
+        ColorAnimations.AnimateBackgroundColor(PlayBorderHeader, PlayBorderHeader.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
+        _popupText.Text = _isPlaying ? "Pause" : "Play";
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
+        HoverPopupHelper.PopupDisappear(mainWindow);
+
+
         ScaleAnimations.ResetScaleAnimation(PlayBtn, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+
+        ScaleAnimations.ResetScaleAnimation(PlayBtnHeader, .1);
+        ColorAnimations.AnimateBackgroundColor(PlayBorderHeader, PlayBorderHeader.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
     }
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
     {
         if (_isPlaying)
         {
+            _popupText.Text = "Play";
+            _isPlaying = false;
+
             PlayIcon.Text = "\uf04b";
             PlayIcon.FontSize = 20;
             PlayIcon.Margin = new Thickness(2, 15, 0, 15);
-            _popupText.Text = "Play";
-            _isPlaying = false;
+
+            PlayIconHeader.Text = "\uf04b";
+            PlayIconHeader.FontSize = 20;
+            PlayIconHeader.Margin = new Thickness(2, 15, 0, 15);
         }
         else
         {
+            _popupText.Text = "Pause";
+            _isPlaying = true;
+
             PlayIcon.Text = "\uf04c";
             PlayIcon.FontSize = 23;
             PlayIcon.Margin = new Thickness(0, 15, 0, 15);
-            _popupText.Text = "Pause";
-            _isPlaying = true;
+
+            PlayIconHeader.Text = "\uf04c";
+            PlayIconHeader.FontSize = 23;
+            PlayIconHeader.Margin = new Thickness(0, 15, 0, 15);
         }
     }
 
@@ -135,17 +163,21 @@ public partial class ArtistView : UserControl
 
     private void ShuffleBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(ShuffleBtn, 1.03, .1);
         _popupText.Text = _isShuffling ? "Disable Shuffle for Azahriah" : "Enable Shuffle for Azahriah";
-        HoverPopupHelper.PopupAppear(_mainWindow, ShuffleBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, ShuffleBtn, PlacementMode.Top, _popupText);
     }
 
     private void ShuffleBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(ShuffleBtn, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
     }
 
     private void ShuffleBtn_Click(object sender, RoutedEventArgs e)
@@ -200,19 +232,23 @@ public partial class ArtistView : UserControl
 
     private void OptionsBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        HoverPopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }

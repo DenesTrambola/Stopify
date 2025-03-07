@@ -7,7 +7,7 @@ public class SidebarControlViewModel : ViewModelBase
 {
     private ObservableCollection<SidebarItemViewModel> _items;
 
-    public ObservableCollection<SidebarItemViewModel> Items => _items;
+    public IEnumerable<SidebarItemViewModel> Items => _items;
 
     public SidebarControlViewModel()
     {
