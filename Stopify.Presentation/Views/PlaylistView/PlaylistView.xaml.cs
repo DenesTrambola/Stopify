@@ -1,5 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.ViewModels.Playlist;
 using System.Drawing;
 using System.IO;
 using System.Windows;
@@ -12,7 +13,6 @@ namespace Stopify.Presentation.Views.PlaylistView;
 
 public partial class PlaylistView : UserControl
 {
-    private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
     private double _playlistTitleMaxFontSize = 38;
     private double _playlistTitleMinFontSize = 25;
     private TextBlock _popupText = new();
@@ -21,9 +21,11 @@ public partial class PlaylistView : UserControl
     private bool _isSaved = false;
     private bool _isSearching = false;
 
-    public PlaylistView()
+    public PlaylistView(PlaylistViewModel viewModel)
     {
         InitializeComponent();
+
+        DataContext = viewModel;
 
         _popupText.Background = System.Windows.Media.Brushes.Transparent;
         _popupText.Foreground = System.Windows.Media.Brushes.White;
@@ -49,7 +51,7 @@ public partial class PlaylistView : UserControl
     private void Playlist_Loaded(object sender, RoutedEventArgs e)
     {
         string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-        string imagePath = Path.Combine(projectDirectory, "Resources", "song.jpg");
+        string imagePath = Path.Combine(projectDirectory, "Assets", "Images", "song.jpg");
 
         using Bitmap bitmap = new Bitmap(imagePath);
 
@@ -85,7 +87,7 @@ public partial class PlaylistView : UserControl
         SolidColorBrush brush = new SolidColorBrush(averageColor);
 
         // Set the background of both Main and Sticky Headers
-        MainHeader.Background = brush;
+        //MainHeader.Background = brush;
         StickyHeaderBg.Background = brush;
         ScrollerBg.Color = brush.Color;
 
@@ -125,19 +127,23 @@ public partial class PlaylistView : UserControl
 
     private void PlayBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play";
-        HoverPopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(PlayBtn, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
     }
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
@@ -165,17 +171,21 @@ public partial class PlaylistView : UserControl
 
     private void ShuffleBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(ShuffleBtn, 1.03, .1);
         _popupText.Text = _isShuffling ? "Disable Shuffle for Azahriah" : "Enable Shuffle for Azahriah";
-        HoverPopupHelper.PopupAppear(_mainWindow, ShuffleBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, ShuffleBtn, PlacementMode.Top, _popupText);
     }
 
     private void ShuffleBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(ShuffleBtn, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
     }
 
     private void ShuffleBtn_Click(object sender, RoutedEventArgs e)
@@ -199,19 +209,23 @@ public partial class PlaylistView : UserControl
 
     private void OptionsBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        HoverPopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }
@@ -221,10 +235,12 @@ public partial class PlaylistView : UserControl
 
     private void SaveBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(SaveBtn, 1.04, .1);
         _popupText.Text = _isSaved ? "Remove from Your Library" : "Save to Your Library";
-        HoverPopupHelper.PopupAppear(_mainWindow, SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {
@@ -235,9 +251,11 @@ public partial class PlaylistView : UserControl
 
     private void SaveBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(SaveBtn, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
 
         if (!_isSaved)
         {
@@ -275,21 +293,25 @@ public partial class PlaylistView : UserControl
 
     private void DownloadBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(DownloadBtn, 1.04, .1);
         DownloadBorder.BorderBrush = System.Windows.Media.Brushes.White;
         DownloadText.Foreground = System.Windows.Media.Brushes.White;
         _popupText.Text = "Download";
-        HoverPopupHelper.PopupAppear(_mainWindow, DownloadBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, DownloadBtn, PlacementMode.Top, _popupText);
     }
 
     private void DownloadBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(DownloadBtn, .1);
         DownloadBorder.BorderBrush = System.Windows.Media.Brushes.DarkGray;
         DownloadText.Foreground = System.Windows.Media.Brushes.DarkGray;
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
     }
 
     private void DownloadBtn_Click(object sender, RoutedEventArgs e) { }

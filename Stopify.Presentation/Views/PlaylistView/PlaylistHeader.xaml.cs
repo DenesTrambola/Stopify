@@ -1,5 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.ViewModels.Playlist;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -10,7 +11,6 @@ namespace Stopify.Presentation.Views.PlaylistView;
 
 public partial class PlaylistHeader : UserControl
 {
-    private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
     private TextBlock _popupText = new();
     private byte _titleSortValue = 0; // 0 - Off, 1 - TitleDesc, 2 - TitleAsc, 3 - ArtistDesc, 4 - ArtistAsc.
     private byte _albumSortValue = 0; // 0 - Off, 1 - Descending, 2 - Ascending.
@@ -20,6 +20,8 @@ public partial class PlaylistHeader : UserControl
     public PlaylistHeader()
     {
         InitializeComponent();
+
+        DataContext = new PlaylistHeaderViewModel();
 
         _popupText.FontSize = 14;
         _popupText.FontWeight = FontWeights.SemiBold;
@@ -196,14 +198,18 @@ public partial class PlaylistHeader : UserControl
 
     private void DurationBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.White, .05);
-        HoverPopupHelper.PopupAppear(_mainWindow, DurationBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, DurationBtn, PlacementMode.Top, _popupText);
     }
 
     private void DurationBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.DarkGray, .05);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
     }
 
     private void DurationBtn_Click(object sender, RoutedEventArgs e)

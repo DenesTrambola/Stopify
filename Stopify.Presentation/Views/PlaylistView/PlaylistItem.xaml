@@ -50,7 +50,7 @@
                         VerticalAlignment="Center"
                         FontSize="19"
                         Foreground="DarkGray"
-                        Text="1" />
+                        Text="{Binding Number}" />
                 </Grid>
 
                 <!--  Play Button  -->
@@ -100,39 +100,19 @@
                         FontSize="16"
                         FontWeight="SemiBold"
                         Foreground="White"
-                        Text="Cry Me A River"
+                        Text="{Binding Title}"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
 
                     <!--  Authors  -->
-                    <ItemsControl
+                    <TextBlock
                         Grid.Row="1"
                         FontSize="14"
                         FontWeight="SemiBold"
-                        Foreground="DarkGray">
-
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-
-                        <Button
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Content="Peaceful Melody"
-                            Foreground="DarkGray" />
-
-                        <TextBlock Margin="0,0,1,0" Text="," />
-
-                        <Button Background="Transparent" BorderThickness="0">
-                            <TextBlock
-                                Foreground="DarkGray"
-                                Text="soave lofi"
-                                TextTrimming="CharacterEllipsis"
-                                TextWrapping="Wrap" />
-                        </Button>
-                    </ItemsControl>
+                        Foreground="DarkGray"
+                        Text="{Binding Authors}"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="Wrap" />
                 </Grid>
 
                 <!--  Album  -->
@@ -146,7 +126,7 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Click="AlbumBtn_Click"
-                    Content="Cry Me A River"
+                    Content="{Binding Album}"
                     FontSize="14"
                     FontWeight="SemiBold"
                     Foreground="DarkGray"
@@ -163,7 +143,7 @@
                     VerticalAlignment="Center"
                     Background="Transparent"
                     BorderThickness="0"
-                    Content="3 hours ago"
+                    Content="{Binding DateAdded}"
                     FontSize="14"
                     FontWeight="SemiBold"
                     Foreground="DarkGray" />
@@ -208,7 +188,7 @@
                     VerticalAlignment="Center"
                     FontSize="15"
                     Foreground="DarkGray"
-                    Text="2:30" />
+                    Text="{Binding Duration}" />
 
                 <!--  Options  -->
                 <Button

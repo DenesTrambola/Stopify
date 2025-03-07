@@ -10,7 +10,6 @@ namespace Stopify.Presentation.Views.PlaylistView;
 
 public partial class PlaylistItem : UserControl
 {
-    private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
     private bool _isSelected = false;
     private bool _isPlaying = false;
     private TextBlock _popupText = new();
@@ -35,7 +34,10 @@ public partial class PlaylistItem : UserControl
 
         if (element.ActualWidth >= 724)
         {
+            AlbumBtn.Width = double.NaN;
             DateBtn.Width = double.NaN;
+
+            AlbumColumn.Width = new GridLength(1, GridUnitType.Star);
             DateColumn.Width = new GridLength(1, GridUnitType.Star);
         }
         else if (element.ActualWidth >= 494)
@@ -44,15 +46,15 @@ public partial class PlaylistItem : UserControl
             DateBtn.Width = 0;
 
             AlbumColumn.Width = new GridLength(1, GridUnitType.Star);
-            DateColumn.Width = new GridLength(0, GridUnitType.Auto);
+            DateColumn.Width = new GridLength(0);
         }
         else
         {
             AlbumBtn.Width = 0;
             DateBtn.Width = 0;
 
-            AlbumColumn.Width = new GridLength(0, GridUnitType.Auto);
-            DateColumn.Width = new GridLength(0, GridUnitType.Auto);
+            AlbumColumn.Width = new GridLength(0);
+            DateColumn.Width = new GridLength(0);
         }
     }
 
@@ -99,12 +101,14 @@ public partial class PlaylistItem : UserControl
 
     private void PlayBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         _popupText.Text = _isPlaying ? "Pause" : "Play Cry Me A River by Azahriah";
-        HoverPopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear((MainWindow)Application.Current.MainWindow);
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -149,9 +153,11 @@ public partial class PlaylistItem : UserControl
 
     private void SaveBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         _popupText.Text = _isSaved ? "Remove from Liked Songs" : "Save to Liked Songs";
-        HoverPopupHelper.PopupAppear(_mainWindow, SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {
@@ -162,8 +168,10 @@ public partial class PlaylistItem : UserControl
 
     private void SaveBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
 
         if (!_isSaved)
         {
@@ -203,19 +211,23 @@ public partial class PlaylistItem : UserControl
 
     private void OptionsBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Cry Me A River";
-        HoverPopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.PopupAppear(mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.PopupDisappear(mainWindow);
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }
