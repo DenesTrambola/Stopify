@@ -37,6 +37,7 @@ public class CommonRowViewModel : ViewModelBase
             new CommonItemViewModel("Azahriah", "Gamer", String.Empty),
             new CommonItemViewModel("Azahriah", "Bunko", String.Empty),
             new CommonItemViewModel("Azahriah", "Rozsda", String.Empty),
+            new CommonItemViewModel("Azahriah", "Rozsda", String.Empty),
         };
     }
 }

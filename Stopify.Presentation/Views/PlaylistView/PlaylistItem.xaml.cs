@@ -68,6 +68,18 @@ public partial class PlaylistItem : UserControl
         SaveBtn.Visibility = Visibility.Visible;
         OptionsBtn.Visibility = Visibility.Visible;
         AlbumBtn.Foreground = Brushes.White;
+        AuthorsControl.Foreground = Brushes.White;
+
+        foreach (var item in AuthorsControl.Items)
+        {
+            if (AuthorsControl.ItemContainerGenerator.ContainerFromItem(item) is ContentPresenter contentPresenter)
+            {
+                if (FindVisualChild<TextBlock>(contentPresenter) is TextBlock textBlock)
+                    textBlock.Foreground = Brushes.White;
+                else if (VisualTreeHelper.GetChild(contentPresenter, 0) is TextBlock text)
+                    text.Foreground = Brushes.White;
+            }
+        }
     }
 
     private void PlaylistItemBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -80,6 +92,18 @@ public partial class PlaylistItem : UserControl
         SaveBtn.Visibility = Visibility.Hidden;
         OptionsBtn.Visibility = Visibility.Hidden;
         AlbumBtn.Foreground = Brushes.DarkGray;
+        AuthorsControl.Foreground = Brushes.DarkGray;
+
+        foreach (var item in AuthorsControl.Items)
+        {
+            if (AuthorsControl.ItemContainerGenerator.ContainerFromItem(item) is ContentPresenter contentPresenter)
+            {
+                if (FindVisualChild<TextBlock>(contentPresenter) is TextBlock textBlock)
+                    textBlock.Foreground = Brushes.DarkGray;
+                else if (VisualTreeHelper.GetChild(contentPresenter, 0) is TextBlock text)
+                    text.Foreground = Brushes.DarkGray;
+            }
+        }
     }
 
     private void PlaylistItemBtn_GotFocus(object sender, RoutedEventArgs e)
@@ -125,6 +149,51 @@ public partial class PlaylistItem : UserControl
             PlayBtn.Content = "\uf04c";
             PlayBtn.FontSize = 15;
             _isPlaying = true;
+        }
+    }
+
+
+    // Authors
+
+    private void AuthorBtn_MouseEnter(object sender, MouseEventArgs e)
+    {
+        Mouse.OverrideCursor = Cursors.Hand;
+
+        if (sender is Button btn)
+        {
+            if (btn.Content is string text)
+            {
+                btn.Content = new TextBlock()
+                {
+                    Text = text,
+                    TextDecorations = TextDecorations.Underline,
+                    Foreground = Brushes.White,
+                };
+            }
+            else if (btn.Content is TextBlock existingTextBlock)
+            {
+                existingTextBlock.TextDecorations = TextDecorations.Underline;
+            }
+        }
+    }
+
+    private void AuthorBtn_MouseLeave(object sender, MouseEventArgs e)
+    {
+        Mouse.OverrideCursor = Cursors.Arrow;
+
+        if (sender is Button btn)
+        {
+            if (btn.Content is string text)
+            {
+                btn.Content = new TextBlock()
+                {
+                    Text = text,
+                    TextDecorations = null,
+                    Foreground = Brushes.DarkGray,
+                };
+            }
+            else if (btn.Content is TextBlock existingTextBlock)
+                existingTextBlock.TextDecorations = null;
         }
     }
 
@@ -231,4 +300,25 @@ public partial class PlaylistItem : UserControl
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }
+
+
+    // Helper Methods
+
+    private static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+    {
+        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+        {
+            DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+            if (child is T foundChild)
+            {
+                return foundChild;
+            }
+            T childOfChild = FindVisualChild<T>(child);
+            if (childOfChild != null)
+            {
+                return childOfChild;
+            }
+        }
+        return null;
+    }
 }

@@ -633,7 +633,7 @@
                         <Components:CommonRow
                             Grid.Row="1"
                             Margin="0,15"
-                            DataContext="{Binding MoreByAuthor}" />
+                            DataContext="{Binding MoreByArtist}" />
                     </Grid>
                 </StackPanel>
             </ScrollViewer>

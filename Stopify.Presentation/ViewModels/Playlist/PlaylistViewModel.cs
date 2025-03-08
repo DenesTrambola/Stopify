@@ -73,11 +73,15 @@ public class PlaylistViewModel : ViewModelBase
         set => SetProperty(ref _imagePath, value);
     }
 
+    public CommonRowViewModel MoreByArtist
+    {
+        get => _moreByArtist;
+        set => SetProperty(ref _moreByArtist, value);
+    }
+
     public IEnumerable<PlaylistItemViewModel> SongItems => _songItems;
 
     public IEnumerable<PlaylistItemViewModel> RecommendedItems => _recommendedItems;
-
-    public CommonRowViewModel MoreByArtist => _moreByArtist;
 
     public PlaylistViewModel()
     {
@@ -93,32 +97,32 @@ public class PlaylistViewModel : ViewModelBase
 
         _songItems = new ObservableCollection<PlaylistItemViewModel>()
         {
-            new PlaylistItemViewModel("1", "Tisztán iszom", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "3:00", String.Empty),
-            new PlaylistItemViewModel("2", "Drogba", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:43", String.Empty),
-            new PlaylistItemViewModel("3", "Miafasz", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "3:13", String.Empty),
-            new PlaylistItemViewModel("4", "Felednéd", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "3:01", String.Empty),
-            new PlaylistItemViewModel("5", "Okari", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "4:09", String.Empty),
-            new PlaylistItemViewModel("6", "Pullup", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:17", String.Empty),
-            new PlaylistItemViewModel("7", "Habibi", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:41", String.Empty),
-            new PlaylistItemViewModel("8", "tevagyazalány", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:18", String.Empty),
-            new PlaylistItemViewModel("9", "Mind1", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "3:11", String.Empty),
-            new PlaylistItemViewModel("10", "Lóerő", "Azahriah, DESH, Young Fly", "A ló túloldalán", "3 years ago", "2:57", String.Empty),
-            new PlaylistItemViewModel("11", "Megmentő", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:54", String.Empty),
-            new PlaylistItemViewModel("12", "Domapin (Bonus Track)", "Azahriah", "A ló túloldalán", "3 years ago", "2:08", String.Empty),
+            new PlaylistItemViewModel("1", "Tisztán iszom", "A ló túloldalán", "3 years ago", "3:00", String.Empty),
+            new PlaylistItemViewModel("2", "Drogba", "A ló túloldalán", "3 years ago", "2:43", String.Empty),
+            new PlaylistItemViewModel("3", "Miafasz", "A ló túloldalán", "3 years ago", "3:13", String.Empty),
+            new PlaylistItemViewModel("4", "Felednéd", "A ló túloldalán", "3 years ago", "3:01", String.Empty),
+            new PlaylistItemViewModel("5", "Okari", "A ló túloldalán", "3 years ago", "4:09", String.Empty),
+            new PlaylistItemViewModel("6", "Pullup", "A ló túloldalán", "3 years ago", "2:17", String.Empty),
+            new PlaylistItemViewModel("7", "Habibi", "A ló túloldalán", "3 years ago", "2:41", String.Empty),
+            new PlaylistItemViewModel("8", "tevagyazalány", "A ló túloldalán", "3 years ago", "2:18", String.Empty),
+            new PlaylistItemViewModel("9", "Mind1", "A ló túloldalán", "3 years ago", "3:11", String.Empty),
+            new PlaylistItemViewModel("10", "Lóerő", "A ló túloldalán", "3 years ago", "2:57", String.Empty),
+            new PlaylistItemViewModel("11", "Megmentő", "A ló túloldalán", "3 years ago", "2:54", String.Empty),
+            new PlaylistItemViewModel("12", "Domapin (Bonus Track)", "A ló túloldalán", "3 years ago", "2:08", String.Empty),
         };
 
         _recommendedItems = new ObservableCollection<PlaylistItemViewModel>()
         {
-            new PlaylistItemViewModel("1", "Tisztán iszom", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "3:00", String.Empty),
-            new PlaylistItemViewModel("2", "Drogba", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:43", String.Empty),
-            new PlaylistItemViewModel("3", "Miafasz", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "3:13", String.Empty),
-            new PlaylistItemViewModel("4", "Felednéd", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "3:01", String.Empty),
-            new PlaylistItemViewModel("5", "Okari", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "4:09", String.Empty),
-            new PlaylistItemViewModel("6", "Pullup", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:17", String.Empty),
-            new PlaylistItemViewModel("7", "Habibi", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:41", String.Empty),
-            new PlaylistItemViewModel("8", "tevagyazalány", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "2:18", String.Empty),
-            new PlaylistItemViewModel("9", "Mind1", "Azahriah, DESH", "A ló túloldalán", "3 years ago", "3:11", String.Empty),
-            new PlaylistItemViewModel("10", "Lóerő", "Azahriah, DESH, Young Fly", "A ló túloldalán", "3 years ago", "2:57", String.Empty),
+            new PlaylistItemViewModel("1", "Tisztán iszom", "A ló túloldalán", "3 years ago", "3:00", String.Empty),
+            new PlaylistItemViewModel("2", "Drogba", "A ló túloldalán", "3 years ago", "2:43", String.Empty),
+            new PlaylistItemViewModel("3", "Miafasz", "A ló túloldalán", "3 years ago", "3:13", String.Empty),
+            new PlaylistItemViewModel("4", "Felednéd", "A ló túloldalán", "3 years ago", "3:01", String.Empty),
+            new PlaylistItemViewModel("5", "Okari", "A ló túloldalán", "3 years ago", "4:09", String.Empty),
+            new PlaylistItemViewModel("6", "Pullup", "A ló túloldalán", "3 years ago", "2:17", String.Empty),
+            new PlaylistItemViewModel("7", "Habibi", "A ló túloldalán", "3 years ago", "2:41", String.Empty),
+            new PlaylistItemViewModel("8", "tevagyazalány", "A ló túloldalán", "3 years ago", "2:18", String.Empty),
+            new PlaylistItemViewModel("9", "Mind1", "A ló túloldalán", "3 years ago", "3:11", String.Empty),
+            new PlaylistItemViewModel("10", "Lóerő", "A ló túloldalán", "3 years ago", "2:57", String.Empty),
         };
 
         _moreByArtist = new CommonRowViewModel(null, _authorName);

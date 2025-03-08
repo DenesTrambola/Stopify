@@ -1,4 +1,5 @@
 ﻿using Stopify.Presentation.ViewModels.Base;
+using System.Collections.ObjectModel;
 
 namespace Stopify.Presentation.ViewModels.Playlist;
 
@@ -6,11 +7,11 @@ public class PlaylistItemViewModel : ViewModelBase
 {
     private string _number;
     private string _title;
-    private string _authors;
     private string _album;
     private string _dateAdded;
     private string _duration;
     private string _imagePath;
+    private ObservableCollection<string> _authors;
 
     public string Number
     {
@@ -22,12 +23,6 @@ public class PlaylistItemViewModel : ViewModelBase
     {
         get => _title;
         set => SetProperty(ref _title, value);
-    }
-
-    public string Authors
-    {
-        get => _authors;
-        set => SetProperty(ref _authors, value);
     }
 
     public string Album
@@ -54,21 +49,21 @@ public class PlaylistItemViewModel : ViewModelBase
         set => SetProperty(ref _imagePath, value);
     }
 
-    public PlaylistItemViewModel(string number, string title, string authors, string album, string dateAdded, string duration, string imagePath)
+    public IEnumerable<string> Authors => _authors;
+
+    public PlaylistItemViewModel(string number, string title, string album, string dateAdded, string duration, string imagePath)
     {
         Number = number;
         Title = title;
-        Authors = authors;
         Album = album;
         DateAdded = dateAdded;
         Duration = duration;
-        Number = number;
-        ImagePath = imagePath;
-        Title = title;
-        Authors = authors;
-        Album = album;
-        DateAdded = dateAdded;
-        Duration = duration;
-        ImagePath = imagePath;
+
+        _authors = new ObservableCollection<string>()
+        {
+            "Azahriah",
+            "DESH",
+            "Young Fly",
+        };
     }
 }
