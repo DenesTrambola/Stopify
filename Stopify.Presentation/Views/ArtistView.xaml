@@ -329,6 +329,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <TextBlock
@@ -339,14 +340,29 @@
                             Foreground="White"
                             Text="Popular" />
 
-                        <ItemsControl Grid.Row="1" Margin="16,15,0,0">
-                            <Playlist:PlaylistItem />
+                        <Playlist:PlaylistHeader Grid.Row="1" Margin="16,15,0,0" />
+
+                        <ItemsControl
+                            Grid.Row="2"
+                            Margin="16,0,0,0"
+                            ItemsSource="{Binding Populars}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Playlist:PlaylistItem />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
                         </ItemsControl>
 
                         <!--  See more  -->
                         <Button
                             Name="SeeMoreBtn"
-                            Grid.Row="2"
+                            Grid.Row="3"
                             Margin="20,1"
                             Padding="12,13"
                             HorizontalAlignment="Left"

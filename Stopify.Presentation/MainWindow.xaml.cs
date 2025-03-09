@@ -21,7 +21,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        MainLayout.Content = playlistView;
+        MainLayout.Content = artistView;
     }
 
     public void Window_Loaded(object sender, RoutedEventArgs e)
