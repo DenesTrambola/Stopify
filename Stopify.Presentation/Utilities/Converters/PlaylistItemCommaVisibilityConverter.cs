@@ -2,19 +2,22 @@
 using System.Windows;
 using System.Windows.Data;
 
-namespace Stopify.Presentation.Utilities.Converters;
-
-public class PlaylistItemCommaVisibilityConverter : IValueConverter
+namespace Stopify.Presentation.Utilities.Converters
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public class PlaylistItemCommaVisibilityConverter : IValueConverter
     {
-        if (value is int count && count > 1)
-            return Visibility.Visible;
-        return Visibility.Collapsed;
-    }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is int totalItems && parameter is string indexString && int.TryParse(indexString, out int index))
+            {
+                return index < totalItems - 1 ? Visibility.Visible : Visibility.Collapsed;
+            }
+            return Visibility.Collapsed;
+        }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        throw new NotImplementedException();
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

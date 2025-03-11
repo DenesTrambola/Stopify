@@ -68,18 +68,6 @@ public partial class PlaylistItem : UserControl
         SaveBtn.Visibility = Visibility.Visible;
         OptionsBtn.Visibility = Visibility.Visible;
         AlbumBtn.Foreground = Brushes.White;
-        AuthorsControl.Foreground = Brushes.White;
-
-        foreach (var item in AuthorsControl.Items)
-        {
-            if (AuthorsControl.ItemContainerGenerator.ContainerFromItem(item) is ContentPresenter contentPresenter)
-            {
-                if (FindVisualChild<TextBlock>(contentPresenter) is TextBlock textBlock)
-                    textBlock.Foreground = Brushes.White;
-                else if (VisualTreeHelper.GetChild(contentPresenter, 0) is TextBlock text)
-                    text.Foreground = Brushes.White;
-            }
-        }
     }
 
     private void PlaylistItemBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -92,18 +80,6 @@ public partial class PlaylistItem : UserControl
         SaveBtn.Visibility = Visibility.Hidden;
         OptionsBtn.Visibility = Visibility.Hidden;
         AlbumBtn.Foreground = Brushes.DarkGray;
-        AuthorsControl.Foreground = Brushes.DarkGray;
-
-        foreach (var item in AuthorsControl.Items)
-        {
-            if (AuthorsControl.ItemContainerGenerator.ContainerFromItem(item) is ContentPresenter contentPresenter)
-            {
-                if (FindVisualChild<TextBlock>(contentPresenter) is TextBlock textBlock)
-                    textBlock.Foreground = Brushes.DarkGray;
-                else if (VisualTreeHelper.GetChild(contentPresenter, 0) is TextBlock text)
-                    text.Foreground = Brushes.DarkGray;
-            }
-        }
     }
 
     private void PlaylistItemBtn_GotFocus(object sender, RoutedEventArgs e)
@@ -173,6 +149,7 @@ public partial class PlaylistItem : UserControl
             else if (btn.Content is TextBlock existingTextBlock)
             {
                 existingTextBlock.TextDecorations = TextDecorations.Underline;
+                existingTextBlock.Foreground = Brushes.White;
             }
         }
     }
@@ -193,7 +170,10 @@ public partial class PlaylistItem : UserControl
                 };
             }
             else if (btn.Content is TextBlock existingTextBlock)
+            {
                 existingTextBlock.TextDecorations = null;
+                existingTextBlock.Foreground = Brushes.DarkGray;
+            }
         }
     }
 

@@ -89,26 +89,50 @@ public partial class NowPlayingItem : UserControl
 
     // Artist
 
-    private void ArtistBtn_MouseEnter(object sender, MouseEventArgs e)
+    private void AuthorBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        if (ArtistBtn.Content is TextBlock textBlock)
-            textBlock.TextDecorations = TextDecorations.Underline;
-        else if (ArtistBtn.Content is string text)
+        Mouse.OverrideCursor = Cursors.Hand;
+
+        if (sender is Button btn)
         {
-            var newTextBlock = new TextBlock { Text = text, TextDecorations = TextDecorations.Underline };
-            ArtistBtn.Content = newTextBlock;
+            if (btn.Content is string text)
+            {
+                btn.Content = new TextBlock()
+                {
+                    Text = text,
+                    TextDecorations = TextDecorations.Underline,
+                    Foreground = Brushes.White,
+                };
+            }
+            else if (btn.Content is TextBlock existingTextBlock)
+            {
+                existingTextBlock.TextDecorations = TextDecorations.Underline;
+                existingTextBlock.Foreground = Brushes.White;
+            }
         }
     }
 
-    private void ArtistBtn_MouseLeave(object sender, MouseEventArgs e)
+    private void AuthorBtn_MouseLeave(object sender, MouseEventArgs e)
     {
-        if (ArtistBtn.Content is TextBlock textBlock)
-            textBlock.TextDecorations = null;
-    }
+        Mouse.OverrideCursor = Cursors.Arrow;
 
-    private void ArtistBtn_Click(object sender, RoutedEventArgs e)
-    {
-        //_mainWindow.MainFrame.Navigate(new ArtistView());
+        if (sender is Button btn)
+        {
+            if (btn.Content is string text)
+            {
+                btn.Content = new TextBlock()
+                {
+                    Text = text,
+                    TextDecorations = null,
+                    Foreground = Brushes.DarkGray,
+                };
+            }
+            else if (btn.Content is TextBlock existingTextBlock)
+            {
+                existingTextBlock.TextDecorations = null;
+                existingTextBlock.Foreground = Brushes.DarkGray;
+            }
+        }
     }
 
 

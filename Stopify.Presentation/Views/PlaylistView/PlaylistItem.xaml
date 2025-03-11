@@ -108,6 +108,7 @@
                     <ItemsControl
                         Name="AuthorsControl"
                         Grid.Row="1"
+                        AlternationCount="{Binding RelativeSource={RelativeSource Self}, Path=Items.Count}"
                         FontSize="14"
                         FontWeight="SemiBold"
                         Foreground="DarkGray"
@@ -122,6 +123,8 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="AuthorsSeparator" Text=", " />
+
                                     <Button
                                         Background="Transparent"
                                         BorderThickness="0"
@@ -129,9 +132,13 @@
                                         Foreground="DarkGray"
                                         MouseEnter="AuthorBtn_MouseEnter"
                                         MouseLeave="AuthorBtn_MouseLeave" />
-
-                                    <TextBlock Text=", " Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}, Path=Items.Count, Converter={StaticResource PlaylistItemCommaVisibilityConverter}}" />
                                 </StackPanel>
+
+                                <DataTemplate.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                        <Setter TargetName="AuthorsSeparator" Property="Visibility" Value="Collapsed" />
+                                    </Trigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
 

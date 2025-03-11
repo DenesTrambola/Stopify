@@ -2,10 +2,12 @@
 using Stopify.Presentation.ViewModels.Artist;
 using Stopify.Presentation.ViewModels.Home;
 using Stopify.Presentation.ViewModels.Main;
+using Stopify.Presentation.ViewModels.NowPlaying;
 using Stopify.Presentation.ViewModels.Playlist;
 using Stopify.Presentation.ViewModels.Search;
 using Stopify.Presentation.Views;
 using Stopify.Presentation.Views.HomeView;
+using Stopify.Presentation.Views.NowPlayingView;
 using Stopify.Presentation.Views.PlaylistView;
 using Stopify.Presentation.Views.SearchView;
 
@@ -19,7 +21,8 @@ public static class PresentationDependencies
             .AddTransient<HomeView>()
             .AddTransient<SearchView>()
             .AddTransient<ArtistView>()
-            .AddTransient<PlaylistView>();
+            .AddTransient<PlaylistView>()
+            .AddTransient<NowPlayingView>();
     }
 
     public static void AddViewModelDependencies(this IServiceCollection services)
@@ -28,6 +31,7 @@ public static class PresentationDependencies
             .AddTransient<HomeViewModel>()
             .AddTransient<SearchViewModel>()
             .AddTransient<ArtistViewModel>()
-            .AddTransient<PlaylistViewModel>();
+            .AddTransient<PlaylistViewModel>()
+            .AddTransient<NowPlayingViewModel>();
     }
 }

@@ -74,31 +74,51 @@
                         FontSize="16"
                         FontWeight="SemiBold"
                         Foreground="WhiteSmoke"
-                        Text="Hope"
+                        Text="{Binding Title, FallbackValue='Loading...'}"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
 
-                    <!--  Artists  -->
-                    <Button
-                        Name="ArtistBtn"
+                    <!--  Authors  -->
+                    <ItemsControl
+                        Name="AuthorsControl"
                         Grid.Column="1"
                         Padding="0,3"
                         HorizontalAlignment="Left"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Click="ArtistBtn_Click"
-                        MouseEnter="ArtistBtn_MouseEnter"
-                        MouseLeave="ArtistBtn_MouseLeave">
-                        <TextBlock
-                            Name="ArtistText"
-                            MaxHeight="20"
-                            FontSize="14"
-                            FontWeight="SemiBold"
-                            Foreground="DarkGray"
-                            Text="Lucid Keys"
-                            TextTrimming="CharacterEllipsis"
-                            TextWrapping="Wrap" />
-                    </Button>
+                        AlternationCount="{Binding RelativeSource={RelativeSource Self}, Path=Items.Count}"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="DarkGray"
+                        ItemsSource="{Binding Authors, FallbackValue='...'}">
+
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="AuthorsSeparator" Text=", " />
+
+                                    <Button
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Content="{Binding}"
+                                        Foreground="DarkGray"
+                                        MouseEnter="AuthorBtn_MouseEnter"
+                                        MouseLeave="AuthorBtn_MouseLeave" />
+                                </StackPanel>
+
+                                <DataTemplate.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                        <Setter TargetName="AuthorsSeparator" Property="Visibility" Value="Collapsed" />
+                                    </Trigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
                 </StackPanel>
 
                 <!--  More Options  -->

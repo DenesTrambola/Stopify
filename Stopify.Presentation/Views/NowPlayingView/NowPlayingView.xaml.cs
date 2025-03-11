@@ -1,5 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.ViewModels.NowPlaying;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -20,6 +21,9 @@ public partial class NowPlayingView : UserControl
     public NowPlayingView()
     {
         InitializeComponent();
+
+        DataContext = new NowPlayingViewModel();
+        MessageBox.Show(NextSongItem.DataContext.ToString());
 
         _popupText.Foreground = Brushes.White;
         _popupText.Background = Brushes.Transparent;
@@ -159,9 +163,50 @@ public partial class NowPlayingView : UserControl
         //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
     }
 
-    private void SongArtistBtn_Click(object sender, RoutedEventArgs e)
+    private void AuthorBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        //_mainWindow.MainFrame.Navigate(new ArtistView());
+        Mouse.OverrideCursor = Cursors.Hand;
+
+        if (sender is Button btn)
+        {
+            if (btn.Content is string text)
+            {
+                btn.Content = new TextBlock()
+                {
+                    Text = text,
+                    TextDecorations = TextDecorations.Underline,
+                    Foreground = Brushes.White,
+                };
+            }
+            else if (btn.Content is TextBlock existingTextBlock)
+            {
+                existingTextBlock.TextDecorations = TextDecorations.Underline;
+                existingTextBlock.Foreground = Brushes.White;
+            }
+        }
+    }
+
+    private void AuthorBtn_MouseLeave(object sender, MouseEventArgs e)
+    {
+        Mouse.OverrideCursor = Cursors.Arrow;
+
+        if (sender is Button btn)
+        {
+            if (btn.Content is string text)
+            {
+                btn.Content = new TextBlock()
+                {
+                    Text = text,
+                    TextDecorations = null,
+                    Foreground = Brushes.DarkGray,
+                };
+            }
+            else if (btn.Content is TextBlock existingTextBlock)
+            {
+                existingTextBlock.TextDecorations = null;
+                existingTextBlock.Foreground = Brushes.DarkGray;
+            }
+        }
     }
 
 
@@ -257,36 +302,6 @@ public partial class NowPlayingView : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(FollowBtn, .1);
         FollowBorder.BorderBrush = Brushes.DarkGray;
-    }
-
-    private void FollowBtn_Click(object sender, RoutedEventArgs e)
-    {
-        if (_isFollowing)
-        {
-            FollowText.Text = "Follow";
-            FollowText2.Text = "Follow";
-            _isFollowing = false;
-        }
-        else
-        {
-            FollowText.Text = "Following";
-            FollowText2.Text = "Following";
-            _isFollowing = true;
-        }
-    }
-
-    private void FollowBtn2_MouseEnter(object sender, MouseEventArgs e)
-    {
-        Mouse.OverrideCursor = Cursors.Hand;
-        ScaleAnimations.BeginScaleAnimation(FollowBtn2, 1.03, .1);
-        FollowBorder2.BorderBrush = Brushes.LightGray;
-    }
-
-    private void FollowBtn2_MouseLeave(object sender, MouseEventArgs e)
-    {
-        Mouse.OverrideCursor = Cursors.Arrow;
-        ScaleAnimations.ResetScaleAnimation(FollowBtn2, .1);
-        FollowBorder2.BorderBrush = Brushes.DarkGray;
     }
 
 
