@@ -108,13 +108,17 @@ public partial class PlaylistView : UserControl
     private void HeaderAuthor_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ScaleAnimations.BeginScaleAnimation(HeaderAuthor, 1.02, .05);
+
+        if (sender is Button btn)
+            ScaleAnimations.BeginScaleAnimation(btn, 1.02, .05);
     }
 
     private void HeaderAuthor_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ScaleAnimations.ResetScaleAnimation(HeaderAuthor, .05);
+
+        if (sender is Button btn)
+            ScaleAnimations.ResetScaleAnimation(btn, .05);
     }
 
     private void HeaderAuthor_Click(object sender, RoutedEventArgs e)

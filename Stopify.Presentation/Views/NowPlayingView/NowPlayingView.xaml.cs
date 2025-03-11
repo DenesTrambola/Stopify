@@ -23,7 +23,6 @@ public partial class NowPlayingView : UserControl
         InitializeComponent();
 
         DataContext = new NowPlayingViewModel();
-        MessageBox.Show(NextSongItem.DataContext.ToString());
 
         _popupText.Foreground = Brushes.White;
         _popupText.Background = Brushes.Transparent;

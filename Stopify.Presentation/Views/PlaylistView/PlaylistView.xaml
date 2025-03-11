@@ -165,43 +165,55 @@
                                 <!--  Info  -->
                                 <WrapPanel Grid.Row="3" Margin="0,9,0,0">
                                     <!--  Author  -->
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border
-                                            Width="20"
-                                            Height="20"
-                                            Margin="0,0,4,0"
-                                            CornerRadius="30">
+                                    <ItemsControl ItemsSource="{Binding Authors}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
 
-                                            <Border.Background>
-                                                <ImageBrush ImageSource="../../Assets/Images/stopify-icon.ico" />
-                                            </Border.Background>
-                                        </Border>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Border
+                                                        Width="20"
+                                                        Height="20"
+                                                        Margin="0,0,4,0"
+                                                        CornerRadius="30">
 
-                                        <Button
-                                            Name="HeaderAuthor"
-                                            Margin="0,0,0,1"
-                                            Padding="0"
-                                            Background="Transparent"
-                                            BorderBrush="White"
-                                            BorderThickness="0"
-                                            Click="HeaderAuthor_Click"
-                                            Content="{Binding AuthorName}"
-                                            FontSize="14"
-                                            FontWeight="Bold"
-                                            Foreground="White"
-                                            MouseEnter="HeaderAuthor_MouseEnter"
-                                            MouseLeave="HeaderAuthor_MouseLeave" />
-                                    </StackPanel>
+                                                        <Border.Background>
+                                                            <ImageBrush ImageSource="../../Assets/Images/stopify-icon.ico" />
+                                                        </Border.Background>
+                                                    </Border>
+
+                                                    <Button
+                                                        Margin="0,0,0,1"
+                                                        Padding="0"
+                                                        Background="Transparent"
+                                                        BorderBrush="White"
+                                                        BorderThickness="0"
+                                                        Click="HeaderAuthor_Click"
+                                                        Content="{Binding Name}"
+                                                        FontSize="14"
+                                                        FontWeight="Bold"
+                                                        Foreground="White"
+                                                        MouseEnter="HeaderAuthor_MouseEnter"
+                                                        MouseLeave="HeaderAuthor_MouseLeave" />
+
+                                                    <TextBlock
+                                                        Height="18"
+                                                        Margin="5,-9,5,0"
+                                                        FontSize="20"
+                                                        FontWeight="Bold"
+                                                        Foreground="DarkGray"
+                                                        Text="·" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
 
                                     <!--  Saves Count  -->
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock
-                                            Height="18"
-                                            Margin="5,-9,5,0"
-                                            FontSize="20"
-                                            FontWeight="Bold"
-                                            Foreground="DarkGray"
-                                            Text="·" />
                                         <TextBlock
                                             FontSize="14"
                                             FontWeight="SemiBold"
@@ -610,31 +622,13 @@
                     </Grid>
 
                     <!--  More by {Artist}  -->
-                    <Grid Margin="16,20,0,20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <TextBlock
-                                FontSize="25"
-                                FontWeight="Bold"
-                                Foreground="White"
-                                Text="More by " />
-
-                            <TextBlock
-                                FontSize="25"
-                                FontWeight="Bold"
-                                Foreground="White"
-                                Text="{Binding AuthorName}" />
-                        </StackPanel>
-
-                        <Components:CommonRow
-                            Grid.Row="1"
-                            Margin="0,15"
-                            DataContext="{Binding MoreByArtist}" />
-                    </Grid>
+                    <ItemsControl ItemsSource="{Binding Authors}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Components:CommonRow Grid.Row="1" DataContext="{Binding MoreByArtist}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

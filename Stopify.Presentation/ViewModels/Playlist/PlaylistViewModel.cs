@@ -1,5 +1,4 @@
 ﻿using Stopify.Presentation.ViewModels.Base;
-using Stopify.Presentation.ViewModels.Common;
 using System.Collections.ObjectModel;
 
 namespace Stopify.Presentation.ViewModels.Playlist;
@@ -9,15 +8,13 @@ public class PlaylistViewModel : ViewModelBase
     private string _title;
     private string _type;
     private string _description;
-    private string _authorImagePath;
-    private string _authorName;
     private string _saves;
     private string _songs;
     private string _duration;
     private string _imagePath;
+    private ObservableCollection<PlaylistAuthorViewModel> _authors;
     private ObservableCollection<PlaylistItemViewModel> _songItems;
     private ObservableCollection<PlaylistItemViewModel> _recommendedItems;
-    private CommonRowViewModel _moreByArtist;
 
     public string Title
     {
@@ -35,18 +32,6 @@ public class PlaylistViewModel : ViewModelBase
     {
         get => _description;
         set => SetProperty(ref _description, value);
-    }
-
-    public string AuthorImagePath
-    {
-        get => _authorImagePath;
-        set => SetProperty(ref _authorImagePath, value);
-    }
-
-    public string AuthorName
-    {
-        get => _authorName;
-        set => SetProperty(ref _authorName, value);
     }
 
     public string Saves
@@ -73,11 +58,7 @@ public class PlaylistViewModel : ViewModelBase
         set => SetProperty(ref _imagePath, value);
     }
 
-    public CommonRowViewModel MoreByArtist
-    {
-        get => _moreByArtist;
-        set => SetProperty(ref _moreByArtist, value);
-    }
+    public IEnumerable<PlaylistAuthorViewModel> Authors => _authors;
 
     public IEnumerable<PlaylistItemViewModel> SongItems => _songItems;
 
@@ -88,12 +69,17 @@ public class PlaylistViewModel : ViewModelBase
         Title = "Coding Music Programming Playlist";
         Type = "Public Playlist";
         Description = "best coding music - best coding songs - lofi code song - ";
-        AuthorImagePath = String.Empty;
-        AuthorName = "Azahriah";
         Saves = "125,000";
         Songs = "201";
         Duration = "7 hr 21 min";
         ImagePath = String.Empty;
+
+        _authors = new ObservableCollection<PlaylistAuthorViewModel>()
+        {
+            new PlaylistAuthorViewModel("Azahriah", String.Empty),
+            new PlaylistAuthorViewModel("DESH", String.Empty),
+            new PlaylistAuthorViewModel("Young Fly", String.Empty),
+        };
 
         _songItems = new ObservableCollection<PlaylistItemViewModel>()
         {
@@ -124,7 +110,5 @@ public class PlaylistViewModel : ViewModelBase
             new PlaylistItemViewModel("9", "Mind1", "A ló túloldalán", "3 years ago", "3:11", String.Empty),
             new PlaylistItemViewModel("10", "Lóerő", "A ló túloldalán", "3 years ago", "2:57", String.Empty),
         };
-
-        _moreByArtist = new CommonRowViewModel(null, _authorName);
     }
 }
