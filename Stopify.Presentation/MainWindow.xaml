@@ -89,7 +89,7 @@
 
             <!--  Now Playing Queue  -->
             <Border
-                Name="NowPlayingQueue"
+                Name="SongQueue"
                 Grid.Column="2"
                 Width="0"
                 Height="0"

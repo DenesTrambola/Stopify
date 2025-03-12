@@ -52,7 +52,7 @@ public partial class MainWindow : Window
             ColorAnimations.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Color.FromRgb(30, 215, 96), .1);
             NowPlaying.Width = 0;
             if (QueueCollapsed)
-                NowPlayingQueue.Width = 0;
+                SongQueue.Width = 0;
         }
         else
         {
@@ -70,18 +70,20 @@ public partial class MainWindow : Window
     {
         if (QueueCollapsed)
         {
+            if (NowPlayingCollapsed == true && SongQueue.ActualWidth != 0)
+                SongQueue.Width = 0;
+
             var heightIncreaseAnimation = new DoubleAnimation
             {
                 From = NowPlaying.ActualHeight + 7,
                 To = 0,
                 Duration = TimeSpan.FromSeconds(.3),
-                EasingFunction = new QuinticEase { EasingMode = EasingMode.EaseOut }
+                EasingFunction = new QuinticEase { EasingMode = EasingMode.EaseOut },
+                FillBehavior = FillBehavior.Stop,
             };
 
-            NowPlayingQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
-
-            if (NowPlayingCollapsed == true)
-                NowPlayingQueue.Width = 0;
+            SongQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
+            SongQueue.Width = 0;
         }
         else
         {
@@ -90,17 +92,19 @@ public partial class MainWindow : Window
                 From = 0,
                 To = NowPlaying.ActualHeight + 7,
                 Duration = TimeSpan.FromSeconds(.3),
-                EasingFunction = new QuinticEase { EasingMode = EasingMode.EaseOut }
+                EasingFunction = new QuinticEase { EasingMode = EasingMode.EaseOut },
+                FillBehavior = FillBehavior.Stop,
             };
 
-            NowPlayingQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
+            SongQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
+            SongQueue.Height = NowPlaying.ActualHeight + 7;
 
             if (ActualWidth >= 1250)
-                NowPlayingQueue.Width = 350;
+                SongQueue.Width = 350;
             else if (ActualWidth >= 1100)
-                NowPlayingQueue.Width = 281;
+                SongQueue.Width = 281;
             else
-                NowPlayingQueue.Width = 281;
+                SongQueue.Width = 281;
 
             PlayerControl player = new();
             player.NowPlayingBtn.Content = "\uf106";
@@ -109,12 +113,15 @@ public partial class MainWindow : Window
 
     private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
     {
+        if ((NowPlayingCollapsed == false || NowPlayingCollapsed == null) && !QueueCollapsed)
+            SongQueue.Height = NowPlaying.ActualHeight + 7;
+
         if (ActualWidth >= 1250)
         {
             if (NowPlayingCollapsed == false || NowPlayingCollapsed == null)
                 NowPlaying.Width = 350;
             if (!QueueCollapsed)
-                NowPlayingQueue.Width = 350;
+                SongQueue.Width = 350;
         }
         else if (ActualWidth >= 1100)
         {
@@ -123,7 +130,7 @@ public partial class MainWindow : Window
             if (NowPlayingCollapsed == false || NowPlayingCollapsed == null)
                 NowPlaying.Width = 281;
             if (!QueueCollapsed)
-                NowPlayingQueue.Width = 281;
+                SongQueue.Width = 281;
         }
         else
         {
@@ -132,7 +139,7 @@ public partial class MainWindow : Window
             if (NowPlayingCollapsed == null)
                 NowPlaying.Width = 281;
             if (!QueueCollapsed)
-                NowPlayingQueue.Width = 281;
+                SongQueue.Width = 281;
         }
     }
 }

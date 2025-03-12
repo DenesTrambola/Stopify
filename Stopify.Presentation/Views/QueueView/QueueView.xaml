@@ -100,7 +100,7 @@
                         FontWeight="Bold"
                         Foreground="WhiteSmoke"
                         Text="Now playing" />
-                    <local:QueueItem />
+                    <local:QueueItem DataContext="{Binding NowPlayingSong}" />
                 </StackPanel>
 
                 <!--  Next from  -->
@@ -127,21 +127,26 @@
                             <TextBlock
                                 Name="NextFromArtistText"
                                 MaxHeight="20"
-                                Text="Azahriah"
-                                TextTrimming="CharacterEllipsis"
+                                Text="{Binding PlaylistTitle}"
+                                TextTrimming="WordEllipsis"
                                 TextWrapping="Wrap" />
                         </Button>
                     </StackPanel>
-                    <local:QueueItem />
-                    <local:QueueItem />
-                    <local:QueueItem />
-                    <local:QueueItem />
-                    <local:QueueItem />
-                    <local:QueueItem />
-                    <local:QueueItem />
-                    <local:QueueItem />
-                    <local:QueueItem />
-                    <local:QueueItem />
+
+                    <!--  Queue or Recently Played  -->
+                    <ItemsControl ItemsSource="{Binding Songs}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:QueueItem DataContext="{Binding}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

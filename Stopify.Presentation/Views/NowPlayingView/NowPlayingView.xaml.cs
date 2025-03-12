@@ -338,7 +338,7 @@ public partial class NowPlayingView : UserControl
             Duration = TimeSpan.FromSeconds(.3),
             EasingFunction = new QuinticEase { EasingMode = EasingMode.EaseOut }
         };
-        _mainWindow.NowPlayingQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
+        _mainWindow.SongQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
 
         PlayerControl player = new();
         player.NowPlayingBtn.Content = "\uf106";
