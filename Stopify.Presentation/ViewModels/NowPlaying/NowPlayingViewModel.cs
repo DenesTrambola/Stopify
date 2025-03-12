@@ -1,4 +1,5 @@
 ﻿using Stopify.Presentation.ViewModels.Base;
+using Stopify.Presentation.ViewModels.Queue;
 using System.Collections.ObjectModel;
 
 namespace Stopify.Presentation.ViewModels.NowPlaying;
@@ -15,7 +16,7 @@ public class NowPlayingViewModel : ViewModelBase
     private string? _followStatus;
     private ObservableCollection<string> _authors;
     private ObservableCollection<NowPlayingCreditsItemViewModel> _credits;
-    private NowPlayingItemViewModel _nextSong;
+    private QueueItemViewModel _nextSong;
 
     public string PlaylistTitle
     {
@@ -69,7 +70,7 @@ public class NowPlayingViewModel : ViewModelBase
 
     public ObservableCollection<NowPlayingCreditsItemViewModel> Credits => _credits;
 
-    public NowPlayingItemViewModel NextSong
+    public QueueItemViewModel NextSong
     {
         get => _nextSong;
         set => SetProperty(ref _nextSong, value);
@@ -100,6 +101,6 @@ public class NowPlayingViewModel : ViewModelBase
             new NowPlayingCreditsItemViewModel("Young Fly", "Follow"),
         };
 
-        NextSong = new NowPlayingItemViewModel("BAKPAKK", String.Empty);
+        NextSong = new QueueItemViewModel("BAKPAKK", String.Empty);
     }
 }

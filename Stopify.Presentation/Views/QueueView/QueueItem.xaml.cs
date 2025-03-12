@@ -6,15 +6,15 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Stopify.Presentation.Views.NowPlayingView;
+namespace Stopify.Presentation.Views.QueueView;
 
-public partial class NowPlayingItem : UserControl
+public partial class QueueItem : UserControl
 {
     private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
     private TextBlock _popupText = new();
     private bool _isPlaying = false;
 
-    public NowPlayingItem()
+    public QueueItem()
     {
         InitializeComponent();
 

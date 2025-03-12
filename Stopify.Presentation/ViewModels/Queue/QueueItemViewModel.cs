@@ -1,9 +1,9 @@
 ﻿using Stopify.Presentation.ViewModels.Base;
 using System.Collections.ObjectModel;
 
-namespace Stopify.Presentation.ViewModels.NowPlaying;
+namespace Stopify.Presentation.ViewModels.Queue;
 
-public class NowPlayingItemViewModel : ViewModelBase
+public class QueueItemViewModel : ViewModelBase
 {
     private string _title;
     private string _imagePath;
@@ -23,7 +23,7 @@ public class NowPlayingItemViewModel : ViewModelBase
 
     public IEnumerable<string> Authors => _authors;
 
-    public NowPlayingItemViewModel(string title, string imagePath)
+    public QueueItemViewModel(string title, string imagePath)
     {
         Title = title;
         ImagePath = imagePath;

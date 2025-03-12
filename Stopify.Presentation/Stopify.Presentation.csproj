@@ -54,7 +54,7 @@
     <Compile Update="Views\NowPlayingView\NowPlayingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\NowPlayingView\NowPlayingItem.xaml.cs">
+    <Compile Update="Views\QueueView\QueueItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\PlayerControl.xaml.cs">
@@ -69,7 +69,7 @@
     <Compile Update="Views\PlaylistView\PlaylistView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\QueueView.xaml.cs">
+    <Compile Update="Views\QueueView\QueueView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\SearchView\SearchView.xaml.cs">

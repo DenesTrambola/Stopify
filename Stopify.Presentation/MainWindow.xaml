@@ -5,6 +5,7 @@
     xmlns:Components="clr-namespace:Stopify.Presentation.Views.Components"
     xmlns:Home="clr-namespace:Stopify.Presentation.Views.HomeView"
     xmlns:NowPlaying="clr-namespace:Stopify.Presentation.Views.NowPlayingView"
+    xmlns:Queue="clr-namespace:Stopify.Presentation.Views.QueueView"
     xmlns:Sidebar="clr-namespace:Stopify.Presentation.Views.Sidebar"
     xmlns:Views="clr-namespace:Stopify.Presentation.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -96,7 +97,7 @@
                 HorizontalAlignment="Right"
                 Background="#121212"
                 CornerRadius="8">
-                <Views:QueueView />
+                <Queue:QueueView />
             </Border>
         </Grid>
 
