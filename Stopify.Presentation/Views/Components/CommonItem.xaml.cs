@@ -1,5 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -11,7 +12,7 @@ namespace Stopify.Presentation.Views.Components;
 
 public partial class CommonItem : UserControl
 {
-    private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
+    private MainView _mainWindow = (MainView)Application.Current.MainWindow;
     TextBlock _popupText = new();
     private bool _isPlaying = false;
 
@@ -80,8 +81,10 @@ public partial class CommonItem : UserControl
         PlayBtnTransform.BeginAnimation(TranslateTransform.YProperty, moveDownAnimation);
     }
 
-    private void GeneralItemBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    private void GeneralItemBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    }
 
 
     // Play/Pause

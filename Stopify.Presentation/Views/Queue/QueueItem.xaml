@@ -1,0 +1,144 @@
+﻿<UserControl
+    x:Class="Stopify.Presentation.Views.Queue.QueueItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Stopify.Presentation.Views.Queue"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Button
+        Name="ItemBtn"
+        Margin="6,0,0,0"
+        HorizontalContentAlignment="Stretch"
+        VerticalContentAlignment="Stretch"
+        Background="Transparent"
+        BorderThickness="0"
+        Click="ItemBtn_Click"
+        GotFocus="ItemBtn_GotFocus"
+        LostFocus="ItemBtn_LostFocus"
+        MouseDoubleClick="ItemBtn_MouseDoubleClick"
+        MouseEnter="ItemBtn_MouseEnter"
+        MouseLeave="ItemBtn_MouseLeave">
+        <Border
+            Name="ItemBorder"
+            Background="#121212"
+            CornerRadius="6">
+            <Grid Margin="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!--  Image  -->
+                <Button
+                    Grid.Column="0"
+                    Width="50"
+                    Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
+                    Background="Transparent"
+                    BorderThickness="0">
+                    <Border CornerRadius="5">
+                        <Border.Background>
+                            <ImageBrush ImageSource="/Assets/Images/song.jpg" />
+                        </Border.Background>
+                    </Border>
+                </Button>
+
+                <!--  Play/Pause  -->
+                <Button
+                    Name="PlayBtn"
+                    Grid.Column="0"
+                    Width="Auto"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="PlayBtn_Click"
+                    Content="&#xf04b;"
+                    FontFamily="/Assets/Fonts/#Font Awesome 6 Free Solid"
+                    FontSize="23"
+                    Foreground="White"
+                    MouseEnter="PlayBtn_MouseEnter"
+                    MouseLeave="PlayBtn_MouseLeave" />
+
+                <!--  Info  -->
+                <StackPanel
+                    Grid.Column="1"
+                    Margin="11,1,5,0"
+                    VerticalAlignment="Center">
+
+                    <!--  Title  -->
+                    <TextBlock
+                        FontSize="16"
+                        FontWeight="SemiBold"
+                        Foreground="WhiteSmoke"
+                        Text="{Binding Title, FallbackValue='Loading...'}"
+                        TextTrimming="CharacterEllipsis"
+                        TextWrapping="Wrap" />
+
+                    <!--  Authors  -->
+                    <ItemsControl
+                        Name="AuthorsControl"
+                        Grid.Column="1"
+                        Padding="0,3"
+                        HorizontalAlignment="Left"
+                        AlternationCount="{Binding RelativeSource={RelativeSource Self}, Path=Items.Count}"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="DarkGray"
+                        ItemsSource="{Binding Authors, FallbackValue='...'}">
+
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock x:Name="AuthorsSeparator" Text=", " />
+
+                                    <Button
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Content="{Binding}"
+                                        Foreground="DarkGray"
+                                        MouseEnter="AuthorBtn_MouseEnter"
+                                        MouseLeave="AuthorBtn_MouseLeave" />
+                                </StackPanel>
+
+                                <DataTemplate.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                        <Setter TargetName="AuthorsSeparator" Property="Visibility" Value="Collapsed" />
+                                    </Trigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+                </StackPanel>
+
+                <!--  More Options  -->
+                <Button
+                    Name="OptionsBtn"
+                    Grid.Column="2"
+                    Margin="0,-1,5,0"
+                    Padding="0,9"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="OptionsBtn_Click"
+                    Content="• • •"
+                    FontSize="12"
+                    Foreground="DarkGray"
+                    MouseEnter="OptionsBtn_MouseEnter"
+                    MouseLeave="OptionsBtn_MouseLeave" />
+            </Grid>
+        </Border>
+    </Button>
+</UserControl>

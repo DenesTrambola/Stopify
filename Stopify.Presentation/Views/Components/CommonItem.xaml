@@ -41,7 +41,7 @@
                     MaxHeight="210"
                     CornerRadius="6">
                     <Border.Background>
-                        <ImageBrush ImageSource="../../Assets/Images/song.jpg" />
+                        <ImageBrush ImageSource="/Assets/Images/song.jpg" />
                     </Border.Background>
                 </Border>
 
@@ -70,7 +70,7 @@
                             Name="PlayIcon"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            FontFamily="../../Assets/Fonts/#Font Awesome 6 Free Solid"
+                            FontFamily="/Assets/Fonts/#Font Awesome 6 Free Solid"
                             FontSize="23"
                             Foreground="Black"
                             Text="&#xf04b;" />
@@ -97,7 +97,7 @@
                     Foreground="White">
                     <TextBlock
                         LineHeight="20"
-                        Text="Azahriah"
+                        Text="{Binding Title}"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
                 </Button>
@@ -118,7 +118,7 @@
                     <TextBlock
                         Name="DescText"
                         LineHeight="18"
-                        Text="Artist"
+                        Text="{Binding Description}"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
                 </Button>

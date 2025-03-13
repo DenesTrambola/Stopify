@@ -29,7 +29,7 @@
                 Background="Transparent"
                 BorderThickness="0"
                 Click="TitleBtn_Click"
-                Content="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                Content="{Binding Title}"
                 FontSize="24"
                 FontWeight="Bold"
                 Foreground="White"
@@ -134,15 +134,18 @@
         </StackPanel>
 
         <!--  Items  -->
-        <Controls:StretchyWrapPanel Grid.Row="2">
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-            <local:CommonItem />
-        </Controls:StretchyWrapPanel>
+        <ItemsControl Grid.Row="2" ItemsSource="{Binding Items}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Controls:StretchyWrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:CommonItem />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

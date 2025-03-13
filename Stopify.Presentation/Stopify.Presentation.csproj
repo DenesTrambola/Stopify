@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Utilities\Converters\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Assets\Fonts\Font Awesome 6 Free-Solid-900.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -37,49 +33,49 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\ArtistView.xaml.cs">
+    <Compile Update="Views\Artist\ArtistView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Components\HoverPopupComponent.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\HomeView\HomeView.xaml.cs">
+    <Compile Update="Views\Home\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Components\CommonItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\HomeView\HomeRecentPlaysItem.xaml.cs">
+    <Compile Update="Views\Home\HomeRecentPlaysItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Components\CommonRow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\NowPlayingView\NowPlayingView.xaml.cs">
+    <Compile Update="Views\NowPlaying\NowPlayingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\NowPlayingView\NowPlayingItem.xaml.cs">
+    <Compile Update="Views\Queue\QueueItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PlayerControl.xaml.cs">
+    <Compile Update="Views\Player\PlayerControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PlaylistView\PlaylistHeader.xaml.cs">
+    <Compile Update="Views\Playlist\PlaylistHeader.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PlaylistView\PlaylistItem.xaml.cs">
+    <Compile Update="Views\Playlist\PlaylistItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\PlaylistView\PlaylistView.xaml.cs">
+    <Compile Update="Views\Playlist\PlaylistView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\QueueView.xaml.cs">
+    <Compile Update="Views\Queue\QueueView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\SearchView\SearchView.xaml.cs">
+    <Compile Update="Views\Search\SearchView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\SearchView\SearchCategoryItem.xaml.cs">
+    <Compile Update="Views\Search\SearchCategoryItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Sidebar\SidebarControl.xaml.cs">
@@ -88,7 +84,7 @@
     <Compile Update="Views\Sidebar\SidebarItem.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\TitlebarControl.xaml.cs">
+    <Compile Update="Views\Titlebar\TitlebarControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

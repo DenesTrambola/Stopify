@@ -1,5 +1,7 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.ViewModels.Sidebar;
+using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -10,7 +12,7 @@ namespace Stopify.Presentation.Views.Sidebar;
 
 public partial class SidebarControl : UserControl
 {
-    private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
+    private MainView _mainWindow = (MainView)Application.Current.MainWindow;
     private TextBlock _basicPopupText = new();
 
     private bool _filterPlaylists = false;
@@ -20,6 +22,8 @@ public partial class SidebarControl : UserControl
     public SidebarControl()
     {
         InitializeComponent();
+
+        DataContext = new SidebarViewModel();
 
         _basicPopupText.Foreground = Brushes.White;
         _basicPopupText.FontWeight = FontWeights.SemiBold;

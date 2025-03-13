@@ -1,5 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -10,7 +11,7 @@ namespace Stopify.Presentation.Views.Sidebar;
 
 public partial class SidebarItem : UserControl
 {
-    private MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
+    private MainView _mainWindow = (MainView)Application.Current.MainWindow;
     private TextBlock _basicPopupText = new();
     private TextBlock _popupText1 = new();
     private TextBlock _popupText2 = new();
@@ -76,8 +77,10 @@ public partial class SidebarItem : UserControl
         }
     }
 
-    private void ItemBtn_Click(object sender, RoutedEventArgs e) =>
-        _mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    private void ItemBtn_Click(object sender, RoutedEventArgs e)
+    {
+        //_mainWindow.MainFrame.Navigate(new PlaylistView.PlaylistView());
+    }
 
     private void ItemImgBtn_MouseEnter(object sender, MouseEventArgs e)
     {
