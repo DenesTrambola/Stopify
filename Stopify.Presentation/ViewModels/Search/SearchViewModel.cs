@@ -6,12 +6,17 @@ namespace Stopify.Presentation.ViewModels.Search;
 
 public class SearchViewModel : ViewModelBase
 {
-    private ObservableCollection<FilterRowViewModel> _filterRows;
-    private ObservableCollection<SearchCategoryItemViewModel> _searchCategoryItems;
+    #region Fields
+
     private int _totalColumns;
 
-    public IEnumerable<FilterRowViewModel> FilterRows => _filterRows;
-    public IEnumerable<SearchCategoryItemViewModel> SearchCategoryItems => _searchCategoryItems;
+    private ObservableCollection<FilterRowViewModel> _filterRows;
+    private ObservableCollection<SearchCategoryItemViewModel> _searchCategoryItems;
+
+    #endregion
+
+    #region Properties
+
     public int TotalColumns
     {
         get => _totalColumns;
@@ -21,6 +26,14 @@ public class SearchViewModel : ViewModelBase
 
         }
     }
+
+    public IEnumerable<FilterRowViewModel> FilterRows => _filterRows;
+
+    public IEnumerable<SearchCategoryItemViewModel> SearchCategoryItems => _searchCategoryItems;
+
+    #endregion
+
+    #region Constructors
 
     public SearchViewModel()
     {
@@ -94,6 +107,10 @@ public class SearchViewModel : ViewModelBase
         };
     }
 
+    #endregion
+
+    #region Methods
+
     public void OnSizeChanged(double actualWidth)
     {
         if (actualWidth < 730)
@@ -103,4 +120,6 @@ public class SearchViewModel : ViewModelBase
         else
             TotalColumns = 4;
     }
+
+    #endregion
 }

@@ -4,9 +4,15 @@ namespace Stopify.Presentation.ViewModels.Sidebar;
 
 public class SidebarItemViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _title;
     private string _description;
     private string _image;
+
+    #endregion
+
+    #region Properties
 
     public string Title
     {
@@ -26,10 +32,16 @@ public class SidebarItemViewModel : ViewModelBase
         set => SetProperty(ref _image, value);
     }
 
+    #endregion
+
+    #region Constructors
+
     public SidebarItemViewModel(string title, string description, string image)
     {
         Title = title;
         Description = description;
         Image = image;
     }
+
+    #endregion
 }

@@ -5,9 +5,19 @@ namespace Stopify.Presentation.ViewModels.Sidebar;
 
 public class SidebarViewModel : ViewModelBase
 {
+    #region Fields
+
     private ObservableCollection<SidebarItemViewModel> _items;
 
+    #endregion
+
+    #region Properties
+
     public IEnumerable<SidebarItemViewModel> Items => _items;
+
+    #endregion
+
+    #region Constructor
 
     public SidebarViewModel()
     {
@@ -25,4 +35,6 @@ public class SidebarViewModel : ViewModelBase
             new SidebarItemViewModel("YAKTAK", "Artist", String.Empty),
         };
     }
+
+    #endregion
 }

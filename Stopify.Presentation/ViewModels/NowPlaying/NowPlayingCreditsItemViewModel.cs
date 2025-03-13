@@ -4,8 +4,14 @@ namespace Stopify.Presentation.ViewModels.NowPlaying;
 
 public class NowPlayingCreditsItemViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _artist;
     private string _followStatus;
+
+    #endregion
+
+    #region Properties
 
     public string Artist
     {
@@ -19,9 +25,15 @@ public class NowPlayingCreditsItemViewModel : ViewModelBase
         set => SetProperty(ref _followStatus, value);
     }
 
+    #endregion
+
+    #region Constructors
+
     public NowPlayingCreditsItemViewModel(string artist, string followStatus)
     {
         Artist = artist;
         FollowStatus = followStatus;
     }
+
+    #endregion
 }

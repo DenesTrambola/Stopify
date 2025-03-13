@@ -4,14 +4,21 @@ namespace Stopify.Presentation.ViewModels.Player;
 
 public class PlayerViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _imagePath;
     private string _title;
     private string _artist;
     private string _currentTime;
     private string _totalTime;
+
     private double _maxMediaValue;
     private double _currentMediaValue;
     private double _volumeValue;
+
+    #endregion
+
+    #region Properties
 
     public string ImagePath
     {
@@ -61,6 +68,10 @@ public class PlayerViewModel : ViewModelBase
         set => SetProperty(ref _volumeValue, value);
     }
 
+    #endregion
+
+    #region Constructors
+
     public PlayerViewModel()
     {
         ImagePath = String.Empty;
@@ -72,4 +83,6 @@ public class PlayerViewModel : ViewModelBase
         CurrentMediaValue = 0;
         VolumeValue = 50;
     }
+
+    #endregion
 }

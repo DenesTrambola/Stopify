@@ -6,17 +6,26 @@ namespace Stopify.Presentation.ViewModels.NowPlaying;
 
 public class NowPlayingViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _playlistTitle;
     private string _songImagePath;
     private string _title;
+
     private string? _artist;
     private string? _artistImagePath;
     private string? _monthlyListeners;
     private string? _artistDescription;
     private string? _followStatus;
+
+    private QueueItemViewModel _nextSong;
+
     private ObservableCollection<string> _authors;
     private ObservableCollection<NowPlayingCreditsItemViewModel> _credits;
-    private QueueItemViewModel _nextSong;
+
+    #endregion
+
+    #region Properties
 
     public string PlaylistTitle
     {
@@ -66,15 +75,19 @@ public class NowPlayingViewModel : ViewModelBase
         set => SetProperty(ref _followStatus, value);
     }
 
-    public ObservableCollection<string> Authors => _authors;
-
-    public ObservableCollection<NowPlayingCreditsItemViewModel> Credits => _credits;
-
     public QueueItemViewModel NextSong
     {
         get => _nextSong;
         set => SetProperty(ref _nextSong, value);
     }
+
+    public ObservableCollection<string> Authors => _authors;
+
+    public ObservableCollection<NowPlayingCreditsItemViewModel> Credits => _credits;
+
+    #endregion
+
+    #region Constructors
 
     public NowPlayingViewModel()
     {
@@ -103,4 +116,6 @@ public class NowPlayingViewModel : ViewModelBase
 
         NextSong = new QueueItemViewModel("BAKPAKK", String.Empty);
     }
+
+    #endregion
 }

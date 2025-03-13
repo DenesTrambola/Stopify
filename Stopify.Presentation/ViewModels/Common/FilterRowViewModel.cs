@@ -5,8 +5,15 @@ namespace Stopify.Presentation.ViewModels.Common;
 
 public class FilterRowViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _title;
+
     private ObservableCollection<CommonItemViewModel> _items;
+
+    #endregion
+
+    #region Properties
 
     public string Title
     {
@@ -15,6 +22,10 @@ public class FilterRowViewModel : ViewModelBase
     }
 
     public IEnumerable<CommonItemViewModel> Items => _items;
+
+    #endregion
+
+    #region Constructors
 
     public FilterRowViewModel(string title)
     {
@@ -32,4 +43,6 @@ public class FilterRowViewModel : ViewModelBase
             new CommonItemViewModel("XP", "Minecraft", String.Empty),
         };
     }
+
+    #endregion
 }

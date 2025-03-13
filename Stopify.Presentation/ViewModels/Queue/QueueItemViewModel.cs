@@ -5,9 +5,16 @@ namespace Stopify.Presentation.ViewModels.Queue;
 
 public class QueueItemViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _title;
     private string _imagePath;
+
     private ObservableCollection<string> _authors;
+
+    #endregion
+
+    #region Properties
 
     public string Title
     {
@@ -23,6 +30,10 @@ public class QueueItemViewModel : ViewModelBase
 
     public IEnumerable<string> Authors => _authors;
 
+    #endregion
+
+    #region Constructors
+
     public QueueItemViewModel(string title, string imagePath)
     {
         Title = title;
@@ -35,4 +46,6 @@ public class QueueItemViewModel : ViewModelBase
             "Young Fly",
         };
     }
+
+    #endregion
 }

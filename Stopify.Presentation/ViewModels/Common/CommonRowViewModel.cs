@@ -5,9 +5,16 @@ namespace Stopify.Presentation.ViewModels.Common;
 
 public class CommonRowViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _category;
     private string _author;
+
     private ObservableCollection<CommonItemViewModel> _items;
+
+    #endregion
+
+    #region Properties
 
     public string Category
     {
@@ -22,6 +29,10 @@ public class CommonRowViewModel : ViewModelBase
     }
 
     public IEnumerable<CommonItemViewModel> Items => _items;
+
+    #endregion
+
+    #region Constructors
 
     public CommonRowViewModel(string? category = null, string? author = null)
     {
@@ -40,4 +51,6 @@ public class CommonRowViewModel : ViewModelBase
             new CommonItemViewModel("Azahriah", "Rozsda", String.Empty),
         };
     }
+
+    #endregion
 }

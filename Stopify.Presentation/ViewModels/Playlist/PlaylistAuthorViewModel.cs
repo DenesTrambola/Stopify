@@ -5,9 +5,16 @@ namespace Stopify.Presentation.ViewModels.Playlist;
 
 public class PlaylistAuthorViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _name;
     private string _imagePath;
+
     private CommonRowViewModel _moreByArtist;
+
+    #endregion
+
+    #region Properties
 
     public string Name
     {
@@ -27,10 +34,16 @@ public class PlaylistAuthorViewModel : ViewModelBase
         set => SetProperty(ref _moreByArtist, value);
     }
 
+    #endregion
+
+    #region Constructors
+
     public PlaylistAuthorViewModel(string name, string imagePath)
     {
         Name = name;
         ImagePath = imagePath;
         MoreByArtist = new CommonRowViewModel($"More by {_name}", _name);
     }
+
+    #endregion
 }

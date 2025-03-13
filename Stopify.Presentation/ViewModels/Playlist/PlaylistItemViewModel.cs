@@ -5,13 +5,20 @@ namespace Stopify.Presentation.ViewModels.Playlist;
 
 public class PlaylistItemViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _number;
     private string _title;
     private string _album;
     private string _dateAdded;
     private string _duration;
     private string _imagePath;
+
     private ObservableCollection<string> _authors;
+
+    #endregion
+
+    #region Properties
 
     public string Number
     {
@@ -51,6 +58,10 @@ public class PlaylistItemViewModel : ViewModelBase
 
     public IEnumerable<string> Authors => _authors;
 
+    #endregion
+
+    #region Constructors
+
     public PlaylistItemViewModel(string number, string title, string album, string dateAdded, string duration, string imagePath)
     {
         Number = number;
@@ -66,4 +77,6 @@ public class PlaylistItemViewModel : ViewModelBase
             "Young Fly",
         };
     }
+
+    #endregion
 }

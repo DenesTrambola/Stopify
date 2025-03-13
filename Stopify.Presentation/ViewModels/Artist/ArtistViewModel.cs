@@ -7,11 +7,18 @@ namespace Stopify.Presentation.ViewModels.Artist;
 
 public class ArtistViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _title;
     private string _monthlyListeners;
     private string _description;
+
     private ObservableCollection<CommonItemViewModel> _discographyItems;
     private ObservableCollection<PlaylistItemViewModel> _populars;
+
+    #endregion
+
+    #region Properties
 
     public string Title
     {
@@ -34,6 +41,10 @@ public class ArtistViewModel : ViewModelBase
     public IEnumerable<CommonItemViewModel> DiscographyItems => _discographyItems;
 
     public IEnumerable<PlaylistItemViewModel> Populars => _populars;
+
+    #endregion
+
+    #region Constructors
 
     public ArtistViewModel()
     {
@@ -68,4 +79,6 @@ public class ArtistViewModel : ViewModelBase
             new PlaylistItemViewModel("10", "Pullup", "A ló tóloldalán", "8 months ago", "2:17", String.Empty),
         };
     }
+
+    #endregion
 }

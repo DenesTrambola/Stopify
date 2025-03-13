@@ -5,16 +5,18 @@ namespace Stopify.Presentation.ViewModels.Queue;
 
 public class QueueViewModel : ViewModelBase
 {
-    private QueueItemViewModel _nowPlayingSong;
+    #region Fields
+
     private string _playlistTitle;
+
+    private QueueItemViewModel _nowPlayingSong;
+
     private ObservableCollection<QueueItemViewModel> _queueSongs;
     private ObservableCollection<QueueItemViewModel> _recentlyPlayedSongs;
 
-    public QueueItemViewModel NowPlayingSong
-    {
-        get => _nowPlayingSong;
-        set => SetProperty(ref _nowPlayingSong, value);
-    }
+    #endregion
+
+    #region Properties
 
     public string PlaylistTitle
     {
@@ -22,7 +24,17 @@ public class QueueViewModel : ViewModelBase
         set => SetProperty(ref _playlistTitle, value);
     }
 
+    public QueueItemViewModel NowPlayingSong
+    {
+        get => _nowPlayingSong;
+        set => SetProperty(ref _nowPlayingSong, value);
+    }
+
     public ObservableCollection<QueueItemViewModel> Songs => _queueSongs;
+
+    #endregion
+
+    #region Constructors
 
     public QueueViewModel()
     {
@@ -55,4 +67,6 @@ public class QueueViewModel : ViewModelBase
             new QueueItemViewModel("zene10", String.Empty),
         };
     }
+
+    #endregion
 }

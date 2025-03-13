@@ -5,7 +5,13 @@ namespace Stopify.Presentation.ViewModels.Search;
 
 public class SearchCategoryItemViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _image;
+
+    #endregion
+
+    #region Properties
 
     public string Image
     {
@@ -23,8 +29,14 @@ public class SearchCategoryItemViewModel : ViewModelBase
         }
     }
 
+    #endregion
+
+    #region Constructors
+
     public SearchCategoryItemViewModel(string image)
     {
         Image = image;
     }
+
+    #endregion
 }

@@ -6,17 +6,30 @@ namespace Stopify.Presentation.ViewModels.Home;
 
 public class HomeViewModel : ViewModelBase
 {
-    public ObservableCollection<CommonRowViewModel> _rows;
-    public ObservableCollection<HomeRecentPlaysItemViewModel> _recentPlays;
+    #region Fields
+
     private int _columnCount;
 
-    public IEnumerable<CommonRowViewModel> Rows => _rows;
-    public IEnumerable<HomeRecentPlaysItemViewModel> RecentPlays => _recentPlays;
+    public ObservableCollection<CommonRowViewModel> _rows;
+    public ObservableCollection<HomeRecentPlaysItemViewModel> _recentPlays;
+
+    #endregion
+
+    #region Properties
+
     public int ColumnCount
     {
         get => _columnCount;
         set => SetProperty(ref _columnCount, value);
     }
+
+    public IEnumerable<CommonRowViewModel> Rows => _rows;
+
+    public IEnumerable<HomeRecentPlaysItemViewModel> RecentPlays => _recentPlays;
+
+    #endregion
+
+    #region Constructors
 
     public HomeViewModel()
     {
@@ -50,6 +63,12 @@ public class HomeViewModel : ViewModelBase
         ColumnCount = 2;
     }
 
+    #endregion
+
+    #region Methods
+
     public void UpdateColumnCount(double width) =>
         ColumnCount = width >= 1000 ? 4 : 2;
+
+    #endregion
 }

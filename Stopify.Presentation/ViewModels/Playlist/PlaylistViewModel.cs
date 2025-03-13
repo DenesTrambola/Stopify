@@ -5,6 +5,8 @@ namespace Stopify.Presentation.ViewModels.Playlist;
 
 public class PlaylistViewModel : ViewModelBase
 {
+    #region Fields
+
     private string _title;
     private string _type;
     private string _description;
@@ -12,9 +14,14 @@ public class PlaylistViewModel : ViewModelBase
     private string _songs;
     private string _duration;
     private string _imagePath;
+
     private ObservableCollection<PlaylistAuthorViewModel> _authors;
     private ObservableCollection<PlaylistItemViewModel> _songItems;
     private ObservableCollection<PlaylistItemViewModel> _recommendedItems;
+
+    #endregion
+
+    #region Properties
 
     public string Title
     {
@@ -64,6 +71,10 @@ public class PlaylistViewModel : ViewModelBase
 
     public IEnumerable<PlaylistItemViewModel> RecommendedItems => _recommendedItems;
 
+    #endregion
+
+    #region Constructors
+
     public PlaylistViewModel()
     {
         Title = "Coding Music Programming Playlist";
@@ -111,4 +122,6 @@ public class PlaylistViewModel : ViewModelBase
             new PlaylistItemViewModel("10", "Lóerő", "A ló túloldalán", "3 years ago", "2:57", String.Empty),
         };
     }
+
+    #endregion
 }
