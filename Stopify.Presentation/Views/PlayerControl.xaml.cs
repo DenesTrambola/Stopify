@@ -2,6 +2,7 @@
 using Stopify.Domain.Contracts.Other;
 using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.ViewModels.Player;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -93,8 +94,9 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
 
     public PlayerControl()
     {
-        DataContext = this;
         InitializeComponent();
+
+        DataContext = new PlayerControlViewModel();
 
         _audioService = ((App)App.Current).Services.GetService<IAudioStorageService>()!;
         Setup();

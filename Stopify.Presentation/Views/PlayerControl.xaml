@@ -98,7 +98,7 @@
                     MouseLeave="Underline_MouseLeave">
                     <TextBlock
                         MaxHeight="20"
-                        Text="introvertált dal"
+                        Text="{Binding Title}"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
                 </Button>
@@ -118,7 +118,7 @@
                     MouseLeave="Underline_MouseLeave">
                     <TextBlock
                         MaxHeight="20"
-                        Text="Azahriah"
+                        Text="{Binding Artist}"
                         TextTrimming="CharacterEllipsis"
                         TextWrapping="Wrap" />
                 </Button>
@@ -309,7 +309,7 @@
                     VerticalAlignment="Center"
                     BorderThickness="0"
                     IsSelectionRangeEnabled="True"
-                    Maximum="{Binding MediaMaxValue}"
+                    Maximum="{Binding MaxMediaValue}"
                     Minimum="0"
                     MouseEnter="Slider_MouseEnter"
                     MouseLeave="Slider_MouseLeave"
@@ -317,7 +317,7 @@
                     PreviewMouseMove="Slider_PreviewMouseMove"
                     PreviewMouseUp="Slider_PreviewMouseUp"
                     Style="{DynamicResource SliderStyle1}"
-                    Value="{Binding MediaValue}" />
+                    Value="{Binding CurrentMediaValue}" />
 
                 <!--  Total Time  -->
                 <TextBlock
@@ -453,7 +453,7 @@
                 PreviewMouseUp="Slider_PreviewMouseUp"
                 Style="{DynamicResource SliderStyle1}"
                 ValueChanged="VolumeBar_ValueChanged"
-                Value="{Binding Volume}" />
+                Value="{Binding VolumeValue}" />
 
             <!--  Volume Bar Cover  -->
             <Label
