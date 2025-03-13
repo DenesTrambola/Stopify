@@ -5,11 +5,12 @@ using Stopify.Presentation.ViewModels.Main;
 using Stopify.Presentation.ViewModels.NowPlaying;
 using Stopify.Presentation.ViewModels.Playlist;
 using Stopify.Presentation.ViewModels.Search;
-using Stopify.Presentation.Views;
-using Stopify.Presentation.Views.HomeView;
-using Stopify.Presentation.Views.NowPlayingView;
-using Stopify.Presentation.Views.PlaylistView;
-using Stopify.Presentation.Views.SearchView;
+using Stopify.Presentation.Views.Artist;
+using Stopify.Presentation.Views.Home;
+using Stopify.Presentation.Views.Main;
+using Stopify.Presentation.Views.NowPlaying;
+using Stopify.Presentation.Views.Playlist;
+using Stopify.Presentation.Views.Search;
 
 namespace Stopify.Presentation;
 
@@ -17,7 +18,7 @@ public static class PresentationDependencies
 {
     public static void AddViewDependencies(this IServiceCollection services)
     {
-        services.AddSingleton<MainWindow>()
+        services.AddSingleton<MainView>()
             .AddTransient<HomeView>()
             .AddTransient<SearchView>()
             .AddTransient<ArtistView>()

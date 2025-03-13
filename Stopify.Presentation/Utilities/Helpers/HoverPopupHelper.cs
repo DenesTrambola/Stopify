@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Stopify.Presentation.Views.Main;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
@@ -6,7 +7,7 @@ namespace Stopify.Presentation.Utilities.Helpers;
 
 public static class HoverPopupHelper
 {
-    public static void PopupAppear(MainWindow mainWindow, UIElement element, PlacementMode placement, params TextBlock[] texts)
+    public static void PopupAppear(MainView mainWindow, UIElement element, PlacementMode placement, params TextBlock[] texts)
     {
         var popup = mainWindow.BtnPopup;
 
@@ -20,7 +21,7 @@ public static class HoverPopupHelper
         popup.IsOpen = true;
     }
 
-    public static void PopupDisappear(MainWindow mainWindow)
+    public static void PopupDisappear(MainView mainWindow)
     {
         mainWindow.BtnPopup.Visibility = Visibility.Collapsed;
         mainWindow.BtnPopup.IsOpen = false;
