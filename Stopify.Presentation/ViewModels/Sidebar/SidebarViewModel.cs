@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 
 namespace Stopify.Presentation.ViewModels.Sidebar;
 
-public class SidebarControlViewModel : ViewModelBase
+public class SidebarViewModel : ViewModelBase
 {
     private ObservableCollection<SidebarItemViewModel> _items;
 
     public IEnumerable<SidebarItemViewModel> Items => _items;
 
-    public SidebarControlViewModel()
+    public SidebarViewModel()
     {
         _items = new ObservableCollection<SidebarItemViewModel>
         {

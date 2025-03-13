@@ -96,7 +96,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
     {
         InitializeComponent();
 
-        DataContext = new PlayerControlViewModel();
+        DataContext = new PlayerViewModel();
 
         _audioService = ((App)App.Current).Services.GetService<IAudioStorageService>()!;
         Setup();

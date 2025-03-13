@@ -10,10 +10,6 @@
     mc:Ignorable="d">
 
     <Grid Margin="8,8,0,8">
-        <Grid.DataContext>
-            <SidebarVM:SidebarControlViewModel />
-        </Grid.DataContext>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />

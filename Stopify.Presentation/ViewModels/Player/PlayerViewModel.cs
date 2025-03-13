@@ -2,7 +2,7 @@
 
 namespace Stopify.Presentation.ViewModels.Player;
 
-public class PlayerControlViewModel : ViewModelBase
+public class PlayerViewModel : ViewModelBase
 {
     private string _imagePath;
     private string _title;
@@ -61,7 +61,7 @@ public class PlayerControlViewModel : ViewModelBase
         set => SetProperty(ref _volumeValue, value);
     }
 
-    public PlayerControlViewModel()
+    public PlayerViewModel()
     {
         ImagePath = String.Empty;
         Title = "introvertált dal";

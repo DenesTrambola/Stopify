@@ -1,5 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
+using Stopify.Presentation.ViewModels.Titlebar;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -21,6 +22,8 @@ public partial class TitlebarControl : UserControl
     public TitlebarControl()
     {
         InitializeComponent();
+
+        DataContext = new TitlebarViewModel();
 
         _popupText.Foreground = Brushes.White;
         _popupText.FontWeight = FontWeights.SemiBold;
