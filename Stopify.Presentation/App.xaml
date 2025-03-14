@@ -8,8 +8,29 @@
     <Application.Resources>
 
         <ResourceDictionary>
-            <!--#region PlaylistItem CommaVisibilityConverter-->
-            <Converters:PlaylistItemCommaVisibilityConverter x:Key="PlaylistItemCommaVisibilityConverter" />
+            <!--#region Titlebar Settings Menu-->
+            <Style TargetType="MenuItem">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Padding" Value="10,5" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="MenuItem">
+                            <Grid Background="{TemplateBinding Background}">
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentPresenter />
+                                    <TextBlock Margin="5,0,0,0" Text=" &gt; " />
+                                </StackPanel>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="Gray" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
             <!--#endregion-->
 
             <!--#region Custom Slider-->
@@ -539,7 +560,7 @@
             <!--#endregion-->
 
             <!--#region Custom MenuItem-->
-
+            <!--
             <SolidColorBrush x:Key="Menu.Static.Background" Color="#FFF0F0F0" />
             <SolidColorBrush x:Key="Menu.Static.Border" Color="#FF999999" />
             <SolidColorBrush x:Key="Menu.Static.Foreground" Color="#FF212121" />
@@ -1074,7 +1095,7 @@
                         <Setter Property="Template" Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuHeaderTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
                     </Trigger>
                 </Style.Triggers>
-            </Style>
+            </Style>-->
 
             <!--#endregion-->
         </ResourceDictionary>

@@ -32,7 +32,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!--  Options  -->
+        <!--  Options• • •  -->
         <Button
             Name="OptionsBtn"
             Grid.Column="0"
@@ -42,13 +42,50 @@
             VerticalAlignment="Stretch"
             Background="Transparent"
             BorderThickness="0"
-            Click="OptionsBtn_Click"
-            Content="• • •"
+            Command="{Binding ToggleOptionsMenuCommand}"
+            Content="{Binding IsOptionsMenuOpen}"
             FontSize="14"
             FontWeight="Bold"
             Foreground="White"
             GotFocus="OptionsBtn_GotFocus"
             LostFocus="OptionsBtn_LostFocus" />
+
+        <!--  Options Menu  -->
+        <Popup
+            IsOpen="{Binding IsOptionsMenuOpen, Mode=TwoWay}"
+            Placement="Bottom"
+            StaysOpen="False">
+
+            <Border
+                Padding="5"
+                Background="Black"
+                BorderBrush="WhiteSmoke"
+                BorderThickness="1"
+                CornerRadius="5">
+
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding OptionsMenuItems}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button
+                                    Padding="5,2"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Command="{Binding Command}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Foreground="WhiteSmoke" Text="{Binding Header}" />
+                                        <TextBlock
+                                            Margin="5,0,0,0"
+                                            Foreground="WhiteSmoke"
+                                            Text=" &gt; " />
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </Popup>
 
         <!--  Go back  -->
         <Button
