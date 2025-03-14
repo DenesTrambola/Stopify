@@ -32,7 +32,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <!--  Options• • •  -->
+        <!--  Options  -->
         <Button
             Name="OptionsBtn"
             Grid.Column="0"
@@ -43,7 +43,7 @@
             Background="Transparent"
             BorderThickness="0"
             Command="{Binding ToggleOptionsMenuCommand}"
-            Content="{Binding IsOptionsMenuOpen}"
+            Content="• • •"
             FontSize="14"
             FontWeight="Bold"
             Foreground="White"

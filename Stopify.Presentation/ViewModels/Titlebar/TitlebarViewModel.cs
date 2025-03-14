@@ -46,6 +46,9 @@ public class TitlebarViewModel : ViewModelBase
 
     public ICommand ToggleOptionsMenuCommand { get; }
 
+    public ICommand NavigateBackCommand { get; }
+    public ICommand NavigateForwardCommand { get; }
+
     #endregion
 
     #region Constructors
@@ -66,6 +69,8 @@ public class TitlebarViewModel : ViewModelBase
         };
 
         ToggleOptionsMenuCommand = new ToggleOptionsCommand(this);
+        NavigateBackCommand = new NavigateBackCommand();
+        NavigateForwardCommand = new NavigateForwardCommand();
     }
 
     #endregion
