@@ -102,14 +102,12 @@ public partial class PlaylistItem : UserControl
 
     private void PlayBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        MainView mainWindow = (MainView)Application.Current.MainWindow;
-
         _popupText.Text = _isPlaying ? "Pause" : "Play Cry Me A River by Azahriah";
-        HoverPopupHelper.PopupAppear(mainWindow, PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        HoverPopupHelper.PopupDisappear((MainView)Application.Current.MainWindow);
+        HoverPopupHelper.HidePopup();
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -203,11 +201,9 @@ public partial class PlaylistItem : UserControl
 
     private void SaveBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        MainView mainWindow = (MainView)Application.Current.MainWindow;
-
         Mouse.OverrideCursor = Cursors.Hand;
         _popupText.Text = _isSaved ? "Remove from Liked Songs" : "Save to Liked Songs";
-        HoverPopupHelper.PopupAppear(mainWindow, SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {
@@ -218,10 +214,8 @@ public partial class PlaylistItem : UserControl
 
     private void SaveBtn_MouseLeave(object sender, MouseEventArgs e)
     {
-        MainView mainWindow = (MainView)Application.Current.MainWindow;
-
         Mouse.OverrideCursor = Cursors.Arrow;
-        HoverPopupHelper.PopupDisappear(mainWindow);
+        HoverPopupHelper.HidePopup();
 
         if (!_isSaved)
         {
@@ -261,13 +255,11 @@ public partial class PlaylistItem : UserControl
 
     private void OptionsBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        MainView mainWindow = (MainView)Application.Current.MainWindow;
-
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Cry Me A River";
-        HoverPopupHelper.PopupAppear(mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -277,7 +269,7 @@ public partial class PlaylistItem : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        HoverPopupHelper.PopupDisappear(mainWindow);
+        HoverPopupHelper.HidePopup();
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }

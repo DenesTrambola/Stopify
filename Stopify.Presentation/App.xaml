@@ -8,31 +8,6 @@
     <Application.Resources>
 
         <ResourceDictionary>
-            <!--#region Titlebar Settings Menu-->
-            <Style TargetType="MenuItem">
-                <Setter Property="Foreground" Value="White" />
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="Padding" Value="10,5" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="MenuItem">
-                            <Grid Background="{TemplateBinding Background}">
-                                <StackPanel Orientation="Horizontal">
-                                    <ContentPresenter />
-                                    <TextBlock Margin="5,0,0,0" Text=" &gt; " />
-                                </StackPanel>
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Background" Value="Gray" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-            <!--#endregion-->
-
             <!--#region Custom Slider-->
             <Style x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
                 <Setter Property="OverridesDefaultStyle" Value="true" />

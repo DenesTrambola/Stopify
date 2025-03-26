@@ -12,7 +12,6 @@ namespace Stopify.Presentation.Views.Sidebar;
 
 public partial class SidebarControl : UserControl
 {
-    private MainView _mainWindow = (MainView)Application.Current.MainWindow;
     private TextBlock _basicPopupText = new();
 
     private bool _filterPlaylists = false;
@@ -54,11 +53,13 @@ public partial class SidebarControl : UserControl
 
     private void YourLibraryBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainView mainView = (MainView)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ColorAnimations.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Colors.White, .1);
         ColorAnimations.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Colors.White, .1);
-        _basicPopupText.Text = _mainWindow.SidebarCollapsed == false ? "Collapse Your Library" : "Expand Your Library";
-        HoverPopupHelper.PopupAppear(_mainWindow, YourLibraryBtn, PlacementMode.MousePoint, _basicPopupText);
+        _basicPopupText.Text = mainView.SidebarCollapsed == false ? "Collapse Your Library" : "Expand Your Library";
+        HoverPopupHelper.DisplayPopup(YourLibraryBtn, PlacementMode.MousePoint, _basicPopupText);
     }
 
     private void YourLibraryBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -66,22 +67,24 @@ public partial class SidebarControl : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ColorAnimations.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Color.FromRgb(179, 179, 179), .1);
         ColorAnimations.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Color.FromRgb(179, 179, 179), .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.HidePopup();
     }
 
     private void YourLibraryBtn_Click(object sender, RoutedEventArgs e)
     {
-        if (_mainWindow.SidebarCollapsed == true || _mainWindow.SidebarCollapsed == null)
+        MainView mainView = (MainView)Application.Current.MainWindow;
+
+        if (mainView.SidebarCollapsed == true || mainView.SidebarCollapsed == null)
         {
             SearchGrid.Height = double.NaN;
-            _mainWindow.SidebarCollapsed = false;
+            mainView.SidebarCollapsed = false;
         }
         else
         {
             SearchGrid.Height = 0;
-            _mainWindow.SidebarCollapsed = true;
+            mainView.SidebarCollapsed = true;
         }
-        _mainWindow.UpdateSidebar();
+        mainView.UpdateSidebar();
     }
 
 
@@ -93,7 +96,7 @@ public partial class SidebarControl : UserControl
         ColorAnimations.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(31, 31, 31), .1);
         ColorAnimations.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.LightGray, .2);
         _basicPopupText.Text = "Create playlist or folder";
-        HoverPopupHelper.PopupAppear(_mainWindow, CreateBorder, PlacementMode.Mouse, _basicPopupText);
+        HoverPopupHelper.DisplayPopup(CreateBorder, PlacementMode.Mouse, _basicPopupText);
     }
 
     private void CreateBorder_MouseLeave(object sender, MouseEventArgs e)
@@ -101,7 +104,7 @@ public partial class SidebarControl : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ColorAnimations.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(18, 18, 18), .1);
         ColorAnimations.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.DarkGray, .2);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.HidePopup();
     }
 
     private void CreateBtn_Click(object sender, RoutedEventArgs e) { }

@@ -1,6 +1,5 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -11,7 +10,6 @@ namespace Stopify.Presentation.Views.Queue;
 
 public partial class QueueItem : UserControl
 {
-    private MainView _mainWindow = (MainView)Application.Current.MainWindow;
     private TextBlock _popupText = new();
     private bool _isPlaying = false;
 
@@ -60,13 +58,13 @@ public partial class QueueItem : UserControl
     {
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .05);
         _popupText.Text = "Play Hope from Lucid Keys";
-        HoverPopupHelper.PopupAppear(_mainWindow, PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         ScaleAnimations.ResetScaleAnimation(PlayBtn, .05);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.HidePopup();
     }
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
@@ -144,14 +142,14 @@ public partial class QueueItem : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        HoverPopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.HidePopup();
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }

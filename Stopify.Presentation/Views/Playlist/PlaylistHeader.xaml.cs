@@ -199,10 +199,8 @@ public partial class PlaylistHeader : UserControl
 
     private void DurationBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        MainView mainWindow = (MainView)Application.Current.MainWindow;
-
         ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.White, .05);
-        HoverPopupHelper.PopupAppear(mainWindow, DurationBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(DurationBtn, PlacementMode.Top, _popupText);
     }
 
     private void DurationBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -210,7 +208,7 @@ public partial class PlaylistHeader : UserControl
         MainView mainWindow = (MainView)Application.Current.MainWindow;
 
         ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.DarkGray, .05);
-        HoverPopupHelper.PopupDisappear(mainWindow);
+        HoverPopupHelper.HidePopup();
     }
 
     private void DurationBtn_Click(object sender, RoutedEventArgs e)

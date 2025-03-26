@@ -11,7 +11,6 @@ namespace Stopify.Presentation.Views.Sidebar;
 
 public partial class SidebarItem : UserControl
 {
-    private MainView _mainWindow = (MainView)Application.Current.MainWindow;
     private TextBlock _basicPopupText = new();
     private TextBlock _popupText1 = new();
     private TextBlock _popupText2 = new();
@@ -36,14 +35,16 @@ public partial class SidebarItem : UserControl
 
     private void ItemBtn_MouseEnter(object sender, MouseEventArgs e)
     {
+        MainView mainView = (MainView)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Hand;
         ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(31, 31, 31), .1);
 
-        if (_mainWindow.SidebarCollapsed == true)
+        if (mainView.SidebarCollapsed == true)
         {
             _popupText1.Text = "Azahriah";
             _popupText2.Text = "Artist";
-            HoverPopupHelper.PopupAppear(_mainWindow, ItemBtn, PlacementMode.Right, _popupText1, _popupText2);
+            HoverPopupHelper.DisplayPopup(ItemBtn, PlacementMode.Right, _popupText1, _popupText2);
         }
         else
         {
@@ -65,11 +66,13 @@ public partial class SidebarItem : UserControl
 
     private void ItemBtn_MouseLeave(object sender, MouseEventArgs e)
     {
+        MainView mainView = (MainView)Application.Current.MainWindow;
+
         Mouse.OverrideCursor = Cursors.Arrow;
         ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(18, 18, 18), .1);
 
-        if (_mainWindow.SidebarCollapsed == true)
-            HoverPopupHelper.PopupDisappear(_mainWindow);
+        if (mainView.SidebarCollapsed == true)
+            HoverPopupHelper.HidePopup();
         else
         {
             PlayBtn.Width = 0;
@@ -84,23 +87,27 @@ public partial class SidebarItem : UserControl
 
     private void ItemImgBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        if (!_mainWindow.SidebarCollapsed == true)
+        MainView mainView = (MainView)Application.Current.MainWindow;
+
+        if (!mainView.SidebarCollapsed == true)
         {
             ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.02, .1);
             if (_isPlaying)
                 _basicPopupText.Text = "Play Azahriah";
             else
                 _basicPopupText.Text = "Pause Azahriah";
-            HoverPopupHelper.PopupAppear(_mainWindow, ItemImgBtn, PlacementMode.Top, _basicPopupText);
+            HoverPopupHelper.DisplayPopup(ItemImgBtn, PlacementMode.Top, _basicPopupText);
         }
     }
 
     private void ItemImgBtn_MouseLeave(object sender, MouseEventArgs e)
     {
-        if (_mainWindow.SidebarCollapsed == false)
+        MainView mainView = (MainView)Application.Current.MainWindow;
+
+        if (mainView.SidebarCollapsed == false)
         {
             ScaleAnimations.ResetScaleAnimation(PlayBtn, .1);
-            HoverPopupHelper.PopupDisappear(_mainWindow);
+            HoverPopupHelper.HidePopup();
         }
     }
 

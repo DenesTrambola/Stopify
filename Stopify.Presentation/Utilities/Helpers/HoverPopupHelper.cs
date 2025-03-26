@@ -7,23 +7,25 @@ namespace Stopify.Presentation.Utilities.Helpers;
 
 public static class HoverPopupHelper
 {
-    public static void PopupAppear(MainView mainWindow, UIElement element, PlacementMode placement, params TextBlock[] texts)
+    private static MainView _mainView = (MainView)Application.Current.MainWindow;
+
+    public static void DisplayPopup(FrameworkElement element, PlacementMode placement, params TextBlock[] texts)
     {
-        var popup = mainWindow.BtnPopup;
+        var popup = _mainView.BtnPopup;
 
         popup.PlacementTarget = element;
         popup.Placement = placement;
 
-        mainWindow.PopupItem.PopupStackPanel.Children.Clear();
+        _mainView.PopupItem.PopupStackPanel.Children.Clear();
         foreach (var text in texts)
-            mainWindow.PopupItem.PopupStackPanel.Children.Add(text);
+            _mainView.PopupItem.PopupStackPanel.Children.Add(text);
 
         popup.IsOpen = true;
     }
 
-    public static void PopupDisappear(MainView mainWindow)
+    public static void HidePopup()
     {
-        mainWindow.BtnPopup.Visibility = Visibility.Collapsed;
-        mainWindow.BtnPopup.IsOpen = false;
+        _mainView.BtnPopup.Visibility = Visibility.Collapsed;
+        _mainView.BtnPopup.IsOpen = false;
     }
 }

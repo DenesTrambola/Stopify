@@ -14,7 +14,6 @@ namespace Stopify.Presentation.Views.NowPlaying;
 
 public partial class NowPlayingView : UserControl
 {
-    private MainView _mainWindow = (MainView)Application.Current.MainWindow;
     private PlayerControl _player = new();
     private TextBlock _popupText = new();
     private bool _isSaved = false;
@@ -103,7 +102,7 @@ public partial class NowPlayingView : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        HoverPopupHelper.PopupAppear(_mainWindow, OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -111,7 +110,7 @@ public partial class NowPlayingView : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.HidePopup();
     }
 
     private void OptionsBtn_Click(object sender, RoutedEventArgs e) { }
@@ -125,7 +124,7 @@ public partial class NowPlayingView : UserControl
         ColorAnimations.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(31, 31, 31), .1);
         ColorAnimations.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.LightGray, .1);
         _popupText.Text = "Close";
-        HoverPopupHelper.PopupAppear(_mainWindow, CloseBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(CloseBtn, PlacementMode.Top, _popupText);
     }
 
     private void CloseBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -133,13 +132,14 @@ public partial class NowPlayingView : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         ColorAnimations.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(18, 18, 18), .1);
         ColorAnimations.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.DarkGray, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.HidePopup();
     }
 
     private void CloseBtn_Click(object sender, RoutedEventArgs e)
     {
-        _mainWindow.NowPlayingCollapsed = true;
-        _mainWindow.UpdateNowPlaying();
+        MainView mainView = (MainView)Application.Current.MainWindow;
+        mainView.NowPlayingCollapsed = true;
+        mainView.UpdateNowPlaying();
     }
 
 
@@ -218,7 +218,7 @@ public partial class NowPlayingView : UserControl
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(SaveBtn, 1.03, .1);
         _popupText.Text = _isSaved ? "Remove from Liked Songs" : "Save to Liked Songs";
-        HoverPopupHelper.PopupAppear(_mainWindow, SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup(SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {
@@ -231,7 +231,7 @@ public partial class NowPlayingView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(SaveBtn, .1);
-        HoverPopupHelper.PopupDisappear(_mainWindow);
+        HoverPopupHelper.HidePopup();
 
         if (!_isSaved)
         {
@@ -333,17 +333,18 @@ public partial class NowPlayingView : UserControl
 
     private void OpenQueue_Click(object sender, RoutedEventArgs e)
     {
+        MainView mainView = (MainView)Application.Current.MainWindow;
         var heightIncreaseAnimation = new DoubleAnimation
         {
             From = 0,
-            To = _mainWindow.NowPlaying.ActualHeight + 7,
+            To = mainView.NowPlaying.ActualHeight + 7,
             Duration = TimeSpan.FromSeconds(.3),
             EasingFunction = new QuinticEase { EasingMode = EasingMode.EaseOut }
         };
-        _mainWindow.SongQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
+        mainView.SongQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
 
         PlayerControl player = new();
         player.NowPlayingBtn.Content = "\uf106";
-        _mainWindow.NowPlayingCollapsed = false;
+        mainView.NowPlayingCollapsed = false;
     }
 }
