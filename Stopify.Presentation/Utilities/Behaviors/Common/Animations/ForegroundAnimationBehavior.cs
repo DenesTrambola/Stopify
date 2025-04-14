@@ -9,19 +9,19 @@ public static class ForegroundAnimationBehavior
 {
     #region Dependency Properties
 
-    public static readonly DependencyProperty EnableAnimateOnHoverProperty =
+    public static readonly DependencyProperty EnableOnHoverProperty =
         DependencyProperty.RegisterAttached(
-            "EnableAnimateOnHover",
+            "EnableOnHover",
             typeof(bool),
             typeof(ForegroundAnimationBehavior),
-            new PropertyMetadata(false, OnEnableAnimateOnHoverChanged));
+            new PropertyMetadata(false, OnEnableOnHoverChanged));
 
-    public static readonly DependencyProperty EnableAnimateOnFocusProperty =
+    public static readonly DependencyProperty EnableOnFocusProperty =
         DependencyProperty.RegisterAttached(
-            "EnableAnimateOnFocus",
+            "EnableOnFocus",
             typeof(bool),
             typeof(ForegroundAnimationBehavior),
-            new PropertyMetadata(false, OnEnableAnimateOnFocusChanged));
+            new PropertyMetadata(false, OnEnableOnFocusChanged));
 
     public static readonly DependencyProperty IsClickedProperty =
         DependencyProperty.RegisterAttached(
@@ -30,16 +30,16 @@ public static class ForegroundAnimationBehavior
             typeof(ForegroundAnimationBehavior),
             new PropertyMetadata(false));
 
-    public static readonly DependencyProperty AnimateInColorProperty =
+    public static readonly DependencyProperty InColorProperty =
         DependencyProperty.RegisterAttached(
-            "AnimateInColor",
+            "InColor",
             typeof(Color),
             typeof(ForegroundAnimationBehavior),
             new PropertyMetadata(Colors.Transparent));
 
-    public static readonly DependencyProperty AnimateOutColorProperty =
+    public static readonly DependencyProperty OutColorProperty =
         DependencyProperty.RegisterAttached(
-            "AnimateOutColor",
+            "OutColor",
             typeof(Color),
             typeof(ForegroundAnimationBehavior),
             new PropertyMetadata(Colors.Transparent));
@@ -55,100 +55,129 @@ public static class ForegroundAnimationBehavior
 
     #region Getters/Setters
 
-    public static void SetEnableAnimateOnHover(UIElement element, bool value) =>
-        element.SetValue(EnableAnimateOnHoverProperty, value);
-    public static bool GetEnableAnimateOnHover(UIElement element) =>
-        (bool)element.GetValue(EnableAnimateOnHoverProperty);
+    public static bool GetEnableOnHover(UIElement element) =>
+        (bool)element.GetValue(EnableOnHoverProperty);
+    public static void SetEnableOnHover(UIElement element, bool value) =>
+        element.SetValue(EnableOnHoverProperty, value);
 
-    public static void SetEnableAnimateOnFocus(UIElement element, bool value) =>
-        element.SetValue(EnableAnimateOnFocusProperty, value);
-    public static bool GetEnableAnimateOnFocus(UIElement element) =>
-        (bool)element.GetValue(EnableAnimateOnFocusProperty);
+    public static bool GetEnableOnFocus(UIElement element) =>
+        (bool)element.GetValue(EnableOnFocusProperty);
+    public static void SetEnableOnFocus(UIElement element, bool value) =>
+        element.SetValue(EnableOnFocusProperty, value);
 
-    public static void SetIsClicked(UIElement element, bool value) =>
-        element.SetValue(IsClickedProperty, value);
     public static bool GetIsClicked(UIElement element) =>
         (bool)element.GetValue(IsClickedProperty);
+    public static void SetIsClicked(UIElement element, bool value) =>
+        element.SetValue(IsClickedProperty, value);
 
-    public static void SetAnimateInColor(UIElement element, Color value) =>
-        element.SetValue(AnimateInColorProperty, value);
-    public static Color GetAnimateInColor(UIElement element) =>
-        (Color)element.GetValue(AnimateInColorProperty);
+    public static Color GetInColor(UIElement element) =>
+        (Color)element.GetValue(InColorProperty);
+    public static void SetInColor(UIElement element, Color value) =>
+        element.SetValue(InColorProperty, value);
 
-    public static void SetAnimateOutColor(UIElement element, Color value) =>
-        element.SetValue(AnimateOutColorProperty, value);
-    public static Color GetAnimateOutColor(UIElement element) =>
-        (Color)element.GetValue(AnimateOutColorProperty);
+    public static Color GetOutColor(UIElement element) =>
+        (Color)element.GetValue(OutColorProperty);
+    public static void SetOutColor(UIElement element, Color value) =>
+        element.SetValue(OutColorProperty, value);
 
-    public static void SetDuration(UIElement element, double value) =>
-        element.SetValue(DurationProperty, value);
     public static double GetDuration(UIElement element) =>
         (double)element.GetValue(DurationProperty);
+    public static void SetDuration(UIElement element, double value) =>
+        element.SetValue(DurationProperty, value);
+
+    #endregion
+
+    #region Property Callbacks
+
+    private static void OnEnableOnHoverChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not Button element) return;
+
+        if ((bool)e.NewValue)
+        {
+            element.MouseEnter += AnimateInIfNotClicked;
+            element.MouseLeave += AnimateOutIfNotClicked;
+            element.Unloaded += DetachEvents;
+        }
+        else
+        {
+            element.MouseEnter -= AnimateInIfNotClicked;
+            element.MouseLeave -= AnimateOutIfNotClicked;
+            element.Unloaded -= DetachEvents;
+        }
+    }
+
+    private static void OnEnableOnFocusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not Button element) return;
+
+        if ((bool)e.NewValue)
+        {
+            element.GotFocus += AnimateIn;
+            element.LostFocus += AnimateOut;
+        }
+        else
+        {
+            element.GotFocus -= AnimateIn;
+            element.LostFocus -= AnimateOut;
+        }
+    }
 
     #endregion
 
     #region Event Handlers
 
-    private static void OnEnableAnimateOnHoverChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        if (d is not Button element) return;
-
-        if ((bool)e.NewValue)
-        {
-            element.MouseEnter += OnMouseEnter;
-            element.MouseLeave += OnMouseLeave;
-        }
-        else
-        {
-            element.MouseEnter -= OnMouseEnter;
-            element.MouseLeave -= OnMouseLeave;
-        }
-    }
-
-    private static void OnMouseEnter(object sender, RoutedEventArgs e)
+    private static void AnimateInIfNotClicked(object sender, RoutedEventArgs e)
     {
         if (sender is not Button element) return;
 
         if (!GetIsClicked(element))
-            AnimateIn(element);
+            ExecuteAnimateIn(element);
     }
 
-    private static void OnMouseLeave(object sender, RoutedEventArgs e)
+    private static void AnimateOutIfNotClicked(object sender, RoutedEventArgs e)
     {
         if (sender is not Button element) return;
 
         if (!GetIsClicked(element))
-            AnimateOut(element);
+            ExecuteAnimateOut(element);
     }
 
-    private static void OnEnableAnimateOnFocusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void AnimateIn(object sender, RoutedEventArgs e)
     {
-        if (d is not Button element) return;
+        if (sender is not Button element) return;
 
-        if ((bool)e.NewValue)
-        {
-            if ((bool)e.NewValue)
-            {
-                element.GotFocus += (s, args) => AnimateIn(element);
-                element.LostFocus += (s, args) => AnimateOut(element);
-            }
-            else
-            {
-                element.GotFocus -= (s, args) => AnimateIn(element);
-                element.LostFocus -= (s, args) => AnimateOut(element);
-            }
-        }
+        ExecuteAnimateIn(element);
+    }
+
+    private static void AnimateOut(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button element) return;
+
+        ExecuteAnimateOut(element);
+    }
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button element) return;
+
+        element.MouseEnter -= AnimateInIfNotClicked;
+        element.MouseLeave -= AnimateOutIfNotClicked;
+        element.Unloaded -= DetachEvents;
+
+        SetEnableOnHover(element, false);
+        SetEnableOnFocus(element, false);
     }
 
     #endregion
 
     #region Methods
 
-    private static void AnimateIn(Button element) =>
-        ColorAnimations.AnimateForegroundColor(element, element.Foreground, GetAnimateInColor(element), GetDuration(element));
+    private static void ExecuteAnimateIn(Button element) =>
+        ColorAnimations.AnimateForegroundColor(element, element.Foreground, GetInColor(element), GetDuration(element));
 
-    private static void AnimateOut(Button element) =>
-        ColorAnimations.AnimateForegroundColor(element, element.Foreground, GetAnimateOutColor(element), GetDuration(element));
+    private static void ExecuteAnimateOut(Button element) =>
+        ColorAnimations.AnimateForegroundColor(element, element.Foreground, GetOutColor(element), GetDuration(element));
 
     #endregion
 }

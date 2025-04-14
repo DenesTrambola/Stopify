@@ -17,31 +17,49 @@ public static class ActualSizeBehavior
 
     #region Getters/Setters
 
-    public static void SetActualWidth(UIElement element, double value) =>
-        element.SetValue(ActualWidthProperty, value);
 
     public static double GetActualWidth(UIElement element) =>
         (double)element.GetValue(ActualWidthProperty);
+    public static void SetActualWidth(UIElement element, double value) =>
+        element.SetValue(ActualWidthProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
     private static void OnActualWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not FrameworkElement element) return;
 
         if (e.NewValue is not null)
-            element.SizeChanged += SizeChanged;
+        {
+            element.SizeChanged += ExecuteSetActualWidth;
+            element.Unloaded += DetachEvents;
+        }
         else
-            element.SizeChanged -= SizeChanged;
+        {
+            element.SizeChanged -= ExecuteSetActualWidth;
+            element.Unloaded -= DetachEvents;
+        }
     }
 
-    private static void SizeChanged(object sender, SizeChangedEventArgs e)
+    #endregion
+
+    #region Event Handlers
+
+    private static void ExecuteSetActualWidth(object sender, SizeChangedEventArgs e)
     {
         if (sender is not FrameworkElement element) return;
 
         SetActualWidth(element, element.ActualWidth);
+    }
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement element) return;
+
+        element.SizeChanged -= ExecuteSetActualWidth;
+        element.Unloaded -= DetachEvents;
     }
 
     #endregion

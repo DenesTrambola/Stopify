@@ -18,33 +18,53 @@ public static class DragMoveWindowBehavior
 
     #region Getters/Setters
 
-    public static void SetEnableDrag(UIElement element, bool value) =>
-        element.SetValue(EnableDragProperty, value);
 
     public static bool GetEnableDrag(UIElement element) =>
         (bool)element.GetValue(EnableDragProperty);
+    public static void SetEnableDrag(UIElement element, bool value) =>
+        element.SetValue(EnableDragProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
     private static void OnEnableDragChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not FrameworkElement element) return;
 
         if ((bool)e.NewValue)
-            element.MouseDown += OnMouseDown;
+        {
+            element.MouseDown += DragMove;
+            element.Unloaded += DetachEvents;
+        }
         else
-            element.MouseDown -= OnMouseDown;
+        {
+            element.MouseDown -= DragMove;
+            element.Unloaded -= DetachEvents;
+        }
     }
 
-    private static void OnMouseDown(object sender, MouseButtonEventArgs e)
+    #endregion
+
+    #region Event Handlers
+
+    private static void DragMove(object sender, MouseButtonEventArgs e)
     {
         if (e.ChangedButton == MouseButton.Left)
         {
             Window window = Window.GetWindow(sender as DependencyObject);
             window?.DragMove();
         }
+    }
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement element) return;
+
+        element.MouseDown -= DragMove;
+        element.Unloaded -= DetachEvents;
+
+        SetEnableDrag(element, false);
     }
 
     #endregion

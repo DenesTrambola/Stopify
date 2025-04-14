@@ -21,40 +21,57 @@ public static class NavigationButtonBehavior
 
     #region Getters/Setters
 
-    public static void SetEnable(UIElement element, bool? value) =>
-        element.SetValue(EnableProperty, value);
     public static bool? GetEnable(UIElement element) =>
         (bool?)element.GetValue(EnableProperty);
+    public static void SetEnable(UIElement element, bool? value) =>
+        element.SetValue(EnableProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
     private static void OnEnableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not Label element) return;
 
-        element.MouseEnter -= OnMouseEnter;
-        element.MouseLeave -= OnMouseLeave;
+        element.MouseEnter -= SetCursor;
+        element.MouseLeave -= ResetCursor;
+        element.Unloaded -= DetachEvents;
 
         if ((bool?)e.NewValue == true)
             ColorAnimations.AnimateForegroundColor(element, element.Foreground, Colors.DarkGray, .02);
         else if ((bool?)e.NewValue == false)
             ColorAnimations.AnimateForegroundColor(element, element.Foreground, Color.FromRgb(50, 50, 50), .02);
 
-        element.MouseEnter += OnMouseEnter;
-        element.MouseLeave += OnMouseLeave;
+        element.MouseEnter += SetCursor;
+        element.MouseLeave += ResetCursor;
+        element.Unloaded += DetachEvents;
     }
 
-    private static void OnMouseEnter(object sender, MouseEventArgs args)
+    #endregion
+
+    #region Event Handlers
+
+    private static void SetCursor(object sender, MouseEventArgs args)
     {
         if (sender is not Label element) return;
 
         Mouse.OverrideCursor = GetEnable(element) == true ? Cursors.Hand : Cursors.No;
     }
 
-    private static void OnMouseLeave(object sender, MouseEventArgs args) =>
+    private static void ResetCursor(object sender, MouseEventArgs args) =>
         Mouse.OverrideCursor = Cursors.Arrow;
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Label element) return;
+
+        element.MouseEnter -= SetCursor;
+        element.MouseLeave -= ResetCursor;
+        element.Unloaded -= DetachEvents;
+
+        SetEnable(element, false);
+    }
 
     #endregion
 }

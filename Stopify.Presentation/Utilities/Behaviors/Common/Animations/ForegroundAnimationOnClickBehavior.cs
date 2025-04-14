@@ -8,12 +8,12 @@ public static class ForegroundAnimationOnClickBehavior
 {
     #region Dependency Properties
 
-    public static readonly DependencyProperty EnableAnimateOnClickProperty =
+    public static readonly DependencyProperty EnableOnClickProperty =
         DependencyProperty.RegisterAttached(
-            "EnableAnimateOnClick",
+            "EnableOnClick",
             typeof(bool),
             typeof(ForegroundAnimationOnClickBehavior),
-            new PropertyMetadata(false, OnEnableAnimateOnClickChanged));
+            new PropertyMetadata(false, OnEnableOnClickChanged));
 
     public static readonly DependencyProperty TargetColorProperty =
         DependencyProperty.RegisterAttached(
@@ -33,34 +33,44 @@ public static class ForegroundAnimationOnClickBehavior
 
     #region Getters/Setters
 
-    public static void SetEnableAnimateOnClick(UIElement element, bool value) =>
-        element.SetValue(EnableAnimateOnClickProperty, value);
-    public static bool GetEnableAnimateOnClick(UIElement element) =>
-        (bool)element.GetValue(EnableAnimateOnClickProperty);
+    public static bool GetEnableOnClick(UIElement element) =>
+        (bool)element.GetValue(EnableOnClickProperty);
+    public static void SetEnableOnClick(UIElement element, bool value) =>
+        element.SetValue(EnableOnClickProperty, value);
 
-    public static void SetTargetColor(UIElement element, Color value) =>
-        element.SetValue(TargetColorProperty, value);
     public static Color GetTargetColor(UIElement element) =>
         (Color)element.GetValue(TargetColorProperty);
+    public static void SetTargetColor(UIElement element, Color value) =>
+        element.SetValue(TargetColorProperty, value);
 
-    public static void SetDuration(UIElement element, double value) =>
-        element.SetValue(DurationProperty, value);
     public static double GetDuration(UIElement element) =>
         (double)element.GetValue(DurationProperty);
+    public static void SetDuration(UIElement element, double value) =>
+        element.SetValue(DurationProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
-    private static void OnEnableAnimateOnClickChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void OnEnableOnClickChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not Button element) return;
 
         if ((bool)e.NewValue)
+        {
             element.Click += AnimateOnClick;
+            element.Unloaded += DetachEvents;
+        }
         else
+        {
             element.Click -= AnimateOnClick;
+            element.Unloaded -= DetachEvents;
+        }
     }
+
+    #endregion
+
+    #region Event Handlers
 
     private static void AnimateOnClick(object sender, RoutedEventArgs e)
     {
@@ -70,6 +80,16 @@ public static class ForegroundAnimationOnClickBehavior
             ForegroundAnimationBehavior.SetIsClicked(element, false);
         else
             ForegroundAnimationBehavior.SetIsClicked(element, true);
+    }
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button element) return;
+
+        element.Click -= AnimateOnClick;
+        element.Unloaded -= DetachEvents;
+
+        SetEnableOnClick(element, false);
     }
 
     #endregion

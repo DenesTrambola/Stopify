@@ -44,7 +44,7 @@ public partial class SidebarItem : UserControl
         {
             _popupText1.Text = "Azahriah";
             _popupText2.Text = "Artist";
-            HoverPopupHelper.DisplayPopup(ItemBtn, PlacementMode.Right, _popupText1, _popupText2);
+            HoverPopupHelper.DisplayPopup_Deprecated(ItemBtn, PlacementMode.Right, _popupText1, _popupText2);
         }
         else
         {
@@ -96,7 +96,7 @@ public partial class SidebarItem : UserControl
                 _basicPopupText.Text = "Play Azahriah";
             else
                 _basicPopupText.Text = "Pause Azahriah";
-            HoverPopupHelper.DisplayPopup(ItemImgBtn, PlacementMode.Top, _basicPopupText);
+            HoverPopupHelper.DisplayPopup_Deprecated(ItemImgBtn, PlacementMode.Top, _basicPopupText);
         }
     }
 

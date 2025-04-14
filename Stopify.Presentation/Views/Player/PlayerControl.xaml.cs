@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Stopify.Domain.Contracts.Other;
 using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Behaviors.Player;
 using Stopify.Presentation.Utilities.Helpers;
 using Stopify.Presentation.ViewModels.Player;
 using Stopify.Presentation.Views.Main;
@@ -97,7 +98,11 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         InitializeComponent();
 
         DataContext = new PlayerViewModel();
+        // MVVM code
+        MediaBarBehavior.SetMediaPlayer(MediaBar, ((PlayerViewModel)DataContext).MediaPlayer);
+        MediaBarBehavior.SetTimer(MediaBar, ((PlayerViewModel)DataContext).Timer);
 
+        // Deprecated code
         _audioService = ((App)App.Current).Services.GetService<IAudioStorageService>()!;
         Setup();
     }
@@ -132,10 +137,10 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
 
     private void PlayerSetup()
     {
-        _mediaPlayer.Open(new Uri(_songPath));
+        //_mediaPlayer.Open(new Uri(_songPath));
 
-        _mediaPlayer.MediaOpened += Player_Opened;
-        _mediaPlayer.MediaEnded += RepeatDisabled;
+        //_mediaPlayer.MediaOpened += Player_Opened;
+        //_mediaPlayer.MediaEnded += RepeatDisabled;
     }
 
     private void Player_Ended(object? sender, EventArgs e) =>
@@ -273,7 +278,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
             NowPlayingBtn.Content = "\uf107";
         }
 
-        HoverPopupHelper.DisplayPopup(ImgBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(ImgBtn, PlacementMode.Top, _popupText);
     }
 
     private void ImgBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -353,7 +358,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(SaveBtn, 1.03, .1);
         _popupText.Text = _isSaved ? "Remove from Liked Songs" : "Save to Liked Songs";
-        HoverPopupHelper.DisplayPopup(SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {
@@ -409,7 +414,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(ShuffleBtn, 1.03, .1);
         _popupText.Text = _isShuffling ? "Disable Shuffle for Azahriah" : "Enable Shuffle for Azahriah";
-        HoverPopupHelper.DisplayPopup(ShuffleBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(ShuffleBtn, PlacementMode.Top, _popupText);
 
         if (!_isShuffling)
             ColorAnimations.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, Colors.White, .1);
@@ -467,7 +472,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(PreviousBtn, 1.03, .1);
         _popupText.Text = "Previous";
-        HoverPopupHelper.DisplayPopup(PreviousBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(PreviousBtn, PlacementMode.Top, _popupText);
         ColorAnimations.AnimateForegroundColor(PreviousBtn, PreviousBtn.Foreground, Colors.White, .1);
     }
 
@@ -504,7 +509,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(NextBtn, 1.03, .1);
         _popupText.Text = "Next";
-        HoverPopupHelper.DisplayPopup(NextBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(NextBtn, PlacementMode.Top, _popupText);
         ColorAnimations.AnimateForegroundColor(NextBtn, NextBtn.Foreground, Colors.White, .1);
     }
 
@@ -543,7 +548,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(PlayBorder, 1.04, .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play";
-        HoverPopupHelper.DisplayPopup(PlayBorder, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(PlayBorder, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -605,7 +610,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
                 break;
         }
 
-        HoverPopupHelper.DisplayPopup(RepeatBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(RepeatBtn, PlacementMode.Top, _popupText);
     }
 
     private void RepeatBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -682,7 +687,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(NowPlayingOption, 1.03, .1);
         _popupText.Text = "Now playing view";
-        HoverPopupHelper.DisplayPopup(NowPlayingOption, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(NowPlayingOption, PlacementMode.Top, _popupText);
         if (mainView.NowPlayingCollapsed == true)
             ColorAnimations.AnimateForegroundColor(NowPlayingOption, NowPlayingOption.Foreground, Colors.White, .1);
     }
@@ -723,7 +728,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
     {
         Mouse.OverrideCursor = Cursors.No;
         _popupText.Text = "Lyrics";
-        HoverPopupHelper.DisplayPopup(LyricsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(LyricsBtn, PlacementMode.Top, _popupText);
     }
 
     private void LyricsBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -743,7 +748,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
 
         Mouse.OverrideCursor = Cursors.Hand;
         _popupText.Text = "Queue";
-        HoverPopupHelper.DisplayPopup(QueueBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(QueueBtn, PlacementMode.Top, _popupText);
         if (mainView.QueueCollapsed)
             ColorAnimations.AnimateForegroundColor(QueueBtn, QueueBtn.Foreground, Colors.White, .1);
     }
@@ -782,7 +787,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
     {
         Mouse.OverrideCursor = Cursors.No;
         _popupText.Text = "Connect to device";
-        HoverPopupHelper.DisplayPopup(ConnectBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(ConnectBtn, PlacementMode.Top, _popupText);
     }
 
     private void ConnectBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -801,7 +806,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         Mouse.OverrideCursor = Cursors.Hand;
         ColorAnimations.AnimateForegroundColor(VolumeBtn, VolumeBtn.Foreground, Colors.White, .1);
         _popupText.Text = _mediaPlayer.IsMuted ? "Unmute" : "Mute";
-        HoverPopupHelper.DisplayPopup(VolumeBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(VolumeBtn, PlacementMode.Top, _popupText);
     }
 
     private void VolumeBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -847,7 +852,7 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
         ColorAnimations.AnimateForegroundColor(FullScreenBtn, FullScreenBtn.Foreground, Colors.White, .1);
         ScaleAnimations.BeginScaleAnimation(FullScreenBtn, 1.03, .1);
         _popupText.Text = mainView.FullScreen ? "Exit full screen" : "Full screen";
-        HoverPopupHelper.DisplayPopup(FullScreenBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(FullScreenBtn, PlacementMode.Top, _popupText);
     }
 
     private void FullScreenBtn_MouseLeave(object sender, MouseEventArgs e)

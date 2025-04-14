@@ -50,41 +50,69 @@ public class PageSwitchBehavior
 
     #region Getters/Setters
 
-    public static void SetEnable(DependencyObject obj, bool value) =>
-        obj.SetValue(EnableProperty, value);
     public static bool GetEnable(DependencyObject obj) =>
         (bool)obj.GetValue(EnableProperty);
+    public static void SetEnable(DependencyObject obj, bool value) =>
+        obj.SetValue(EnableProperty, value);
 
-    public static void SetHomeBtn(DependencyObject obj, Button value) =>
-        obj.SetValue(HomeBtnProperty, value);
     public static Button GetHomeBtn(DependencyObject obj) =>
         (Button)obj.GetValue(HomeBtnProperty);
+    public static void SetHomeBtn(DependencyObject obj, Button value) =>
+        obj.SetValue(HomeBtnProperty, value);
 
-    public static void SetSearchBtn(DependencyObject obj, Button value) =>
-        obj.SetValue(SearchBtnProperty, value);
     public static Button GetSearchBtn(DependencyObject obj) =>
         (Button)obj.GetValue(SearchBtnProperty);
+    public static void SetSearchBtn(DependencyObject obj, Button value) =>
+        obj.SetValue(SearchBtnProperty, value);
 
-    public static void SetSearchIcon(DependencyObject obj, TextBlock value) =>
-        obj.SetValue(SearchIconProperty, value);
     public static TextBlock GetSearchIcon(DependencyObject obj) =>
         (TextBlock)obj.GetValue(SearchIconProperty);
+    public static void SetSearchIcon(DependencyObject obj, TextBlock value) =>
+        obj.SetValue(SearchIconProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
     private static void OnEnableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not Button element) return;
 
         if ((bool)e.NewValue)
-            element.Click += OnClick;
+        {
+            element.Click += SwitchPage;
+            element.Unloaded += DetachEvents;
+        }
         else
-            element.Click -= OnClick;
+        {
+            element.Click -= SwitchPage;
+            element.Unloaded -= DetachEvents;
+        }
     }
 
-    private static void OnClick(object sender, RoutedEventArgs e)
+    private static void OnHomeBtnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is Button element && element is not null)
+            HomeBtn = element;
+    }
+
+    private static void OnSearchBtnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is Button element && element is not null)
+            SearchBtn = element;
+    }
+
+    private static void OnSearchIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is TextBlock element && element is not null)
+            SearchIcon = element;
+    }
+
+    #endregion
+
+    #region Event Handlers
+
+    private static void SwitchPage(object sender, RoutedEventArgs e)
     {
         if (sender is not Button element) return;
 
@@ -110,22 +138,14 @@ public class PageSwitchBehavior
         }
     }
 
-    private static void OnHomeBtnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    private static void DetachEvents(object sender, RoutedEventArgs e)
     {
-        if (d is Button element && element is not null)
-            HomeBtn = element;
-    }
+        if (sender is not Button element) return;
 
-    private static void OnSearchBtnChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        if (d is Button element && element is not null)
-            SearchBtn = element;
-    }
+        element.Click -= SwitchPage;
+        element.Unloaded -= DetachEvents;
 
-    private static void OnSearchIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        if (d is TextBlock element && element is not null)
-            SearchIcon = element;
+        SetEnable(element, false);
     }
 
     #endregion

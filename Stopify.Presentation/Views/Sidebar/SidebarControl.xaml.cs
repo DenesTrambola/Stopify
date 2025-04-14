@@ -59,7 +59,7 @@ public partial class SidebarControl : UserControl
         ColorAnimations.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Colors.White, .1);
         ColorAnimations.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Colors.White, .1);
         _basicPopupText.Text = mainView.SidebarCollapsed == false ? "Collapse Your Library" : "Expand Your Library";
-        HoverPopupHelper.DisplayPopup(YourLibraryBtn, PlacementMode.MousePoint, _basicPopupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(YourLibraryBtn, PlacementMode.MousePoint, _basicPopupText);
     }
 
     private void YourLibraryBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -96,7 +96,7 @@ public partial class SidebarControl : UserControl
         ColorAnimations.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(31, 31, 31), .1);
         ColorAnimations.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.LightGray, .2);
         _basicPopupText.Text = "Create playlist or folder";
-        HoverPopupHelper.DisplayPopup(CreateBorder, PlacementMode.Mouse, _basicPopupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(CreateBorder, PlacementMode.Mouse, _basicPopupText);
     }
 
     private void CreateBorder_MouseLeave(object sender, MouseEventArgs e)

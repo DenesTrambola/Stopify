@@ -58,39 +58,39 @@ public static class SearchButtonBehavior
 
     #region Getters/Setters
 
-    public static void SetEnable(DependencyObject obj, bool value) =>
-        obj.SetValue(EnableProperty, value);
     public static bool GetEnable(DependencyObject obj) =>
         (bool)obj.GetValue(EnableProperty);
+    public static void SetEnable(DependencyObject obj, bool value) =>
+        obj.SetValue(EnableProperty, value);
 
-    public static void SetIsClicked(DependencyObject obj, bool value) =>
-        obj.SetValue(IsClickedProperty, value);
     public static bool GetIsClicked(DependencyObject obj) =>
         (bool)obj.GetValue(IsClickedProperty);
+    public static void SetIsClicked(DependencyObject obj, bool value) =>
+        obj.SetValue(IsClickedProperty, value);
 
-    public static void SetSearchBtnBorder(DependencyObject obj, Border value) =>
-        obj.SetValue(SearchBtnBorderProperty, value);
     public static Border GetSearchBtnBorder(DependencyObject obj) =>
         (Border)obj.GetValue(SearchBtnBorderProperty);
+    public static void SetSearchBtnBorder(DependencyObject obj, Border value) =>
+        obj.SetValue(SearchBtnBorderProperty, value);
 
-    public static void SetSearchBar(DependencyObject obj, Border value) =>
-        obj.SetValue(SearchBarProperty, value);
     public static Border GetSearchBar(DependencyObject obj) =>
         (Border)obj.GetValue(SearchBarProperty);
+    public static void SetSearchBar(DependencyObject obj, Border value) =>
+        obj.SetValue(SearchBarProperty, value);
 
-    public static void SetSearchBtnText(DependencyObject obj, TextBlock value) =>
-        obj.SetValue(SearchBtnTextProperty, value);
     public static TextBlock GetSearchBtnText(DependencyObject obj) =>
         (TextBlock)obj.GetValue(SearchBtnTextProperty);
+    public static void SetSearchBtnText(DependencyObject obj, TextBlock value) =>
+        obj.SetValue(SearchBtnTextProperty, value);
 
-    public static void SetSearchBarActualWidth(DependencyObject obj, double value) =>
-        obj.SetValue(SearchBarActualWidthProperty, value);
     public static double GetSearchBarActualWidth(DependencyObject obj) =>
         (double)obj.GetValue(SearchBarActualWidthProperty);
+    public static void SetSearchBarActualWidth(DependencyObject obj, double value) =>
+        obj.SetValue(SearchBarActualWidthProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
     private static void OnEnableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -100,13 +100,22 @@ public static class SearchButtonBehavior
         {
             element.MouseEnter += OnMouseEnter;
             element.MouseLeave += OnMouseLeave;
+            element.Unloaded += DetachEvents;
         }
         else
         {
             element.MouseEnter -= OnMouseEnter;
             element.MouseLeave -= OnMouseLeave;
+            element.Unloaded -= DetachEvents;
+
+            SetIsClicked(element, false);
+            SetSearchBarActualWidth(element, 0.0);
         }
     }
+
+    #endregion
+
+    #region Event Handlers
 
     private static void OnMouseEnter(object sender, MouseEventArgs e)
     {
@@ -120,7 +129,7 @@ public static class SearchButtonBehavior
             FontSize = 14,
         };
 
-        HoverPopupHelper.DisplayPopup(element, PlacementMode.Bottom, popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(element, PlacementMode.Bottom, popupText);
 
         Border searchBtnBorder = GetSearchBtnBorder(element);
         Border searchBar = GetSearchBar(element);
@@ -150,6 +159,20 @@ public static class SearchButtonBehavior
 
         if (!GetIsClicked(element))
             ColorAnimations.AnimateForegroundColor(searchBtnText, searchBtnText.Foreground, Colors.DarkGray, .2);
+    }
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button element) return;
+
+        element.MouseEnter -= OnMouseEnter;
+        element.MouseLeave -= OnMouseLeave;
+        element.Unloaded -= DetachEvents;
+
+        SetIsClicked(element, false);
+        SetSearchBarActualWidth(element, 0.0);
+
+        SetEnable(element, false);
     }
 
     #endregion

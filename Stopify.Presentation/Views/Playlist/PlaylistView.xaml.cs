@@ -136,7 +136,7 @@ public partial class PlaylistView : UserControl
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play";
-        HoverPopupHelper.DisplayPopup(PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -177,7 +177,7 @@ public partial class PlaylistView : UserControl
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(ShuffleBtn, 1.03, .1);
         _popupText.Text = _isShuffling ? "Disable Shuffle for Azahriah" : "Enable Shuffle for Azahriah";
-        HoverPopupHelper.DisplayPopup(ShuffleBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(ShuffleBtn, PlacementMode.Top, _popupText);
     }
 
     private void ShuffleBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -212,7 +212,7 @@ public partial class PlaylistView : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        HoverPopupHelper.DisplayPopup(OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -233,7 +233,7 @@ public partial class PlaylistView : UserControl
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(SaveBtn, 1.04, .1);
         _popupText.Text = _isSaved ? "Remove from Your Library" : "Save to Your Library";
-        HoverPopupHelper.DisplayPopup(SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {
@@ -289,7 +289,7 @@ public partial class PlaylistView : UserControl
         DownloadBorder.BorderBrush = System.Windows.Media.Brushes.White;
         DownloadText.Foreground = System.Windows.Media.Brushes.White;
         _popupText.Text = "Download";
-        HoverPopupHelper.DisplayPopup(DownloadBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(DownloadBtn, PlacementMode.Top, _popupText);
     }
 
     private void DownloadBtn_MouseLeave(object sender, MouseEventArgs e)

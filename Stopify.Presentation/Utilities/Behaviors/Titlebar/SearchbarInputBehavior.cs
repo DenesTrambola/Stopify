@@ -44,34 +44,34 @@ public static class SearchbarInputBehavior
 
     #region Getters/Setters
 
-    public static void SetEnable(DependencyObject obj, bool value) =>
-        obj.SetValue(EnableProperty, value);
     public static bool GetEnable(DependencyObject obj) =>
         (bool)obj.GetValue(EnableProperty);
+    public static void SetEnable(DependencyObject obj, bool value) =>
+        obj.SetValue(EnableProperty, value);
 
-    public static void SetSearchbarText(DependencyObject obj, TextBlock value) =>
-        obj.SetValue(SearchbarTextProperty, value);
     public static TextBlock GetSearchbarText(DependencyObject obj) =>
         (TextBlock)obj.GetValue(SearchbarTextProperty);
+    public static void SetSearchbarText(DependencyObject obj, TextBlock value) =>
+        obj.SetValue(SearchbarTextProperty, value);
 
-    public static void SetSearchBar(DependencyObject obj, Border value) =>
-        obj.SetValue(SearchBarProperty, value);
     public static Border GetSearchBar(DependencyObject obj) =>
         (Border)obj.GetValue(SearchBarProperty);
+    public static void SetSearchBar(DependencyObject obj, Border value) =>
+        obj.SetValue(SearchBarProperty, value);
 
-    public static void SetSearchBtnBorder(DependencyObject obj, Border value) =>
-        obj.SetValue(SearchBtnBorderProperty, value);
     public static Border GetSearchBtnBorder(DependencyObject obj) =>
         (Border)obj.GetValue(SearchBtnBorderProperty);
+    public static void SetSearchBtnBorder(DependencyObject obj, Border value) =>
+        obj.SetValue(SearchBtnBorderProperty, value);
 
-    public static void SetSearchBtnText(DependencyObject obj, TextBlock value) =>
-        obj.SetValue(SearchBtnTextProperty, value);
     public static TextBlock GetSearchBtnText(DependencyObject obj) =>
         (TextBlock)obj.GetValue(SearchBtnTextProperty);
+    public static void SetSearchBtnText(DependencyObject obj, TextBlock value) =>
+        obj.SetValue(SearchBtnTextProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
     private static void OnEnableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -84,6 +84,7 @@ public static class SearchbarInputBehavior
             element.LostFocus += OnLostFocus;
             element.MouseEnter += OnMouseEnter;
             element.MouseLeave += OnMouseLeave;
+            element.Unloaded += DetachEvents;
         }
         else
         {
@@ -92,8 +93,13 @@ public static class SearchbarInputBehavior
             element.LostFocus -= OnLostFocus;
             element.MouseEnter -= OnMouseEnter;
             element.MouseLeave -= OnMouseLeave;
+            element.Unloaded -= DetachEvents;
         }
     }
+
+    #endregion
+
+    #region Event Handlers
 
     private static void OnTextChanged(object sender, TextChangedEventArgs e)
     {
@@ -159,6 +165,20 @@ public static class SearchbarInputBehavior
             ColorAnimations.AnimateBackgroundColor(searchBtnBorder, searchBar.Background, Color.FromRgb(31, 31, 31), .1);
             ColorAnimations.AnimateBackgroundColor(searchBar, searchBar.Background, Color.FromRgb(31, 31, 31), .1);
         }
+    }
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not TextBox element) return;
+
+        element.TextChanged -= OnTextChanged;
+        element.GotFocus -= OnGotFocus;
+        element.LostFocus -= OnLostFocus;
+        element.MouseEnter -= OnMouseEnter;
+        element.MouseLeave -= OnMouseLeave;
+        element.Unloaded -= DetachEvents;
+
+        SetEnable(element, false);
     }
 
     #endregion

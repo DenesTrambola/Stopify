@@ -23,19 +23,19 @@ public static class CursorBehavior
 
     #region Getters/Setters
 
-    public static void SetEnable(DependencyObject obj, bool value) =>
-        obj.SetValue(EnableProperty, value);
     public static bool GetEnable(DependencyObject obj) =>
         (bool)obj.GetValue(EnableProperty);
+    public static void SetEnable(DependencyObject obj, bool value) =>
+        obj.SetValue(EnableProperty, value);
 
-    public static void SetHoverCursor(DependencyObject obj, Cursor value) =>
-        obj.SetValue(HoverCursorProperty, value);
     public static Cursor GetHoverCursor(DependencyObject obj) =>
         (Cursor)obj.GetValue(HoverCursorProperty);
+    public static void SetHoverCursor(DependencyObject obj, Cursor value) =>
+        obj.SetValue(HoverCursorProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
     private static void OnEnableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -43,26 +43,43 @@ public static class CursorBehavior
 
         if ((bool)e.NewValue)
         {
-            element.MouseEnter += Element_MouseEnter;
-            element.MouseLeave += Element_MouseLeave;
+            element.MouseEnter += SetCursor;
+            element.MouseLeave += ResetCursor;
+            element.Unloaded += DetachEvents;
         }
         else
         {
-            element.MouseEnter -= Element_MouseEnter;
-            element.MouseLeave -= Element_MouseLeave;
+            element.MouseEnter -= SetCursor;
+            element.MouseLeave -= ResetCursor;
+            element.Unloaded -= DetachEvents;
         }
     }
 
-    private static void Element_MouseEnter(object sender, MouseEventArgs e)
+    #endregion
+
+    #region Event Handlers
+
+    private static void SetCursor(object sender, MouseEventArgs e)
     {
         if (sender is not FrameworkElement element) return;
 
         Cursor cursor = GetHoverCursor(element);
-        Mouse.OverrideCursor = cursor ?? Cursors.Hand;
+        Mouse.OverrideCursor = cursor;
     }
 
-    private static void Element_MouseLeave(object sender, MouseEventArgs e) =>
+    private static void ResetCursor(object sender, MouseEventArgs e) =>
         Mouse.OverrideCursor = Cursors.Arrow;
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement element) return;
+
+        element.MouseEnter -= SetCursor;
+        element.MouseLeave -= ResetCursor;
+        element.Unloaded -= DetachEvents;
+
+        SetEnable(element, false);
+    }
 
     #endregion
 }

@@ -81,69 +81,79 @@ public static class TitlebarSizeBehavior
 
     #region Getters/Setters
 
-    public static void SetEnableTitlebarDynamicSizing(UIElement element, bool value) =>
-        element.SetValue(EnableTitlebarDynamicSizingProperty, value);
     public static bool GetEnableTitlebarDynamicSizing(UIElement element) =>
         (bool)element.GetValue(EnableTitlebarDynamicSizingProperty);
+    public static void SetEnableTitlebarDynamicSizing(UIElement element, bool value) =>
+        element.SetValue(EnableTitlebarDynamicSizingProperty, value);
 
-    public static void SetSearchbarTextWidth(UIElement element, double value) =>
-        element.SetValue(SearchbarTextWidthProperty, value);
     public static double GetSearchbarTextWidth(UIElement element) =>
         (double)element.GetValue(SearchbarTextWidthProperty);
+    public static void SetSearchbarTextWidth(UIElement element, double value) =>
+        element.SetValue(SearchbarTextWidthProperty, value);
 
-    public static void SetSearchbarInputWidth(UIElement element, double value) =>
-        element.SetValue(SearchbarInputWidthProperty, value);
     public static double GetSearchbarInputWidth(UIElement element) =>
         (double)element.GetValue(SearchbarInputWidthProperty);
+    public static void SetSearchbarInputWidth(UIElement element, double value) =>
+        element.SetValue(SearchbarInputWidthProperty, value);
 
-    public static void SetSearchbarLineWidth(UIElement element, double value) =>
-        element.SetValue(SearchbarLineWidthProperty, value);
     public static double GetSearchbarLineWidth(UIElement element) =>
         (double)element.GetValue(SearchbarLineWidthProperty);
+    public static void SetSearchbarLineWidth(UIElement element, double value) =>
+        element.SetValue(SearchbarLineWidthProperty, value);
 
-    public static void SetSearchbarBrowseWidth(UIElement element, double value) =>
-        element.SetValue(SearchbarBrowseWidthProperty, value);
     public static double GetSearchbarBrowseWidth(UIElement element) =>
         (double)element.GetValue(SearchbarBrowseWidthProperty);
+    public static void SetSearchbarBrowseWidth(UIElement element, double value) =>
+        element.SetValue(SearchbarBrowseWidthProperty, value);
 
-    public static void SetSearchBarWidth(UIElement element, double value) =>
-        element.SetValue(SearchBarWidthProperty, value);
     public static double GetSearchBarWidth(UIElement element) =>
         (double)element.GetValue(SearchBarWidthProperty);
+    public static void SetSearchBarWidth(UIElement element, double value) =>
+        element.SetValue(SearchBarWidthProperty, value);
 
-    public static void SetSearchBtnBorderRadius(UIElement element, CornerRadius value) =>
-        element.SetValue(SearchBtnBorderRadiusProperty, value);
     public static CornerRadius GetSearchBtnBorderRadius(UIElement element) =>
         (CornerRadius)element.GetValue(SearchBtnBorderRadiusProperty);
+    public static void SetSearchBtnBorderRadius(UIElement element, CornerRadius value) =>
+        element.SetValue(SearchBtnBorderRadiusProperty, value);
 
-    public static void SetSearchbarInput(UIElement element, string value) =>
-        element.SetValue(SearchbarInputProperty, value);
     public static string GetSearchbarInput(UIElement element) =>
         (string)element.GetValue(SearchbarInputProperty);
+    public static void SetSearchbarInput(UIElement element, string value) =>
+        element.SetValue(SearchbarInputProperty, value);
 
-    public static void SetNewsBtnWidth(UIElement element, double value) =>
-        element.SetValue(NewsBtnWidthProperty, value);
     public static double GetNewsBtnWidth(UIElement element) =>
         (double)element.GetValue(NewsBtnWidthProperty);
+    public static void SetNewsBtnWidth(UIElement element, double value) =>
+        element.SetValue(NewsBtnWidthProperty, value);
 
-    public static void SetFriendActivityBtnWidth(UIElement element, double value) =>
-        element.SetValue(FriendActivityBtnWidthProperty, value);
     public static double GetFriendActivityBtnWidth(UIElement element) =>
         (double)element.GetValue(FriendActivityBtnWidthProperty);
+    public static void SetFriendActivityBtnWidth(UIElement element, double value) =>
+        element.SetValue(FriendActivityBtnWidthProperty, value);
 
     #endregion
 
-    #region Event Handlers
+    #region Property Callbacks
 
     private static void OnTitlebarSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         if (d is not UserControl element) return;
 
         if ((bool)e.NewValue)
+        {
             element.SizeChanged += OnTitlebarSizeChanged;
+            element.Unloaded += DetachEvents;
+        }
         else
+        {
             element.SizeChanged -= OnTitlebarSizeChanged;
+            element.Unloaded -= DetachEvents;
+        }
     }
+
+    #endregion
+
+    #region Event Handlers
 
     private static void OnTitlebarSizeChanged(object sender, SizeChangedEventArgs e)
     {
@@ -176,6 +186,16 @@ public static class TitlebarSizeBehavior
             SetNewsBtnWidth(element, double.NaN);
             SetFriendActivityBtnWidth(element, double.NaN);
         }
+    }
+
+    private static void DetachEvents(object sender, RoutedEventArgs e)
+    {
+        if (sender is not UserControl element) return;
+
+        element.SizeChanged -= OnTitlebarSizeChanged;
+        element.Unloaded -= DetachEvents;
+
+        SetEnableTitlebarDynamicSizing(element, false);
     }
 
     #endregion

@@ -58,7 +58,7 @@ public partial class QueueItem : UserControl
     {
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .05);
         _popupText.Text = "Play Hope from Lucid Keys";
-        HoverPopupHelper.DisplayPopup(PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -142,7 +142,7 @@ public partial class QueueItem : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        HoverPopupHelper.DisplayPopup(OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopup_Deprecated(OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
