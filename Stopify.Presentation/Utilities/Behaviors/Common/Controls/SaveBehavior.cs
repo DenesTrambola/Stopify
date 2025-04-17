@@ -150,7 +150,7 @@ public static class SaveBehavior
 
         string saveTo = GetSaveTo(element);
         bool isSaved = GetIsSaved(element);
-        HoverPopupHelper.DisplayPopup(element, PlacementMode.Top, isSaved
+        HoverPopupHelper.DisplayPopupText(element, PlacementMode.Top, isSaved
             ? $"Remove from {saveTo}"
             : $"Save to {saveTo}");
 

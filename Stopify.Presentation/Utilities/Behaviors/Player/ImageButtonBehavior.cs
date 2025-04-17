@@ -95,7 +95,7 @@ public static class ImageButtonBehavior
             SetNowPlayingBtnContent(element, "\uf107");
         }
 
-        HoverPopupHelper.DisplayPopup(element, PlacementMode.Top);
+        HoverPopupHelper.DisplayPopupText(element, PlacementMode.Top);
     }
 
     private static void OnMouseLeave(object sender, MouseEventArgs e)

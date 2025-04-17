@@ -93,7 +93,7 @@ public partial class CommonItem : UserControl
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play Azahriah";
-        HoverPopupHelper.DisplayPopup_Deprecated(PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e)

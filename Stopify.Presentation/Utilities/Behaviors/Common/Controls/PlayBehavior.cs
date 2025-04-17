@@ -126,7 +126,7 @@ public static class PlayBehavior
     #region Methods
 
     private static void DisplayHoverPopup(Button element) =>
-        HoverPopupHelper.DisplayPopup(element, PlacementMode.Top, GetIsPlaying(element) ? "Pause" : "Play");
+        HoverPopupHelper.DisplayPopupText(element, PlacementMode.Top, GetIsPlaying(element) ? "Pause" : "Play");
 
     private static void UpdatePlayIcon(Button element) =>
         SetPlayIcon(element, GetIsPlaying(element) ? "\uf04c" : "\uf04b");

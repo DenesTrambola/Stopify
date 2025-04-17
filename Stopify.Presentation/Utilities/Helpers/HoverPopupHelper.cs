@@ -25,7 +25,7 @@ public static class HoverPopupHelper
         set => _popupTextBlock.Text = value;
     }
 
-    public static void DisplayPopup_Deprecated(FrameworkElement element, PlacementMode placement, params TextBlock[] texts)
+    public static void DisplayPopupTextBlock(FrameworkElement element, PlacementMode placement, params TextBlock[] texts)
     {
         var popup = _mainView.BtnPopup;
 
@@ -39,7 +39,7 @@ public static class HoverPopupHelper
         popup.IsOpen = true;
     }
 
-    public static void DisplayPopup(FrameworkElement element, PlacementMode placement, params string[] texts)
+    public static void DisplayPopupText(FrameworkElement element, PlacementMode placement, params string[] texts)
     {
         Popup popup = _mainView.BtnPopup;
 

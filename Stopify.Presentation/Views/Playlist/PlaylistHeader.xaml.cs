@@ -200,7 +200,7 @@ public partial class PlaylistHeader : UserControl
     private void DurationBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.White, .05);
-        HoverPopupHelper.DisplayPopup_Deprecated(DurationBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(DurationBtn, PlacementMode.Top, _popupText);
     }
 
     private void DurationBtn_MouseLeave(object sender, MouseEventArgs e)

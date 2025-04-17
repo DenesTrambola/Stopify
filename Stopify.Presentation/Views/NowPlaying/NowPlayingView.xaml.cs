@@ -102,7 +102,7 @@ public partial class NowPlayingView : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        HoverPopupHelper.DisplayPopup_Deprecated(OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -124,7 +124,7 @@ public partial class NowPlayingView : UserControl
         ColorAnimations.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(31, 31, 31), .1);
         ColorAnimations.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.LightGray, .1);
         _popupText.Text = "Close";
-        HoverPopupHelper.DisplayPopup_Deprecated(CloseBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(CloseBtn, PlacementMode.Top, _popupText);
     }
 
     private void CloseBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -218,7 +218,7 @@ public partial class NowPlayingView : UserControl
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(SaveBtn, 1.03, .1);
         _popupText.Text = _isSaved ? "Remove from Liked Songs" : "Save to Liked Songs";
-        HoverPopupHelper.DisplayPopup_Deprecated(SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {

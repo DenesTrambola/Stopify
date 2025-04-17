@@ -103,7 +103,7 @@ public partial class PlaylistItem : UserControl
     private void PlayBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         _popupText.Text = _isPlaying ? "Pause" : "Play Cry Me A River by Azahriah";
-        HoverPopupHelper.DisplayPopup_Deprecated(PlayBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(PlayBtn, PlacementMode.Top, _popupText);
     }
 
     private void PlayBtn_MouseLeave(object sender, MouseEventArgs e) =>
@@ -203,7 +203,7 @@ public partial class PlaylistItem : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         _popupText.Text = _isSaved ? "Remove from Liked Songs" : "Save to Liked Songs";
-        HoverPopupHelper.DisplayPopup_Deprecated(SaveBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(SaveBtn, PlacementMode.Top, _popupText);
 
         if (!_isSaved)
         {
@@ -259,7 +259,7 @@ public partial class PlaylistItem : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Cry Me A River";
-        HoverPopupHelper.DisplayPopup_Deprecated(OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)

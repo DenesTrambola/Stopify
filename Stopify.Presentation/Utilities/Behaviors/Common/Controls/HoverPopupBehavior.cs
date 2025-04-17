@@ -78,7 +78,7 @@ public static class HoverPopupBehavior
     {
         if (sender is not FrameworkElement element) return;
 
-        HoverPopupHelper.DisplayPopup(element, GetPlacement(element), GetPopupText(element));
+        HoverPopupHelper.DisplayPopupText(element, GetPlacement(element), GetPopupText(element));
     }
 
     private static void HideHoverPopup(object sender, System.Windows.Input.MouseEventArgs e)

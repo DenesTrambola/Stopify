@@ -100,7 +100,7 @@ public partial class ArtistView : UserControl
         Mouse.OverrideCursor = Cursors.Hand;
 
         if (sender is FrameworkElement element)
-            HoverPopupHelper.DisplayPopup_Deprecated(element, PlacementMode.Top, _popupText);
+            HoverPopupHelper.DisplayPopupTextBlock(element, PlacementMode.Top, _popupText);
 
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
         ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
@@ -162,7 +162,7 @@ public partial class ArtistView : UserControl
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(ShuffleBtn, 1.03, .1);
         _popupText.Text = _isShuffling ? "Disable Shuffle for Azahriah" : "Enable Shuffle for Azahriah";
-        HoverPopupHelper.DisplayPopup_Deprecated(ShuffleBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(ShuffleBtn, PlacementMode.Top, _popupText);
     }
 
     private void ShuffleBtn_MouseLeave(object sender, MouseEventArgs e)
@@ -228,7 +228,7 @@ public partial class ArtistView : UserControl
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
         ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
-        HoverPopupHelper.DisplayPopup_Deprecated(OptionsBtn, PlacementMode.Top, _popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(OptionsBtn, PlacementMode.Top, _popupText);
     }
 
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)

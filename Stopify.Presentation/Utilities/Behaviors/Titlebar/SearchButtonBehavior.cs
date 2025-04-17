@@ -129,7 +129,7 @@ public static class SearchButtonBehavior
             FontSize = 14,
         };
 
-        HoverPopupHelper.DisplayPopup_Deprecated(element, PlacementMode.Bottom, popupText);
+        HoverPopupHelper.DisplayPopupTextBlock(element, PlacementMode.Bottom, popupText);
 
         Border searchBtnBorder = GetSearchBtnBorder(element);
         Border searchBar = GetSearchBar(element);

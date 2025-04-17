@@ -183,7 +183,7 @@ public static class ToggleButtonStateBehavior
         UpdatePopupText(hoverPopupText, defaultHoverPopupText);
 
         if (!hoverPopupText.IsNullOrEmpty() || !defaultHoverPopupText.IsNullOrEmpty())
-            HoverPopupHelper.DisplayPopup(element, PlacementMode.Top);
+            HoverPopupHelper.DisplayPopupText(element, PlacementMode.Top);
     }
 
     private static void OnMouseLeave(object sender, MouseEventArgs e)

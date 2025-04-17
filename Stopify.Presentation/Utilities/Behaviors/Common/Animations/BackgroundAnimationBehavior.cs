@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace Stopify.Presentation.Utilities.Behaviors.Common.Animations;
 
-public static class BackroundAnimationBehavior
+public static class BackgroundAnimationBehavior
 {
     #region Dependency Properties
 
@@ -13,28 +13,28 @@ public static class BackroundAnimationBehavior
         DependencyProperty.RegisterAttached(
             "EnableOnHover",
             typeof(bool),
-            typeof(BackroundAnimationBehavior),
+            typeof(BackgroundAnimationBehavior),
             new PropertyMetadata(false, OnEnableOnHoverChanged));
 
     public static readonly DependencyProperty InColorProperty =
         DependencyProperty.RegisterAttached(
             "InColor",
             typeof(Color),
-            typeof(BackroundAnimationBehavior),
+            typeof(BackgroundAnimationBehavior),
             new PropertyMetadata(Colors.Transparent));
 
     public static readonly DependencyProperty OutColorProperty =
         DependencyProperty.RegisterAttached(
             "OutColor",
             typeof(Color),
-            typeof(BackroundAnimationBehavior),
+            typeof(BackgroundAnimationBehavior),
             new PropertyMetadata(Colors.Transparent));
 
     public static readonly DependencyProperty DurationProperty =
         DependencyProperty.RegisterAttached(
             "Duration",
             typeof(double),
-            typeof(BackroundAnimationBehavior),
+            typeof(BackgroundAnimationBehavior),
             new PropertyMetadata(0.0));
 
     #endregion
