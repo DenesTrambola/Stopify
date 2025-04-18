@@ -103,11 +103,11 @@ public partial class ArtistView : UserControl
             HoverPopupHelper.DisplayPopupTextBlock(element, PlacementMode.Top, _popupText);
 
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
-        ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play";
 
         ScaleAnimations.BeginScaleAnimation(PlayBtnHeader, 1.03, .1);
-        ColorAnimations.AnimateBackgroundColor(PlayBorderHeader, PlayBorderHeader.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PlayBorderHeader, PlayBorderHeader.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play";
     }
 
@@ -118,10 +118,10 @@ public partial class ArtistView : UserControl
 
 
         ScaleAnimations.ResetScaleAnimation(PlayBtn, .1);
-        ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
 
         ScaleAnimations.ResetScaleAnimation(PlayBtnHeader, .1);
-        ColorAnimations.AnimateBackgroundColor(PlayBorderHeader, PlayBorderHeader.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PlayBorderHeader, PlayBorderHeader.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
     }
 
     private void PlayBtn_Click(object sender, RoutedEventArgs e)
@@ -176,13 +176,13 @@ public partial class ArtistView : UserControl
     {
         if (_isShuffling)
         {
-            ColorAnimations.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, Colors.DarkGray, .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, Colors.DarkGray, .1);
             _popupText.Text = "Enable Shuffle for Azahriah";
             _isShuffling = false;
         }
         else
         {
-            ColorAnimations.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
             _popupText.Text = "Disable Shuffle for Azahriah";
             _isShuffling = true;
         }
@@ -226,7 +226,7 @@ public partial class ArtistView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
-        ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
         HoverPopupHelper.DisplayPopupTextBlock(OptionsBtn, PlacementMode.Top, _popupText);
     }
@@ -235,7 +235,7 @@ public partial class ArtistView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
-        ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
         HoverPopupHelper.HidePopup();
     }
 
@@ -250,7 +250,7 @@ public partial class ArtistView : UserControl
             return;
 
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(button, button.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(button, button.Foreground, Colors.White, .1);
         ScaleAnimations.BeginScaleAnimation(button, 1.01, .1);
     }
 
@@ -260,7 +260,7 @@ public partial class ArtistView : UserControl
             return;
 
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateForegroundColor(button, button.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(button, button.Foreground, Colors.DarkGray, .1);
         ScaleAnimations.ResetScaleAnimation(button, .1);
     }
 
@@ -295,27 +295,27 @@ public partial class ArtistView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         if (_discographyFilterValue != 0)
-            ColorAnimations.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(51, 51, 51), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(51, 51, 51), .1);
     }
 
     private void PopularBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         if (_discographyFilterValue != 0)
-            ColorAnimations.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 
     private void PopularBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.Black, .1);
-        ColorAnimations.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.Black, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, Colors.White, .1);
 
         _discographyFilterValue = 0;
 
-        ColorAnimations.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 
 
@@ -325,27 +325,27 @@ public partial class ArtistView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         if (_discographyFilterValue != 1)
-            ColorAnimations.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(51, 51, 51), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(51, 51, 51), .1);
     }
 
     private void AlbumsBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         if (_discographyFilterValue != 1)
-            ColorAnimations.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 
     private void AlbumsBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.Black, .1);
-        ColorAnimations.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.Black, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, Colors.White, .1);
 
         _discographyFilterValue = 1;
 
-        ColorAnimations.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 
 
@@ -355,26 +355,26 @@ public partial class ArtistView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         if (_discographyFilterValue != 2)
-            ColorAnimations.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(51, 51, 51), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(51, 51, 51), .1);
     }
 
     private void SinglesBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         if (_discographyFilterValue != 2)
-            ColorAnimations.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 
     private void SinglesBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.Black, .1);
-        ColorAnimations.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.Black, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, Colors.White, .1);
 
         _discographyFilterValue = 2;
 
-        ColorAnimations.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 }

@@ -65,10 +65,10 @@ public partial class PlaylistHeader : UserControl
     // Title/Artist
 
     private void TitleBtn_MouseEnter(object sender, MouseEventArgs e) =>
-        ColorAnimations.AnimateForegroundColor(TitleText, TitleText.Foreground, Colors.White, .05);
+        ColorAnimations_Deprecated.AnimateForegroundColor(TitleText, TitleText.Foreground, Colors.White, .05);
 
     private void TitleBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        ColorAnimations.AnimateForegroundColor(TitleText, TitleText.Foreground, Colors.DarkGray, .05);
+        ColorAnimations_Deprecated.AnimateForegroundColor(TitleText, TitleText.Foreground, Colors.DarkGray, .05);
 
     private void TitleBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -116,10 +116,10 @@ public partial class PlaylistHeader : UserControl
     // Album
 
     private void AlbumBtn_MouseEnter(object sender, MouseEventArgs e) =>
-        ColorAnimations.AnimateForegroundColor(AlbumText, TitleText.Foreground, Colors.White, .05);
+        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumText, TitleText.Foreground, Colors.White, .05);
 
     private void AlbumBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        ColorAnimations.AnimateForegroundColor(AlbumText, TitleText.Foreground, Colors.DarkGray, .05);
+        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumText, TitleText.Foreground, Colors.DarkGray, .05);
 
     private void AlbumBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -157,10 +157,10 @@ public partial class PlaylistHeader : UserControl
     // Date
 
     private void DateBtn_MouseEnter(object sender, MouseEventArgs e) =>
-        ColorAnimations.AnimateForegroundColor(DateText, TitleText.Foreground, Colors.White, .05);
+        ColorAnimations_Deprecated.AnimateForegroundColor(DateText, TitleText.Foreground, Colors.White, .05);
 
     private void DateBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        ColorAnimations.AnimateForegroundColor(DateText, TitleText.Foreground, Colors.DarkGray, .05);
+        ColorAnimations_Deprecated.AnimateForegroundColor(DateText, TitleText.Foreground, Colors.DarkGray, .05);
 
     private void DateBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -199,7 +199,7 @@ public partial class PlaylistHeader : UserControl
 
     private void DurationBtn_MouseEnter(object sender, MouseEventArgs e)
     {
-        ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.White, .05);
+        ColorAnimations_Deprecated.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.White, .05);
         HoverPopupHelper.DisplayPopupTextBlock(DurationBtn, PlacementMode.Top, _popupText);
     }
 
@@ -207,7 +207,7 @@ public partial class PlaylistHeader : UserControl
     {
         MainView mainWindow = (MainView)Application.Current.MainWindow;
 
-        ColorAnimations.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.DarkGray, .05);
+        ColorAnimations_Deprecated.AnimateForegroundColor(DurationText, TitleText.Foreground, Colors.DarkGray, .05);
         HoverPopupHelper.HidePopup();
     }
 

@@ -40,14 +40,14 @@ public partial class CommonRow : UserControl
     private void ShowAllBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(ShowAllBtn, ShowAllBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(ShowAllBtn, ShowAllBtn.Foreground, Colors.White, .1);
         ScaleAnimations.BeginScaleAnimation(ShowAllBtn, 1.01, .1);
     }
 
     private void ShowAllBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateForegroundColor(ShowAllBtn, ShowAllBtn.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(ShowAllBtn, ShowAllBtn.Foreground, Colors.DarkGray, .1);
         ScaleAnimations.ResetScaleAnimation(ShowAllBtn, .1);
     }
 

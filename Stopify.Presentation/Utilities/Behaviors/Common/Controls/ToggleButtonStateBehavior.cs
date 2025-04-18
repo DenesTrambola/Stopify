@@ -178,7 +178,7 @@ public static class ToggleButtonStateBehavior
         string defaultHoverPopupText = GetDefaultHoverPopupText(element);
 
         if (mouseEnterColor is not null && stateInfos[currentState].ChangeColorOnHover)
-            ColorAnimations.AnimateForegroundColor(element, element.Foreground, (Color)mouseEnterColor, .1);
+            ColorAnimations.AnimateForeground(element, (Color)mouseEnterColor, .1);
 
         UpdatePopupText(hoverPopupText, defaultHoverPopupText);
 
@@ -196,7 +196,7 @@ public static class ToggleButtonStateBehavior
         string hoverPopupText = stateInfos[currentState].HoverPopupText;
 
         if (mouseLeaveColor is not null && stateInfos[currentState].ChangeColorOnHover)
-            ColorAnimations.AnimateForegroundColor(element, element.Foreground, (Color)mouseLeaveColor, .1);
+            ColorAnimations.AnimateForeground(element, (Color)mouseLeaveColor, .1);
 
         HoverPopupHelper.HidePopup();
     }
@@ -255,9 +255,9 @@ public static class ToggleButtonStateBehavior
         object dependentValue = GetStateDependentValue(element);
 
         if (element.IsMouseOver && stateInfos[currentState].ChangeColorOnHover && mouseEnterColor is not null)
-            ColorAnimations.AnimateForegroundColor(element, element.Foreground, (Color)mouseEnterColor, .1);
+            ColorAnimations.AnimateForeground(element, (Color)mouseEnterColor, .1);
         else if (stateColor is not null)
-            ColorAnimations.AnimateForegroundColor(element, element.Foreground, (Color)stateColor, .1);
+            ColorAnimations.AnimateForeground(element, (Color)stateColor, .1);
 
         UpdateDependentElement(stateInfos, currentState, dependentElement);
     }

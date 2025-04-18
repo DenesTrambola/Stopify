@@ -100,7 +100,7 @@ public partial class NowPlayingView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
-        ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
         HoverPopupHelper.DisplayPopupTextBlock(OptionsBtn, PlacementMode.Top, _popupText);
     }
@@ -109,7 +109,7 @@ public partial class NowPlayingView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
-        ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
         HoverPopupHelper.HidePopup();
     }
 
@@ -121,8 +121,8 @@ public partial class NowPlayingView : UserControl
     private void CloseBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(31, 31, 31), .1);
-        ColorAnimations.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.LightGray, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(31, 31, 31), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.LightGray, .1);
         _popupText.Text = "Close";
         HoverPopupHelper.DisplayPopupTextBlock(CloseBtn, PlacementMode.Top, _popupText);
     }
@@ -130,8 +130,8 @@ public partial class NowPlayingView : UserControl
     private void CloseBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(18, 18, 18), .1);
-        ColorAnimations.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(18, 18, 18), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.DarkGray, .1);
         HoverPopupHelper.HidePopup();
     }
 

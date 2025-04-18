@@ -30,7 +30,7 @@ public partial class CommonItem : UserControl
     private void GeneralItemBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateBackgroundColor(GeneralItemBorder, GeneralItemBorder.Background, Color.FromRgb(31, 31, 31), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(GeneralItemBorder, GeneralItemBorder.Background, Color.FromRgb(31, 31, 31), .1);
 
         var moveUpAnimation = new DoubleAnimation
         {
@@ -56,7 +56,7 @@ public partial class CommonItem : UserControl
     private void GeneralItemBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateBackgroundColor(GeneralItemBorder, GeneralItemBorder.Background, Color.FromRgb(18, 18, 18), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(GeneralItemBorder, GeneralItemBorder.Background, Color.FromRgb(18, 18, 18), .1);
 
         var moveDownAnimation = new DoubleAnimation
         {
@@ -91,7 +91,7 @@ public partial class CommonItem : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
-        ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play Azahriah";
         HoverPopupHelper.DisplayPopupTextBlock(PlayBtn, PlacementMode.Top, _popupText);
     }
@@ -100,7 +100,7 @@ public partial class CommonItem : UserControl
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(PlayBtn, .1);
-        ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
         HoverPopupHelper.HidePopup();
     }
 

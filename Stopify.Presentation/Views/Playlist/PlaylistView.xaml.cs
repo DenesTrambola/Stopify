@@ -134,7 +134,7 @@ public partial class PlaylistView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(PlayBtn, 1.03, .1);
-        ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(59, 228, 119), .1);
         _popupText.Text = _isPlaying ? "Pause" : "Play";
         HoverPopupHelper.DisplayPopupTextBlock(PlayBtn, PlacementMode.Top, _popupText);
     }
@@ -145,7 +145,7 @@ public partial class PlaylistView : UserControl
 
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(PlayBtn, .1);
-        ColorAnimations.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(PlayBorder, PlayBorder.Background, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
         HoverPopupHelper.HidePopup();
     }
 
@@ -191,13 +191,13 @@ public partial class PlaylistView : UserControl
     {
         if (_isShuffling)
         {
-            ColorAnimations.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, Colors.DarkGray, .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, Colors.DarkGray, .1);
             _popupText.Text = "Enable Shuffle for Azahriah";
             _isShuffling = false;
         }
         else
         {
-            ColorAnimations.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(ShuffleBtn, ShuffleBtn.Foreground, System.Windows.Media.Color.FromRgb(30, 215, 96), .1);
             _popupText.Text = "Disable Shuffle for Azahriah";
             _isShuffling = true;
         }
@@ -210,7 +210,7 @@ public partial class PlaylistView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
-        ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
         HoverPopupHelper.DisplayPopupTextBlock(OptionsBtn, PlacementMode.Top, _popupText);
     }
@@ -219,7 +219,7 @@ public partial class PlaylistView : UserControl
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
-        ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
         HoverPopupHelper.HidePopup();
     }
 
@@ -313,8 +313,8 @@ public partial class PlaylistView : UserControl
         else
         {
             Mouse.OverrideCursor = Cursors.Hand;
-            ColorAnimations.AnimateBackgroundColor(SearchBorder, SearchBorder.Background, System.Windows.Media.Color.FromArgb(50, 18, 18, 18), .1);
-            ColorAnimations.AnimateForegroundColor(SearchText, SearchText.Foreground, Colors.LightGray, .2);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(SearchBorder, SearchBorder.Background, System.Windows.Media.Color.FromArgb(50, 18, 18, 18), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(SearchText, SearchText.Foreground, Colors.LightGray, .2);
         }
     }
 
@@ -323,8 +323,8 @@ public partial class PlaylistView : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         if (!_isSearching)
         {
-            ColorAnimations.AnimateBackgroundColor(SearchBorder, SearchBorder.Background, System.Windows.Media.Color.FromArgb(0, 18, 18, 18), .1);
-            ColorAnimations.AnimateForegroundColor(SearchText, SearchText.Foreground, Colors.DarkGray, .2);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(SearchBorder, SearchBorder.Background, System.Windows.Media.Color.FromArgb(0, 18, 18, 18), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(SearchText, SearchText.Foreground, Colors.DarkGray, .2);
         }
     }
 
@@ -370,16 +370,16 @@ public partial class PlaylistView : UserControl
     private void CustomOrderBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(CustomOrderFilterIcon, CustomOrderFilterIcon.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateForegroundColor(CustomOrderFilterText, CustomOrderFilterText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CustomOrderFilterIcon, CustomOrderFilterIcon.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CustomOrderFilterText, CustomOrderFilterText.Foreground, Colors.White, .1);
         ScaleAnimations.BeginScaleAnimation(CustomOrderBtn, 1.02, .1);
     }
 
     private void CustomOrderBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateForegroundColor(CustomOrderFilterIcon, CustomOrderFilterIcon.Foreground, Colors.DarkGray, .1);
-        ColorAnimations.AnimateForegroundColor(CustomOrderFilterText, CustomOrderFilterText.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CustomOrderFilterIcon, CustomOrderFilterIcon.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CustomOrderFilterText, CustomOrderFilterText.Foreground, Colors.DarkGray, .1);
         ScaleAnimations.ResetScaleAnimation(CustomOrderBtn, .1);
     }
 
@@ -400,14 +400,14 @@ public partial class PlaylistView : UserControl
     private void RefreshBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(RefreshBtn, RefreshBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(RefreshBtn, RefreshBtn.Foreground, Colors.White, .1);
         ScaleAnimations.BeginScaleAnimation(RefreshBtn, 1.03, .1);
     }
 
     private void RefreshBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateForegroundColor(RefreshBtn, RefreshBtn.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(RefreshBtn, RefreshBtn.Foreground, Colors.DarkGray, .1);
         ScaleAnimations.ResetScaleAnimation(RefreshBtn, .1);
     }
 

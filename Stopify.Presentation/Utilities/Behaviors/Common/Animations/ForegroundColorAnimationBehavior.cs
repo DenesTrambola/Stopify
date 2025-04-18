@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace Stopify.Presentation.Utilities.Behaviors.Common.Animations;
 
-public static class ForegroundAnimationBehavior
+public static class ForegroundColorAnimationBehavior
 {
     #region Dependency Properties
 
@@ -13,42 +13,42 @@ public static class ForegroundAnimationBehavior
         DependencyProperty.RegisterAttached(
             "EnableOnHover",
             typeof(bool),
-            typeof(ForegroundAnimationBehavior),
+            typeof(ForegroundColorAnimationBehavior),
             new PropertyMetadata(false, OnEnableOnHoverChanged));
 
     public static readonly DependencyProperty EnableOnFocusProperty =
         DependencyProperty.RegisterAttached(
             "EnableOnFocus",
             typeof(bool),
-            typeof(ForegroundAnimationBehavior),
+            typeof(ForegroundColorAnimationBehavior),
             new PropertyMetadata(false, OnEnableOnFocusChanged));
 
     public static readonly DependencyProperty IsClickedProperty =
         DependencyProperty.RegisterAttached(
             "IsClicked",
             typeof(bool),
-            typeof(ForegroundAnimationBehavior),
+            typeof(ForegroundColorAnimationBehavior),
             new PropertyMetadata(false));
 
     public static readonly DependencyProperty InColorProperty =
         DependencyProperty.RegisterAttached(
             "InColor",
             typeof(Color),
-            typeof(ForegroundAnimationBehavior),
+            typeof(ForegroundColorAnimationBehavior),
             new PropertyMetadata(Colors.Transparent));
 
     public static readonly DependencyProperty OutColorProperty =
         DependencyProperty.RegisterAttached(
             "OutColor",
             typeof(Color),
-            typeof(ForegroundAnimationBehavior),
+            typeof(ForegroundColorAnimationBehavior),
             new PropertyMetadata(Colors.Transparent));
 
     public static readonly DependencyProperty DurationProperty =
         DependencyProperty.RegisterAttached(
             "Duration",
             typeof(double),
-            typeof(ForegroundAnimationBehavior),
+            typeof(ForegroundColorAnimationBehavior),
             new PropertyMetadata(0.0));
 
     #endregion
@@ -91,7 +91,7 @@ public static class ForegroundAnimationBehavior
 
     private static void OnEnableOnHoverChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not Button element) return;
+        if (d is not Control element) return;
 
         if ((bool)e.NewValue)
         {
@@ -109,7 +109,7 @@ public static class ForegroundAnimationBehavior
 
     private static void OnEnableOnFocusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not Button element) return;
+        if (d is not Control element) return;
 
         if ((bool)e.NewValue)
         {
@@ -129,7 +129,7 @@ public static class ForegroundAnimationBehavior
 
     private static void AnimateInIfNotClicked(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button element) return;
+        if (sender is not Control element) return;
 
         if (!GetIsClicked(element))
             ExecuteAnimateIn(element);
@@ -137,7 +137,7 @@ public static class ForegroundAnimationBehavior
 
     private static void AnimateOutIfNotClicked(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button element) return;
+        if (sender is not Control element) return;
 
         if (!GetIsClicked(element))
             ExecuteAnimateOut(element);
@@ -145,21 +145,21 @@ public static class ForegroundAnimationBehavior
 
     private static void AnimateIn(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button element) return;
+        if (sender is not Control element) return;
 
         ExecuteAnimateIn(element);
     }
 
     private static void AnimateOut(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button element) return;
+        if (sender is not Control element) return;
 
         ExecuteAnimateOut(element);
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button element) return;
+        if (sender is not Control element) return;
 
         element.MouseEnter -= AnimateInIfNotClicked;
         element.MouseLeave -= AnimateOutIfNotClicked;
@@ -173,11 +173,11 @@ public static class ForegroundAnimationBehavior
 
     #region Methods
 
-    private static void ExecuteAnimateIn(Button element) =>
-        ColorAnimations.AnimateForegroundColor(element, element.Foreground, GetInColor(element), GetDuration(element));
+    private static void ExecuteAnimateIn(Control element) =>
+        ColorAnimations.AnimateForeground(element, GetInColor(element), GetDuration(element));
 
-    private static void ExecuteAnimateOut(Button element) =>
-        ColorAnimations.AnimateForegroundColor(element, element.Foreground, GetOutColor(element), GetDuration(element));
+    private static void ExecuteAnimateOut(Control element) =>
+        ColorAnimations.AnimateForeground(element, GetOutColor(element), GetDuration(element));
 
     #endregion
 }

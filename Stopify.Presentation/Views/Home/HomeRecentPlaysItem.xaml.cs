@@ -35,14 +35,14 @@ public partial class HomeRecentPlaysItem : UserControl
     private void RecentBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateBackgroundColor(RecentBorder, RecentBorder.Background, Color.FromArgb(100, 73, 78, 78), .05);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(RecentBorder, RecentBorder.Background, Color.FromArgb(100, 73, 78, 78), .05);
         PlayBtn.Visibility = Visibility.Visible;
     }
 
     private void RecentBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateBackgroundColor(RecentBorder, RecentBorder.Background, Color.FromArgb(200, 73, 78, 78), .05);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(RecentBorder, RecentBorder.Background, Color.FromArgb(200, 73, 78, 78), .05);
         PlayBtn.Visibility = Visibility.Hidden;
     }
 

@@ -39,9 +39,9 @@ public static class NavigationButtonBehavior
         element.Unloaded -= DetachEvents;
 
         if ((bool?)e.NewValue == true)
-            ColorAnimations.AnimateForegroundColor(element, element.Foreground, Colors.DarkGray, .02);
+            ColorAnimations.AnimateForeground(element, Colors.DarkGray, .02);
         else if ((bool?)e.NewValue == false)
-            ColorAnimations.AnimateForegroundColor(element, element.Foreground, Color.FromRgb(50, 50, 50), .02);
+            ColorAnimations.AnimateForeground(element, Color.FromRgb(50, 50, 50), .02);
 
         element.MouseEnter += SetCursor;
         element.MouseLeave += ResetCursor;

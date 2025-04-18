@@ -30,24 +30,24 @@ public partial class QueueItem : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         if (!ItemBtn.IsFocused)
-            ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(31, 31, 31), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(31, 31, 31), .1);
     }
 
     private void ItemBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         if (!ItemBtn.IsFocused)
-            ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(18, 18, 18), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(18, 18, 18), .1);
     }
 
     private void ItemBtn_Click(object sender, RoutedEventArgs e) =>
         ItemBtn.Focus();
 
     private void ItemBtn_GotFocus(object sender, RoutedEventArgs e) =>
-        ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(42, 42, 42), .05);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(42, 42, 42), .05);
 
     private void ItemBtn_LostFocus(object sender, RoutedEventArgs e) =>
-        ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(18, 18, 18), .05);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(18, 18, 18), .05);
 
     private void ItemBtn_MouseDoubleClick(object sender, MouseButtonEventArgs e) { }
 
@@ -140,7 +140,7 @@ public partial class QueueItem : UserControl
     private void OptionsBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         ScaleAnimations.BeginScaleAnimation(OptionsBtn, 1.03, .1);
-        ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.White, .1);
         _popupText.Text = "More options for Azahriah";
         HoverPopupHelper.DisplayPopupTextBlock(OptionsBtn, PlacementMode.Top, _popupText);
     }
@@ -148,7 +148,7 @@ public partial class QueueItem : UserControl
     private void OptionsBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         ScaleAnimations.ResetScaleAnimation(OptionsBtn, .1);
-        ColorAnimations.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(OptionsBtn, OptionsBtn.Foreground, Colors.DarkGray, .1);
         HoverPopupHelper.HidePopup();
     }
 

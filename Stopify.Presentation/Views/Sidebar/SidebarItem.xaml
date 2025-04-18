@@ -36,10 +36,10 @@
         <Border
             Name="ItemBorder"
             Padding="7"
-            AnimationBehaviors:BackgroundAnimationBehavior.Duration="0.1"
-            AnimationBehaviors:BackgroundAnimationBehavior.EnableOnHover="True"
-            AnimationBehaviors:BackgroundAnimationBehavior.InColor="#1f1f1f"
-            AnimationBehaviors:BackgroundAnimationBehavior.OutColor="#121212"
+            AnimationBehaviors:BackgroundColorAnimationBehavior.Duration="0.1"
+            AnimationBehaviors:BackgroundColorAnimationBehavior.EnableOnHover="True"
+            AnimationBehaviors:BackgroundColorAnimationBehavior.InColor="#1f1f1f"
+            AnimationBehaviors:BackgroundColorAnimationBehavior.OutColor="#121212"
             Background="#121212"
             CornerRadius="7">
 

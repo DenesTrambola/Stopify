@@ -120,7 +120,7 @@ public class PageSwitchBehavior
         {
             if (!GetEnable(element)) return;
 
-            ForegroundAnimationBehavior.SetIsClicked(element, true);
+            ForegroundColorAnimationBehavior.SetIsClicked(element, true);
             ApplyForegroundAnimation(element, Colors.White);
 
             SearchButtonBehavior.SetIsClicked(SearchBtn, false);
@@ -133,7 +133,7 @@ public class PageSwitchBehavior
             SearchButtonBehavior.SetIsClicked(element, true);
             ApplyForegroundAnimation(SearchIcon, Colors.White);
 
-            ForegroundAnimationBehavior.SetIsClicked(HomeBtn, false);
+            ForegroundColorAnimationBehavior.SetIsClicked(HomeBtn, false);
             ApplyForegroundAnimation(HomeBtn, Colors.DarkGray);
         }
     }
@@ -153,10 +153,10 @@ public class PageSwitchBehavior
     #region Methods
 
     private static void ApplyForegroundAnimation(Button element, Color targetColor) =>
-        ColorAnimations.AnimateForegroundColor(element, element.Foreground, targetColor, 0.2);
+        ColorAnimations.AnimateForeground(element, targetColor, 0.2);
 
     private static void ApplyForegroundAnimation(TextBlock element, Color targetColor) =>
-        ColorAnimations.AnimateForegroundColor(element, element.Foreground, targetColor, 0.2);
+        ColorAnimations.AnimateForeground(element, targetColor, 0.2);
 
     #endregion
 }

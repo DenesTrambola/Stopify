@@ -38,7 +38,7 @@ public partial class SidebarItem : UserControl
         MainView mainView = (MainView)Application.Current.MainWindow;
 
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(31, 31, 31), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(31, 31, 31), .1);
 
         if (mainView.SidebarCollapsed == true)
         {
@@ -69,7 +69,7 @@ public partial class SidebarItem : UserControl
         MainView mainView = (MainView)Application.Current.MainWindow;
 
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(18, 18, 18), .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(ItemBorder, ItemBorder.Background, Color.FromRgb(18, 18, 18), .1);
 
         if (mainView.SidebarCollapsed == true)
             HoverPopupHelper.HidePopup();

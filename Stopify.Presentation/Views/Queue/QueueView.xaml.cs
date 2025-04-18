@@ -26,21 +26,21 @@ public partial class QueueView : UserControl
     private void QueueBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(QueueBtn, QueueBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(QueueBtn, QueueBtn.Foreground, Colors.White, .1);
     }
 
     private void QueueBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         if (_queueValue != 0)
-            ColorAnimations.AnimateForegroundColor(QueueBtn, QueueBtn.Foreground, Colors.DarkGray, .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(QueueBtn, QueueBtn.Foreground, Colors.DarkGray, .1);
     }
 
     private void QueueBtn_Click(object sender, RoutedEventArgs e)
     {
         QueueBtn.BorderBrush = new SolidColorBrush(Color.FromRgb(30, 215, 96));
         RecentBtn.BorderBrush = Brushes.Transparent;
-        ColorAnimations.AnimateForegroundColor(RecentBtn, RecentBtn.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(RecentBtn, RecentBtn.Foreground, Colors.DarkGray, .1);
         _queueValue = 0;
 
         NowPlaying.Height = double.NaN;
@@ -54,21 +54,21 @@ public partial class QueueView : UserControl
     private void RecentBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(RecentBtn, RecentBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(RecentBtn, RecentBtn.Foreground, Colors.White, .1);
     }
 
     private void RecentBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         if (_queueValue != 1)
-            ColorAnimations.AnimateForegroundColor(RecentBtn, RecentBtn.Foreground, Colors.DarkGray, .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(RecentBtn, RecentBtn.Foreground, Colors.DarkGray, .1);
     }
 
     private void RecentBtn_Click(object sender, RoutedEventArgs e)
     {
         RecentBtn.BorderBrush = new SolidColorBrush(Color.FromRgb(30, 215, 96));
         QueueBtn.BorderBrush = Brushes.Transparent;
-        ColorAnimations.AnimateForegroundColor(QueueBtn, QueueBtn.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(QueueBtn, QueueBtn.Foreground, Colors.DarkGray, .1);
         _queueValue = 1;
 
         NowPlaying.Height = 0;
@@ -82,15 +82,15 @@ public partial class QueueView : UserControl
     private void CloseBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.LightGray, .1);
-        ColorAnimations.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(41, 41, 41), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.LightGray, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(41, 41, 41), .1);
     }
 
     private void CloseBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.DarkGray, .1);
-        ColorAnimations.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(18, 18, 18), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CloseText, CloseText.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(CloseBorder, CloseBorder.Background, Color.FromRgb(18, 18, 18), .1);
     }
 
     private void CloseBtn_Click(object sender, RoutedEventArgs e)

@@ -7,77 +7,34 @@ namespace Stopify.Presentation.Utilities.Animations;
 
 public static class ColorAnimations
 {
-    public static void AnimateBackgroundColor(Control target, Color startColor, Color endColor, double durationSeconds)
+    private static void AnimateBrushColor(DependencyObject target, DependencyProperty brushProperty, Color? fromColor, Color toColor, double durationSeconds)
     {
-        ColorAnimation colorAnimation = new ColorAnimation
+        var currentBrush = target.GetValue(brushProperty) as SolidColorBrush;
+
+        if (currentBrush == null && fromColor == null)
+            return;
+
+        Color startColor = fromColor ?? currentBrush!.Color;
+
+        var colorAnimation = new ColorAnimation
         {
             From = startColor,
-            To = endColor,
-            Duration = new Duration(TimeSpan.FromSeconds(durationSeconds))
+            To = toColor,
+            Duration = TimeSpan.FromSeconds(durationSeconds)
         };
 
-        if (target.Background is SolidColorBrush backgroundBrush)
-        {
-            SolidColorBrush animatedBrush = new SolidColorBrush(backgroundBrush.Color);
-            animatedBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
-            target.Background = animatedBrush;
-        }
+        var animatedBrush = new SolidColorBrush(startColor);
+        animatedBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
+
+        target.SetValue(brushProperty, animatedBrush);
     }
 
-    public static void AnimateForegroundColor(Control target, Color startColor, Color endColor, double durationSeconds)
-    {
-        ColorAnimation colorAnimation = new ColorAnimation
-        {
-            From = startColor,
-            To = endColor,
-            Duration = new Duration(TimeSpan.FromSeconds(durationSeconds))
-        };
+    public static void AnimateForeground(DependencyObject target, Color toColor, double durationSeconds, Color? fromColor = null) =>
+        AnimateBrushColor(target, Control.ForegroundProperty, fromColor, toColor, durationSeconds);
 
-        if (target.Foreground is SolidColorBrush foregroundBrush)
-        {
-            SolidColorBrush animatedBrush = new SolidColorBrush(foregroundBrush.Color);
-            animatedBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
-            target.Foreground = animatedBrush;
-        }
-    }
+    public static void AnimateBackground(DependencyObject target, Color toColor, double durationSeconds, Color? fromColor = null) =>
+        AnimateBrushColor(target, Panel.BackgroundProperty, fromColor, toColor, durationSeconds);
 
-    public static void AnimateForegroundColor(TextBlock target, Brush startColorBrush, Color endColor, double durationSeconds)
-    {
-        ColorAnimation colorAnimation = new ColorAnimation
-        {
-            From = ((SolidColorBrush)startColorBrush).Color,
-            To = endColor,
-            Duration = new Duration(TimeSpan.FromSeconds(durationSeconds))
-        };
-
-        if (target.Foreground is SolidColorBrush foregroundBrush)
-        {
-            SolidColorBrush animatedBrush = new SolidColorBrush(foregroundBrush.Color);
-            animatedBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
-            target.Foreground = animatedBrush;
-        }
-    }
-
-    public static void AnimateBackgroundColor(Control target, Brush startColorBrush, Color endColor, double durationSeconds) =>
-        AnimateBackgroundColor(target, ((SolidColorBrush)startColorBrush).Color, endColor, durationSeconds);
-
-    public static void AnimateForegroundColor(Control target, Brush startColorBrush, Color endColor, double durationSeconds) =>
-        AnimateForegroundColor(target, ((SolidColorBrush)startColorBrush).Color, endColor, durationSeconds);
-
-    public static void AnimateBackgroundColor(Border target, Brush startColorBrush, Color endColor, double durationSeconds)
-    {
-        ColorAnimation colorAnimation = new ColorAnimation
-        {
-            From = ((SolidColorBrush)startColorBrush).Color,
-            To = endColor,
-            Duration = new Duration(TimeSpan.FromSeconds(durationSeconds))
-        };
-
-        if (target.Background is SolidColorBrush backgroundBrush)
-        {
-            SolidColorBrush animatedBrush = new SolidColorBrush(backgroundBrush.Color);
-            animatedBrush.BeginAnimation(SolidColorBrush.ColorProperty, colorAnimation);
-            target.Background = animatedBrush;
-        }
-    }
+    public static void AnimateBorderBrush(DependencyObject target, Color toColor, double durationSeconds, Color? fromColor = null) =>
+        AnimateBrushColor(target, Border.BorderBrushProperty, fromColor, toColor, durationSeconds);
 }

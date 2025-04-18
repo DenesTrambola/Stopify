@@ -117,12 +117,12 @@ public static class ImageButtonBehavior
             mainView.NowPlayingCollapsed = false;
             HoverPopupHelper.PopupText = "Collapse";
             SetNowPlayingBtnContent(element, "\uf107");
-            //ColorAnimations.AnimateForegroundColor(NowPlayingOption, NowPlayingOption.Foreground, Color.FromRgb(30, 215, 96), .1);
+            //ColorAnimations.AnimateForeground(NowPlayingOption, Color.FromRgb(30, 215, 96), .1);
         }
         else
         {
             mainView.NowPlayingCollapsed = true;
-            //ColorAnimations.AnimateForegroundColor(NowPlayingOption, NowPlayingOption.Foreground, Colors.DarkGray, .1);
+            //ColorAnimations.AnimateForeground(NowPlayingOption, Colors.DarkGray, .1);
             HoverPopupHelper.PopupText = "Expand";
             SetNowPlayingBtnContent(element, "\uf106");
         }

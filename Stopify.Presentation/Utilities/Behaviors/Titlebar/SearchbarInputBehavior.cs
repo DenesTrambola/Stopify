@@ -119,7 +119,7 @@ public static class SearchbarInputBehavior
         searchBar.BorderThickness = new Thickness(0, 2, 2, 2);
         searchBtnBorder.BorderThickness = new Thickness(2, 2, 0, 2);
         searchBtnBorder.Padding = new Thickness(0, 0, 2, 0);
-        ColorAnimations.AnimateForegroundColor(searchBtnText, searchBtnText.Foreground, Colors.White, .1);
+        ColorAnimations.AnimateForeground(searchBtnText, Colors.White, .1);
     }
 
     private static void OnLostFocus(object sender, RoutedEventArgs e)
@@ -133,9 +133,9 @@ public static class SearchbarInputBehavior
         searchBar.BorderThickness = new Thickness(0);
         searchBtnBorder.BorderThickness = new Thickness(0);
         searchBtnBorder.Padding = new Thickness(0);
-        ColorAnimations.AnimateForegroundColor(searchBtnText, searchBtnText.Foreground, Colors.DarkGray, .1);
-        ColorAnimations.AnimateBackgroundColor(searchBtnBorder, searchBar.Background, Color.FromRgb(31, 31, 31), .1);
-        ColorAnimations.AnimateBackgroundColor(searchBar, searchBar.Background, Color.FromRgb(31, 31, 31), .1);
+        ColorAnimations.AnimateForeground(searchBtnText, Colors.DarkGray, .1);
+        ColorAnimations.AnimateBackground(searchBtnBorder, Color.FromRgb(31, 31, 31), .1);
+        ColorAnimations.AnimateBackground(searchBar, Color.FromRgb(31, 31, 31), .1);
     }
 
     private static void OnMouseEnter(object sender, MouseEventArgs e)
@@ -146,9 +146,9 @@ public static class SearchbarInputBehavior
         Border searchBtnBorder = GetSearchBtnBorder(element);
         TextBlock searchBtnText = GetSearchBtnText(element);
 
-        ColorAnimations.AnimateBackgroundColor(searchBtnBorder, searchBtnBorder.Background, Color.FromRgb(54, 54, 53), .1);
-        ColorAnimations.AnimateBackgroundColor(searchBar, searchBar.Background, Color.FromRgb(54, 54, 53), .1);
-        ColorAnimations.AnimateForegroundColor(searchBtnText, searchBtnText.Foreground, Colors.White, .1);
+        ColorAnimations.AnimateBackground(searchBtnBorder, Color.FromRgb(54, 54, 53), .1);
+        ColorAnimations.AnimateBackground(searchBar, Color.FromRgb(54, 54, 53), .1);
+        ColorAnimations.AnimateForeground(searchBtnText, Colors.White, .1);
     }
 
     private static void OnMouseLeave(object sender, MouseEventArgs e)
@@ -161,9 +161,9 @@ public static class SearchbarInputBehavior
 
         if (!element.IsFocused)
         {
-            ColorAnimations.AnimateForegroundColor(searchBtnText, searchBtnText.Foreground, Colors.DarkGray, .1);
-            ColorAnimations.AnimateBackgroundColor(searchBtnBorder, searchBar.Background, Color.FromRgb(31, 31, 31), .1);
-            ColorAnimations.AnimateBackgroundColor(searchBar, searchBar.Background, Color.FromRgb(31, 31, 31), .1);
+            ColorAnimations.AnimateForeground(searchBtnText, Colors.DarkGray, .1);
+            ColorAnimations.AnimateBackground(searchBtnBorder, Color.FromRgb(31, 31, 31), .1);
+            ColorAnimations.AnimateBackground(searchBar, Color.FromRgb(31, 31, 31), .1);
         }
     }
 

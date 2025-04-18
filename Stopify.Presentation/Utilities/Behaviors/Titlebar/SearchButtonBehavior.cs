@@ -135,9 +135,9 @@ public static class SearchButtonBehavior
         Border searchBar = GetSearchBar(element);
         TextBlock searchBtnText = GetSearchBtnText(element);
 
-        ColorAnimations.AnimateBackgroundColor(searchBtnBorder, searchBtnBorder.Background, Color.FromRgb(54, 54, 53), .1);
-        ColorAnimations.AnimateBackgroundColor(searchBar, searchBar.Background, Color.FromRgb(54, 54, 53), .1);
-        ColorAnimations.AnimateForegroundColor(searchBtnText, searchBtnText.Foreground, Colors.White, .2);
+        ColorAnimations.AnimateBackground(searchBtnBorder, Color.FromRgb(54, 54, 53), .1);
+        ColorAnimations.AnimateBackground(searchBar, Color.FromRgb(54, 54, 53), .1);
+        ColorAnimations.AnimateForeground(searchBtnText, Colors.White, .2);
 
         if (GetSearchBarActualWidth(element) == 0)
             ScaleAnimations.BeginScaleAnimation(element, 1.03, .2);
@@ -154,11 +154,11 @@ public static class SearchButtonBehavior
         TextBlock searchBtnText = GetSearchBtnText(element);
 
         ScaleAnimations.ResetScaleAnimation(element, .2);
-        ColorAnimations.AnimateBackgroundColor(searchBtnBorder, searchBar.Background, Color.FromRgb(31, 31, 31), .1);
-        ColorAnimations.AnimateBackgroundColor(searchBar, searchBar.Background, Color.FromRgb(31, 31, 31), .1);
+        ColorAnimations.AnimateBackground(searchBtnBorder, Color.FromRgb(31, 31, 31), .1);
+        ColorAnimations.AnimateBackground(searchBar, Color.FromRgb(31, 31, 31), .1);
 
         if (!GetIsClicked(element))
-            ColorAnimations.AnimateForegroundColor(searchBtnText, searchBtnText.Foreground, Colors.DarkGray, .2);
+            ColorAnimations.AnimateForeground(searchBtnText, Colors.DarkGray, .2);
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)

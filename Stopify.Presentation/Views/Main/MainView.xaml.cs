@@ -50,14 +50,14 @@ public partial class MainView : Window
     {
         if (NowPlayingCollapsed == true)
         {
-            ColorAnimations.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Color.FromRgb(30, 215, 96), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Color.FromRgb(30, 215, 96), .1);
             NowPlaying.Width = 0;
             if (QueueCollapsed)
                 SongQueue.Width = 0;
         }
         else
         {
-            ColorAnimations.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Colors.DarkGray, .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Colors.DarkGray, .1);
             if (ActualWidth >= 1250)
                 NowPlaying.Width = 350;
             else if (ActualWidth >= 1100)

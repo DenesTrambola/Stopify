@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace Stopify.Presentation.Utilities.Behaviors.Common.Animations;
 
-public static class ForegroundAnimationOnClickBehavior
+public static class ForegroundColorAnimationOnClickBehavior
 {
     #region Dependency Properties
 
@@ -12,21 +12,21 @@ public static class ForegroundAnimationOnClickBehavior
         DependencyProperty.RegisterAttached(
             "EnableOnClick",
             typeof(bool),
-            typeof(ForegroundAnimationOnClickBehavior),
+            typeof(ForegroundColorAnimationOnClickBehavior),
             new PropertyMetadata(false, OnEnableOnClickChanged));
 
     public static readonly DependencyProperty TargetColorProperty =
         DependencyProperty.RegisterAttached(
             "TargetColor",
             typeof(Color),
-            typeof(ForegroundAnimationOnClickBehavior),
+            typeof(ForegroundColorAnimationOnClickBehavior),
             new PropertyMetadata(Colors.Transparent));
 
     public static readonly DependencyProperty DurationProperty =
         DependencyProperty.RegisterAttached(
             "Duration",
             typeof(double),
-            typeof(ForegroundAnimationOnClickBehavior),
+            typeof(ForegroundColorAnimationOnClickBehavior),
             new PropertyMetadata(0.0));
 
     #endregion
@@ -76,10 +76,10 @@ public static class ForegroundAnimationOnClickBehavior
     {
         if (sender is not Button element) return;
 
-        if (ForegroundAnimationBehavior.GetIsClicked(element))
-            ForegroundAnimationBehavior.SetIsClicked(element, false);
+        if (ForegroundColorAnimationBehavior.GetIsClicked(element))
+            ForegroundColorAnimationBehavior.SetIsClicked(element, false);
         else
-            ForegroundAnimationBehavior.SetIsClicked(element, true);
+            ForegroundColorAnimationBehavior.SetIsClicked(element, true);
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)
