@@ -7,13 +7,62 @@ public class SidebarViewModel : ViewModelBase
 {
     #region Fields
 
-    private ObservableCollection<SidebarItemViewModel> _items;
+    private bool _isPlaylistsFilter = false;
+    private bool _isArtistsFilter = false;
+    private bool _isSearching = false;
+    private bool _isExpanded = false;
+
+    private double _width = 0;
+
+    private string _searchText = string.Empty;
+
+    private readonly ObservableCollection<SidebarItemViewModel> _items;
 
     #endregion
 
     #region Properties
 
-    public IEnumerable<SidebarItemViewModel> Items => _items;
+    public bool IsPlaylistsFilter
+    {
+        get => _isPlaylistsFilter;
+        set => SetProperty(ref _isPlaylistsFilter, value);
+    }
+
+    public bool IsArtistsFilter
+    {
+        get => _isArtistsFilter;
+        set => SetProperty(ref _isArtistsFilter, value);
+    }
+
+    public bool IsSearching
+    {
+        get => _isSearching;
+        set => SetProperty(ref _isSearching, value);
+    }
+
+    public bool IsExpanded
+    {
+        get => _isExpanded;
+        set => SetProperty(ref _isExpanded, value);
+    }
+
+    public double Width
+    {
+        get => _width;
+        set
+        {
+            SetProperty(ref _width, value);
+            IsExpanded = _width >= 280;
+        }
+    }
+
+    public string SearchText
+    {
+        get => _searchText;
+        set => SetProperty(ref _searchText, value);
+    }
+
+    public ObservableCollection<SidebarItemViewModel> Items => _items;
 
     #endregion
 

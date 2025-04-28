@@ -1,10 +1,12 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Behaviors.Sidebar;
 using Stopify.Presentation.Utilities.Helpers;
 using Stopify.Presentation.ViewModels.Sidebar;
 using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -22,8 +24,26 @@ public partial class SidebarControl : UserControl
     {
         InitializeComponent();
 
+        // MVVM
         DataContext = new SidebarViewModel();
 
+        Binding visibilityBinding = new()
+        {
+            Source = YourLibraryText,
+            Path = new PropertyPath("Visibility"),
+            Mode = BindingMode.TwoWay
+        };
+        BindingOperations.SetBinding(this, SidebarSizeChangeBehavior.YourLibraryTextVisibilityProperty, visibilityBinding);
+
+        Binding heightBinding = new()
+        {
+            Source = FilterBtns,
+            Path = new PropertyPath("Height"),
+            Mode = BindingMode.TwoWay
+        };
+        BindingOperations.SetBinding(this, SidebarSizeChangeBehavior.FilterBtnsHeightProperty, heightBinding);
+
+        // Not-MVVM
         _basicPopupText.Foreground = Brushes.White;
         _basicPopupText.FontWeight = FontWeights.SemiBold;
         _basicPopupText.FontSize = 14;
@@ -56,8 +76,8 @@ public partial class SidebarControl : UserControl
         MainView mainView = (MainView)Application.Current.MainWindow;
 
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Colors.White, .1);
         _basicPopupText.Text = mainView.SidebarCollapsed == false ? "Collapse Your Library" : "Expand Your Library";
         HoverPopupHelper.DisplayPopupTextBlock(YourLibraryBtn, PlacementMode.MousePoint, _basicPopupText);
     }
@@ -65,8 +85,8 @@ public partial class SidebarControl : UserControl
     private void YourLibraryBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Color.FromRgb(179, 179, 179), .1);
-        ColorAnimations.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Color.FromRgb(179, 179, 179), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(YourLibraryBtn, YourLibraryBtn.Foreground, Color.FromRgb(179, 179, 179), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(YourLibraryText, YourLibraryText.Foreground, Color.FromRgb(179, 179, 179), .1);
         HoverPopupHelper.HidePopup();
     }
 
@@ -93,8 +113,8 @@ public partial class SidebarControl : UserControl
     private void CreateBorder_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(31, 31, 31), .1);
-        ColorAnimations.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.LightGray, .2);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(31, 31, 31), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.LightGray, .2);
         _basicPopupText.Text = "Create playlist or folder";
         HoverPopupHelper.DisplayPopupTextBlock(CreateBorder, PlacementMode.Mouse, _basicPopupText);
     }
@@ -102,8 +122,8 @@ public partial class SidebarControl : UserControl
     private void CreateBorder_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(18, 18, 18), .1);
-        ColorAnimations.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.DarkGray, .2);
+        ColorAnimations_Deprecated.AnimateBackgroundColor(CreateBorder, CreateBorder.Background, Color.FromRgb(18, 18, 18), .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(CreateBtn, CreateBtn.Foreground, Colors.DarkGray, .2);
         HoverPopupHelper.HidePopup();
     }
 
@@ -116,34 +136,34 @@ public partial class SidebarControl : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         if (!_filterPlaylists)
-            ColorAnimations.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
     }
 
     private void PlaylistFilterBorder_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         if (!_filterPlaylists)
-            ColorAnimations.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Color.FromRgb(42, 42, 42), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Color.FromRgb(42, 42, 42), .1);
     }
 
     private void PlaylistFilterBtn_Click(object sender, RoutedEventArgs e)
     {
         if (_filterPlaylists)
         {
-            ColorAnimations.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
-            ColorAnimations.AnimateForegroundColor(PlaylistFilterBtn, PlaylistFilterBtn.Foreground, Colors.White, .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(PlaylistFilterBtn, PlaylistFilterBtn.Foreground, Colors.White, .1);
             _filterPlaylists = false;
         }
         else
         {
-            ColorAnimations.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Colors.White, .1);
-            ColorAnimations.AnimateForegroundColor(PlaylistFilterBtn, PlaylistFilterBtn.Foreground, Colors.Black, .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Colors.White, .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(PlaylistFilterBtn, PlaylistFilterBtn.Foreground, Colors.Black, .1);
             _filterPlaylists = true;
 
             if (_filterArtists)
             {
-                ColorAnimations.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
-                ColorAnimations.AnimateForegroundColor(ArtistFilterBtn, ArtistFilterBtn.Foreground, Colors.White, .1);
+                ColorAnimations_Deprecated.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
+                ColorAnimations_Deprecated.AnimateForegroundColor(ArtistFilterBtn, ArtistFilterBtn.Foreground, Colors.White, .1);
                 _filterArtists = false;
             }
         }
@@ -156,34 +176,34 @@ public partial class SidebarControl : UserControl
     {
         Mouse.OverrideCursor = Cursors.Hand;
         if (!_filterArtists)
-            ColorAnimations.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
     }
 
     private void ArtistFilterBorder_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
         if (!_filterArtists)
-            ColorAnimations.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Color.FromRgb(42, 42, 42), .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Color.FromRgb(42, 42, 42), .1);
     }
 
     private void ArtistFilterBtn_Click(object sender, RoutedEventArgs e)
     {
         if (_filterArtists)
         {
-            ColorAnimations.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
-            ColorAnimations.AnimateForegroundColor(ArtistFilterBtn, ArtistFilterBtn.Foreground, Colors.White, .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(ArtistFilterBtn, ArtistFilterBtn.Foreground, Colors.White, .1);
             _filterArtists = false;
         }
         else
         {
-            ColorAnimations.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Colors.White, .1);
-            ColorAnimations.AnimateForegroundColor(ArtistFilterBtn, ArtistFilterBtn.Foreground, Colors.Black, .1);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(ArtistFilterBorder, ArtistFilterBorder.Background, Colors.White, .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(ArtistFilterBtn, ArtistFilterBtn.Foreground, Colors.Black, .1);
             _filterArtists = true;
 
             if (_filterPlaylists)
             {
-                ColorAnimations.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
-                ColorAnimations.AnimateForegroundColor(PlaylistFilterBtn, PlaylistFilterBtn.Foreground, Colors.White, .1);
+                ColorAnimations_Deprecated.AnimateBackgroundColor(PlaylistFilterBorder, PlaylistFilterBorder.Background, Color.FromRgb(51, 51, 51), .1);
+                ColorAnimations_Deprecated.AnimateForegroundColor(PlaylistFilterBtn, PlaylistFilterBtn.Foreground, Colors.White, .1);
                 _filterPlaylists = false;
             }
         }
@@ -199,8 +219,8 @@ public partial class SidebarControl : UserControl
         else
         {
             Mouse.OverrideCursor = Cursors.Hand;
-            ColorAnimations.AnimateBackgroundColor(SearchBorder, SearchBorder.Background, Color.FromRgb(31, 31, 31), .1);
-            ColorAnimations.AnimateForegroundColor(SearchText, SearchText.Foreground, Colors.LightGray, .2);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(SearchBorder, SearchBorder.Background, Color.FromRgb(31, 31, 31), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(SearchText, SearchText.Foreground, Colors.LightGray, .2);
         }
     }
 
@@ -209,8 +229,8 @@ public partial class SidebarControl : UserControl
         Mouse.OverrideCursor = Cursors.Arrow;
         if (!_isSearching && SearchBorder.Background is SolidColorBrush brush && brush.Color == Color.FromRgb(31, 31, 31))
         {
-            ColorAnimations.AnimateBackgroundColor(SearchBorder, SearchBorder.Background, Color.FromRgb(18, 18, 18), .1);
-            ColorAnimations.AnimateForegroundColor(SearchText, SearchText.Foreground, Colors.DarkGray, .2);
+            ColorAnimations_Deprecated.AnimateBackgroundColor(SearchBorder, SearchBorder.Background, Color.FromRgb(18, 18, 18), .1);
+            ColorAnimations_Deprecated.AnimateForegroundColor(SearchText, SearchText.Foreground, Colors.DarkGray, .2);
         }
     }
 
@@ -256,16 +276,16 @@ public partial class SidebarControl : UserControl
     private void RecentsBtn_MouseEnter(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Hand;
-        ColorAnimations.AnimateForegroundColor(RecentsFilterIcon, RecentsFilterIcon.Foreground, Colors.White, .1);
-        ColorAnimations.AnimateForegroundColor(RecentsFilterText, RecentsFilterText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(RecentsFilterIcon, RecentsFilterIcon.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(RecentsFilterText, RecentsFilterText.Foreground, Colors.White, .1);
         ScaleAnimations.BeginScaleAnimation(RecentsBtn, 1.03, .1);
     }
 
     private void RecentsBtn_MouseLeave(object sender, MouseEventArgs e)
     {
         Mouse.OverrideCursor = Cursors.Arrow;
-        ColorAnimations.AnimateForegroundColor(RecentsFilterIcon, RecentsFilterIcon.Foreground, Colors.DarkGray, .1);
-        ColorAnimations.AnimateForegroundColor(RecentsFilterText, RecentsFilterText.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(RecentsFilterIcon, RecentsFilterIcon.Foreground, Colors.DarkGray, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(RecentsFilterText, RecentsFilterText.Foreground, Colors.DarkGray, .1);
         ScaleAnimations.ResetScaleAnimation(RecentsBtn, .1);
     }
 
