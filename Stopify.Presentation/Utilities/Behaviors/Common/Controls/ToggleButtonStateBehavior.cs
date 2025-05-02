@@ -248,6 +248,8 @@ public static class ToggleButtonStateBehavior
     private static void UpdateUIBasedOnCurrentState(Button element)
     {
         ButtonStateCollection stateInfos = GetStateInfos(element);
+        if (stateInfos is null) return;
+
         byte currentState = GetCurrentState(element);
         Color? stateColor = stateInfos[currentState].Color;
         Color? mouseEnterColor = GetMouseEnterColor(element);
@@ -277,6 +279,8 @@ public static class ToggleButtonStateBehavior
 
     private static void UpdateDependentValue(Button element, ButtonStateCollection stateInfos, byte currentState)
     {
+        if (stateInfos is null) return;
+
         object dependentValue = GetStateDependentValue(element);
         bool? stateBoolean = stateInfos[currentState].DependentValueBoolean;
         string? stateString = stateInfos[currentState].DependentValueString;

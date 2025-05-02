@@ -12,6 +12,7 @@
             <!--#region Converters-->
 
             <Converters:BooleanToByteConverter x:Key="BooleanToByteConverter" />
+            <Converters:BooleanToStringConverter x:Key="BooleanToStringConverter" />
 
             <!--#endregion-->
 

@@ -8,15 +8,18 @@ public class NowPlayingViewModel : ViewModelBase
 {
     #region Fields
 
-    private string _playlistTitle;
-    private string _songImagePath;
-    private string _title;
+    private bool _isSaved = false;
+    private bool _isFollowing = false;
+
+    private string _playlistTitle = "Azahriah";
+    private string _songImagePath = string.Empty;
+    private string _title = "PANNONIA";
+    private string _saveTo = "Liked Songs";
 
     private string? _artist;
     private string? _artistImagePath;
     private string? _monthlyListeners;
     private string? _artistDescription;
-    private string? _followStatus;
 
     private QueueItemViewModel _nextSong;
 
@@ -26,6 +29,18 @@ public class NowPlayingViewModel : ViewModelBase
     #endregion
 
     #region Properties
+
+    public bool IsSaved
+    {
+        get => _isSaved;
+        set => SetProperty(ref _isSaved, value);
+    }
+
+    public bool IsFollowing
+    {
+        get => _isFollowing;
+        set => SetProperty(ref _isFollowing, value);
+    }
 
     public string PlaylistTitle
     {
@@ -43,6 +58,12 @@ public class NowPlayingViewModel : ViewModelBase
     {
         get => _title;
         set => SetProperty(ref _title, value);
+    }
+
+    public string SaveTo
+    {
+        get => _saveTo;
+        set => SetProperty(ref _saveTo, value);
     }
 
     public string? Artist
@@ -69,12 +90,6 @@ public class NowPlayingViewModel : ViewModelBase
         set => SetProperty(ref _artistDescription, value);
     }
 
-    public string? FollowStatus
-    {
-        get => _followStatus;
-        set => SetProperty(ref _followStatus, value);
-    }
-
     public QueueItemViewModel NextSong
     {
         get => _nextSong;
@@ -91,14 +106,10 @@ public class NowPlayingViewModel : ViewModelBase
 
     public NowPlayingViewModel()
     {
-        PlaylistTitle = "Azahriah";
-        SongImagePath = String.Empty;
-        Title = "PANNONIA";
         Artist = "Azahriah";
-        ArtistImagePath = String.Empty;
+        ArtistImagePath = string.Empty;
         MonthlyListeners = "700,000";
         ArtistDescription = "creator from hungary";
-        FollowStatus = "Unfollow";
 
         _authors = new ObservableCollection<string>
         {
@@ -109,12 +120,12 @@ public class NowPlayingViewModel : ViewModelBase
 
         _credits = new ObservableCollection<NowPlayingCreditsItemViewModel>
         {
-            new NowPlayingCreditsItemViewModel("Azahriah", "Followed"),
-            new NowPlayingCreditsItemViewModel("DESH", "Follow"),
-            new NowPlayingCreditsItemViewModel("Young Fly", "Follow"),
+            new NowPlayingCreditsItemViewModel("Azahriah", true),
+            new NowPlayingCreditsItemViewModel("DESH", false),
+            new NowPlayingCreditsItemViewModel("Young Fly", false),
         };
 
-        NextSong = new QueueItemViewModel("BAKPAKK", String.Empty);
+        _nextSong = new QueueItemViewModel("BAKPAKK", string.Empty);
     }
 
     #endregion

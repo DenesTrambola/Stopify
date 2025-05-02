@@ -1,4 +1,5 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Behaviors.NowPlaying;
 using Stopify.Presentation.Utilities.Helpers;
 using Stopify.Presentation.ViewModels.NowPlaying;
 using Stopify.Presentation.Views.Main;
@@ -6,6 +7,7 @@ using Stopify.Presentation.Views.Player;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -23,8 +25,42 @@ public partial class NowPlayingView : UserControl
     {
         InitializeComponent();
 
+        // MVVM code
         DataContext = new NowPlayingViewModel();
 
+        Binding saveTextMarginBinding = new()
+        {
+            Source = SaveText,
+            Path = new PropertyPath("Margin"),
+            Mode = BindingMode.TwoWay
+        };
+        BindingOperations.SetBinding(this, NowPlayingSizeChangeBehavior.SaveTextMarginProperty, saveTextMarginBinding);
+
+        Binding saveTextFontSizeBinding = new()
+        {
+            Source = SaveText,
+            Path = new PropertyPath("FontSize"),
+            Mode = BindingMode.TwoWay
+        };
+        BindingOperations.SetBinding(this, NowPlayingSizeChangeBehavior.SaveTextFontSizeProperty, saveTextFontSizeBinding);
+
+        Binding saveBtnHeightBinding = new()
+        {
+            Source = SaveBtn,
+            Path = new PropertyPath("Height"),
+            Mode = BindingMode.TwoWay
+        };
+        BindingOperations.SetBinding(this, NowPlayingSizeChangeBehavior.SaveButtonHeightProperty, saveBtnHeightBinding);
+
+        Binding saveBorderWidthBinding = new()
+        {
+            Source = SaveBorder,
+            Path = new PropertyPath("Width"),
+            Mode = BindingMode.TwoWay
+        };
+        BindingOperations.SetBinding(this, NowPlayingSizeChangeBehavior.SaveBorderWidthProperty, saveBorderWidthBinding);
+
+        // Deprecated code
         _popupText.Foreground = Brushes.White;
         _popupText.Background = Brushes.Transparent;
         _popupText.FontWeight = FontWeights.SemiBold;

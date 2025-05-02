@@ -140,6 +140,13 @@ public static class SaveBehavior
         }
     }
 
+    private static void OnIsSavedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not Button element) return;
+
+        UpdateUIBasedOnIsSavedState(element);
+    }
+
     #endregion
 
     #region Event Handlers
@@ -180,13 +187,6 @@ public static class SaveBehavior
 
         bool isSaved = GetIsSaved(element);
         SetIsSaved(element, !isSaved);
-        UpdateUIBasedOnIsSavedState(element);
-    }
-
-    private static void OnIsSavedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-    {
-        if (d is not Button element) return;
-
         UpdateUIBasedOnIsSavedState(element);
     }
 
