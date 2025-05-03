@@ -1,6 +1,5 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -16,6 +15,13 @@ public static class BackgroundColorAnimationBehavior
             typeof(bool),
             typeof(BackgroundColorAnimationBehavior),
             new PropertyMetadata(false, OnEnableOnHoverChanged));
+
+    public static readonly DependencyProperty EnableOnFocusProperty =
+        DependencyProperty.RegisterAttached(
+            "EnableOnFocus",
+            typeof(bool),
+            typeof(BackgroundColorAnimationBehavior),
+            new PropertyMetadata(false, OnEnableOnFocusChanged));
 
     public static readonly DependencyProperty InColorProperty =
         DependencyProperty.RegisterAttached(
@@ -47,6 +53,11 @@ public static class BackgroundColorAnimationBehavior
     public static void SetEnableOnHover(UIElement element, bool value) =>
         element.SetValue(EnableOnHoverProperty, value);
 
+    public static bool GetEnableOnFocus(UIElement element) =>
+        (bool)element.GetValue(EnableOnFocusProperty);
+    public static void SetEnableOnFocus(UIElement element, bool value) =>
+        element.SetValue(EnableOnFocusProperty, value);
+
     public static Color GetInColor(UIElement element) =>
         (Color)element.GetValue(InColorProperty);
     public static void SetInColor(UIElement element, Color value) =>
@@ -68,18 +79,36 @@ public static class BackgroundColorAnimationBehavior
 
     private static void OnEnableOnHoverChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        if (d is not Control element) return;
+        if (d is not FrameworkElement element) return;
 
         if ((bool)e.NewValue)
         {
-            element.MouseEnter += AnimateIn;
-            element.MouseLeave += AnimateOut;
+            element.MouseEnter += AnimateInOnHover;
+            element.MouseLeave += AnimateOutOnHover;
             element.Unloaded += DetachEvents;
         }
         else
         {
-            element.MouseEnter -= AnimateIn;
-            element.MouseLeave -= AnimateOut;
+            element.MouseEnter -= AnimateInOnHover;
+            element.MouseLeave -= AnimateOutOnHover;
+            element.Unloaded -= DetachEvents;
+        }
+    }
+
+    private static void OnEnableOnFocusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not FrameworkElement element) return;
+
+        if ((bool)e.NewValue)
+        {
+            element.GotFocus += AnimateInOnFocus;
+            element.LostFocus += AnimateOutOnFocus;
+            element.Unloaded += DetachEvents;
+        }
+        else
+        {
+            element.GotFocus -= AnimateInOnFocus;
+            element.LostFocus -= AnimateOutOnFocus;
             element.Unloaded -= DetachEvents;
         }
     }
@@ -88,26 +117,40 @@ public static class BackgroundColorAnimationBehavior
 
     #region Event Handlers
 
-    private static void AnimateIn(object sender, MouseEventArgs e)
+    private static void AnimateInOnHover(object sender, MouseEventArgs e)
     {
-        if (sender is not Control element) return;
+        if (sender is not FrameworkElement element) return;
 
         ColorAnimations.AnimateBackground(element, GetInColor(element), GetDuration(element));
     }
 
-    private static void AnimateOut(object sender, MouseEventArgs e)
+    private static void AnimateOutOnHover(object sender, MouseEventArgs e)
     {
-        if (sender is not Control element) return;
+        if (sender is not FrameworkElement element) return;
+
+        ColorAnimations.AnimateBackground(element, GetOutColor(element), GetDuration(element));
+    }
+
+    private static void AnimateInOnFocus(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement element) return;
+
+        ColorAnimations.AnimateBackground(element, GetInColor(element), GetDuration(element));
+    }
+
+    private static void AnimateOutOnFocus(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement element) return;
 
         ColorAnimations.AnimateBackground(element, GetOutColor(element), GetDuration(element));
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)
     {
-        if (sender is not Control element) return;
+        if (sender is not FrameworkElement element) return;
 
-        element.MouseEnter -= AnimateIn;
-        element.MouseLeave -= AnimateOut;
+        element.MouseEnter -= AnimateInOnHover;
+        element.MouseLeave -= AnimateOutOnHover;
         element.Unloaded -= DetachEvents;
 
         SetEnableOnHover(element, false);

@@ -7,7 +7,8 @@ public class QueueItemViewModel : ViewModelBase
 {
     #region Fields
 
-    private string _title;
+    private bool _isPlaying = false;
+    private string _track;
     private string _imagePath;
 
     private ObservableCollection<string> _authors;
@@ -16,10 +17,16 @@ public class QueueItemViewModel : ViewModelBase
 
     #region Properties
 
-    public string Title
+    public bool IsPlaying
     {
-        get => _title;
-        set => SetProperty(ref _title, value);
+        get => _isPlaying;
+        set => SetProperty(ref _isPlaying, value);
+    }
+
+    public string Track
+    {
+        get => _track;
+        set => SetProperty(ref _track, value);
     }
 
     public string ImagePath
@@ -34,10 +41,10 @@ public class QueueItemViewModel : ViewModelBase
 
     #region Constructors
 
-    public QueueItemViewModel(string title, string imagePath)
+    public QueueItemViewModel(string track, string imagePath)
     {
-        Title = title;
-        ImagePath = imagePath;
+        _track = track;
+        _imagePath = imagePath;
 
         _authors = new ObservableCollection<string>()
         {

@@ -1,4 +1,6 @@
-﻿using Stopify.Presentation.Utilities.Helpers;
+﻿using Microsoft.IdentityModel.Tokens;
+using Stopify.Presentation.Utilities.Helpers;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -31,6 +33,20 @@ public static class PlayBehavior
             typeof(PlayBehavior),
             new PropertyMetadata(string.Empty));
 
+    public static readonly DependencyProperty TrackProperty =
+        DependencyProperty.RegisterAttached(
+            "Track",
+            typeof(string),
+            typeof(PlayBehavior),
+            new PropertyMetadata(string.Empty));
+
+    public static readonly DependencyProperty AuthorProperty =
+        DependencyProperty.RegisterAttached(
+            "Author",
+            typeof(string),
+            typeof(PlayBehavior),
+            new PropertyMetadata(string.Empty));
+
     #endregion
 
     #region Getters/Setters
@@ -49,6 +65,16 @@ public static class PlayBehavior
         (string)element.GetValue(PlayIconProperty);
     public static void SetPlayIcon(UIElement element, string value) =>
         element.SetValue(PlayIconProperty, value);
+
+    public static string GetTrack(UIElement element) =>
+        (string)element.GetValue(TrackProperty);
+    public static void SetTrack(UIElement element, string value) =>
+        element.SetValue(TrackProperty, value);
+
+    public static string GetAuthor(UIElement element) =>
+        (string)element.GetValue(AuthorProperty);
+    public static void SetAuthor(UIElement element, string value) =>
+        element.SetValue(AuthorProperty, value);
 
     #endregion
 
@@ -125,8 +151,19 @@ public static class PlayBehavior
 
     #region Methods
 
-    private static void DisplayHoverPopup(Button element) =>
-        HoverPopupHelper.DisplayPopupText(element, PlacementMode.Top, GetIsPlaying(element) ? "Pause" : "Play");
+    private static void DisplayHoverPopup(Button element)
+    {
+        bool isPlaying = GetIsPlaying(element);
+        string track = GetTrack(element);
+        string author = GetAuthor(element);
+
+        StringBuilder hoverPopupText = new();
+        hoverPopupText.Append(isPlaying ? "Pause" : "Play");
+        hoverPopupText.Append(track.IsNullOrEmpty() ? string.Empty : $" {track}");
+        hoverPopupText.Append(author.IsNullOrEmpty() ? string.Empty : $" by {author}");
+
+        HoverPopupHelper.DisplayPopupText(element, PlacementMode.Top, hoverPopupText.ToString());
+    }
 
     private static void UpdatePlayIcon(Button element) =>
         SetPlayIcon(element, GetIsPlaying(element) ? "\uf04c" : "\uf04b");

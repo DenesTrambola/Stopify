@@ -13,6 +13,7 @@
 
             <Converters:BooleanToByteConverter x:Key="BooleanToByteConverter" />
             <Converters:BooleanToStringConverter x:Key="BooleanToStringConverter" />
+            <Converters:ArrayToStringConverter x:Key="ArrayToStringConverter" />
 
             <!--#endregion-->
 
