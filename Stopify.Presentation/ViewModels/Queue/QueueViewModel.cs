@@ -7,7 +7,7 @@ public class QueueViewModel : ViewModelBase
 {
     #region Fields
 
-    private string _playlistTitle;
+    private string _playlistTitle = "Azahriah";
 
     private QueueItemViewModel _nowPlayingSong;
 
@@ -38,7 +38,7 @@ public class QueueViewModel : ViewModelBase
 
     public QueueViewModel()
     {
-        NowPlayingSong = new QueueItemViewModel("introvertált dal", String.Empty);
+        _nowPlayingSong = new QueueItemViewModel("introvertált dal", String.Empty);
         _queueSongs = new ObservableCollection<QueueItemViewModel>()
         {
             new QueueItemViewModel("zene1", String.Empty),

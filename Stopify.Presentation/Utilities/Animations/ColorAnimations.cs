@@ -36,5 +36,5 @@ public static class ColorAnimations
         AnimateBrushColor(target, Panel.BackgroundProperty, fromColor, toColor, durationSeconds);
 
     public static void AnimateBorderBrush(DependencyObject target, Color toColor, double durationSeconds, Color? fromColor = null) =>
-        AnimateBrushColor(target, Border.BorderBrushProperty, fromColor, toColor, durationSeconds);
+        AnimateBrushColor(target, Control.BorderBrushProperty, fromColor, toColor, durationSeconds);
 }
