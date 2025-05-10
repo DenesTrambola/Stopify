@@ -1,4 +1,5 @@
-﻿using Stopify.Presentation.Utilities.Animations;
+﻿using Microsoft.IdentityModel.Tokens;
+using Stopify.Presentation.Utilities.Animations;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -31,6 +32,13 @@ public static class ToggleFilterBehavior
             typeof(ToggleFilterBehavior),
             new PropertyMetadata(null));
 
+    public static readonly DependencyProperty TurnOffOnClick =
+        DependencyProperty.RegisterAttached(
+            "TurnOffOnClick",
+            typeof(bool),
+            typeof(ToggleFilterBehavior),
+            new PropertyMetadata(false));
+
     #endregion
 
     #region Getters/Setters
@@ -49,6 +57,11 @@ public static class ToggleFilterBehavior
         (string)element.GetValue(GroupNameProperty);
     public static void SetGroupName(UIElement element, string value) =>
         element.SetValue(GroupNameProperty, value);
+
+    public static bool GetTurnOffOnClick(UIElement element) =>
+        (bool)element.GetValue(TurnOffOnClick);
+    public static void SetTurnOffOnClick(UIElement element, bool value) =>
+        element.SetValue(TurnOffOnClick, value);
 
     #endregion
 
@@ -115,17 +128,19 @@ public static class ToggleFilterBehavior
         if (sender is not Border element) return;
 
         bool isCurrentlySelected = GetIsSelected(element);
+        bool canTurnOffOnClick = GetTurnOffOnClick(element);
 
-        if (isCurrentlySelected)
+        if (isCurrentlySelected && canTurnOffOnClick)
         {
             SetIsSelected(element, false);
             return;
         }
-
-        SetIsSelected(element, true);
+        else if (!isCurrentlySelected)
+            SetIsSelected(element, true);
 
         string group = GetGroupName(element);
-        if (string.IsNullOrEmpty(group) || VisualTreeHelper.GetParent(element) is not Panel parent) return;
+        if (group.IsNullOrEmpty() || VisualTreeHelper.GetParent(element) is not Panel parent)
+            return;
 
         foreach (UIElement child in parent.Children)
         {

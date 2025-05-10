@@ -22,7 +22,7 @@ public partial class MainView : Window
     {
         InitializeComponent();
 
-        MainLayout.Content = playlistView;
+        MainLayout.Content = searchView;
     }
 
     public void Window_Loaded(object sender, RoutedEventArgs e)

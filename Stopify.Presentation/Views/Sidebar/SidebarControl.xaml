@@ -109,6 +109,7 @@
                 ControlBehaviors:ToggleFilterBehavior.Enable="True"
                 ControlBehaviors:ToggleFilterBehavior.GroupName="YourLibraryFilterGroup"
                 ControlBehaviors:ToggleFilterBehavior.IsSelected="{Binding IsPlaylistsFilter}"
+                ControlBehaviors:ToggleFilterBehavior.TurnOffOnClick="True"
                 InputBehaviors:CursorBehavior.Enable="True"
                 Background="#2a2a2a"
                 CornerRadius="15">
@@ -131,6 +132,7 @@
                 ControlBehaviors:ToggleFilterBehavior.Enable="True"
                 ControlBehaviors:ToggleFilterBehavior.GroupName="YourLibraryFilterGroup"
                 ControlBehaviors:ToggleFilterBehavior.IsSelected="{Binding IsArtistsFilter}"
+                ControlBehaviors:ToggleFilterBehavior.TurnOffOnClick="True"
                 InputBehaviors:CursorBehavior.Enable="True"
                 Background="#2a2a2a"
                 CornerRadius="15">

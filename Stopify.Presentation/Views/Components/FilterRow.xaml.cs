@@ -71,14 +71,14 @@ public partial class FilterRow : UserControl
 
     private void AllBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations_Deprecated.AnimateForegroundColor(AllText, AllText.Foreground, Colors.Black, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(AllText, AllText.Foreground, Colors.Black, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(AllBorder, AllBorder.Background, Colors.White, .1);
 
         _resultsFilterValue = 0;
 
-        ColorAnimations_Deprecated.AnimateForegroundColor(MusicText, MusicText.Foreground, Colors.White, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(MusicText, MusicText.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(MusicBorder, MusicBorder.Background, Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations_Deprecated.AnimateForegroundColor(PodcastsText, PodcastsText.Foreground, Colors.White, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(PodcastsText, PodcastsText.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(PodcastsBorder, PodcastsBorder.Background, Color.FromRgb(42, 42, 42), .1);
     }
 
@@ -101,14 +101,14 @@ public partial class FilterRow : UserControl
 
     private void MusicBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations_Deprecated.AnimateForegroundColor(MusicText, MusicText.Foreground, Colors.Black, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(MusicText, MusicText.Foreground, Colors.Black, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(MusicBorder, MusicBorder.Background, Colors.White, .1);
 
         _resultsFilterValue = 1;
 
-        ColorAnimations_Deprecated.AnimateForegroundColor(AllText, AllText.Foreground, Colors.White, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(AllText, AllText.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(AllBorder, AllBorder.Background, Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations_Deprecated.AnimateForegroundColor(PodcastsText, PodcastsText.Foreground, Colors.White, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(PodcastsText, PodcastsText.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(PodcastsBorder, PodcastsBorder.Background, Color.FromRgb(42, 42, 42), .1);
     }
 
@@ -131,14 +131,14 @@ public partial class FilterRow : UserControl
 
     private void PodcastsBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations_Deprecated.AnimateForegroundColor(PodcastsText, PodcastsText.Foreground, Colors.Black, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(PodcastsText, PodcastsText.Foreground, Colors.Black, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(PodcastsBorder, PodcastsBorder.Background, Colors.White, .1);
 
         _resultsFilterValue = 2;
 
-        ColorAnimations_Deprecated.AnimateForegroundColor(MusicText, MusicText.Foreground, Colors.White, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(MusicText, MusicText.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(MusicBorder, MusicBorder.Background, Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations_Deprecated.AnimateForegroundColor(AllText, AllText.Foreground, Colors.White, .1);
+        //ColorAnimations_Deprecated.AnimateForegroundColor(AllText, AllText.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(AllBorder, AllBorder.Background, Color.FromRgb(42, 42, 42), .1);
     }
 }
