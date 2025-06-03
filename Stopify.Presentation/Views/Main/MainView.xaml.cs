@@ -22,7 +22,7 @@ public partial class MainView : Window
     {
         InitializeComponent();
 
-        MainLayout.Content = searchView;
+        MainLayout.Content = homeView;
     }
 
     public void Window_Loaded(object sender, RoutedEventArgs e)

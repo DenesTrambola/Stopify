@@ -50,14 +50,14 @@ public class HomeViewModel : ViewModelBase
 
         _recentPlays = new ObservableCollection<HomeRecentPlaysItemViewModel>
         {
-            new HomeRecentPlaysItemViewModel("Azahriah", ""),
-            new HomeRecentPlaysItemViewModel("DESH", ""),
-            new HomeRecentPlaysItemViewModel("YoungFly", ""),
-            new HomeRecentPlaysItemViewModel("Nessaj", ""),
-            new HomeRecentPlaysItemViewModel("Coding Music", ""),
-            new HomeRecentPlaysItemViewModel("Gym Songs", ""),
-            new HomeRecentPlaysItemViewModel("Calisthenics", ""),
-            new HomeRecentPlaysItemViewModel("Toth Gabi", ""),
+            new HomeRecentPlaysItemViewModel("Azahriah", false, ""),
+            new HomeRecentPlaysItemViewModel("DESH", false, ""),
+            new HomeRecentPlaysItemViewModel("YoungFly", false, ""),
+            new HomeRecentPlaysItemViewModel("Nessaj", false, ""),
+            new HomeRecentPlaysItemViewModel("Coding Music", false, ""),
+            new HomeRecentPlaysItemViewModel("Gym Songs", false, ""),
+            new HomeRecentPlaysItemViewModel("Calisthenics", false, ""),
+            new HomeRecentPlaysItemViewModel("Toth Gabi", false, ""),
         };
 
         ColumnCount = 2;

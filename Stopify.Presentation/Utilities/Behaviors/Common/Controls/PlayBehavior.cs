@@ -31,7 +31,7 @@ public static class PlayBehavior
             "PlayIcon",
             typeof(string),
             typeof(PlayBehavior),
-            new PropertyMetadata(string.Empty));
+            new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
     public static readonly DependencyProperty TrackProperty =
         DependencyProperty.RegisterAttached(
