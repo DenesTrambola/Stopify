@@ -23,7 +23,7 @@ public static class ToggleFilterBehavior
             "IsSelected",
             typeof(bool),
             typeof(ToggleFilterBehavior),
-            new PropertyMetadata(false, OnIsSelectedChanged));
+            new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsSelectedChanged));
 
     public static readonly DependencyProperty GroupNameProperty =
         DependencyProperty.RegisterAttached(
@@ -38,6 +38,34 @@ public static class ToggleFilterBehavior
             typeof(bool),
             typeof(ToggleFilterBehavior),
             new PropertyMetadata(false));
+
+    public static readonly DependencyProperty SelectedBackgroundColorProperty =
+        DependencyProperty.RegisterAttached(
+            "SelectedBackgroundColor",
+            typeof(Color),
+            typeof(ToggleFilterBehavior),
+            new PropertyMetadata(Colors.White));
+
+    public static readonly DependencyProperty UnselectedBackgroundColorProperty =
+        DependencyProperty.RegisterAttached(
+            "UnselectedBackgroundColor",
+            typeof(Color),
+            typeof(ToggleFilterBehavior),
+            new PropertyMetadata(Color.FromRgb(42, 42, 42)));
+
+    public static readonly DependencyProperty SelectedForegroundColorProperty =
+        DependencyProperty.RegisterAttached(
+            "SelectedForegroundColor",
+            typeof(Color),
+            typeof(ToggleFilterBehavior),
+            new PropertyMetadata(Colors.Black));
+
+    public static readonly DependencyProperty UnselectedForegroundColorProperty =
+        DependencyProperty.RegisterAttached(
+            "UnselectedForegroundColor",
+            typeof(Color),
+            typeof(ToggleFilterBehavior),
+            new PropertyMetadata(Colors.White));
 
     #endregion
 
@@ -62,6 +90,27 @@ public static class ToggleFilterBehavior
         (bool)element.GetValue(TurnOffOnClick);
     public static void SetTurnOffOnClick(UIElement element, bool value) =>
         element.SetValue(TurnOffOnClick, value);
+
+    public static Color GetSelectedBackgroundColor(UIElement element) =>
+        (Color)element.GetValue(SelectedBackgroundColorProperty);
+    public static void SetSelectedBackgroundColor(UIElement element, Color value) =>
+        element.SetValue(SelectedBackgroundColorProperty, value);
+
+    public static Color GetUnselectedBackgroundColor(UIElement element) =>
+        (Color)element.GetValue(UnselectedBackgroundColorProperty);
+    public static void SetUnselectedBackgroundColor(UIElement element, Color value) =>
+        element.SetValue(UnselectedBackgroundColorProperty, value);
+
+    public static Color GetSelectedForegroundColor(UIElement element) =>
+        (Color)element.GetValue(SelectedForegroundColorProperty);
+    public static void SetSelectedForegroundColor(UIElement element, Color value) =>
+        element.SetValue(SelectedForegroundColorProperty, value);
+
+    public static Color GetUnselectedForegroundColor(UIElement element) =>
+        (Color)element.GetValue(UnselectedForegroundColorProperty);
+    public static void SetUnselectedForegroundColor(UIElement element, Color value) =>
+        element.SetValue(UnselectedForegroundColorProperty, value);
+
 
     #endregion
 
@@ -93,13 +142,13 @@ public static class ToggleFilterBehavior
 
         if ((bool)e.NewValue)
         {
-            ColorAnimations.AnimateBackground(element, Colors.White, 0.1);
-            ColorAnimations.AnimateForeground(button, Colors.Black, 0.1);
+            ColorAnimations.AnimateBackground(element, GetSelectedBackgroundColor(element), 0.1);
+            ColorAnimations.AnimateForeground(button, GetSelectedForegroundColor(element), 0.1);
         }
         else
         {
-            ColorAnimations.AnimateBackground(element, Color.FromRgb(51, 51, 51), 0.1);
-            ColorAnimations.AnimateForeground(button, Colors.White, 0.1);
+            ColorAnimations.AnimateBackground(element, GetUnselectedBackgroundColor(element), 0.1);
+            ColorAnimations.AnimateForeground(button, GetUnselectedForegroundColor(element), 0.1);
         }
     }
 
@@ -120,7 +169,7 @@ public static class ToggleFilterBehavior
         if (sender is not Border element) return;
 
         if (!GetIsSelected(element))
-            ColorAnimations.AnimateBackground(element, Color.FromRgb(42, 42, 42), 0.1);
+            ColorAnimations.AnimateBackground(element, GetUnselectedBackgroundColor(element), 0.1);
     }
 
     private static void ToggleFilter(object sender, MouseButtonEventArgs e)

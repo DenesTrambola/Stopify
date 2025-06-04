@@ -10,6 +10,10 @@ public class HomeViewModel : ViewModelBase
 
     private int _columnCount;
 
+    private bool _isAllFiltered = true;
+    private bool _isMusicFiltered = false;
+    private bool _isPodcastsFiltered = false;
+
     public ObservableCollection<CommonRowViewModel> _rows;
     public ObservableCollection<HomeRecentPlaysItemViewModel> _recentPlays;
 
@@ -23,9 +27,27 @@ public class HomeViewModel : ViewModelBase
         set => SetProperty(ref _columnCount, value);
     }
 
-    public IEnumerable<CommonRowViewModel> Rows => _rows;
+    public bool IsAllFiltered
+    {
+        get => _isAllFiltered;
+        set => SetProperty(ref _isAllFiltered, value);
+    }
 
-    public IEnumerable<HomeRecentPlaysItemViewModel> RecentPlays => _recentPlays;
+    public bool IsMusicFiltered
+    {
+        get => _isMusicFiltered;
+        set => SetProperty(ref _isMusicFiltered, value);
+    }
+
+    public bool IsPodcastsFiltered
+    {
+        get => _isPodcastsFiltered;
+        set => SetProperty(ref _isPodcastsFiltered, value);
+    }
+
+    public ObservableCollection<CommonRowViewModel> Rows => _rows;
+
+    public ObservableCollection<HomeRecentPlaysItemViewModel> RecentPlays => _recentPlays;
 
     #endregion
 
@@ -62,13 +84,6 @@ public class HomeViewModel : ViewModelBase
 
         ColumnCount = 2;
     }
-
-    #endregion
-
-    #region Methods
-
-    public void UpdateColumnCount(double width) =>
-        ColumnCount = width >= 1000 ? 4 : 2;
 
     #endregion
 }

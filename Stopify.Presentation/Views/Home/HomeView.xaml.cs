@@ -1,9 +1,11 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Behaviors.Home;
 using Stopify.Presentation.ViewModels.Home;
 using System.Drawing;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -13,21 +15,34 @@ public partial class HomeView : UserControl
 {
     private byte _recentsFilterValue = 0; // 0 - All, 1 - Music, 2 - Podcasts.
 
-    private readonly HomeViewModel _viewModel;
-
     public HomeView(HomeViewModel viewModel)
     {
         InitializeComponent();
 
         DataContext = viewModel;
-        _viewModel = viewModel;
+
+        Binding scrollerBgColorBinding = new()
+        {
+            Source = ScrollerBg,
+            Path = new PropertyPath("Color")
+        };
+        BindingOperations.SetBinding(this, HomeRecentPlaysCollectionBehavior.ScrollerBackgroundColorProperty, scrollerBgColorBinding);
+
+        Binding stickyHeaderBgColorBinding = new()
+        {
+            Source = StickyHeaderBg,
+            Path = new PropertyPath("Color")
+        };
+        BindingOperations.SetBinding(this, HomeRecentPlaysCollectionBehavior.StickyHeaderBackgroundColorProperty, stickyHeaderBgColorBinding);
     }
 
 
     // Home Page
 
-    private void HomePage_SizeChanged(object sender, SizeChangedEventArgs e) =>
-        _viewModel.UpdateColumnCount(e.NewSize.Width);
+    private void HomePage_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        //_viewModel.UpdateColumnCount(e.NewSize.Width);
+    }
 
     private void HomePage_Loaded(object sender, RoutedEventArgs e)
     {
@@ -70,7 +85,7 @@ public partial class HomeView : UserControl
         SolidColorBrush brush = new SolidColorBrush(averageColor);
 
         // Set the background of both Main and Sticky Headers
-        MainHeaderBg.Color = brush.Color;
+        //MainHeaderBg.Color = brush.Color;
         StickyHeaderBg.Color = brush.Color;
         ScrollerBg.Color = brush.Color;
     }
