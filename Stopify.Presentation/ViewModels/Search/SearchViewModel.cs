@@ -20,16 +20,12 @@ public class SearchViewModel : ViewModelBase
     public int TotalColumns
     {
         get => _totalColumns;
-        set
-        {
-            SetProperty(ref _totalColumns, value);
-
-        }
+        set => SetProperty(ref _totalColumns, value);
     }
 
-    public IEnumerable<FilterRowViewModel> FilterRows => _filterRows;
+    public ObservableCollection<FilterRowViewModel> FilterRows => _filterRows;
 
-    public IEnumerable<SearchCategoryItemViewModel> SearchCategoryItems => _searchCategoryItems;
+    public ObservableCollection<SearchCategoryItemViewModel> SearchCategoryItems => _searchCategoryItems;
 
     #endregion
 
@@ -105,20 +101,6 @@ public class SearchViewModel : ViewModelBase
             new SearchCategoryItemViewModel("equal"),
             new SearchCategoryItemViewModel("freshFinds"),
         };
-    }
-
-    #endregion
-
-    #region Methods
-
-    public void OnSizeChanged(double actualWidth)
-    {
-        if (actualWidth < 730)
-            TotalColumns = 2;
-        else if (actualWidth < 1000)
-            TotalColumns = 3;
-        else
-            TotalColumns = 4;
     }
 
     #endregion
