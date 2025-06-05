@@ -1,4 +1,5 @@
 ﻿using Stopify.Presentation.ViewModels.Base;
+using System.IO;
 using System.Windows;
 
 namespace Stopify.Presentation.ViewModels.Search;
@@ -7,24 +8,26 @@ public class SearchCategoryItemViewModel : ViewModelBase
 {
     #region Fields
 
-    private string _image;
+    private string _imagePath = string.Empty;
 
     #endregion
 
     #region Properties
 
-    public string Image
+    public string ImagePath
     {
-        get => _image;
+        get => _imagePath;
         set
         {
             try
             {
-                SetProperty(ref _image, "D:\\IT Step\\C#\\Stopify\\Stopify.Presentation\\Assets\\Images\\SearchPage\\" + value + ".png");
+                string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory())!.Parent!.Parent!.FullName;
+                string imagePath = Path.Combine(projectDirectory, "Assets", "Images", "SearchPage", $"{value}.png");
+                SetProperty(ref _imagePath, imagePath);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Error: Search Category Image " + value + "misspelled!");
+                MessageBox.Show("Error: Search Category Image " + value + "does not exist in this directory!");
             }
         }
     }
@@ -33,9 +36,9 @@ public class SearchCategoryItemViewModel : ViewModelBase
 
     #region Constructors
 
-    public SearchCategoryItemViewModel(string image)
+    public SearchCategoryItemViewModel(string imagePath)
     {
-        Image = image;
+        ImagePath = imagePath;
     }
 
     #endregion
