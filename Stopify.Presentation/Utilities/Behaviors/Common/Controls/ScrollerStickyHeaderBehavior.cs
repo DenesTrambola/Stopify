@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Stopify.Presentation.Utilities.Behaviors.Home;
+namespace Stopify.Presentation.Utilities.Behaviors.Common.Controls;
 
-public static class ScrollerSizeChangeBehavior
+public static class ScrollerStickyHeaderBehavior
 {
     #region Dependency Properties
 
@@ -11,14 +11,21 @@ public static class ScrollerSizeChangeBehavior
         DependencyProperty.RegisterAttached(
         "Enable",
         typeof(bool),
-        typeof(ScrollerSizeChangeBehavior),
+        typeof(ScrollerStickyHeaderBehavior),
         new PropertyMetadata(false, OnEnableChanged));
 
     public static readonly DependencyProperty StickyHeaderHeightProperty =
         DependencyProperty.RegisterAttached(
         "StickyHeaderHeight",
         typeof(double),
-        typeof(ScrollerSizeChangeBehavior),
+        typeof(ScrollerStickyHeaderBehavior),
+        new FrameworkPropertyMetadata((double)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+    public static readonly DependencyProperty StickyHeaderVerticalScrollAppearValueProperty =
+        DependencyProperty.RegisterAttached(
+        "StickyHeaderVerticalScrollAppearValue",
+        typeof(double),
+        typeof(ScrollerStickyHeaderBehavior),
         new FrameworkPropertyMetadata((double)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
     #endregion
@@ -34,6 +41,11 @@ public static class ScrollerSizeChangeBehavior
         (double)obj.GetValue(StickyHeaderHeightProperty);
     public static void SetStickyHeaderHeight(DependencyObject obj, double value) =>
         obj.SetValue(StickyHeaderHeightProperty, value);
+
+    public static double GetStickyHeaderVerticalScrollAppearValue(DependencyObject obj) =>
+        (double)obj.GetValue(StickyHeaderVerticalScrollAppearValueProperty);
+    public static void SetStickyHeaderVerticalScrollAppearValue(DependencyObject obj, double value) =>
+        obj.SetValue(StickyHeaderVerticalScrollAppearValueProperty, value);
 
     #endregion
 
@@ -63,7 +75,7 @@ public static class ScrollerSizeChangeBehavior
     {
         if (sender is not ScrollViewer element) return;
 
-        SetStickyHeaderHeight(element, element.VerticalOffset > 300 ? double.NaN : 0);
+        SetStickyHeaderHeight(element, element.VerticalOffset > GetStickyHeaderVerticalScrollAppearValue(element) ? double.NaN : 0);
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)

@@ -112,8 +112,9 @@
         <ScrollViewer
             Name="Scroller"
             Grid.Row="1"
-            HomeBehaviors:ScrollerSizeChangeBehavior.Enable="True"
-            HomeBehaviors:ScrollerSizeChangeBehavior.StickyHeaderHeight="{Binding ElementName=StickyHeader, Path=Height, Mode=TwoWay}"
+            ControlBehaviors:ScrollerStickyHeaderBehavior.Enable="True"
+            ControlBehaviors:ScrollerStickyHeaderBehavior.StickyHeaderHeight="{Binding ElementName=StickyHeader, Path=Height, Mode=TwoWay}"
+            ControlBehaviors:ScrollerStickyHeaderBehavior.StickyHeaderVerticalScrollAppearValue="300"
             HorizontalScrollBarVisibility="Disabled"
             VerticalScrollBarVisibility="Auto">
             <StackPanel Name="HomePagePanel" Background="#121212">

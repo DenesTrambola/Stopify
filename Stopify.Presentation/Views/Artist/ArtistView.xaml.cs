@@ -1,4 +1,5 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Behaviors.Artist;
 using Stopify.Presentation.Utilities.Helpers;
 using Stopify.Presentation.ViewModels.Artist;
 using System.Drawing;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -24,8 +26,38 @@ public partial class ArtistView : UserControl
     {
         InitializeComponent();
 
+        // MVVM code
         DataContext = viewModel;
 
+        Binding artistNameFontSizeBinding = new()
+        {
+            Source = ArtistName,
+            Path = new PropertyPath("FontSize")
+        };
+        BindingOperations.SetBinding(this, ArtistSizeChangeBehavior.ArtistNameFontSizeProperty, artistNameFontSizeBinding);
+
+        Binding artistNameMaxHeightBinding = new()
+        {
+            Source = ArtistName,
+            Path = new PropertyPath("MaxHeight")
+        };
+        BindingOperations.SetBinding(this, ArtistSizeChangeBehavior.ArtistNameMaxHeightProperty, artistNameMaxHeightBinding);
+
+        Binding scrollerBgColorBinding = new()
+        {
+            Source = ScrollerBg,
+            Path = new PropertyPath("Color")
+        };
+        BindingOperations.SetBinding(this, ArtistSizeChangeBehavior.ScrollerBgColorProperty, scrollerBgColorBinding);
+
+        Binding stickyHeaderBgBackgroundBinding = new()
+        {
+            Source = StickyHeaderBg,
+            Path = new PropertyPath("Background")
+        };
+        BindingOperations.SetBinding(this, ArtistSizeChangeBehavior.StickyHeaderBgBackgroundProperty, stickyHeaderBgBackgroundBinding);
+
+        // Deprecated code
         _popupText.Foreground = System.Windows.Media.Brushes.White;
         _popupText.FontWeight = FontWeights.SemiBold;
         _popupText.Background = System.Windows.Media.Brushes.Transparent;
@@ -209,12 +241,12 @@ public partial class ArtistView : UserControl
     {
         if (_isFollowing)
         {
-            FollowText.Text = "Follow";
+            //FollowText.Text = "Follow";
             _isFollowing = false;
         }
         else
         {
-            FollowText.Text = "Following";
+            //FollowText.Text = "Following";
             _isFollowing = true;
         }
     }
@@ -307,14 +339,14 @@ public partial class ArtistView : UserControl
 
     private void PopularBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations_Deprecated.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.Black, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(PopularBtn, PopularBtn.Foreground, Colors.Black, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, Colors.White, .1);
 
         _discographyFilterValue = 0;
 
-        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsBtn, AlbumsBtn.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesBtn, SinglesBtn.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 
@@ -337,14 +369,14 @@ public partial class ArtistView : UserControl
 
     private void AlbumsBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.Black, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsBtn, AlbumsBtn.Foreground, Colors.Black, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, Colors.White, .1);
 
         _discographyFilterValue = 1;
 
-        ColorAnimations_Deprecated.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(PopularBtn, PopularBtn.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesBtn, SinglesBtn.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 
@@ -367,14 +399,14 @@ public partial class ArtistView : UserControl
 
     private void SinglesBtn_Click(object sender, RoutedEventArgs e)
     {
-        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesText, SinglesText.Foreground, Colors.Black, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(SinglesBtn, SinglesBtn.Foreground, Colors.Black, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(SinglesBorder, SinglesBorder.Background, Colors.White, .1);
 
         _discographyFilterValue = 2;
 
-        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsText, AlbumsText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(AlbumsBtn, AlbumsBtn.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(AlbumsBorder, AlbumsBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
-        ColorAnimations_Deprecated.AnimateForegroundColor(PopularText, PopularText.Foreground, Colors.White, .1);
+        ColorAnimations_Deprecated.AnimateForegroundColor(PopularBtn, PopularBtn.Foreground, Colors.White, .1);
         ColorAnimations_Deprecated.AnimateBackgroundColor(PopularBorder, PopularBorder.Background, System.Windows.Media.Color.FromRgb(42, 42, 42), .1);
     }
 }
