@@ -1,10 +1,12 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Behaviors.Playlist.PlaylistItem;
 using Stopify.Presentation.Utilities.Helpers;
 using Stopify.Presentation.ViewModels.Playlist;
 using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -22,8 +24,38 @@ public partial class PlaylistHeader : UserControl
     {
         InitializeComponent();
 
+        // MVVM code
         DataContext = new PlaylistHeaderViewModel();
 
+        Binding dateBtnWidthBinding = new()
+        {
+            Source = DateBtn,
+            Path = new PropertyPath("Width")
+        };
+        BindingOperations.SetBinding(this, PlaylistItemSizeChangeBehavior.DateBtnWidthProperty, dateBtnWidthBinding);
+
+        Binding dateColumnWidthBinding = new()
+        {
+            Source = DateColumn,
+            Path = new PropertyPath("Width")
+        };
+        BindingOperations.SetBinding(this, PlaylistItemSizeChangeBehavior.DateColumnWidthProperty, dateColumnWidthBinding);
+
+        Binding albumBtnWidthBinding = new()
+        {
+            Source = AlbumBtn,
+            Path = new PropertyPath("Width")
+        };
+        BindingOperations.SetBinding(this, PlaylistItemSizeChangeBehavior.AlbumBtnWidthProperty, albumBtnWidthBinding);
+
+        Binding albumColumnWidthBinding = new()
+        {
+            Source = AlbumColumn,
+            Path = new PropertyPath("Width")
+        };
+        BindingOperations.SetBinding(this, PlaylistItemSizeChangeBehavior.AlbumColumnWidthProperty, albumColumnWidthBinding);
+
+        // Deprecated code
         _popupText.FontSize = 14;
         _popupText.FontWeight = FontWeights.SemiBold;
         _popupText.Background = Brushes.Transparent;

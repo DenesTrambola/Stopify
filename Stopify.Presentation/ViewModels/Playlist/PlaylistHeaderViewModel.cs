@@ -1,14 +1,22 @@
-﻿using Stopify.Presentation.ViewModels.Base;
+﻿using Stopify.Presentation.Utilities.Enums.Playlist;
+using Stopify.Presentation.ViewModels.Base;
 
 namespace Stopify.Presentation.ViewModels.Playlist;
 
 public class PlaylistHeaderViewModel : ViewModelBase
 {
-    #region Constructors
+    #region Fields
 
-    public PlaylistHeaderViewModel()
+    private PlaylistSortType _sortType = PlaylistSortType.Off;
+
+    #endregion
+
+    #region Properties
+
+    public PlaylistSortType SortType
     {
-
+        get => _sortType;
+        set => SetProperty(ref _sortType, value);
     }
 
     #endregion
