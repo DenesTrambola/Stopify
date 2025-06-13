@@ -1,5 +1,5 @@
-﻿using Stopify.Presentation.ViewModels.Base;
-using Stopify.Presentation.ViewModels.Home;
+﻿using Stopify.Presentation.Utilities.Stores;
+using Stopify.Presentation.ViewModels.Base;
 
 namespace Stopify.Presentation.ViewModels.Main;
 
@@ -7,29 +7,31 @@ public class MainViewModel : ViewModelBase
 {
     #region Fields
 
-    private ViewModelBase _currentViewModel;
-
-    private readonly HomeViewModel _homeViewModel;
+    private readonly NavigationStore _navigationStore;
 
     #endregion
 
     #region Properties
 
-    public ViewModelBase CurrentViewModel
-    {
-        get => _currentViewModel;
-        set => SetProperty(ref _currentViewModel, value);
-    }
+    public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
     #endregion
 
     #region Constructors
 
-    public MainViewModel(HomeViewModel homeViewModel)
+    public MainViewModel(NavigationStore navigationStore)
     {
-        _homeViewModel = homeViewModel;
+        _navigationStore = navigationStore;
+        _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+    }
 
-        CurrentViewModel = _homeViewModel;
+    #endregion
+
+    #region Event Handlers
+
+    private void OnCurrentViewModelChanged()
+    {
+        OnPropertyChanged(nameof(CurrentViewModel));
     }
 
     #endregion

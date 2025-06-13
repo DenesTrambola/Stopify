@@ -1,7 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Behaviors.Playlist;
 using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.ViewModels.Playlist;
 using Stopify.Presentation.Views.Main;
 using System.Drawing;
 using System.IO;
@@ -24,13 +23,11 @@ public partial class PlaylistView : UserControl
     private bool _isSaved = false;
     private bool _isSearching = false;
 
-    public PlaylistView(PlaylistViewModel viewModel)
+    public PlaylistView()
     {
         InitializeComponent();
 
         // MVVM code
-        DataContext = viewModel;
-
         Binding playlistTitleFontSizeBinding = new()
         {
             Source = PlaylistTitle,

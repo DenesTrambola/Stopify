@@ -1,9 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
-using Stopify.Presentation.Views.Artist;
-using Stopify.Presentation.Views.Home;
+using Stopify.Presentation.ViewModels.Main;
 using Stopify.Presentation.Views.Player;
-using Stopify.Presentation.Views.Playlist;
-using Stopify.Presentation.Views.Search;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -18,11 +15,11 @@ public partial class MainView : Window
     public bool QueueCollapsed { get; set; } = true;
     public bool FullScreen { get; set; } = false;
 
-    public MainView(HomeView homeView, SearchView searchView, ArtistView artistView, PlaylistView playlistView)
+    public MainView(MainViewModel viewModel)
     {
         InitializeComponent();
 
-        MainLayout.Content = playlistView;
+        DataContext = viewModel;
     }
 
     public void Window_Loaded(object sender, RoutedEventArgs e)

@@ -1,6 +1,5 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Behaviors.Home;
-using Stopify.Presentation.ViewModels.Home;
 using System.Drawing;
 using System.IO;
 using System.Windows;
@@ -15,11 +14,9 @@ public partial class HomeView : UserControl
 {
     private byte _recentsFilterValue = 0; // 0 - All, 1 - Music, 2 - Podcasts.
 
-    public HomeView(HomeViewModel viewModel)
+    public HomeView()
     {
         InitializeComponent();
-
-        DataContext = viewModel;
 
         Binding scrollerBgColorBinding = new()
         {

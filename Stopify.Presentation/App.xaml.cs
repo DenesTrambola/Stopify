@@ -2,7 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Stopify.Domain;
 using Stopify.Infrastructure;
-using Stopify.Presentation.ViewModels.Main;
+using Stopify.Presentation.Utilities.Stores;
+using Stopify.Presentation.ViewModels.Home;
 using Stopify.Presentation.Views.Main;
 using System.IO;
 using System.Windows;
@@ -39,8 +40,10 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        NavigationStore navigationStore = _services.GetService<NavigationStore>()!;
+        navigationStore.CurrentViewModel = _services.GetService<HomeViewModel>()!;
+
         var mainWindow = _services.GetService<MainView>()!;
-        mainWindow.DataContext = _services.GetService<MainViewModel>()!;
         mainWindow.Show();
 
         base.OnStartup(e);

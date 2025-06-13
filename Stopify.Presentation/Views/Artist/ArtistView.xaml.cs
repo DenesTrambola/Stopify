@@ -1,7 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Behaviors.Artist;
 using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.ViewModels.Artist;
 using System.Drawing;
 using System.IO;
 using System.Windows;
@@ -22,13 +21,11 @@ public partial class ArtistView : UserControl
     private bool _isFollowing = false;
     private byte _discographyFilterValue = 0; // 0 - Popular, 1 - Albums, 2 - Singles.
 
-    public ArtistView(ArtistViewModel viewModel)
+    public ArtistView()
     {
         InitializeComponent();
 
         // MVVM code
-        DataContext = viewModel;
-
         Binding artistNameFontSizeBinding = new()
         {
             Source = ArtistName,
