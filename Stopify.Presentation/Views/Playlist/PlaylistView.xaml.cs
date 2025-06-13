@@ -1,4 +1,5 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Behaviors.Playlist;
 using Stopify.Presentation.Utilities.Helpers;
 using Stopify.Presentation.ViewModels.Playlist;
 using Stopify.Presentation.Views.Main;
@@ -7,6 +8,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -26,8 +28,31 @@ public partial class PlaylistView : UserControl
     {
         InitializeComponent();
 
+        // MVVM code
         DataContext = viewModel;
 
+        Binding playlistTitleFontSizeBinding = new()
+        {
+            Source = PlaylistTitle,
+            Path = new PropertyPath("FontSize")
+        };
+        BindingOperations.SetBinding(this, PlaylistSizeChangeBehavior.PlaylistTitleFontSizeProperty, playlistTitleFontSizeBinding);
+
+        Binding stickyHeaderBgBackgroundBinding = new()
+        {
+            Source = StickyHeaderBg,
+            Path = new PropertyPath("Background")
+        };
+        BindingOperations.SetBinding(this, PlaylistSizeChangeBehavior.StickyHeaderBgBackgroundProperty, stickyHeaderBgBackgroundBinding);
+
+        Binding scrollerBgColorBinding = new()
+        {
+            Source = ScrollerBg,
+            Path = new PropertyPath("Color")
+        };
+        BindingOperations.SetBinding(this, PlaylistSizeChangeBehavior.ScrollerBgColorProperty, scrollerBgColorBinding);
+
+        // Deprecated code
         _popupText.Background = System.Windows.Media.Brushes.Transparent;
         _popupText.Foreground = System.Windows.Media.Brushes.White;
         _popupText.FontWeight = FontWeights.SemiBold;

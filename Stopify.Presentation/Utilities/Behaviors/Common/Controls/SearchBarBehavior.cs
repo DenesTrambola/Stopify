@@ -95,6 +95,13 @@ public static class SearchBarBehavior
             typeof(SearchBarBehavior),
             new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSearchTextChanged));
 
+    public static readonly DependencyProperty MouseLeaveSearchButtonBackgroundColorProperty =
+        DependencyProperty.RegisterAttached(
+            "MouseLeaveSearchButtonBackgroundColor",
+            typeof(Color),
+            typeof(SearchBarBehavior),
+            new PropertyMetadata(Color.FromRgb(18, 18, 18)));
+
     #endregion
 
     #region Getters/Setters
@@ -158,6 +165,11 @@ public static class SearchBarBehavior
         (string)obj.GetValue(SearchTextProperty);
     public static void SetSearchText(DependencyObject obj, string value) =>
         obj.SetValue(SearchTextProperty, value);
+
+    public static Color GetMouseLeaveSearchButtonBackgroundColor(DependencyObject obj) =>
+        (Color)obj.GetValue(MouseLeaveSearchButtonBackgroundColorProperty);
+    public static void SetMouseLeaveSearchButtonBackgroundColor(DependencyObject obj, Color value) =>
+        obj.SetValue(MouseLeaveSearchButtonBackgroundColorProperty, value);
 
     #endregion
 
@@ -237,6 +249,7 @@ public static class SearchBarBehavior
 
         SetSearchBorderRadius(element, new CornerRadius(5, 0, 0, 5));
         SetSearchBarWidth(element, double.NaN);
+        SetSearchCloseButtonWidth(element, GetSearchText(element).IsNullOrEmpty() ? 0 : double.NaN);
     }
 
     private static void OnSearchBoxLostFocus(object sender, RoutedEventArgs e)
@@ -249,7 +262,7 @@ public static class SearchBarBehavior
         SetSearchBorderRadius(element, new CornerRadius(30));
         SetSearchBarWidth(element, 0);
         SetSearchText(element, string.Empty);
-        ColorAnimations.AnimateBackground(GetSearchBorder(element), Color.FromRgb(18, 18, 18), 0.1);
+        ColorAnimations.AnimateBackground(GetSearchBorder(element), GetMouseLeaveSearchButtonBackgroundColor(element), 0.1);
         ColorAnimations.AnimateForeground(GetSearchTextBlock(element), Colors.DarkGray, 0.2);
         SetIsSearching(element, false);
     }

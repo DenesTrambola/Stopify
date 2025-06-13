@@ -38,6 +38,20 @@ public static class SearchButtonBehavior
             typeof(SearchButtonBehavior),
             new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+    public static readonly DependencyProperty MouseEnterBackgroundColorProperty =
+        DependencyProperty.RegisterAttached(
+            "MouseEnterBackgroundColor",
+            typeof(Color),
+            typeof(SearchButtonBehavior),
+            new PropertyMetadata(Color.FromRgb(39, 39, 39)));
+
+    public static readonly DependencyProperty MouseLeaveBackgroundColorProperty =
+        DependencyProperty.RegisterAttached(
+            "MouseLeaveBackgroundColor",
+            typeof(Color),
+            typeof(SearchButtonBehavior),
+            new PropertyMetadata(Color.FromRgb(18, 18, 18)));
+
     #endregion
 
     #region Getters/Setters
@@ -61,6 +75,16 @@ public static class SearchButtonBehavior
         (bool)obj.GetValue(IsSearchingProperty);
     public static void SetIsSearching(DependencyObject obj, bool value) =>
         obj.SetValue(IsSearchingProperty, value);
+
+    public static Color GetMouseEnterBackgroundColor(DependencyObject obj) =>
+        (Color)obj.GetValue(MouseEnterBackgroundColorProperty);
+    public static void SetMouseEnterBackgroundColor(DependencyObject obj, Color value) =>
+        obj.SetValue(MouseEnterBackgroundColorProperty, value);
+
+    public static Color GetMouseLeaveBackgroundColor(DependencyObject obj) =>
+        (Color)obj.GetValue(MouseLeaveBackgroundColorProperty);
+    public static void SetMouseLeaveBackgroundColor(DependencyObject obj, Color value) =>
+        obj.SetValue(MouseLeaveBackgroundColorProperty, value);
 
     #endregion
 
@@ -99,7 +123,7 @@ public static class SearchButtonBehavior
         else
         {
             Mouse.OverrideCursor = Cursors.Hand;
-            ColorAnimations.AnimateBackground(GetSearchBorder(element), Color.FromRgb(39, 39, 39), 0.1);
+            ColorAnimations.AnimateBackground(GetSearchBorder(element), GetMouseEnterBackgroundColor(element), 0.1);
             ColorAnimations.AnimateForeground(GetSearchText(element), Colors.LightGray, 0.2);
         }
     }
@@ -112,7 +136,7 @@ public static class SearchButtonBehavior
 
         if (!GetIsSearching(element))
         {
-            ColorAnimations.AnimateBackground(GetSearchBorder(element), Color.FromRgb(18, 18, 18), 0.1);
+            ColorAnimations.AnimateBackground(GetSearchBorder(element), GetMouseLeaveBackgroundColor(element), 0.1);
             ColorAnimations.AnimateForeground(GetSearchText(element), Colors.DarkGray, 0.2);
         }
     }

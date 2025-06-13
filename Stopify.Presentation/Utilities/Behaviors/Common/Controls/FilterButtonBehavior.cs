@@ -4,9 +4,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Stopify.Presentation.Utilities.Behaviors.Sidebar;
+namespace Stopify.Presentation.Utilities.Behaviors.Common.Controls;
 
-public static class RecentsFilterBehavior
+public static class FilterButtonBehavior
 {
     #region Dependency Properties
 
@@ -14,35 +14,35 @@ public static class RecentsFilterBehavior
         DependencyProperty.RegisterAttached(
             "Enable",
             typeof(bool),
-            typeof(RecentsFilterBehavior),
+            typeof(FilterButtonBehavior),
             new PropertyMetadata(false, OnEnableChanged));
 
     public static readonly DependencyProperty FilterTextProperty =
         DependencyProperty.RegisterAttached(
             "FilterText",
             typeof(TextBlock),
-            typeof(RecentsFilterBehavior),
+            typeof(FilterButtonBehavior),
             new PropertyMetadata(null));
 
     public static readonly DependencyProperty FilterIconProperty =
         DependencyProperty.RegisterAttached(
             "FilterIcon",
             typeof(TextBlock),
-            typeof(RecentsFilterBehavior),
+            typeof(FilterButtonBehavior),
             new PropertyMetadata(null));
 
     public static readonly DependencyProperty FilterTextWidthProperty =
         DependencyProperty.RegisterAttached(
             "FilterTextWidth",
             typeof(double),
-            typeof(RecentsFilterBehavior),
+            typeof(FilterButtonBehavior),
             new FrameworkPropertyMetadata(double.NaN, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
     public static readonly DependencyProperty IsSearchingProperty =
         DependencyProperty.RegisterAttached(
             "IsSearching",
             typeof(bool),
-            typeof(RecentsFilterBehavior),
+            typeof(FilterButtonBehavior),
             new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsSearchingChanged));
 
     #endregion

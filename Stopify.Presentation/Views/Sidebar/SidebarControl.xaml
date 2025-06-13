@@ -268,12 +268,12 @@
                         Padding="0,5"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
+                        ControlBehaviors:FilterButtonBehavior.Enable="True"
+                        ControlBehaviors:FilterButtonBehavior.FilterIcon="{Binding ElementName=RecentsFilterIcon}"
+                        ControlBehaviors:FilterButtonBehavior.FilterText="{Binding ElementName=RecentsFilterText}"
+                        ControlBehaviors:FilterButtonBehavior.FilterTextWidth="{Binding ElementName=RecentsFilterText, Path=Width}"
+                        ControlBehaviors:FilterButtonBehavior.IsSearching="{Binding IsSearching}"
                         InputBehaviors:CursorBehavior.Enable="True"
-                        SidebarBehaviors:RecentsFilterBehavior.Enable="True"
-                        SidebarBehaviors:RecentsFilterBehavior.FilterIcon="{Binding ElementName=RecentsFilterIcon}"
-                        SidebarBehaviors:RecentsFilterBehavior.FilterText="{Binding ElementName=RecentsFilterText}"
-                        SidebarBehaviors:RecentsFilterBehavior.FilterTextWidth="{Binding ElementName=RecentsFilterText, Path=Width, Mode=TwoWay}"
-                        SidebarBehaviors:RecentsFilterBehavior.IsSearching="{Binding IsSearching, Mode=TwoWay}"
                         Background="Transparent"
                         BorderThickness="0">
                         <StackPanel Orientation="Horizontal">
