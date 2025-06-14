@@ -34,8 +34,7 @@ public partial class App : Application
     {
         services.AddInfrastructureDependencies(_configuration);
         services.AddDomainDependencies();
-        services.AddViewDependencies();
-        services.AddViewModelDependencies();
+        services.AddPresentationDependencies();
     }
 
     protected override void OnStartup(StartupEventArgs e)

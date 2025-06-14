@@ -11,18 +11,38 @@ namespace Stopify.Presentation;
 
 public static class PresentationDependencies
 {
-    public static void AddViewModelDependencies(this IServiceCollection services)
+    public static IServiceCollection AddPresentationDependencies(this IServiceCollection services)
     {
-        services.AddSingleton<NavigationStore>()
-            .AddSingleton<MainViewModel>()
-            .AddTransient<HomeViewModel>()
-            .AddTransient<SearchViewModel>()
-            .AddTransient<ArtistViewModel>()
-            .AddTransient<PlaylistViewModel>();
+        services.AddViewDependencies()
+                .AddViewModelDependencies()
+                .AddStateDependencies();
+
+        return services;
     }
 
-    public static void AddViewDependencies(this IServiceCollection services)
+    public static IServiceCollection AddStateDependencies(this IServiceCollection services)
+    {
+        services.AddSingleton<NavigationStore>()
+                .AddSingleton<UIState>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddViewModelDependencies(this IServiceCollection services)
+    {
+        services.AddSingleton<MainViewModel>()
+                .AddTransient<HomeViewModel>()
+                .AddTransient<SearchViewModel>()
+                .AddTransient<ArtistViewModel>()
+                .AddTransient<PlaylistViewModel>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddViewDependencies(this IServiceCollection services)
     {
         services.AddSingleton<MainView>();
+
+        return services;
     }
 }

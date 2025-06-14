@@ -1,7 +1,9 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
+using Stopify.Presentation.Utilities.Behaviors.Main;
 using Stopify.Presentation.ViewModels.Main;
 using Stopify.Presentation.Views.Player;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
@@ -20,6 +22,116 @@ public partial class MainView : Window
         InitializeComponent();
 
         DataContext = viewModel;
+
+        BindingOperations.SetBinding(this, NowPlayingWidthBehavior.NowPlayingCollapseStateProperty, new Binding()
+        {
+            Source = viewModel.NowPlayingCollapseState
+        });
+
+        BindingOperations.SetBinding(this, NowPlayingWidthBehavior.QueueCollapseStateProperty, new Binding()
+        {
+            Source = viewModel.QueueCollapseState
+        });
+
+        BindingOperations.SetBinding(this, NowPlayingWidthBehavior.NowPlayingWidthProperty, new Binding()
+        {
+            Source = NowPlaying,
+            Path = new PropertyPath("Width"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, NowPlayingWidthBehavior.QueueWidthProperty, new Binding()
+        {
+            Source = SongQueue,
+            Path = new PropertyPath("Width"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, QueueWidthBehavior.QueueCollapseStateProperty, new Binding()
+        {
+            Source = viewModel.QueueCollapseState
+        });
+
+        BindingOperations.SetBinding(this, QueueWidthBehavior.NowPlayingCollapseStateProperty, new Binding()
+        {
+            Source = viewModel.NowPlayingCollapseState
+        });
+
+        BindingOperations.SetBinding(this, QueueWidthBehavior.QueueWidthProperty, new Binding()
+        {
+            Source = SongQueue,
+            Path = new PropertyPath("Width"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, QueueWidthBehavior.QueueHeightProperty, new Binding()
+        {
+            Source = SongQueue,
+            Path = new PropertyPath("Height"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, QueueWidthBehavior.NowPlayingWidthProperty, new Binding()
+        {
+            Source = NowPlaying,
+            Path = new PropertyPath("Width"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, QueueWidthBehavior.QueueProperty, new Binding()
+        {
+            Source = SongQueue
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.NowPlayingCollapseStateProperty, new Binding()
+        {
+            Source = viewModel.NowPlayingCollapseState
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.SidebarCollapseStateProperty, new Binding()
+        {
+            Source = viewModel.SidebarCollapseState
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.QueueCollapseStateProperty, new Binding()
+        {
+            Source = viewModel.QueueCollapseState
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.QueueHeightProperty, new Binding()
+        {
+            Source = SongQueue,
+            Path = new PropertyPath("Height"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.QueueWidthProperty, new Binding()
+        {
+            Source = SongQueue,
+            Path = new PropertyPath("Width"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.NowPlayingHeightProperty, new Binding()
+        {
+            Source = NowPlaying,
+            Path = new PropertyPath("Height"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.NowPlayingWidthProperty, new Binding()
+        {
+            Source = NowPlaying,
+            Path = new PropertyPath("Width"),
+            Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.SidebarWidthProperty, new Binding()
+        {
+            Source = SideBar,
+            Path = new PropertyPath("Width"),
+            Mode = BindingMode.TwoWay
+        });
     }
 
     public void Window_Loaded(object sender, RoutedEventArgs e)
