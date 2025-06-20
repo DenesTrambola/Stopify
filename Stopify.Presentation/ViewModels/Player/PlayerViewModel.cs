@@ -1,8 +1,10 @@
 ﻿using Stopify.Presentation.Utilities.Commands.Common;
 using Stopify.Presentation.Utilities.Commands.Player;
+using Stopify.Presentation.Utilities.Stores;
 using Stopify.Presentation.ViewModels.Base;
 using Stopify.Presentation.ViewModels.Common;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -22,9 +24,7 @@ public class PlayerViewModel : ViewModelBase
     private bool _isSaved = false;
     private bool _isShuffling = false;
     private bool _isPlaying = false;
-    private bool _isQueueOpen = false;
     private bool _isMuted = false;
-    private bool? _isNowPlayingViewOpen = true;
 
     private string _imagePath = string.Empty;
     private string _title = string.Empty;
@@ -32,14 +32,42 @@ public class PlayerViewModel : ViewModelBase
     private string _totalTime = "00:00";
     private string _hoverPopupText = string.Empty;
 
-    private readonly MediaPlayer _mediaPlayer = new();
-    private readonly DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(1) };
+    private MediaPlayer _mediaPlayer = new();
+    private DispatcherTimer _timer = new() { Interval = TimeSpan.FromSeconds(1) };
 
     private readonly ObservableCollection<AuthorItemViewModel> _authors = [];
+
+    private readonly UIState _uiState;
 
     #endregion
 
     #region Properties
+
+    public bool NowPlayingCollapseState
+    {
+        get => _uiState.NowPlayingCollapseState;
+        set
+        {
+            if (_uiState.NowPlayingCollapseState != value)
+            {
+                _uiState.NowPlayingCollapseState = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public bool QueueCollapseState
+    {
+        get => _uiState.QueueCollapseState;
+        set
+        {
+            if (_uiState.QueueCollapseState != value)
+            {
+                _uiState.QueueCollapseState = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
     public byte RepeatState
     {
@@ -87,22 +115,10 @@ public class PlayerViewModel : ViewModelBase
         set => SetProperty(ref _isPlaying, value);
     }
 
-    public bool IsQueueOpen
-    {
-        get => _isQueueOpen;
-        set => SetProperty(ref _isQueueOpen, value);
-    }
-
     public bool IsMuted
     {
         get => _isMuted;
         set => SetProperty(ref _isMuted, value);
-    }
-
-    public bool? IsNowPlayingViewOpen
-    {
-        get => _isNowPlayingViewOpen;
-        set => SetProperty(ref _isNowPlayingViewOpen, value);
     }
 
     public string ImagePath
@@ -135,8 +151,16 @@ public class PlayerViewModel : ViewModelBase
         set => SetProperty(ref _hoverPopupText, value);
     }
 
-    public MediaPlayer MediaPlayer => _mediaPlayer;
-    public DispatcherTimer Timer => _timer;
+    public MediaPlayer MediaPlayer
+    {
+        get => _mediaPlayer;
+        set => SetProperty(ref _mediaPlayer, value);
+    }
+    public DispatcherTimer Timer
+    {
+        get => _timer;
+        set => SetProperty(ref _timer, value);
+    }
 
     public ObservableCollection<AuthorItemViewModel> Authors => _authors;
 
@@ -157,11 +181,11 @@ public class PlayerViewModel : ViewModelBase
 
     #region Constructors
 
-    public PlayerViewModel()
+    public PlayerViewModel(UIState uiState)
     {
-        IsShuffling = false;
-        Title = "introvertált dal";
-        TotalTime = "2:45";
+        _isShuffling = false;
+        _title = "introvertált dal";
+        _totalTime = "2:45";
 
         _authors = new()
         {
@@ -169,6 +193,9 @@ public class PlayerViewModel : ViewModelBase
             new("DESH", new()),
             new("Young Fly", new()),
         };
+
+        _uiState = uiState;
+        _uiState.PropertyChanged += UIStatePropertyChanged;
 
         NavigatePlaylistCommand = new NavigatePlaylistCommand();
         NavigateArtistCommand = new NavigateArtistCommand();
@@ -178,6 +205,23 @@ public class PlayerViewModel : ViewModelBase
         NextSongCommand = new NextSongCommand();
         PlayCommand = new PlayCommand();
         RepeatSongCommand = new RepeatSongCommand();
+    }
+
+    #endregion
+
+    #region Event Handlers
+
+    private void UIStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(_uiState.NowPlayingCollapseState):
+                OnPropertyChanged(nameof(NowPlayingCollapseState));
+                break;
+            case nameof(_uiState.QueueCollapseState):
+                OnPropertyChanged(nameof(QueueCollapseState));
+                break;
+        }
     }
 
     #endregion

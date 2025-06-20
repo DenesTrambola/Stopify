@@ -32,7 +32,14 @@ public static class YourLibraryButtonBehavior
             "SearchGridHeight",
             typeof(double),
             typeof(YourLibraryButtonBehavior),
-            new PropertyMetadata((double)0));
+            new FrameworkPropertyMetadata((double)0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+    public static readonly DependencyProperty SidebarCollapseStateProperty =
+        DependencyProperty.RegisterAttached(
+            "SidebarCollapseState",
+            typeof(bool),
+            typeof(YourLibraryButtonBehavior),
+            new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSidebarCollapseStateChanged));
 
     #endregion
 
@@ -52,6 +59,11 @@ public static class YourLibraryButtonBehavior
         (double)obj.GetValue(SearchGridHeightProperty);
     public static void SetSearchGridHeight(DependencyObject obj, double value) =>
         obj.SetValue(SearchGridHeightProperty, value);
+
+    public static bool GetSidebarCollapseState(DependencyObject obj) =>
+        (bool)obj.GetValue(SidebarCollapseStateProperty);
+    public static void SetSidebarCollapseState(DependencyObject obj, bool value) =>
+        obj.SetValue(SidebarCollapseStateProperty, value);
 
     #endregion
 
@@ -75,6 +87,13 @@ public static class YourLibraryButtonBehavior
             element.Click -= OnClick;
             element.Unloaded -= DetachEvents;
         }
+    }
+
+    private static void OnSidebarCollapseStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not Button element) return;
+
+        SetSearchGridHeight(element, (bool)e.NewValue ? 0 : double.NaN);
     }
 
     #endregion
@@ -111,20 +130,7 @@ public static class YourLibraryButtonBehavior
     {
         if (sender is not Button element) return;
 
-        MainView mainView = (MainView)Application.Current.MainWindow;
-
-        if (mainView.SidebarCollapsed != false)
-        {
-            SetSearchGridHeight(element, double.NaN);
-            mainView.SidebarCollapsed = false;
-        }
-        else
-        {
-            SetSearchGridHeight(element, 0);
-            mainView.SidebarCollapsed = true;
-        }
-
-        mainView.UpdateSidebar();
+        SetSidebarCollapseState(element, !GetSidebarCollapseState(element));
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)

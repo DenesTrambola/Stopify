@@ -1,5 +1,4 @@
 ﻿using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -29,6 +28,12 @@ public static class ImageButtonBehavior
         typeof(ImageButtonBehavior),
         new PropertyMetadata(null));
 
+    public static readonly DependencyProperty NowPlayingCollapseStateProperty = DependencyProperty.RegisterAttached(
+        "NowPlayingCollapseState",
+        typeof(bool),
+        typeof(ImageButtonBehavior),
+        new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnNowPlayingCollapseStateChanged));
+
     #endregion
 
     #region Getters/Setters
@@ -47,6 +52,11 @@ public static class ImageButtonBehavior
         (string)obj.GetValue(NowPlayingBtnContentProperty);
     public static void SetNowPlayingBtnContent(DependencyObject obj, string value) =>
         obj.SetValue(NowPlayingBtnContentProperty, value);
+
+    public static bool GetNowPlayingCollapseState(DependencyObject obj) =>
+        (bool)obj.GetValue(NowPlayingCollapseStateProperty);
+    public static void SetNowPlayingCollapseState(DependencyObject obj, bool value) =>
+        obj.SetValue(NowPlayingCollapseStateProperty, value);
 
     #endregion
 
@@ -72,6 +82,22 @@ public static class ImageButtonBehavior
         }
     }
 
+    private static void OnNowPlayingCollapseStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is not Button element) return;
+
+        if (GetNowPlayingCollapseState(element))
+        {
+            SetNowPlayingBtnContent(element, "\uf106");
+            //ColorAnimations.AnimateForeground(NowPlayingOption, Colors.DarkGray, .1);
+        }
+        else
+        {
+            SetNowPlayingBtnContent(element, "\uf107");
+            //ColorAnimations.AnimateForeground(NowPlayingOption, Color.FromRgb(30, 215, 96), .1);
+        }
+    }
+
     #endregion
 
     #region Event Handlers
@@ -80,11 +106,9 @@ public static class ImageButtonBehavior
     {
         if (sender is not Button element) return;
 
-        MainView mainView = (MainView)Application.Current.MainWindow;
-
         SetNowPlayingBorderVisibility(element, Visibility.Visible);
 
-        if (mainView.NowPlayingCollapsed == true)
+        if (GetNowPlayingCollapseState(element))
         {
             HoverPopupHelper.PopupText = "Expand";
             SetNowPlayingBtnContent(element, "\uf106");
@@ -110,24 +134,9 @@ public static class ImageButtonBehavior
     {
         if (sender is not Button element) return;
 
-        MainView mainView = (MainView)Application.Current.MainWindow;
-
-        if (mainView.NowPlayingCollapsed == true)
-        {
-            mainView.NowPlayingCollapsed = false;
-            HoverPopupHelper.PopupText = "Collapse";
-            SetNowPlayingBtnContent(element, "\uf107");
-            //ColorAnimations.AnimateForeground(NowPlayingOption, Color.FromRgb(30, 215, 96), .1);
-        }
-        else
-        {
-            mainView.NowPlayingCollapsed = true;
-            //ColorAnimations.AnimateForeground(NowPlayingOption, Colors.DarkGray, .1);
-            HoverPopupHelper.PopupText = "Expand";
-            SetNowPlayingBtnContent(element, "\uf106");
-        }
-
-        mainView.UpdateNowPlaying();
+        bool nowPlayingCollapseState = GetNowPlayingCollapseState(element);
+        HoverPopupHelper.DisplayPopupText(element, PlacementMode.Top, nowPlayingCollapseState ? "Collapse" : "Expand");
+        SetNowPlayingCollapseState(element, !nowPlayingCollapseState);
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)

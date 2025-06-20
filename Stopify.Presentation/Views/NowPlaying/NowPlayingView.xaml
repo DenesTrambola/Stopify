@@ -81,6 +81,7 @@
                 ControlBehaviors:CloseButtonBehavior.CloseBorder="{Binding ElementName=CloseBorder}"
                 ControlBehaviors:CloseButtonBehavior.CloseText="{Binding ElementName=CloseText}"
                 ControlBehaviors:CloseButtonBehavior.Enable="True"
+                ControlBehaviors:CloseButtonBehavior.IsClosed="{Binding NowPlayingCollapseState}"
                 ControlBehaviors:HoverPopupBehavior.Enable="True"
                 ControlBehaviors:HoverPopupBehavior.Placement="Top"
                 ControlBehaviors:HoverPopupBehavior.PopupText="Close"

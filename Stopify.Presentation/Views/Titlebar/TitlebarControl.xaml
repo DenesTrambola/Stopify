@@ -13,7 +13,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     OutputBehaviors:ActualSizeBehavior.ActualWidth="{Binding TitlebarActualWidth, Mode=OneWayToSource}"
     TitlebarBehaviors:DragMoveWindowBehavior.EnableDrag="True"
-    TitlebarBehaviors:TitlebarSizeBehavior.EnableTitlebarDynamicSizing="True"
+    TitlebarBehaviors:TitlebarSizeBehavior.Enable="True"
     TitlebarBehaviors:TitlebarSizeBehavior.FriendActivityBtnWidth="{Binding FriendActivityBtnWidth, Mode=TwoWay}"
     TitlebarBehaviors:TitlebarSizeBehavior.NewsBtnWidth="{Binding NewsBtnWidth, Mode=TwoWay}"
     TitlebarBehaviors:TitlebarSizeBehavior.SearchBarWidth="{Binding SearchBarWidth, Mode=TwoWay}"

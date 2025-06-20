@@ -1,5 +1,7 @@
-﻿using Stopify.Presentation.ViewModels.Base;
+﻿using Stopify.Presentation.Utilities.Stores;
+using Stopify.Presentation.ViewModels.Base;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Stopify.Presentation.ViewModels.Sidebar;
 
@@ -17,6 +19,8 @@ public class SidebarViewModel : ViewModelBase
     private string _searchText = string.Empty;
 
     private readonly ObservableCollection<SidebarItemViewModel> _items;
+
+    private readonly UIState _uiState;
 
     #endregion
 
@@ -46,6 +50,19 @@ public class SidebarViewModel : ViewModelBase
         set => SetProperty(ref _isExpanded, value);
     }
 
+    public bool SidebarCollapseState
+    {
+        get => _uiState.SidebarCollapseState;
+        set
+        {
+            if (_uiState.SidebarCollapseState != value)
+            {
+                _uiState.SidebarCollapseState = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public double Width
     {
         get => _width;
@@ -68,7 +85,7 @@ public class SidebarViewModel : ViewModelBase
 
     #region Constructor
 
-    public SidebarViewModel()
+    public SidebarViewModel(UIState uiState)
     {
         _items = new ObservableCollection<SidebarItemViewModel>
         {
@@ -83,6 +100,24 @@ public class SidebarViewModel : ViewModelBase
             new SidebarItemViewModel("aesthetic gym posing", "Playlist", string.Empty, "_"),
             new SidebarItemViewModel("YAKTAK", "Artist", string.Empty),
         };
+
+        _uiState = uiState;
+        _uiState.PropertyChanged += UIStatePropertyChanged;
+    }
+
+    #endregion
+
+    #region Event Handlers
+
+    private void UIStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(_uiState.SidebarCollapseState):
+                OnPropertyChanged(nameof(SidebarCollapseState));
+                break;
+                // other state properties can be added here if needed
+        }
     }
 
     #endregion

@@ -1,7 +1,6 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Behaviors.Sidebar;
 using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.ViewModels.Sidebar;
 using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,8 +24,6 @@ public partial class SidebarControl : UserControl
         InitializeComponent();
 
         // MVVM
-        DataContext = new SidebarViewModel();
-
         Binding visibilityBinding = new()
         {
             Source = YourLibraryText,

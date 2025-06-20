@@ -1,6 +1,8 @@
-﻿using Stopify.Presentation.ViewModels.Base;
+﻿using Stopify.Presentation.Utilities.Stores;
+using Stopify.Presentation.ViewModels.Base;
 using Stopify.Presentation.ViewModels.Queue;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Stopify.Presentation.ViewModels.NowPlaying;
 
@@ -26,9 +28,24 @@ public class NowPlayingViewModel : ViewModelBase
     private ObservableCollection<string> _authors;
     private ObservableCollection<NowPlayingCreditsItemViewModel> _credits;
 
+    private readonly UIState _uiState;
+
     #endregion
 
     #region Properties
+
+    public bool NowPlayingCollapseState
+    {
+        get => _uiState.NowPlayingCollapseState;
+        set
+        {
+            if (_uiState.NowPlayingCollapseState != value)
+            {
+                _uiState.NowPlayingCollapseState = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 
     public bool IsSaved
     {
@@ -104,12 +121,15 @@ public class NowPlayingViewModel : ViewModelBase
 
     #region Constructors
 
-    public NowPlayingViewModel()
+    public NowPlayingViewModel(UIState uiState)
     {
-        Artist = "Azahriah";
-        ArtistImagePath = string.Empty;
-        MonthlyListeners = "700,000";
-        ArtistDescription = "creator from hungary";
+        _artist = "Azahriah";
+        _artistImagePath = string.Empty;
+        _monthlyListeners = "700,000";
+        _artistDescription = "creator from hungary";
+
+        _uiState = uiState;
+        _uiState.PropertyChanged += UIStatePropertyChanged;
 
         _authors = new ObservableCollection<string>
         {
@@ -126,6 +146,20 @@ public class NowPlayingViewModel : ViewModelBase
         };
 
         _nextSong = new QueueItemViewModel("BAKPAKK", string.Empty);
+    }
+
+    #endregion
+
+    #region Event Handlers
+
+    private void UIStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(_uiState.NowPlayingCollapseState):
+                OnPropertyChanged(nameof(NowPlayingCollapseState));
+                break;
+        }
     }
 
     #endregion

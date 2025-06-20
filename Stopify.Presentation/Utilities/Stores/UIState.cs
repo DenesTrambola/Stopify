@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Stopify.Presentation.Utilities.Stores;
 
@@ -6,15 +7,15 @@ public class UIState : INotifyPropertyChanged
 {
     #region Fields
 
-    private bool? _sidebarCollapseState;
-    private bool? _nowPlayingCollapseState;
+    private bool _sidebarCollapseState = true;
     private bool _queueCollapseState = true;
+    private bool _nowPlayingCollapseState = false;
 
     #endregion
 
     #region Properties
 
-    public bool? SidebarCollapseState
+    public bool SidebarCollapseState
     {
         get => _sidebarCollapseState;
         set
@@ -22,20 +23,7 @@ public class UIState : INotifyPropertyChanged
             if (_sidebarCollapseState != value)
             {
                 _sidebarCollapseState = value;
-                OnPropertyChanged(nameof(SidebarCollapseState));
-            }
-        }
-    }
-
-    public bool? NowPlayingCollapseState
-    {
-        get => _nowPlayingCollapseState;
-        set
-        {
-            if (_nowPlayingCollapseState != value)
-            {
-                _nowPlayingCollapseState = value;
-                OnPropertyChanged(nameof(NowPlayingCollapseState));
+                OnPropertyChanged();
             }
         }
     }
@@ -48,7 +36,20 @@ public class UIState : INotifyPropertyChanged
             if (_queueCollapseState != value)
             {
                 _queueCollapseState = value;
-                OnPropertyChanged(nameof(QueueCollapseState));
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public bool NowPlayingCollapseState
+    {
+        get => _nowPlayingCollapseState;
+        set
+        {
+            if (_nowPlayingCollapseState != value)
+            {
+                _nowPlayingCollapseState = value;
+                OnPropertyChanged();
             }
         }
     }
@@ -59,7 +60,7 @@ public class UIState : INotifyPropertyChanged
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    protected virtual void OnPropertyChanged(string propertyName)
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null!)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }

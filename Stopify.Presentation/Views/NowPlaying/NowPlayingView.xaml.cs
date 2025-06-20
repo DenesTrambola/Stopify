@@ -1,9 +1,7 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Behaviors.NowPlaying;
 using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.ViewModels.NowPlaying;
 using Stopify.Presentation.Views.Main;
-using Stopify.Presentation.Views.Player;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -16,7 +14,7 @@ namespace Stopify.Presentation.Views.NowPlaying;
 
 public partial class NowPlayingView : UserControl
 {
-    private PlayerControl _player = new();
+    //private PlayerControl _player = new();
     private TextBlock _popupText = new();
     private bool _isSaved = false;
     private bool _isFollowing = false;
@@ -26,8 +24,6 @@ public partial class NowPlayingView : UserControl
         InitializeComponent();
 
         // MVVM code
-        DataContext = new NowPlayingViewModel();
-
         Binding saveTextMarginBinding = new()
         {
             Source = SaveText,
@@ -379,8 +375,8 @@ public partial class NowPlayingView : UserControl
         };
         mainView.SongQueue.BeginAnimation(HeightProperty, heightIncreaseAnimation);
 
-        PlayerControl player = new();
-        player.NowPlayingBtn.Content = "\uf106";
+        //PlayerControl player = new();
+        //player.NowPlayingBtn.Content = "\uf106";
         mainView.NowPlayingCollapsed = false;
     }
 }

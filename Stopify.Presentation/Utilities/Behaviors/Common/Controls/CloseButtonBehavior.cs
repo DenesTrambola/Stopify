@@ -1,5 +1,4 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
-using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -31,6 +30,13 @@ public static class CloseButtonBehavior
             typeof(CloseButtonBehavior),
             new PropertyMetadata(null));
 
+    public static readonly DependencyProperty IsClosedProperty =
+        DependencyProperty.RegisterAttached(
+            "IsClosed",
+            typeof(bool),
+            typeof(CloseButtonBehavior),
+            new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
     #endregion
 
     #region Getters/Setters
@@ -49,6 +55,11 @@ public static class CloseButtonBehavior
         (TextBlock)obj.GetValue(CloseTextProperty);
     public static void SetCloseText(DependencyObject obj, TextBlock value) =>
         obj.SetValue(CloseTextProperty, value);
+
+    public static bool GetIsClosed(DependencyObject obj) =>
+        (bool)obj.GetValue(IsClosedProperty);
+    public static void SetIsClosed(DependencyObject obj, bool value) =>
+        obj.SetValue(IsClosedProperty, value);
 
     #endregion
 
@@ -98,9 +109,7 @@ public static class CloseButtonBehavior
     {
         if (sender is not Button element) return;
 
-        MainView mainView = (MainView)Application.Current.MainWindow;
-        mainView.NowPlayingCollapsed = true;
-        mainView.UpdateNowPlaying();
+        SetIsClosed(element, true);
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)

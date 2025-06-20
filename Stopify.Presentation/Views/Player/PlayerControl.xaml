@@ -42,6 +42,7 @@
                 PlayerBehaviors:ImageButtonBehavior.Enable="True"
                 PlayerBehaviors:ImageButtonBehavior.NowPlayingBorderVisibility="{Binding ElementName=NowPlayingBorder, Path=Visibility, Mode=OneWayToSource}"
                 PlayerBehaviors:ImageButtonBehavior.NowPlayingBtnContent="{Binding ElementName=NowPlayingBtn, Path=Content, Mode=TwoWay}"
+                PlayerBehaviors:ImageButtonBehavior.NowPlayingCollapseState="{Binding NowPlayingCollapseState}"
                 Background="Transparent"
                 BorderThickness="0">
                 <Border
@@ -421,6 +422,8 @@
                     ControlBehaviors:SliderBehavior.Enable="True"
                     PlayerBehaviors:MediaBarBehavior.CurrentTime="{Binding CurrentTime, Mode=TwoWay}"
                     PlayerBehaviors:MediaBarBehavior.Enable="True"
+                    PlayerBehaviors:MediaBarBehavior.MediaPlayer="{Binding MediaPlayer}"
+                    PlayerBehaviors:MediaBarBehavior.Timer="{Binding Timer}"
                     BorderThickness="0"
                     IsSelectionRangeEnabled="True"
                     Maximum="{Binding MaxMediaValue}"
@@ -467,11 +470,10 @@
                 AnimationBehaviors:ScaleAnimationBehavior.ScaleFactor="1.03"
                 ControlBehaviors:HoverPopupBehavior.Enable="True"
                 ControlBehaviors:HoverPopupBehavior.PopupText="Now playing view"
-                ControlBehaviors:ToggleButtonStateBehavior.CurrentState="{Binding IsNowPlayingViewOpen, Converter={StaticResource BooleanToByteConverter}, Mode=TwoWay}"
+                ControlBehaviors:ToggleButtonStateBehavior.CurrentState="{Binding NowPlayingCollapseState, Converter={StaticResource BooleanToByteConverter}}"
                 ControlBehaviors:ToggleButtonStateBehavior.Enable="True"
                 ControlBehaviors:ToggleButtonStateBehavior.MouseEnterColor="White"
                 ControlBehaviors:ToggleButtonStateBehavior.MouseLeaveColor="DarkGray"
-                ControlBehaviors:ToggleButtonStateBehavior.StateDependentValue="{Binding IsNowPlayingViewOpen, Mode=TwoWay}"
                 ControlBehaviors:ToggleButtonStateBehavior.StateQuantity="2"
                 InputBehaviors:CursorBehavior.Enable="True"
                 Background="Transparent"
@@ -482,14 +484,8 @@
                 Foreground="#1ed760">
                 <ControlBehaviors:ToggleButtonStateBehavior.StateInfos>
                     <CustomCollections:ButtonStateCollection>
-                        <Models:ButtonStateModel
-                            ChangeColorOnHover="True"
-                            DependentValueBoolean="False"
-                            Color="DarkGray" />
-                        <Models:ButtonStateModel
-                            ChangeColorOnHover="False"
-                            DependentValueBoolean="True"
-                            Color="#1ed760" />
+                        <Models:ButtonStateModel ChangeColorOnHover="False" Color="#1ed760" />
+                        <Models:ButtonStateModel ChangeColorOnHover="True" Color="DarkGray" />
                     </CustomCollections:ButtonStateCollection>
                 </ControlBehaviors:ToggleButtonStateBehavior.StateInfos>
             </Button>
@@ -521,7 +517,7 @@
                 HorizontalAlignment="Right"
                 ControlBehaviors:HoverPopupBehavior.Enable="True"
                 ControlBehaviors:HoverPopupBehavior.PopupText="Queue"
-                ControlBehaviors:ToggleButtonStateBehavior.CurrentState="{Binding IsQueueOpen, Mode=TwoWay}"
+                ControlBehaviors:ToggleButtonStateBehavior.CurrentState="{Binding QueueCollapseState}"
                 ControlBehaviors:ToggleButtonStateBehavior.Enable="True"
                 ControlBehaviors:ToggleButtonStateBehavior.MouseEnterColor="White"
                 ControlBehaviors:ToggleButtonStateBehavior.MouseLeaveColor="DarkGray"
@@ -535,8 +531,8 @@
                 Foreground="DarkGray">
                 <ControlBehaviors:ToggleButtonStateBehavior.StateInfos>
                     <CustomCollections:ButtonStateCollection>
-                        <Models:ButtonStateModel ChangeColorOnHover="True" Color="DarkGray" />
                         <Models:ButtonStateModel ChangeColorOnHover="False" Color="#1ed760" />
+                        <Models:ButtonStateModel ChangeColorOnHover="True" Color="DarkGray" />
                     </CustomCollections:ButtonStateCollection>
                 </ControlBehaviors:ToggleButtonStateBehavior.StateInfos>
             </Button>

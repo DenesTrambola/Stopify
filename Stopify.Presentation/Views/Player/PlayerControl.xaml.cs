@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Stopify.Domain.Contracts.Other;
+﻿using Stopify.Domain.Contracts.Other;
 using Stopify.Presentation.Utilities.Animations;
-using Stopify.Presentation.Utilities.Behaviors.Player;
 using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.ViewModels.Player;
 using Stopify.Presentation.Views.Main;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -97,14 +94,8 @@ public partial class PlayerControl : UserControl, INotifyPropertyChanged
     {
         InitializeComponent();
 
-        DataContext = new PlayerViewModel();
-        // MVVM code
-        MediaBarBehavior.SetMediaPlayer(MediaBar, ((PlayerViewModel)DataContext).MediaPlayer);
-        MediaBarBehavior.SetTimer(MediaBar, ((PlayerViewModel)DataContext).Timer);
-
-        // Deprecated code
-        _audioService = ((App)App.Current).Services.GetService<IAudioStorageService>()!;
-        Setup();
+        //_audioService = ((App)App.Current).Services.GetService<IAudioStorageService>()!;
+        //Setup();
     }
 
     private async void Setup()

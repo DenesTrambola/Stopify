@@ -1,5 +1,4 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
-using Stopify.Presentation.ViewModels.Queue;
 using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,8 +15,6 @@ public partial class QueueView : UserControl
     public QueueView()
     {
         InitializeComponent();
-
-        DataContext = new QueueViewModel();
     }
 
 

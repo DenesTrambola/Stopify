@@ -81,6 +81,7 @@
                 ControlBehaviors:CloseButtonBehavior.CloseBorder="{Binding ElementName=CloseBorder}"
                 ControlBehaviors:CloseButtonBehavior.CloseText="{Binding ElementName=CloseText}"
                 ControlBehaviors:CloseButtonBehavior.Enable="True"
+                ControlBehaviors:CloseButtonBehavior.IsClosed="{Binding QueueCollapseState}"
                 InputBehaviors:CursorBehavior.Enable="True"
                 Background="Transparent"
                 BorderThickness="0">

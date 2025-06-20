@@ -38,6 +38,7 @@
                 InputBehaviors:CursorBehavior.Enable="True"
                 SidebarBehaviors:YourLibraryButtonBehavior.Enable="True"
                 SidebarBehaviors:YourLibraryButtonBehavior.SearchGridHeight="{Binding ElementName=SearchGrid, Path=Height, Mode=TwoWay}"
+                SidebarBehaviors:YourLibraryButtonBehavior.SidebarCollapseState="{Binding SidebarCollapseState}"
                 SidebarBehaviors:YourLibraryButtonBehavior.YourLibraryText="{Binding ElementName=YourLibraryText}"
                 Background="Transparent"
                 BorderThickness="0"

@@ -1,17 +1,14 @@
-﻿using Stopify.Presentation.Utilities.Animations;
-using Stopify.Presentation.Utilities.Behaviors.Main;
+﻿using Stopify.Presentation.Utilities.Behaviors.Main;
 using Stopify.Presentation.ViewModels.Main;
-using Stopify.Presentation.Views.Player;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace Stopify.Presentation.Views.Main;
 
 public partial class MainView : Window
 {
-    private PlayerControl _player = new();
+    //private PlayerControl _player = new();
     public bool? SidebarCollapsed { get; set; } = null;
     public bool? NowPlayingCollapsed { get; set; } = null;
     public bool QueueCollapsed { get; set; } = true;
@@ -22,81 +19,6 @@ public partial class MainView : Window
         InitializeComponent();
 
         DataContext = viewModel;
-
-        BindingOperations.SetBinding(this, NowPlayingWidthBehavior.NowPlayingCollapseStateProperty, new Binding()
-        {
-            Source = viewModel.NowPlayingCollapseState
-        });
-
-        BindingOperations.SetBinding(this, NowPlayingWidthBehavior.QueueCollapseStateProperty, new Binding()
-        {
-            Source = viewModel.QueueCollapseState
-        });
-
-        BindingOperations.SetBinding(this, NowPlayingWidthBehavior.NowPlayingWidthProperty, new Binding()
-        {
-            Source = NowPlaying,
-            Path = new PropertyPath("Width"),
-            Mode = BindingMode.TwoWay
-        });
-
-        BindingOperations.SetBinding(this, NowPlayingWidthBehavior.QueueWidthProperty, new Binding()
-        {
-            Source = SongQueue,
-            Path = new PropertyPath("Width"),
-            Mode = BindingMode.TwoWay
-        });
-
-        BindingOperations.SetBinding(this, QueueWidthBehavior.QueueCollapseStateProperty, new Binding()
-        {
-            Source = viewModel.QueueCollapseState
-        });
-
-        BindingOperations.SetBinding(this, QueueWidthBehavior.NowPlayingCollapseStateProperty, new Binding()
-        {
-            Source = viewModel.NowPlayingCollapseState
-        });
-
-        BindingOperations.SetBinding(this, QueueWidthBehavior.QueueWidthProperty, new Binding()
-        {
-            Source = SongQueue,
-            Path = new PropertyPath("Width"),
-            Mode = BindingMode.TwoWay
-        });
-
-        BindingOperations.SetBinding(this, QueueWidthBehavior.QueueHeightProperty, new Binding()
-        {
-            Source = SongQueue,
-            Path = new PropertyPath("Height"),
-            Mode = BindingMode.TwoWay
-        });
-
-        BindingOperations.SetBinding(this, QueueWidthBehavior.NowPlayingWidthProperty, new Binding()
-        {
-            Source = NowPlaying,
-            Path = new PropertyPath("Width"),
-            Mode = BindingMode.TwoWay
-        });
-
-        BindingOperations.SetBinding(this, QueueWidthBehavior.QueueProperty, new Binding()
-        {
-            Source = SongQueue
-        });
-
-        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.NowPlayingCollapseStateProperty, new Binding()
-        {
-            Source = viewModel.NowPlayingCollapseState
-        });
-
-        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.SidebarCollapseStateProperty, new Binding()
-        {
-            Source = viewModel.SidebarCollapseState
-        });
-
-        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.QueueCollapseStateProperty, new Binding()
-        {
-            Source = viewModel.QueueCollapseState
-        });
 
         BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.QueueHeightProperty, new Binding()
         {
@@ -112,11 +34,10 @@ public partial class MainView : Window
             Mode = BindingMode.TwoWay
         });
 
-        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.NowPlayingHeightProperty, new Binding()
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.NowPlayingActualHeightProperty, new Binding()
         {
             Source = NowPlaying,
-            Path = new PropertyPath("Height"),
-            Mode = BindingMode.TwoWay
+            Path = new PropertyPath("ActualHeight")
         });
 
         BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.NowPlayingWidthProperty, new Binding()
@@ -131,6 +52,11 @@ public partial class MainView : Window
             Source = SideBar,
             Path = new PropertyPath("Width"),
             Mode = BindingMode.TwoWay
+        });
+
+        BindingOperations.SetBinding(this, MainViewSizeChangeBehavior.QueueBorderProperty, new Binding()
+        {
+            Source = SongQueue
         });
     }
 
@@ -159,14 +85,14 @@ public partial class MainView : Window
     {
         if (NowPlayingCollapsed == true)
         {
-            ColorAnimations_Deprecated.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Color.FromRgb(30, 215, 96), .1);
+            //ColorAnimations_Deprecated.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Color.FromRgb(30, 215, 96), .1);
             NowPlaying.Width = 0;
             if (QueueCollapsed)
                 SongQueue.Width = 0;
         }
         else
         {
-            ColorAnimations_Deprecated.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Colors.DarkGray, .1);
+            //ColorAnimations_Deprecated.AnimateForegroundColor(_player.NowPlayingOption, _player.NowPlayingOption.Foreground, Colors.DarkGray, .1);
             if (ActualWidth >= 1250)
                 NowPlaying.Width = 350;
             else if (ActualWidth >= 1100)
@@ -216,8 +142,8 @@ public partial class MainView : Window
             else
                 SongQueue.Width = 281;
 
-            PlayerControl player = new();
-            player.NowPlayingBtn.Content = "\uf106";
+            //PlayerControl player = new();
+            //player.NowPlayingBtn.Content = "\uf106";
         }
     }
 

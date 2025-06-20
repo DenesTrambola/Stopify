@@ -7,9 +7,9 @@ public static class TitlebarSizeBehavior
 {
     #region Dependency Properties
 
-    public static readonly DependencyProperty EnableTitlebarDynamicSizingProperty =
+    public static readonly DependencyProperty EnableProperty =
         DependencyProperty.RegisterAttached(
-            "EnableTitlebarDynamicSizing",
+            "Enable",
             typeof(bool),
             typeof(TitlebarSizeBehavior),
             new PropertyMetadata(false, OnTitlebarSizeChanged));
@@ -81,10 +81,10 @@ public static class TitlebarSizeBehavior
 
     #region Getters/Setters
 
-    public static bool GetEnableTitlebarDynamicSizing(UIElement element) =>
-        (bool)element.GetValue(EnableTitlebarDynamicSizingProperty);
-    public static void SetEnableTitlebarDynamicSizing(UIElement element, bool value) =>
-        element.SetValue(EnableTitlebarDynamicSizingProperty, value);
+    public static bool GetEnable(UIElement element) =>
+        (bool)element.GetValue(EnableProperty);
+    public static void SetEnable(UIElement element, bool value) =>
+        element.SetValue(EnableProperty, value);
 
     public static double GetSearchbarTextWidth(UIElement element) =>
         (double)element.GetValue(SearchbarTextWidthProperty);
@@ -195,7 +195,7 @@ public static class TitlebarSizeBehavior
         element.SizeChanged -= OnTitlebarSizeChanged;
         element.Unloaded -= DetachEvents;
 
-        SetEnableTitlebarDynamicSizing(element, false);
+        SetEnable(element, false);
     }
 
     #endregion

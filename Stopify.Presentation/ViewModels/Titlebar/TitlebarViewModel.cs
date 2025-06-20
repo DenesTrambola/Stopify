@@ -11,42 +11,30 @@ public class TitlebarViewModel : ViewModelBase
 {
     #region Fields
 
-    private char _avatarPlaceholder;
-    private string _username;
+    private bool _isOptionsMenuOpen = false;
+    private bool _canNavigateBack = true;
+    private bool _canNavigateForward = false;
 
-    private bool _isOptionsMenuOpen;
-    private bool _canNavigateBack;
-    private bool _canNavigateForward;
+    private double _titlebarActualWidth = 0;
+    private double _friendActivityBtnWidth = double.NaN;
+    private double _newsBtnWidth = double.NaN;
+    private double _searchBarWidth = 0;
+    private CornerRadius _searchbarBorderRadius = new(30);
+    private double _searchbarInputWidth = 0;
+    private double _searchbarBrowseWidth = 0;
+    private string _searchbarInput = string.Empty;
+    private double _searchbarLineWidth = 0;
+    private double _searchbarTextWidth = 0;
+    private double _searchBarActualWidth = 0;
+
+    private char _avatarPlaceholder = 'D';
+    private string _username = "Dénes Trambola";
 
     private ObservableCollection<MenuItemViewModel> _optionsMenuItems;
-
-    private double _titlebarActualWidth;
-    private double _friendActivityBtnWidth;
-    private double _newsBtnWidth;
-    private double _searchBarWidth;
-    private CornerRadius _searchbarBorderRadius;
-    private double _searchbarInputWidth;
-    private double _searchbarBrowseWidth;
-    private string _searchbarInput;
-    private double _searchbarLineWidth;
-    private double _searchbarTextWidth;
-    private double _searchBarActualWidth;
 
     #endregion
 
     #region Properties
-
-    public char AvatarPlaceholder
-    {
-        get => _avatarPlaceholder;
-        set => SetProperty(ref _avatarPlaceholder, value);
-    }
-
-    public string Username
-    {
-        get => _username;
-        set => SetProperty(ref _username, value);
-    }
 
     public bool IsOptionsMenuOpen
     {
@@ -65,8 +53,6 @@ public class TitlebarViewModel : ViewModelBase
         get => _canNavigateForward;
         set => SetProperty(ref _canNavigateForward, value);
     }
-
-    public ObservableCollection<MenuItemViewModel> OptionsMenuItems => _optionsMenuItems;
 
     public double TitlebarActualWidth
     {
@@ -134,6 +120,20 @@ public class TitlebarViewModel : ViewModelBase
         set => SetProperty(ref _searchBarActualWidth, value);
     }
 
+    public char AvatarPlaceholder
+    {
+        get => _avatarPlaceholder;
+        set => SetProperty(ref _avatarPlaceholder, value);
+    }
+
+    public string Username
+    {
+        get => _username;
+        set => SetProperty(ref _username, value);
+    }
+
+    public ObservableCollection<MenuItemViewModel> OptionsMenuItems => _optionsMenuItems;
+
     #endregion
 
     #region Commands
@@ -156,13 +156,6 @@ public class TitlebarViewModel : ViewModelBase
 
     public TitlebarViewModel()
     {
-        AvatarPlaceholder = 'D';
-        Username = "Dénes Trambola";
-
-        IsOptionsMenuOpen = false;
-        CanNavigateBack = true;
-        CanNavigateForward = false;
-
         _optionsMenuItems = new ObservableCollection<MenuItemViewModel>
         {
             new MenuItemViewModel("File", new RelayCommand(() => MessageBox.Show("File clicked"))),
@@ -171,16 +164,6 @@ public class TitlebarViewModel : ViewModelBase
             new MenuItemViewModel("Playback", new RelayCommand(() => MessageBox.Show("Playback clicked"))),
             new MenuItemViewModel("Help", new RelayCommand(() => MessageBox.Show("Help clicked")))
         };
-
-        FriendActivityBtnWidth = double.NaN;
-        NewsBtnWidth = double.NaN;
-        SearchBarWidth = 0;
-        SearchBtnBorderRadius = new CornerRadius(30);
-        SearchbarInputWidth = 0;
-        SearchbarBrowseWidth = 0;
-        SearchbarInput = string.Empty;
-        SearchbarLineWidth = 0;
-        SearchbarTextWidth = 0;
 
         ToggleOptionsMenuCommand = new ToggleOptionsCommand(this);
         NavigateBackCommand = new NavigateBackCommand();
