@@ -34,10 +34,10 @@ public class CommonRowViewModel : ViewModelBase
 
     #region Constructors
 
-    public CommonRowViewModel(string? category = null, string? author = null)
+    public CommonRowViewModel(string category = "", string author = "")
     {
-        Category = category ?? String.Empty;
-        Author = author ?? String.Empty;
+        _category = category;
+        _author = author;
 
         _items = new ObservableCollection<CommonItemViewModel> {
             new CommonItemViewModel("Azahriah", "Artist", String.Empty),

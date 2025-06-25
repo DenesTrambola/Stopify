@@ -40,9 +40,9 @@ public class PlaylistAuthorViewModel : ViewModelBase
 
     public PlaylistAuthorViewModel(string name, string imagePath)
     {
-        Name = name;
-        ImagePath = imagePath;
-        MoreByArtist = new CommonRowViewModel($"More by {_name}", _name);
+        _name = name;
+        _imagePath = imagePath;
+        _moreByArtist = new CommonRowViewModel($"More by {_name}", _name);
     }
 
     #endregion

@@ -1,6 +1,8 @@
-﻿using Stopify.Presentation.ViewModels.Base;
+﻿using Stopify.Presentation.Utilities.Stores;
+using Stopify.Presentation.ViewModels.Base;
 using Stopify.Presentation.ViewModels.Queue;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Stopify.Presentation.ViewModels.NowPlaying;
 
@@ -8,24 +10,54 @@ public class NowPlayingViewModel : ViewModelBase
 {
     #region Fields
 
-    private string _playlistTitle;
-    private string _songImagePath;
-    private string _title;
+    private bool _isSaved = false;
+    private bool _isFollowing = false;
+
+    private string _playlistTitle = "Azahriah";
+    private string _songImagePath = string.Empty;
+    private string _title = "PANNONIA";
+    private string _saveTo = "Liked Songs";
 
     private string? _artist;
     private string? _artistImagePath;
     private string? _monthlyListeners;
     private string? _artistDescription;
-    private string? _followStatus;
 
     private QueueItemViewModel _nextSong;
 
     private ObservableCollection<string> _authors;
     private ObservableCollection<NowPlayingCreditsItemViewModel> _credits;
 
+    private readonly UIState _uiState;
+
     #endregion
 
     #region Properties
+
+    public bool NowPlayingCollapseState
+    {
+        get => _uiState.NowPlayingCollapseState;
+        set
+        {
+            if (_uiState.NowPlayingCollapseState != value)
+            {
+                _uiState.NowPlayingCollapseState = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public bool IsSaved
+    {
+        get => _isSaved;
+        set => SetProperty(ref _isSaved, value);
+    }
+
+    public bool IsFollowing
+    {
+        get => _isFollowing;
+        set => SetProperty(ref _isFollowing, value);
+    }
 
     public string PlaylistTitle
     {
@@ -43,6 +75,12 @@ public class NowPlayingViewModel : ViewModelBase
     {
         get => _title;
         set => SetProperty(ref _title, value);
+    }
+
+    public string SaveTo
+    {
+        get => _saveTo;
+        set => SetProperty(ref _saveTo, value);
     }
 
     public string? Artist
@@ -69,12 +107,6 @@ public class NowPlayingViewModel : ViewModelBase
         set => SetProperty(ref _artistDescription, value);
     }
 
-    public string? FollowStatus
-    {
-        get => _followStatus;
-        set => SetProperty(ref _followStatus, value);
-    }
-
     public QueueItemViewModel NextSong
     {
         get => _nextSong;
@@ -89,16 +121,15 @@ public class NowPlayingViewModel : ViewModelBase
 
     #region Constructors
 
-    public NowPlayingViewModel()
+    public NowPlayingViewModel(UIState uiState)
     {
-        PlaylistTitle = "Azahriah";
-        SongImagePath = String.Empty;
-        Title = "PANNONIA";
-        Artist = "Azahriah";
-        ArtistImagePath = String.Empty;
-        MonthlyListeners = "700,000";
-        ArtistDescription = "creator from hungary";
-        FollowStatus = "Unfollow";
+        _artist = "Azahriah";
+        _artistImagePath = string.Empty;
+        _monthlyListeners = "700,000";
+        _artistDescription = "creator from hungary";
+
+        _uiState = uiState;
+        _uiState.PropertyChanged += UIStatePropertyChanged;
 
         _authors = new ObservableCollection<string>
         {
@@ -109,12 +140,26 @@ public class NowPlayingViewModel : ViewModelBase
 
         _credits = new ObservableCollection<NowPlayingCreditsItemViewModel>
         {
-            new NowPlayingCreditsItemViewModel("Azahriah", "Followed"),
-            new NowPlayingCreditsItemViewModel("DESH", "Follow"),
-            new NowPlayingCreditsItemViewModel("Young Fly", "Follow"),
+            new NowPlayingCreditsItemViewModel("Azahriah", true),
+            new NowPlayingCreditsItemViewModel("DESH", false),
+            new NowPlayingCreditsItemViewModel("Young Fly", false),
         };
 
-        NextSong = new QueueItemViewModel("BAKPAKK", String.Empty);
+        _nextSong = new QueueItemViewModel("BAKPAKK", string.Empty);
+    }
+
+    #endregion
+
+    #region Event Handlers
+
+    private void UIStatePropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case nameof(_uiState.NowPlayingCollapseState):
+                OnPropertyChanged(nameof(NowPlayingCollapseState));
+                break;
+        }
     }
 
     #endregion

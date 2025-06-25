@@ -9,9 +9,17 @@ public class ArtistViewModel : ViewModelBase
 {
     #region Fields
 
-    private string _title;
-    private string _monthlyListeners;
-    private string _description;
+    private bool _isPlaying = false;
+    private bool _isShuffling = false;
+    private bool _isFollowing = false;
+    private bool _isFilteringPopularReleases = true;
+    private bool _isFilteringAlbums = false;
+    private bool _isFilteringSingles = false;
+
+    private string _title = "Azahriah";
+    private string _monthlyListeners = "700,000";
+    private string _description = "creator from hungary";
+    private string _hoverPopupText = string.Empty;
 
     private ObservableCollection<CommonItemViewModel> _discographyItems;
     private ObservableCollection<PlaylistItemViewModel> _populars;
@@ -19,6 +27,46 @@ public class ArtistViewModel : ViewModelBase
     #endregion
 
     #region Properties
+
+    public bool IsPlaying
+    {
+        get => _isPlaying;
+        set => SetProperty(ref _isPlaying, value);
+    }
+
+    public bool IsShuffling
+    {
+        get => _isShuffling;
+        set
+        {
+            SetProperty(ref _isShuffling, value);
+            UpdateHoverPopupText();
+        }
+    }
+
+    public bool IsFollowing
+    {
+        get => _isFollowing;
+        set => SetProperty(ref _isFollowing, value);
+    }
+
+    public bool IsFilteringPopularReleases
+    {
+        get => _isFilteringPopularReleases;
+        set => SetProperty(ref _isFilteringPopularReleases, value);
+    }
+
+    public bool IsFilteringAlbums
+    {
+        get => _isFilteringAlbums;
+        set => SetProperty(ref _isFilteringAlbums, value);
+    }
+
+    public bool IsFilteringSingles
+    {
+        get => _isFilteringSingles;
+        set => SetProperty(ref _isFilteringSingles, value);
+    }
 
     public string Title
     {
@@ -38,9 +86,15 @@ public class ArtistViewModel : ViewModelBase
         set => SetProperty(ref _description, value);
     }
 
-    public IEnumerable<CommonItemViewModel> DiscographyItems => _discographyItems;
+    public string HoverPopupText
+    {
+        get => _hoverPopupText;
+        set => SetProperty(ref _hoverPopupText, value);
+    }
 
-    public IEnumerable<PlaylistItemViewModel> Populars => _populars;
+    public ObservableCollection<CommonItemViewModel> DiscographyItems => _discographyItems;
+
+    public ObservableCollection<PlaylistItemViewModel> Populars => _populars;
 
     #endregion
 
@@ -48,37 +102,42 @@ public class ArtistViewModel : ViewModelBase
 
     public ArtistViewModel()
     {
-        Title = "Azahriah";
-        MonthlyListeners = "700,000";
-        Description = "creator from hungary";
-
         _discographyItems = new ObservableCollection<CommonItemViewModel>
         {
-            new CommonItemViewModel("ZHA MAJ DUR", "Latest Release · Single", String.Empty),
-            new CommonItemViewModel("A ló túloldalán", "2022 · Album", String.Empty),
-            new CommonItemViewModel("memento", "2023 · Album", String.Empty),
-            new CommonItemViewModel("tripq", "2023 · EP", String.Empty),
-            new CommonItemViewModel("silbak", "2022 · EP", String.Empty),
-            new CommonItemViewModel("BAKPAKK", "2024 - Single", String.Empty),
-            new CommonItemViewModel("skatulya I", "2024 · Album", String.Empty),
-            new CommonItemViewModel("Puskás Aréna Live (2024)", "2024 · Album", String.Empty),
-            new CommonItemViewModel("camouflage", "2021 · Album", String.Empty),
+            new CommonItemViewModel("ZHA MAJ DUR", "Latest Release · Single", string.Empty),
+            new CommonItemViewModel("A ló túloldalán", "2022 · Album", string.Empty),
+            new CommonItemViewModel("memento", "2023 · Album", string.Empty),
+            new CommonItemViewModel("tripq", "2023 · EP", string.Empty),
+            new CommonItemViewModel("silbak", "2022 · EP", string.Empty),
+            new CommonItemViewModel("BAKPAKK", "2024 - Single", string.Empty),
+            new CommonItemViewModel("skatulya I", "2024 · Album", string.Empty),
+            new CommonItemViewModel("Puskás Aréna Live (2024)", "2024 · Album", string.Empty),
+            new CommonItemViewModel("camouflage", "2021 · Album", string.Empty),
         };
 
         _populars = new ObservableCollection<PlaylistItemViewModel>
         {
-            new PlaylistItemViewModel("1", "PANNONIA", "PANNONIA", "8 months ago", "2:27", String.Empty),
-            new PlaylistItemViewModel("2", "BAKPAKK", "BAKPAKK", "8 months ago", "2:47", String.Empty),
-            new PlaylistItemViewModel("3", "ZHA MAJ DUR", "ZHA MAJ DUR", "8 months ago", "3:39", String.Empty),
-            new PlaylistItemViewModel("4", "Felednéd", "A ló tóloldalán", "8 months ago", "3:01", String.Empty),
-            new PlaylistItemViewModel("5", "Mind1", "A ló tóloldalán", "8 months ago", "3:11", String.Empty),
-            new PlaylistItemViewModel("6", "introvertált dal", "memento", "8 months ago", "2:49", String.Empty),
-            new PlaylistItemViewModel("7", "Rét", "Rét", "8 months ago", "2:59", String.Empty),
-            new PlaylistItemViewModel("8", "3korty", "memento", "8 months ago", "3:13", String.Empty),
-            new PlaylistItemViewModel("9", "Rampapagam", "CARPE DIEM", "8 months ago", "3:09", String.Empty),
-            new PlaylistItemViewModel("10", "Pullup", "A ló tóloldalán", "8 months ago", "2:17", String.Empty),
+            new PlaylistItemViewModel("1", "PANNONIA", "PANNONIA", "8 months ago", "2:27", string.Empty),
+            new PlaylistItemViewModel("2", "BAKPAKK", "BAKPAKK", "8 months ago", "2:47", string.Empty),
+            new PlaylistItemViewModel("3", "ZHA MAJ DUR", "ZHA MAJ DUR", "8 months ago", "3:39", string.Empty),
+            new PlaylistItemViewModel("4", "Felednéd", "A ló tóloldalán", "8 months ago", "3:01", string.Empty),
+            new PlaylistItemViewModel("5", "Mind1", "A ló tóloldalán", "8 months ago", "3:11", string.Empty),
+            new PlaylistItemViewModel("6", "introvertált dal", "memento", "8 months ago", "2:49", string.Empty),
+            new PlaylistItemViewModel("7", "Rét", "Rét", "8 months ago", "2:59", string.Empty),
+            new PlaylistItemViewModel("8", "3korty", "memento", "8 months ago", "3:13", string.Empty),
+            new PlaylistItemViewModel("9", "Rampapagam", "CARPE DIEM", "8 months ago", "3:09", string.Empty),
+            new PlaylistItemViewModel("10", "Pullup", "A ló tóloldalán", "8 months ago", "2:17", string.Empty),
         };
+
+        UpdateHoverPopupText();
     }
+
+    #endregion
+
+    #region Methods
+
+    private void UpdateHoverPopupText() =>
+        HoverPopupText = $"{(_isShuffling ? "Disable" : "Enable")} Shuffle for {_title}";
 
     #endregion
 }

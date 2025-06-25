@@ -2,17 +2,25 @@
 
 namespace Stopify.Presentation.ViewModels.Common;
 
-public class CommonItemViewModel : ViewModelBase
+public class CommonItemViewModel(string title, string description, string imagePath) : ViewModelBase
 {
     #region Fields
 
-    private string _title;
-    private string _description;
-    private string _imagePath;
+    private bool _isPlaying = false;
+
+    private string _title = title;
+    private string _description = description;
+    private string _imagePath = imagePath;
 
     #endregion
 
     #region Properties
+
+    public bool IsPlaying
+    {
+        get => _isPlaying;
+        set => SetProperty(ref _isPlaying, value);
+    }
 
     public string Title
     {
@@ -30,17 +38,6 @@ public class CommonItemViewModel : ViewModelBase
     {
         get => _imagePath;
         set => SetProperty(ref _imagePath, value);
-    }
-
-    #endregion
-
-    #region Constructors
-
-    public CommonItemViewModel(string title, string description, string imagePath)
-    {
-        Title = title;
-        Description = description;
-        ImagePath = imagePath;
     }
 
     #endregion

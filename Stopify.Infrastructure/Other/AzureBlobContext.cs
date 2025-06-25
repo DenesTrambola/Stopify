@@ -24,11 +24,12 @@ public class AzureBlobContext : IAudioStorageContext
     {
         var songs = new List<string>();
 
-        await foreach (var blobItem in _containerClient.GetBlobsAsync())
-        {
-            var blobClient = _containerClient.GetBlobClient(blobItem.Name);
-            songs.Add(blobClient.Uri.ToString());
-        }
+        // Commented out to prevent unnecessary loadings
+        //await foreach (var blobItem in _containerClient.GetBlobsAsync())
+        //{
+        //    var blobClient = _containerClient.GetBlobClient(blobItem.Name);
+        //    songs.Add(blobClient.Uri.ToString());
+        //}
 
         return songs;
     }

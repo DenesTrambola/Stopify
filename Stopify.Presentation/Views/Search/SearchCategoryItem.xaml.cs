@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Controls;
 
 namespace Stopify.Presentation.Views.Search;
 
@@ -10,12 +8,4 @@ public partial class SearchCategoryItem : UserControl
     {
         InitializeComponent();
     }
-
-    private void SearchPageItemBtn_MouseEnter(object sender, MouseEventArgs e) =>
-        Mouse.OverrideCursor = Cursors.Hand;
-
-    private void SearchPageItemBtn_MouseLeave(object sender, MouseEventArgs e) =>
-        Mouse.OverrideCursor = Cursors.Arrow;
-
-    private void SearchPageItemBtn_Click(object sender, RoutedEventArgs e) { }
 }

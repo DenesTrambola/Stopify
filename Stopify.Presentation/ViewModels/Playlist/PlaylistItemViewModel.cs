@@ -7,18 +7,41 @@ public class PlaylistItemViewModel : ViewModelBase
 {
     #region Fields
 
-    private string _number;
-    private string _title;
-    private string _album;
-    private string _dateAdded;
-    private string _duration;
-    private string _imagePath;
+    private bool _isSelected = false;
+    private bool _isPlaying = false;
+    private bool _isSaved = false;
+
+    private string _number = string.Empty;
+    private string _title = string.Empty;
+    private string _album = string.Empty;
+    private string _dateAdded = string.Empty;
+    private string _duration = string.Empty;
+    private string _imagePath = string.Empty;
+    private string _saveTo = "Liked Songs";
 
     private ObservableCollection<string> _authors;
 
     #endregion
 
     #region Properties
+
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set => SetProperty(ref _isSelected, value);
+    }
+
+    public bool IsPlaying
+    {
+        get => _isPlaying;
+        set => SetProperty(ref _isPlaying, value);
+    }
+
+    public bool IsSaved
+    {
+        get => _isSaved;
+        set => SetProperty(ref _isSaved, value);
+    }
 
     public string Number
     {
@@ -56,7 +79,13 @@ public class PlaylistItemViewModel : ViewModelBase
         set => SetProperty(ref _imagePath, value);
     }
 
-    public IEnumerable<string> Authors => _authors;
+    public string SaveTo
+    {
+        get => _saveTo;
+        set => SetProperty(ref _saveTo, value);
+    }
+
+    public ObservableCollection<string> Authors => _authors;
 
     #endregion
 
@@ -64,11 +93,12 @@ public class PlaylistItemViewModel : ViewModelBase
 
     public PlaylistItemViewModel(string number, string title, string album, string dateAdded, string duration, string imagePath)
     {
-        Number = number;
-        Title = title;
-        Album = album;
-        DateAdded = dateAdded;
-        Duration = duration;
+        _number = number;
+        _title = title;
+        _album = album;
+        _dateAdded = dateAdded;
+        _duration = duration;
+        _imagePath = imagePath;
 
         _authors = new ObservableCollection<string>()
         {

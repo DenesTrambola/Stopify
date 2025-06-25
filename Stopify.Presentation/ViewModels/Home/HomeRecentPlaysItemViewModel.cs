@@ -2,12 +2,13 @@
 
 namespace Stopify.Presentation.ViewModels.Home;
 
-public class HomeRecentPlaysItemViewModel : ViewModelBase
+public class HomeRecentPlaysItemViewModel(string title, bool isPlaying, string imagePath) : ViewModelBase
 {
     #region Fields
 
-    private string _title;
-    private string _imagePath;
+    private string _title = title;
+    private bool _isPlaying = isPlaying;
+    private string _imagePath = imagePath;
 
     #endregion
 
@@ -19,20 +20,16 @@ public class HomeRecentPlaysItemViewModel : ViewModelBase
         set => SetProperty(ref _title, value);
     }
 
+    public bool IsPlaying
+    {
+        get => _isPlaying;
+        set => SetProperty(ref _isPlaying, value);
+    }
+
     public string ImagePath
     {
         get => _imagePath;
         set => SetProperty(ref _imagePath, value);
-    }
-
-    #endregion
-
-    #region Constructors
-
-    public HomeRecentPlaysItemViewModel(string title, string imagePath)
-    {
-        Title = title;
-        ImagePath = imagePath;
     }
 
     #endregion

@@ -7,6 +7,10 @@ public class FilterRowViewModel : ViewModelBase
 {
     #region Fields
 
+    private bool _isFilteringAll = true;
+    private bool _isFilteringMusic = false;
+    private bool _isFilteringPodcasts = false;
+
     private string _title;
 
     private ObservableCollection<CommonItemViewModel> _items;
@@ -14,6 +18,24 @@ public class FilterRowViewModel : ViewModelBase
     #endregion
 
     #region Properties
+
+    public bool IsFilteringAll
+    {
+        get => _isFilteringAll;
+        set => SetProperty(ref _isFilteringAll, value);
+    }
+
+    public bool IsFilteringMusic
+    {
+        get => _isFilteringMusic;
+        set => SetProperty(ref _isFilteringMusic, value);
+    }
+
+    public bool IsFilteringPodcasts
+    {
+        get => _isFilteringPodcasts;
+        set => SetProperty(ref _isFilteringPodcasts, value);
+    }
 
     public string Title
     {
@@ -29,7 +51,7 @@ public class FilterRowViewModel : ViewModelBase
 
     public FilterRowViewModel(string title)
     {
-        Title = title;
+        _title = title;
 
         _items = new ObservableCollection<CommonItemViewModel>
         {
