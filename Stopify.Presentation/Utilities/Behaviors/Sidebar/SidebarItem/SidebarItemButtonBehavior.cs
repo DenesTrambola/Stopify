@@ -1,5 +1,4 @@
 ﻿using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.Views.Main;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -115,6 +114,13 @@ public static class SidebarItemButtonBehavior
             typeof(SidebarItemButtonBehavior),
             new PropertyMetadata(false, OnIsPlayingChanged));
 
+    public static readonly DependencyProperty SidebarCollapseStateProperty =
+        DependencyProperty.RegisterAttached(
+            "SidebarCollapseState",
+            typeof(bool),
+            typeof(SidebarItemButtonBehavior),
+            new PropertyMetadata(false));
+
     #endregion
 
     #region Getters/Setters
@@ -178,6 +184,11 @@ public static class SidebarItemButtonBehavior
         (bool)obj.GetValue(IsPlaying);
     public static void SetIsPlaying(DependencyObject obj, bool value) =>
         obj.SetValue(IsPlaying, value);
+
+    public static bool GetSidebarCollapseState(DependencyObject obj) =>
+        (bool)obj.GetValue(SidebarCollapseStateProperty);
+    public static void SetSidebarCollapseState(DependencyObject obj, bool value) =>
+        obj.SetValue(SidebarCollapseStateProperty, value);
 
     #endregion
 
@@ -278,9 +289,7 @@ public static class SidebarItemButtonBehavior
     {
         if (sender is not Button element) return;
 
-        MainView mainView = (MainView)Application.Current.MainWindow;
-
-        if (mainView.SidebarCollapsed != false)
+        if (GetSidebarCollapseState(element))
         {
             _playlistTitle.Text = GetPlaylistTitle(element);
             _playlistInfo.Text = GetDescription(element);
@@ -297,9 +306,7 @@ public static class SidebarItemButtonBehavior
     {
         if (sender is not Button element) return;
 
-        MainView mainView = (MainView)Application.Current.MainWindow;
-
-        if (mainView.SidebarCollapsed != false)
+        if (GetSidebarCollapseState(element))
             HoverPopupHelper.HidePopup();
         else
         {

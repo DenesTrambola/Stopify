@@ -1,9 +1,9 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace Stopify.Presentation.Utilities.Behaviors.Sidebar.SidebarItem;
 
@@ -39,6 +39,13 @@ public static class SidebarItemImageButtonBehavior
             typeof(SidebarItemImageButtonBehavior),
             new PropertyMetadata(string.Empty));
 
+    public static readonly DependencyProperty SidebarCollapseStateProperty =
+        DependencyProperty.RegisterAttached(
+            "SidebarCollapseState",
+            typeof(bool),
+            typeof(SidebarItemImageButtonBehavior),
+            new PropertyMetadata(false));
+
     #endregion
 
     #region Getters/Setters
@@ -62,6 +69,11 @@ public static class SidebarItemImageButtonBehavior
         (string)obj.GetValue(PlaylistTitleProperty);
     public static void SetPlaylistTitle(DependencyObject obj, string value) =>
         obj.SetValue(PlaylistTitleProperty, value);
+
+    public static bool GetSidebarCollapseState(DependencyObject obj) =>
+        (bool)obj.GetValue(SidebarCollapseStateProperty);
+    public static void SetSidebarCollapseState(DependencyObject obj, bool value) =>
+        obj.SetValue(SidebarCollapseStateProperty, value);
 
     #endregion
 
@@ -96,13 +108,11 @@ public static class SidebarItemImageButtonBehavior
 
     #region Event Handlers
 
-    private static void OnMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+    private static void OnMouseEnter(object sender, MouseEventArgs e)
     {
         if (sender is not Button element) return;
 
-        MainView mainView = (MainView)Application.Current.MainWindow;
-
-        if (!mainView.SidebarCollapsed == true)
+        if (!GetSidebarCollapseState(element))
         {
             bool isPlaying = GetIsPlaying(element);
             string playlistTitle = GetPlaylistTitle(element);
@@ -112,13 +122,11 @@ public static class SidebarItemImageButtonBehavior
         }
     }
 
-    private static void OnMouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+    private static void OnMouseLeave(object sender, MouseEventArgs e)
     {
         if (sender is not Button element) return;
 
-        MainView mainView = (MainView)Application.Current.MainWindow;
-
-        if (mainView.SidebarCollapsed == false)
+        if (!GetSidebarCollapseState(element))
         {
             ScaleAnimations.ResetScaleAnimation(GetPlayBtn(element), .1);
             HoverPopupHelper.HidePopup();

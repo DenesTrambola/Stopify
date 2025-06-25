@@ -22,6 +22,13 @@ public static class SidebarItemTogglePlayOnClicksBehavior
             typeof(SidebarItemTogglePlayOnClicksBehavior),
             new FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+    public static readonly DependencyProperty SidebarCollapseStateProperty =
+        DependencyProperty.RegisterAttached(
+            "SidebarCollapseState",
+            typeof(bool),
+            typeof(SidebarItemTogglePlayOnClicksBehavior),
+            new FrameworkPropertyMetadata(false));
+
     #endregion
 
     #region Getters/Setters
@@ -35,6 +42,11 @@ public static class SidebarItemTogglePlayOnClicksBehavior
         (bool)obj.GetValue(IsPlayingProperty);
     public static void SetIsPlaying(DependencyObject obj, bool value) =>
         obj.SetValue(IsPlayingProperty, value);
+
+    public static bool GetSidebarCollapseState(DependencyObject obj) =>
+        (bool)obj.GetValue(SidebarCollapseStateProperty);
+    public static void SetSidebarCollapseState(DependencyObject obj, bool value) =>
+        obj.SetValue(SidebarCollapseStateProperty, value);
 
     #endregion
 
@@ -102,8 +114,8 @@ public static class SidebarItemTogglePlayOnClicksBehavior
 
     private static void TogglePlay(Button element)
     {
-        bool isPlaying = GetIsPlaying(element);
-        SetIsPlaying(element, !isPlaying);
+        if (!GetSidebarCollapseState(element))
+            SetIsPlaying(element, !GetIsPlaying(element));
     }
 
     #endregion

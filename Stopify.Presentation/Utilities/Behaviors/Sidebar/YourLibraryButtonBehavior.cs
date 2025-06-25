@@ -1,6 +1,5 @@
 ﻿using Stopify.Presentation.Utilities.Animations;
 using Stopify.Presentation.Utilities.Helpers;
-using Stopify.Presentation.Views.Main;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -105,13 +104,11 @@ public static class YourLibraryButtonBehavior
         if (sender is not Button element) return;
 
         TextBlock yourLibraryText = GetYourLibraryText(element);
-        MainView mainView = (MainView)Application.Current.MainWindow;
 
         ColorAnimations.AnimateForeground(element, Colors.White, .1);
         ColorAnimations.AnimateForeground(yourLibraryText, Colors.White, .1);
 
-        HoverPopupHelper.DisplayPopupText(element, PlacementMode.MousePoint,
-            mainView.SidebarCollapsed == false ? "Collapse Your Library" : "Expand Your Library");
+        UpdateHoverPopupDisplay(element);
     }
 
     private static void OnMouseLeave(object sender, MouseEventArgs e)
@@ -131,6 +128,7 @@ public static class YourLibraryButtonBehavior
         if (sender is not Button element) return;
 
         SetSidebarCollapseState(element, !GetSidebarCollapseState(element));
+        UpdateHoverPopupDisplay(element);
     }
 
     private static void DetachEvents(object sender, RoutedEventArgs e)
@@ -143,6 +141,16 @@ public static class YourLibraryButtonBehavior
         element.Unloaded -= DetachEvents;
 
         SetEnable(element, false);
+    }
+
+    #endregion
+
+    #region Methods
+
+    private static void UpdateHoverPopupDisplay(Button element)
+    {
+        HoverPopupHelper.DisplayPopupText(element, PlacementMode.MousePoint,
+                    !GetSidebarCollapseState(element) ? "Collapse Your Library" : "Expand Your Library");
     }
 
     #endregion

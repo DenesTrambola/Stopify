@@ -1,4 +1,6 @@
-﻿using Stopify.Presentation.ViewModels.Base;
+﻿using Stopify.Presentation.Utilities.Stores;
+using Stopify.Presentation.ViewModels.Base;
+using System.ComponentModel;
 
 namespace Stopify.Presentation.ViewModels.Sidebar;
 
@@ -9,6 +11,7 @@ public class SidebarItemViewModel : ViewModelBase
     private int _playlistSongQuantity = 0;
 
     private bool _isPlaying = false;
+    private UIState _uiState;
 
     private string _playlistImagePath = string.Empty;
     private string _playlistAuthor = string.Empty;
@@ -29,6 +32,19 @@ public class SidebarItemViewModel : ViewModelBase
     {
         get => _isPlaying;
         set => SetProperty(ref _isPlaying, value);
+    }
+
+    public bool SidebarCollapseState
+    {
+        get => _uiState.SidebarCollapseState;
+        set
+        {
+            if (_uiState.SidebarCollapseState != value)
+            {
+                _uiState.SidebarCollapseState = value;
+                OnPropertyChanged(nameof(SidebarCollapseState));
+            }
+        }
     }
 
     public string PlaylistImagePath
@@ -59,14 +75,29 @@ public class SidebarItemViewModel : ViewModelBase
 
     #region Constructors
 
-    public SidebarItemViewModel(string playlistTitle, string playlistType, string playlistImagePath, string? playlistAuthor = null, int playlistSongQuantity = default)
+    public SidebarItemViewModel(UIState uiState,
+                                string playlistTitle,
+                                string playlistType,
+                                string playlistImagePath,
+                                string? playlistAuthor = null,
+                                int playlistSongQuantity = default)
     {
+        _uiState = uiState;
+        _uiState.PropertyChanged += UIStatePropertyChanged;
+
         PlaylistTitle = playlistTitle;
         PlaylistType = playlistType;
         PlaylistImagePath = playlistImagePath;
         PlaylistAuthor = playlistAuthor ?? string.Empty;
         PlaylistSongQuantity = playlistSongQuantity;
     }
+
+    #endregion
+
+    #region Event Handlers
+
+    private void UIStatePropertyChanged(object? sender, PropertyChangedEventArgs e) =>
+        OnPropertyChanged(nameof(SidebarCollapseState));
 
     #endregion
 }

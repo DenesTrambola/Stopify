@@ -28,6 +28,7 @@
         SidebarItemBehaviors:SidebarItemButtonBehavior.PlaylistSongQuantity="{Binding PlaylistSongQuantity}"
         SidebarItemBehaviors:SidebarItemButtonBehavior.PlaylistTitle="{Binding PlaylistTitle}"
         SidebarItemBehaviors:SidebarItemButtonBehavior.PlaylistType="{Binding PlaylistType}"
+        SidebarItemBehaviors:SidebarItemButtonBehavior.SidebarCollapseState="{Binding SidebarCollapseState}"
         SidebarItemBehaviors:SidebarItemButtonBehavior.SidebarPlayingIconWidth="{Binding ElementName=SidebarPlayingIcon, Path=Width, Mode=TwoWay}"
         SidebarItemBehaviors:SidebarItemTogglePlayOnClicksBehavior.Enable="True"
         SidebarItemBehaviors:SidebarItemTogglePlayOnClicksBehavior.IsPlaying="{Binding IsPlaying, Mode=TwoWay}"
@@ -63,8 +64,10 @@
                     SidebarItemBehaviors:SidebarItemImageButtonBehavior.IsPlaying="{Binding IsPlaying}"
                     SidebarItemBehaviors:SidebarItemImageButtonBehavior.PlayBtn="{Binding ElementName=PlayBtn}"
                     SidebarItemBehaviors:SidebarItemImageButtonBehavior.PlaylistTitle="{Binding PlaylistTitle}"
+                    SidebarItemBehaviors:SidebarItemImageButtonBehavior.SidebarCollapseState="{Binding SidebarCollapseState}"
                     SidebarItemBehaviors:SidebarItemTogglePlayOnClicksBehavior.Enable="True"
-                    SidebarItemBehaviors:SidebarItemTogglePlayOnClicksBehavior.IsPlaying="{Binding IsPlaying, Mode=TwoWay}"
+                    SidebarItemBehaviors:SidebarItemTogglePlayOnClicksBehavior.IsPlaying="{Binding IsPlaying}"
+                    SidebarItemBehaviors:SidebarItemTogglePlayOnClicksBehavior.SidebarCollapseState="{Binding SidebarCollapseState}"
                     Background="#121212"
                     BorderThickness="0">
                     <Border CornerRadius="5">
